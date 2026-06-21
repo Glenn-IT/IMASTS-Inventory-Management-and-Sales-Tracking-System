@@ -33,7 +33,6 @@
   <ItemGroup>
     <Folder Include="Helpers\" />
     <Folder Include="DataAccess\" />
-    <Folder Include="Forms\" />
   </ItemGroup>
 
   <ItemGroup>
