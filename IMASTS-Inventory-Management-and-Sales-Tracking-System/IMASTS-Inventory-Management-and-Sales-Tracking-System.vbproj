@@ -4,7 +4,7 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net8.0-windows</TargetFramework>
     <RootNamespace>IMASTS_Inventory_Management_and_Sales_Tracking_System</RootNamespace>
-    <StartupObject>Sub Main</StartupObject>
+    <StartupObject>IMASTS_Inventory_Management_and_Sales_Tracking_System.My.MyApplication</StartupObject>
     <UseWindowsForms>true</UseWindowsForms>
     <MyType>WindowsForms</MyType>
   </PropertyGroup>
@@ -31,7 +31,18 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="docs\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="DataAccess\" />
+    <Folder Include="Forms\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="config.txt.example" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BCrypt.Net-Next" Version="4.2.0" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.*" />
   </ItemGroup>
 
 </Project>
