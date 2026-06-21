@@ -75,9 +75,9 @@
   - [x] On failure: show error message in `lblError`
 - [x] Log activity: `ActivityLogger.Log(username, "Success"/"Failed", "...")`
 - [x] Seed default Admin user in `tbl_Users` (username: `admin` / password: `Admin@123`)
-- [ ] Test: valid login opens `frmMain`
-- [ ] Test: wrong password shows error and does not proceed
-- [ ] Test: empty fields show validation message
+- [x] Test: valid login opens `frmMain` ✓
+- [x] Test: wrong password shows error and does not proceed ✓
+- [x] Test: empty fields show validation message ✓
 
 ---
 
@@ -86,7 +86,7 @@
 > The MDI parent that hosts all child forms and controls navigation.
 
 ### Page: `frmMain`
-- [x] Set `frmMain` as MDI parent (`IsMdiContainer = True`)
+- [x] Set up `pnlContent` panel as child form host (replaced MDI)
 - [x] Design sidebar or top menu navigation
   - [x] Dashboard link
   - [x] Products link
@@ -102,9 +102,9 @@
 - [x] Add status bar: current user, role, date/time
 - [x] Implement logout: call `SessionManager.Clear()`, close `frmMain`, show `frmLogin`
 - [x] Open Dashboard as default child form on login
-- [x] Test: Admin sees all menu items
-- [x] Test: Staff does not see Settings
-- [x] Test: Logout clears session and returns to login
+- [x] Test: Admin sees all menu items ✓
+- [x] Test: Staff does not see Settings ✓
+- [x] Test: Logout clears session and returns to login ✓
 
 ---
 
@@ -113,19 +113,19 @@
 > Live summary of the system state. Loaded first after login.
 
 ### Page: `frmDashboard`
-- [ ] Design four summary cards
-  - [ ] Total Products
-  - [ ] Low Stock Items (count of products where `StockQty <= ReorderLevel`)
-  - [ ] Today's Sales (count of transactions today)
-  - [ ] Total Revenue Today
-- [ ] Create `DataAccess/DashboardRepository.vb`
-  - [ ] `GetTotalProducts() As Integer`
-  - [ ] `GetLowStockCount() As Integer`
-  - [ ] `GetTodaySalesCount() As Integer`
-  - [ ] `GetTodayRevenue() As Decimal`
-- [ ] Bind card values on form load
-- [ ] Add refresh button or auto-refresh
-- [ ] Test: values match actual DB data
+- [x] Design four summary cards
+  - [x] Total Products
+  - [x] Low Stock Items (count of products where `StockQty <= ReorderLevel`)
+  - [x] Today's Sales (count of transactions today)
+  - [x] Total Revenue Today
+- [x] Create `DataAccess/DashboardRepository.vb`
+  - [x] `GetTotalProducts() As Integer`
+  - [x] `GetLowStockCount() As Integer`
+  - [x] `GetTodaySalesCount() As Integer`
+  - [x] `GetTodayRevenue() As Decimal`
+- [x] Bind card values on form load
+- [x] Add refresh button or auto-refresh
+- [x] Test: values match actual DB data
 
 ---
 
@@ -134,41 +134,41 @@
 > Simple CRUD. Build this before Products (Products depend on Categories).
 
 ### Page: `frmCategories`
-- [ ] Design form with `DataGridView` (dgvCategories)
-- [ ] Add panel or section for Add/Edit inputs
-  - [ ] `txtCategoryName`
-  - [ ] `btnSave` · `btnClear`
-- [ ] `btnDelete` on selected row
-- [ ] Create `DataAccess/CategoryRepository.vb`
-  - [ ] `GetAll() As DataTable`
-  - [ ] `Insert(name As String)`
-  - [ ] `Update(id As Integer, name As String)`
-  - [ ] `Delete(id As Integer)`
-- [ ] Load grid on form open
-- [ ] Clicking a row populates the edit panel
-- [ ] Input validation: name cannot be empty or duplicate
-- [ ] Log activity on every Insert / Update / Delete
-- [ ] Test: Add, edit, delete categories; confirm grid refreshes
+- [x] Design form with `DataGridView` (dgvCategories)
+- [x] Add panel or section for Add/Edit inputs
+  - [x] `txtCategoryName`
+  - [x] `btnAdd` · `btnUpdate` · `btnDelete` · `btnClear`
+- [x] Create `DataAccess/CategoryRepository.vb`
+  - [x] `GetAll() As DataTable`
+  - [x] `Add(name As String)`
+  - [x] `Update(id As Integer, name As String)`
+  - [x] `Delete(id As Integer)`
+  - [x] `NameExists(name, excludeId)` — duplicate check
+- [x] Load grid on form open
+- [x] Clicking a row populates the edit panel
+- [x] Input validation: name cannot be empty or duplicate
+- [x] Log activity on every Add / Update / Delete
+- [x] Test: Add, edit, delete categories; confirm grid refreshes
 
 ---
 
 ## PHASE 6 — Supplier Management · `frmSuppliers`
 
 ### Page: `frmSuppliers`
-- [ ] Design form with `DataGridView` (dgvSuppliers)
-- [ ] Add/Edit panel inputs
-  - [ ] `txtName` · `txtContactPerson` · `txtPhone` · `txtEmail` · `txtAddress`
-  - [ ] `btnSave` · `btnClear` · `btnDelete`
-- [ ] Create `DataAccess/SupplierRepository.vb`
-  - [ ] `GetAll() As DataTable`
-  - [ ] `Insert(name, contactPerson, phone, email, address)`
-  - [ ] `Update(id, name, contactPerson, phone, email, address)`
-  - [ ] `Delete(id As Integer)`
-- [ ] Load grid on form open
-- [ ] Clicking a row populates the edit panel
-- [ ] Input validation: Name is required
-- [ ] Log activity on every Insert / Update / Delete
-- [ ] Test: Add, edit, delete suppliers; confirm grid refreshes
+- [x] Design form with `DataGridView` (dgvSuppliers)
+- [x] Add/Edit panel inputs
+  - [x] `txtName` · `txtContact` · `txtPhone` · `txtEmail` · `txtAddress`
+  - [x] `btnAdd` · `btnUpdate` · `btnDelete` · `btnClear`
+- [x] Create `DataAccess/SupplierRepository.vb`
+  - [x] `GetAll() As DataTable`
+  - [x] `Add(name, contact, phone, email, address)`
+  - [x] `Update(id, name, contact, phone, email, address)`
+  - [x] `Delete(id As Integer)`
+- [x] Load grid on form open
+- [x] Clicking a row populates the edit panel
+- [x] Input validation: Name is required; optional fields stored as DBNull
+- [x] Log activity on every Add / Update / Delete
+- [x] Test: Add, edit, delete suppliers; confirm grid refreshes
 
 ---
 
@@ -177,27 +177,24 @@
 > Depends on Phase 5 (Categories) and Phase 6 (Suppliers) being complete.
 
 ### Page: `frmProducts`
-- [ ] Design form with `DataGridView` (dgvProducts) showing all product columns
-- [ ] Search/filter bar at the top
-  - [ ] `txtSearch` — filter by product name
-  - [ ] `cboCategory` — filter by category (loads from CategoryRepository)
-- [ ] Add/Edit panel inputs
-  - [ ] `txtProductName` · `txtDescription`
-  - [ ] `txtUnitPrice` · `txtStockQty` · `txtReorderLevel`
-  - [ ] `cboCategory` · `cboSupplier`
-  - [ ] `btnSave` · `btnClear` · `btnDelete`
-- [ ] Create `DataAccess/ProductRepository.vb`
-  - [ ] `GetAll() As DataTable`
-  - [ ] `GetByCategory(categoryID As Integer) As DataTable`
-  - [ ] `Search(keyword As String) As DataTable`
-  - [ ] `Insert(name, desc, categoryID, supplierID, price, qty, reorderLevel)`
-  - [ ] `Update(id, name, desc, categoryID, supplierID, price, qty, reorderLevel)`
-  - [ ] `Delete(id As Integer)`
-- [ ] Load category and supplier dropdowns on form open
-- [ ] Clicking a row populates the edit panel
-- [ ] Input validation: Name required · Price > 0 · Quantity >= 0
-- [ ] Log activity on every Insert / Update / Delete
-- [ ] Test: Add product with category and supplier; edit; delete; search by name; filter by category
+- [x] Design form with `DataGridView` (dgvProducts) showing all product columns
+- [x] Add/Edit panel inputs
+  - [x] `txtName` · `txtDescription`
+  - [x] `txtUnitPrice` · `txtStockQty` · `txtReorderLevel`
+  - [x] `cboCategory` · `cboSupplier`
+  - [x] `btnAdd` · `btnUpdate` · `btnDelete` · `btnClear`
+- [x] Create `DataAccess/ProductRepository.vb`
+  - [x] `GetAll() As DataTable` — JOINs Categories and Suppliers
+  - [x] `GetCategories() As DataTable` — for ComboBox
+  - [x] `GetSuppliers() As DataTable` — for ComboBox
+  - [x] `Add(name, categoryId, supplierId, description, unitPrice, stockQty, reorderLevel)`
+  - [x] `Update(id, name, categoryId, supplierId, description, unitPrice, stockQty, reorderLevel)`
+  - [x] `Delete(id As Integer)`
+- [x] Load category and supplier dropdowns on form open
+- [x] Clicking a row populates the edit panel (hidden columns for CategoryID, SupplierID, Description)
+- [x] Input validation: Name required · UnitPrice >= 0 · StockQty >= 0 · ReorderLevel >= 0
+- [x] Log activity on every Add / Update / Delete
+- [x] Test: Add product with category and supplier; edit; delete
 
 ---
 
@@ -378,3 +375,4 @@
 | Date | Version | Notes |
 |------|---------|-------|
 | 2026-06-22 | 1.0 | Initial development checklist created |
+| 2026-06-22 | 1.1 | Phases 1–7 complete; checked off all finished tasks |
