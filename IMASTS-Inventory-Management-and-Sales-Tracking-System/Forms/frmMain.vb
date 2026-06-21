@@ -77,11 +77,11 @@ Public Class frmMain
     ' ── MDI helper ───────────────────────────────────────────────────────
 
     Private Sub OpenChildForm(form As Form)
-        For Each child As Form In Me.MdiChildren
-            child.Close()
-        Next
-        form.MdiParent   = Me
-        form.WindowState = FormWindowState.Maximized
+        pnlContent.Controls.Clear()
+        form.TopLevel         = False
+        form.FormBorderStyle  = FormBorderStyle.None
+        form.Dock             = DockStyle.Fill
+        pnlContent.Controls.Add(form)
         form.Show()
     End Sub
 
@@ -92,7 +92,7 @@ Public Class frmMain
     End Sub
 
     Private Sub btnProducts_Click(sender As Object, e As EventArgs) Handles btnProducts.Click
-        MessageBox.Show("Products — coming in Phase 7.", "Coming Soon", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        OpenChildForm(New frmProducts())
     End Sub
 
     Private Sub btnInventory_Click(sender As Object, e As EventArgs) Handles btnInventory.Click
@@ -108,11 +108,11 @@ Public Class frmMain
     End Sub
 
     Private Sub btnSuppliers_Click(sender As Object, e As EventArgs) Handles btnSuppliers.Click
-        MessageBox.Show("Suppliers — coming in Phase 6.", "Coming Soon", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        OpenChildForm(New frmSuppliers())
     End Sub
 
     Private Sub btnCategories_Click(sender As Object, e As EventArgs) Handles btnCategories.Click
-        MessageBox.Show("Categories — coming in Phase 5.", "Coming Soon", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        OpenChildForm(New frmCategories())
     End Sub
 
     Private Sub btnReports_Click(sender As Object, e As EventArgs) Handles btnReports.Click

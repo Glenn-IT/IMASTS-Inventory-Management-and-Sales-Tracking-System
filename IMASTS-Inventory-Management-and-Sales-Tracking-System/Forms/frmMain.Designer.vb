@@ -40,6 +40,7 @@ Partial Class frmMain
         Me.pnlStatus          = New System.Windows.Forms.Panel()
         Me.lblStatusUser      = New System.Windows.Forms.Label()
         Me.lblStatusDateTime  = New System.Windows.Forms.Label()
+        Me.pnlContent         = New System.Windows.Forms.Panel()
         Me.tmrClock           = New System.Windows.Forms.Timer(Me.components)
 
         Me.pnlTop.SuspendLayout()
@@ -238,6 +239,11 @@ Partial Class frmMain
         Me.btnSettings.Text      = "  Settings"
         Me.btnSettings.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
 
+        ' ── pnlContent ──────────────────────────────────────────────
+        Me.pnlContent.BackColor = System.Drawing.Color.FromArgb(245, 246, 248)
+        Me.pnlContent.Dock      = System.Windows.Forms.DockStyle.Fill
+        Me.pnlContent.Name      = "pnlContent"
+
         ' tmrClock
         Me.tmrClock.Interval = 1000
 
@@ -245,10 +251,11 @@ Partial Class frmMain
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode       = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize          = New System.Drawing.Size(1200, 700)
+        Me.Controls.Add(Me.pnlContent)
         Me.Controls.Add(Me.pnlSidebar)
         Me.Controls.Add(Me.pnlStatus)
         Me.Controls.Add(Me.pnlTop)
-        Me.IsMdiContainer      = True
+        Me.IsMdiContainer      = False
         Me.MinimumSize         = New System.Drawing.Size(900, 600)
         Me.Name                = "frmMain"
         Me.StartPosition       = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -285,6 +292,7 @@ Partial Class frmMain
     Friend WithEvents pnlStatus         As System.Windows.Forms.Panel
     Friend WithEvents lblStatusUser     As System.Windows.Forms.Label
     Friend WithEvents lblStatusDateTime As System.Windows.Forms.Label
+    Friend WithEvents pnlContent        As System.Windows.Forms.Panel
     Friend WithEvents tmrClock          As System.Windows.Forms.Timer
 
 End Class
