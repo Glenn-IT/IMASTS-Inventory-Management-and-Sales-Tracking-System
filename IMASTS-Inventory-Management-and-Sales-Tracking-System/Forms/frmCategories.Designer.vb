@@ -17,145 +17,200 @@ Partial Class frmCategories
 
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.lblPageHeader    = New System.Windows.Forms.Label()
-        Me.pnlForm          = New System.Windows.Forms.Panel()
-        Me.lblCategoryName  = New System.Windows.Forms.Label()
-        Me.txtCategoryName  = New System.Windows.Forms.TextBox()
-        Me.btnAdd           = New System.Windows.Forms.Button()
-        Me.btnUpdate        = New System.Windows.Forms.Button()
-        Me.btnDelete        = New System.Windows.Forms.Button()
-        Me.btnClear         = New System.Windows.Forms.Button()
-        Me.dgvCategories    = New System.Windows.Forms.DataGridView()
-
-        Me.pnlForm.SuspendLayout()
-        CType(Me.dgvCategories, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.SuspendLayout()
-
-        ' ── lblPageHeader ─────────────────────────────────────────────────
-        Me.lblPageHeader.AutoSize  = False
-        Me.lblPageHeader.Font      = New System.Drawing.Font("Segoe UI", 16.0!, System.Drawing.FontStyle.Bold)
-        Me.lblPageHeader.ForeColor = System.Drawing.Color.FromArgb(40, 44, 52)
-        Me.lblPageHeader.Location  = New System.Drawing.Point(30, 20)
-        Me.lblPageHeader.Name      = "lblPageHeader"
-        Me.lblPageHeader.Size      = New System.Drawing.Size(300, 36)
-        Me.lblPageHeader.Text      = "Category Management"
-
-        ' ── pnlForm (input card) ─────────────────────────────────────────
-        Me.pnlForm.BackColor = System.Drawing.Color.White
-        Me.pnlForm.Location  = New System.Drawing.Point(30, 72)
-        Me.pnlForm.Name      = "pnlForm"
-        Me.pnlForm.Size      = New System.Drawing.Size(380, 120)
-        Me.pnlForm.Controls.Add(Me.lblCategoryName)
-        Me.pnlForm.Controls.Add(Me.txtCategoryName)
-        Me.pnlForm.Controls.Add(Me.btnAdd)
-        Me.pnlForm.Controls.Add(Me.btnUpdate)
-        Me.pnlForm.Controls.Add(Me.btnDelete)
-        Me.pnlForm.Controls.Add(Me.btnClear)
-
+        lblPageHeader = New Label()
+        pnlForm = New Panel()
+        lblCategoryName = New Label()
+        txtCategoryName = New TextBox()
+        btnAdd = New Button()
+        btnUpdate = New Button()
+        btnDelete = New Button()
+        btnClear = New Button()
+        dgvCategories = New DataGridView()
+        Panel1 = New Panel()
+        Panel2 = New Panel()
+        Panel3 = New Panel()
+        pnlForm.SuspendLayout()
+        CType(dgvCategories, ComponentModel.ISupportInitialize).BeginInit()
+        Panel1.SuspendLayout()
+        Panel2.SuspendLayout()
+        Panel3.SuspendLayout()
+        SuspendLayout()
+        ' 
+        ' lblPageHeader
+        ' 
+        lblPageHeader.Font = New Font("Segoe UI", 16F, FontStyle.Bold)
+        lblPageHeader.ForeColor = Color.FromArgb(CByte(40), CByte(44), CByte(52))
+        lblPageHeader.Location = New Point(12, 20)
+        lblPageHeader.Name = "lblPageHeader"
+        lblPageHeader.Size = New Size(300, 41)
+        lblPageHeader.TabIndex = 0
+        lblPageHeader.Text = "Category Management"
+        ' 
+        ' pnlForm
+        ' 
+        pnlForm.BackColor = Color.White
+        pnlForm.Controls.Add(lblCategoryName)
+        pnlForm.Controls.Add(txtCategoryName)
+        pnlForm.Controls.Add(btnAdd)
+        pnlForm.Controls.Add(btnUpdate)
+        pnlForm.Controls.Add(btnDelete)
+        pnlForm.Controls.Add(btnClear)
+        pnlForm.Location = New Point(12, 6)
+        pnlForm.Name = "pnlForm"
+        pnlForm.Size = New Size(380, 136)
+        pnlForm.TabIndex = 1
+        ' 
         ' lblCategoryName
-        Me.lblCategoryName.AutoSize  = False
-        Me.lblCategoryName.Font      = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular)
-        Me.lblCategoryName.ForeColor = System.Drawing.Color.FromArgb(80, 85, 95)
-        Me.lblCategoryName.Location  = New System.Drawing.Point(16, 16)
-        Me.lblCategoryName.Name      = "lblCategoryName"
-        Me.lblCategoryName.Size      = New System.Drawing.Size(110, 20)
-        Me.lblCategoryName.Text      = "Category Name"
-
+        ' 
+        lblCategoryName.Font = New Font("Segoe UI", 9F)
+        lblCategoryName.ForeColor = Color.FromArgb(CByte(80), CByte(85), CByte(95))
+        lblCategoryName.Location = New Point(16, 18)
+        lblCategoryName.Name = "lblCategoryName"
+        lblCategoryName.Size = New Size(110, 23)
+        lblCategoryName.TabIndex = 0
+        lblCategoryName.Text = "Category Name"
+        ' 
         ' txtCategoryName
-        Me.txtCategoryName.Font      = New System.Drawing.Font("Segoe UI", 10.0!)
-        Me.txtCategoryName.Location  = New System.Drawing.Point(16, 38)
-        Me.txtCategoryName.MaxLength = 100
-        Me.txtCategoryName.Name      = "txtCategoryName"
-        Me.txtCategoryName.Size      = New System.Drawing.Size(348, 26)
-
+        ' 
+        txtCategoryName.Font = New Font("Segoe UI", 10F)
+        txtCategoryName.Location = New Point(16, 43)
+        txtCategoryName.MaxLength = 100
+        txtCategoryName.Name = "txtCategoryName"
+        txtCategoryName.Size = New Size(348, 27)
+        txtCategoryName.TabIndex = 1
+        ' 
         ' btnAdd
-        Me.btnAdd.BackColor  = System.Drawing.Color.FromArgb(39, 174, 96)
-        Me.btnAdd.FlatStyle  = System.Windows.Forms.FlatStyle.Flat
-        Me.btnAdd.FlatAppearance.BorderSize = 0
-        Me.btnAdd.Font       = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.btnAdd.ForeColor  = System.Drawing.Color.White
-        Me.btnAdd.Location   = New System.Drawing.Point(16, 78)
-        Me.btnAdd.Name       = "btnAdd"
-        Me.btnAdd.Size       = New System.Drawing.Size(78, 28)
-        Me.btnAdd.Text       = "Add"
-        Me.btnAdd.UseVisualStyleBackColor = False
-        Me.btnAdd.Cursor     = System.Windows.Forms.Cursors.Hand
-
+        ' 
+        btnAdd.BackColor = Color.FromArgb(CByte(39), CByte(174), CByte(96))
+        btnAdd.Cursor = Cursors.Hand
+        btnAdd.FlatAppearance.BorderSize = 0
+        btnAdd.FlatStyle = FlatStyle.Flat
+        btnAdd.Font = New Font("Segoe UI", 9F, FontStyle.Bold)
+        btnAdd.ForeColor = Color.White
+        btnAdd.Location = New Point(16, 88)
+        btnAdd.Name = "btnAdd"
+        btnAdd.Size = New Size(78, 32)
+        btnAdd.TabIndex = 2
+        btnAdd.Text = "Add"
+        btnAdd.UseVisualStyleBackColor = False
+        ' 
         ' btnUpdate
-        Me.btnUpdate.BackColor  = System.Drawing.Color.FromArgb(52, 152, 219)
-        Me.btnUpdate.FlatStyle  = System.Windows.Forms.FlatStyle.Flat
-        Me.btnUpdate.FlatAppearance.BorderSize = 0
-        Me.btnUpdate.Font       = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.btnUpdate.ForeColor  = System.Drawing.Color.White
-        Me.btnUpdate.Location   = New System.Drawing.Point(102, 78)
-        Me.btnUpdate.Name       = "btnUpdate"
-        Me.btnUpdate.Size       = New System.Drawing.Size(78, 28)
-        Me.btnUpdate.Text       = "Update"
-        Me.btnUpdate.UseVisualStyleBackColor = False
-        Me.btnUpdate.Cursor     = System.Windows.Forms.Cursors.Hand
-        Me.btnUpdate.Enabled    = False
-
+        ' 
+        btnUpdate.BackColor = Color.FromArgb(CByte(52), CByte(152), CByte(219))
+        btnUpdate.Cursor = Cursors.Hand
+        btnUpdate.Enabled = False
+        btnUpdate.FlatAppearance.BorderSize = 0
+        btnUpdate.FlatStyle = FlatStyle.Flat
+        btnUpdate.Font = New Font("Segoe UI", 9F, FontStyle.Bold)
+        btnUpdate.ForeColor = Color.White
+        btnUpdate.Location = New Point(102, 88)
+        btnUpdate.Name = "btnUpdate"
+        btnUpdate.Size = New Size(78, 32)
+        btnUpdate.TabIndex = 3
+        btnUpdate.Text = "Update"
+        btnUpdate.UseVisualStyleBackColor = False
+        ' 
         ' btnDelete
-        Me.btnDelete.BackColor  = System.Drawing.Color.FromArgb(192, 57, 43)
-        Me.btnDelete.FlatStyle  = System.Windows.Forms.FlatStyle.Flat
-        Me.btnDelete.FlatAppearance.BorderSize = 0
-        Me.btnDelete.Font       = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.btnDelete.ForeColor  = System.Drawing.Color.White
-        Me.btnDelete.Location   = New System.Drawing.Point(188, 78)
-        Me.btnDelete.Name       = "btnDelete"
-        Me.btnDelete.Size       = New System.Drawing.Size(78, 28)
-        Me.btnDelete.Text       = "Delete"
-        Me.btnDelete.UseVisualStyleBackColor = False
-        Me.btnDelete.Cursor     = System.Windows.Forms.Cursors.Hand
-        Me.btnDelete.Enabled    = False
-
+        ' 
+        btnDelete.BackColor = Color.FromArgb(CByte(192), CByte(57), CByte(43))
+        btnDelete.Cursor = Cursors.Hand
+        btnDelete.Enabled = False
+        btnDelete.FlatAppearance.BorderSize = 0
+        btnDelete.FlatStyle = FlatStyle.Flat
+        btnDelete.Font = New Font("Segoe UI", 9F, FontStyle.Bold)
+        btnDelete.ForeColor = Color.White
+        btnDelete.Location = New Point(188, 88)
+        btnDelete.Name = "btnDelete"
+        btnDelete.Size = New Size(78, 32)
+        btnDelete.TabIndex = 4
+        btnDelete.Text = "Delete"
+        btnDelete.UseVisualStyleBackColor = False
+        ' 
         ' btnClear
-        Me.btnClear.BackColor  = System.Drawing.Color.FromArgb(150, 155, 165)
-        Me.btnClear.FlatStyle  = System.Windows.Forms.FlatStyle.Flat
-        Me.btnClear.FlatAppearance.BorderSize = 0
-        Me.btnClear.Font       = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular)
-        Me.btnClear.ForeColor  = System.Drawing.Color.White
-        Me.btnClear.Location   = New System.Drawing.Point(274, 78)
-        Me.btnClear.Name       = "btnClear"
-        Me.btnClear.Size       = New System.Drawing.Size(78, 28)
-        Me.btnClear.Text       = "Clear"
-        Me.btnClear.UseVisualStyleBackColor = False
-        Me.btnClear.Cursor     = System.Windows.Forms.Cursors.Hand
-
-        ' ── dgvCategories ────────────────────────────────────────────────
-        Me.dgvCategories.AllowUserToAddRows        = False
-        Me.dgvCategories.AllowUserToDeleteRows     = False
-        Me.dgvCategories.AutoSizeColumnsMode       = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-        Me.dgvCategories.BackgroundColor           = System.Drawing.Color.White
-        Me.dgvCategories.BorderStyle               = System.Windows.Forms.BorderStyle.None
-        Me.dgvCategories.ColumnHeadersHeight       = 36
-        Me.dgvCategories.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
-        Me.dgvCategories.Font                      = New System.Drawing.Font("Segoe UI", 9.5!)
-        Me.dgvCategories.GridColor                 = System.Drawing.Color.FromArgb(220, 223, 228)
-        Me.dgvCategories.Location                  = New System.Drawing.Point(30, 210)
-        Me.dgvCategories.MultiSelect               = False
-        Me.dgvCategories.Name                      = "dgvCategories"
-        Me.dgvCategories.ReadOnly                  = True
-        Me.dgvCategories.RowHeadersVisible         = False
-        Me.dgvCategories.RowTemplate.Height        = 32
-        Me.dgvCategories.SelectionMode             = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvCategories.Size                      = New System.Drawing.Size(380, 380)
-
-        ' ── frmCategories ────────────────────────────────────────────────
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
-        Me.AutoScaleMode       = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackColor           = System.Drawing.Color.FromArgb(245, 246, 248)
-        Me.ClientSize          = New System.Drawing.Size(980, 640)
-        Me.Controls.Add(Me.lblPageHeader)
-        Me.Controls.Add(Me.pnlForm)
-        Me.Controls.Add(Me.dgvCategories)
-        Me.FormBorderStyle     = System.Windows.Forms.FormBorderStyle.None
-        Me.Name                = "frmCategories"
-        Me.Text                = "Category Management"
-
-        Me.pnlForm.ResumeLayout(False)
-        CType(Me.dgvCategories, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ResumeLayout(False)
+        ' 
+        btnClear.BackColor = Color.FromArgb(CByte(150), CByte(155), CByte(165))
+        btnClear.Cursor = Cursors.Hand
+        btnClear.FlatAppearance.BorderSize = 0
+        btnClear.FlatStyle = FlatStyle.Flat
+        btnClear.Font = New Font("Segoe UI", 9F)
+        btnClear.ForeColor = Color.White
+        btnClear.Location = New Point(274, 88)
+        btnClear.Name = "btnClear"
+        btnClear.Size = New Size(78, 32)
+        btnClear.TabIndex = 5
+        btnClear.Text = "Clear"
+        btnClear.UseVisualStyleBackColor = False
+        ' 
+        ' dgvCategories
+        ' 
+        dgvCategories.AllowUserToAddRows = False
+        dgvCategories.AllowUserToDeleteRows = False
+        dgvCategories.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+        dgvCategories.BackgroundColor = Color.White
+        dgvCategories.BorderStyle = BorderStyle.None
+        dgvCategories.ColumnHeadersHeight = 36
+        dgvCategories.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing
+        dgvCategories.Dock = DockStyle.Fill
+        dgvCategories.Font = New Font("Segoe UI", 9.5F)
+        dgvCategories.GridColor = Color.FromArgb(CByte(220), CByte(223), CByte(228))
+        dgvCategories.Location = New Point(0, 0)
+        dgvCategories.MultiSelect = False
+        dgvCategories.Name = "dgvCategories"
+        dgvCategories.ReadOnly = True
+        dgvCategories.RowHeadersVisible = False
+        dgvCategories.RowHeadersWidth = 45
+        dgvCategories.RowTemplate.Height = 32
+        dgvCategories.SelectionMode = DataGridViewSelectionMode.FullRowSelect
+        dgvCategories.Size = New Size(980, 493)
+        dgvCategories.TabIndex = 2
+        ' 
+        ' Panel1
+        ' 
+        Panel1.Controls.Add(lblPageHeader)
+        Panel1.Dock = DockStyle.Top
+        Panel1.Location = New Point(0, 0)
+        Panel1.Name = "Panel1"
+        Panel1.Size = New Size(980, 76)
+        Panel1.TabIndex = 3
+        ' 
+        ' Panel2
+        ' 
+        Panel2.Controls.Add(pnlForm)
+        Panel2.Dock = DockStyle.Top
+        Panel2.Location = New Point(0, 76)
+        Panel2.Name = "Panel2"
+        Panel2.Size = New Size(980, 156)
+        Panel2.TabIndex = 4
+        ' 
+        ' Panel3
+        ' 
+        Panel3.Controls.Add(dgvCategories)
+        Panel3.Dock = DockStyle.Fill
+        Panel3.Location = New Point(0, 232)
+        Panel3.Name = "Panel3"
+        Panel3.Size = New Size(980, 493)
+        Panel3.TabIndex = 5
+        ' 
+        ' frmCategories
+        ' 
+        AutoScaleDimensions = New SizeF(7F, 17F)
+        AutoScaleMode = AutoScaleMode.Font
+        BackColor = Color.FromArgb(CByte(245), CByte(246), CByte(248))
+        ClientSize = New Size(980, 725)
+        Controls.Add(Panel3)
+        Controls.Add(Panel2)
+        Controls.Add(Panel1)
+        FormBorderStyle = FormBorderStyle.None
+        Name = "frmCategories"
+        Text = "Category Management"
+        WindowState = FormWindowState.Maximized
+        pnlForm.ResumeLayout(False)
+        pnlForm.PerformLayout()
+        CType(dgvCategories, ComponentModel.ISupportInitialize).EndInit()
+        Panel1.ResumeLayout(False)
+        Panel2.ResumeLayout(False)
+        Panel3.ResumeLayout(False)
+        ResumeLayout(False)
     End Sub
 
     Friend WithEvents lblPageHeader   As System.Windows.Forms.Label
@@ -167,5 +222,8 @@ Partial Class frmCategories
     Friend WithEvents btnDelete       As System.Windows.Forms.Button
     Friend WithEvents btnClear        As System.Windows.Forms.Button
     Friend WithEvents dgvCategories   As System.Windows.Forms.DataGridView
+    Friend WithEvents Panel1 As Panel
+    Friend WithEvents Panel2 As Panel
+    Friend WithEvents Panel3 As Panel
 
 End Class

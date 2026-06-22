@@ -17,251 +17,296 @@ Partial Class frmSuppliers
 
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.lblPageHeader = New System.Windows.Forms.Label()
-        Me.pnlForm       = New System.Windows.Forms.Panel()
-        Me.lblName       = New System.Windows.Forms.Label()
-        Me.txtName       = New System.Windows.Forms.TextBox()
-        Me.lblContact    = New System.Windows.Forms.Label()
-        Me.txtContact    = New System.Windows.Forms.TextBox()
-        Me.lblPhone      = New System.Windows.Forms.Label()
-        Me.txtPhone      = New System.Windows.Forms.TextBox()
-        Me.lblEmail      = New System.Windows.Forms.Label()
-        Me.txtEmail      = New System.Windows.Forms.TextBox()
-        Me.lblAddress    = New System.Windows.Forms.Label()
-        Me.txtAddress    = New System.Windows.Forms.TextBox()
-        Me.btnAdd        = New System.Windows.Forms.Button()
-        Me.btnUpdate     = New System.Windows.Forms.Button()
-        Me.btnDelete     = New System.Windows.Forms.Button()
-        Me.btnClear      = New System.Windows.Forms.Button()
-        Me.dgvSuppliers  = New System.Windows.Forms.DataGridView()
+        lblPageHeader = New Label()
+        pnlForm       = New Panel()
+        lblName       = New Label()
+        txtName       = New TextBox()
+        lblContact    = New Label()
+        txtContact    = New TextBox()
+        lblPhone      = New Label()
+        txtPhone      = New TextBox()
+        lblEmail      = New Label()
+        txtEmail      = New TextBox()
+        lblAddress    = New Label()
+        txtAddress    = New TextBox()
+        btnAdd        = New Button()
+        btnUpdate     = New Button()
+        btnDelete     = New Button()
+        btnClear      = New Button()
+        dgvSuppliers  = New DataGridView()
+        Panel1        = New Panel()
+        Panel2        = New Panel()
+        Panel3        = New Panel()
+        pnlForm.SuspendLayout()
+        CType(dgvSuppliers, ComponentModel.ISupportInitialize).BeginInit()
+        Panel1.SuspendLayout()
+        Panel2.SuspendLayout()
+        Panel3.SuspendLayout()
+        SuspendLayout()
+        '
+        ' lblPageHeader
+        '
+        lblPageHeader.Font      = New Font("Segoe UI", 16F, FontStyle.Bold)
+        lblPageHeader.ForeColor = Color.FromArgb(CByte(40), CByte(44), CByte(52))
+        lblPageHeader.Location  = New Point(12, 20)
+        lblPageHeader.Name      = "lblPageHeader"
+        lblPageHeader.Size      = New Size(320, 41)
+        lblPageHeader.TabIndex  = 0
+        lblPageHeader.Text      = "Supplier Management"
+        '
+        ' pnlForm
+        '
+        pnlForm.BackColor = Color.White
+        pnlForm.Controls.Add(lblName)
+        pnlForm.Controls.Add(txtName)
+        pnlForm.Controls.Add(lblContact)
+        pnlForm.Controls.Add(txtContact)
+        pnlForm.Controls.Add(lblPhone)
+        pnlForm.Controls.Add(txtPhone)
+        pnlForm.Controls.Add(lblEmail)
+        pnlForm.Controls.Add(txtEmail)
+        pnlForm.Controls.Add(lblAddress)
+        pnlForm.Controls.Add(txtAddress)
+        pnlForm.Controls.Add(btnAdd)
+        pnlForm.Controls.Add(btnUpdate)
+        pnlForm.Controls.Add(btnDelete)
+        pnlForm.Controls.Add(btnClear)
+        pnlForm.Location  = New Point(12, 6)
+        pnlForm.Name      = "pnlForm"
+        pnlForm.Size      = New Size(540, 292)
+        pnlForm.TabIndex  = 1
 
-        Me.pnlForm.SuspendLayout()
-        CType(Me.dgvSuppliers, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.SuspendLayout()
+        Dim lblFont  As New Font("Segoe UI", 9F)
+        Dim lblColor As Color = Color.FromArgb(CByte(80), CByte(85), CByte(95))
+        Dim txtFont  As New Font("Segoe UI", 10F)
+        '
+        ' lblName / txtName  (Row 1 — full width)
+        '
+        lblName.Font      = lblFont
+        lblName.ForeColor = lblColor
+        lblName.Location  = New Point(16, 14)
+        lblName.Name      = "lblName"
+        lblName.Size      = New Size(120, 20)
+        lblName.TabIndex  = 0
+        lblName.Text      = "Supplier Name *"
 
-        ' ── lblPageHeader ─────────────────────────────────────────────────
-        Me.lblPageHeader.AutoSize  = False
-        Me.lblPageHeader.Font      = New System.Drawing.Font("Segoe UI", 16.0!, System.Drawing.FontStyle.Bold)
-        Me.lblPageHeader.ForeColor = System.Drawing.Color.FromArgb(40, 44, 52)
-        Me.lblPageHeader.Location  = New System.Drawing.Point(30, 20)
-        Me.lblPageHeader.Name      = "lblPageHeader"
-        Me.lblPageHeader.Size      = New System.Drawing.Size(320, 36)
-        Me.lblPageHeader.Text      = "Supplier Management"
+        txtName.Font      = txtFont
+        txtName.Location  = New Point(16, 36)
+        txtName.MaxLength = 100
+        txtName.Name      = "txtName"
+        txtName.Size      = New Size(508, 27)
+        txtName.TabIndex  = 1
+        '
+        ' lblContact / txtContact  |  lblPhone / txtPhone  (Row 2 — half)
+        '
+        lblContact.Font      = lblFont
+        lblContact.ForeColor = lblColor
+        lblContact.Location  = New Point(16, 74)
+        lblContact.Name      = "lblContact"
+        lblContact.Size      = New Size(120, 20)
+        lblContact.TabIndex  = 2
+        lblContact.Text      = "Contact Person"
 
-        ' ── pnlForm (input card) ─────────────────────────────────────────
-        Me.pnlForm.BackColor = System.Drawing.Color.White
-        Me.pnlForm.Location  = New System.Drawing.Point(30, 72)
-        Me.pnlForm.Name      = "pnlForm"
-        Me.pnlForm.Size      = New System.Drawing.Size(540, 260)
-        Me.pnlForm.Controls.Add(Me.lblName)
-        Me.pnlForm.Controls.Add(Me.txtName)
-        Me.pnlForm.Controls.Add(Me.lblContact)
-        Me.pnlForm.Controls.Add(Me.txtContact)
-        Me.pnlForm.Controls.Add(Me.lblPhone)
-        Me.pnlForm.Controls.Add(Me.txtPhone)
-        Me.pnlForm.Controls.Add(Me.lblEmail)
-        Me.pnlForm.Controls.Add(Me.txtEmail)
-        Me.pnlForm.Controls.Add(Me.lblAddress)
-        Me.pnlForm.Controls.Add(Me.txtAddress)
-        Me.pnlForm.Controls.Add(Me.btnAdd)
-        Me.pnlForm.Controls.Add(Me.btnUpdate)
-        Me.pnlForm.Controls.Add(Me.btnDelete)
-        Me.pnlForm.Controls.Add(Me.btnClear)
+        txtContact.Font      = txtFont
+        txtContact.Location  = New Point(16, 96)
+        txtContact.MaxLength = 100
+        txtContact.Name      = "txtContact"
+        txtContact.Size      = New Size(240, 27)
+        txtContact.TabIndex  = 3
 
-        Dim lblFont  As New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular)
-        Dim lblColor As System.Drawing.Color = System.Drawing.Color.FromArgb(80, 85, 95)
-        Dim txtFont  As New System.Drawing.Font("Segoe UI", 10.0!)
-        Dim lblSz    As New System.Drawing.Size(110, 20)
-        Dim txtSzFull As New System.Drawing.Size(504, 26)
-        Dim txtSzHalf As New System.Drawing.Size(240, 26)
+        lblPhone.Font      = lblFont
+        lblPhone.ForeColor = lblColor
+        lblPhone.Location  = New Point(268, 74)
+        lblPhone.Name      = "lblPhone"
+        lblPhone.Size      = New Size(60, 20)
+        lblPhone.TabIndex  = 4
+        lblPhone.Text      = "Phone"
 
-        ' Row 1 — Name (full width)
-        Me.lblName.AutoSize  = False
-        Me.lblName.Font      = lblFont
-        Me.lblName.ForeColor = lblColor
-        Me.lblName.Location  = New System.Drawing.Point(16, 14)
-        Me.lblName.Name      = "lblName"
-        Me.lblName.Size      = lblSz
-        Me.lblName.Text      = "Supplier Name *"
+        txtPhone.Font      = txtFont
+        txtPhone.Location  = New Point(268, 96)
+        txtPhone.MaxLength = 20
+        txtPhone.Name      = "txtPhone"
+        txtPhone.Size      = New Size(240, 27)
+        txtPhone.TabIndex  = 5
+        '
+        ' lblEmail / txtEmail  (Row 3 — full width)
+        '
+        lblEmail.Font      = lblFont
+        lblEmail.ForeColor = lblColor
+        lblEmail.Location  = New Point(16, 134)
+        lblEmail.Name      = "lblEmail"
+        lblEmail.Size      = New Size(60, 20)
+        lblEmail.TabIndex  = 6
+        lblEmail.Text      = "Email"
 
-        Me.txtName.Font      = txtFont
-        Me.txtName.Location  = New System.Drawing.Point(16, 36)
-        Me.txtName.MaxLength = 100
-        Me.txtName.Name      = "txtName"
-        Me.txtName.Size      = txtSzFull
+        txtEmail.Font      = txtFont
+        txtEmail.Location  = New Point(16, 156)
+        txtEmail.MaxLength = 100
+        txtEmail.Name      = "txtEmail"
+        txtEmail.Size      = New Size(508, 27)
+        txtEmail.TabIndex  = 7
+        '
+        ' lblAddress / txtAddress  (Row 4 — full width)
+        '
+        lblAddress.Font      = lblFont
+        lblAddress.ForeColor = lblColor
+        lblAddress.Location  = New Point(16, 194)
+        lblAddress.Name      = "lblAddress"
+        lblAddress.Size      = New Size(70, 20)
+        lblAddress.TabIndex  = 8
+        lblAddress.Text      = "Address"
 
-        ' Row 2 — Contact | Phone
-        Me.lblContact.AutoSize  = False
-        Me.lblContact.Font      = lblFont
-        Me.lblContact.ForeColor = lblColor
-        Me.lblContact.Location  = New System.Drawing.Point(16, 74)
-        Me.lblContact.Name      = "lblContact"
-        Me.lblContact.Size      = lblSz
-        Me.lblContact.Text      = "Contact Person"
+        txtAddress.Font      = txtFont
+        txtAddress.Location  = New Point(16, 216)
+        txtAddress.MaxLength = 255
+        txtAddress.Name      = "txtAddress"
+        txtAddress.Size      = New Size(508, 27)
+        txtAddress.TabIndex  = 9
+        '
+        ' Buttons  (Row 5)
+        '
+        btnAdd.BackColor = Color.FromArgb(CByte(39), CByte(174), CByte(96))
+        btnAdd.Cursor    = Cursors.Hand
+        btnAdd.FlatAppearance.BorderSize = 0
+        btnAdd.FlatStyle = FlatStyle.Flat
+        btnAdd.Font      = New Font("Segoe UI", 9F, FontStyle.Bold)
+        btnAdd.ForeColor = Color.White
+        btnAdd.Location  = New Point(16, 252)
+        btnAdd.Name      = "btnAdd"
+        btnAdd.Size      = New Size(78, 32)
+        btnAdd.TabIndex  = 10
+        btnAdd.Text      = "Add"
+        btnAdd.UseVisualStyleBackColor = False
 
-        Me.txtContact.Font      = txtFont
-        Me.txtContact.Location  = New System.Drawing.Point(16, 96)
-        Me.txtContact.MaxLength = 100
-        Me.txtContact.Name      = "txtContact"
-        Me.txtContact.Size      = txtSzHalf
+        btnUpdate.BackColor = Color.FromArgb(CByte(52), CByte(152), CByte(219))
+        btnUpdate.Cursor    = Cursors.Hand
+        btnUpdate.Enabled   = False
+        btnUpdate.FlatAppearance.BorderSize = 0
+        btnUpdate.FlatStyle = FlatStyle.Flat
+        btnUpdate.Font      = New Font("Segoe UI", 9F, FontStyle.Bold)
+        btnUpdate.ForeColor = Color.White
+        btnUpdate.Location  = New Point(102, 252)
+        btnUpdate.Name      = "btnUpdate"
+        btnUpdate.Size      = New Size(78, 32)
+        btnUpdate.TabIndex  = 11
+        btnUpdate.Text      = "Update"
+        btnUpdate.UseVisualStyleBackColor = False
 
-        Me.lblPhone.AutoSize  = False
-        Me.lblPhone.Font      = lblFont
-        Me.lblPhone.ForeColor = lblColor
-        Me.lblPhone.Location  = New System.Drawing.Point(264, 74)
-        Me.lblPhone.Name      = "lblPhone"
-        Me.lblPhone.Size      = lblSz
-        Me.lblPhone.Text      = "Phone"
+        btnDelete.BackColor = Color.FromArgb(CByte(192), CByte(57), CByte(43))
+        btnDelete.Cursor    = Cursors.Hand
+        btnDelete.Enabled   = False
+        btnDelete.FlatAppearance.BorderSize = 0
+        btnDelete.FlatStyle = FlatStyle.Flat
+        btnDelete.Font      = New Font("Segoe UI", 9F, FontStyle.Bold)
+        btnDelete.ForeColor = Color.White
+        btnDelete.Location  = New Point(188, 252)
+        btnDelete.Name      = "btnDelete"
+        btnDelete.Size      = New Size(78, 32)
+        btnDelete.TabIndex  = 12
+        btnDelete.Text      = "Delete"
+        btnDelete.UseVisualStyleBackColor = False
 
-        Me.txtPhone.Font      = txtFont
-        Me.txtPhone.Location  = New System.Drawing.Point(264, 96)
-        Me.txtPhone.MaxLength = 20
-        Me.txtPhone.Name      = "txtPhone"
-        Me.txtPhone.Size      = txtSzHalf
-
-        ' Row 3 — Email (full width)
-        Me.lblEmail.AutoSize  = False
-        Me.lblEmail.Font      = lblFont
-        Me.lblEmail.ForeColor = lblColor
-        Me.lblEmail.Location  = New System.Drawing.Point(16, 134)
-        Me.lblEmail.Name      = "lblEmail"
-        Me.lblEmail.Size      = lblSz
-        Me.lblEmail.Text      = "Email"
-
-        Me.txtEmail.Font      = txtFont
-        Me.txtEmail.Location  = New System.Drawing.Point(16, 156)
-        Me.txtEmail.MaxLength = 100
-        Me.txtEmail.Name      = "txtEmail"
-        Me.txtEmail.Size      = txtSzFull
-
-        ' Row 4 — Address (full width)
-        Me.lblAddress.AutoSize  = False
-        Me.lblAddress.Font      = lblFont
-        Me.lblAddress.ForeColor = lblColor
-        Me.lblAddress.Location  = New System.Drawing.Point(16, 194)
-        Me.lblAddress.Name      = "lblAddress"
-        Me.lblAddress.Size      = lblSz
-        Me.lblAddress.Text      = "Address"
-
-        Me.txtAddress.Font      = txtFont
-        Me.txtAddress.Location  = New System.Drawing.Point(16, 216)
-        Me.txtAddress.MaxLength = 255
-        Me.txtAddress.Name      = "txtAddress"
-        Me.txtAddress.Size      = txtSzFull
-
-        ' ── Buttons ───────────────────────────────────────────────────────
-        ' btnAdd
-        Me.btnAdd.BackColor  = System.Drawing.Color.FromArgb(39, 174, 96)
-        Me.btnAdd.FlatStyle  = System.Windows.Forms.FlatStyle.Flat
-        Me.btnAdd.FlatAppearance.BorderSize = 0
-        Me.btnAdd.Font       = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.btnAdd.ForeColor  = System.Drawing.Color.White
-        Me.btnAdd.Location   = New System.Drawing.Point(16, 14)
-        Me.btnAdd.Name       = "btnAdd"
-        Me.btnAdd.Size       = New System.Drawing.Size(90, 30)
-        Me.btnAdd.Text       = "Add"
-        Me.btnAdd.UseVisualStyleBackColor = False
-        Me.btnAdd.Cursor     = System.Windows.Forms.Cursors.Hand
-
-        ' btnUpdate
-        Me.btnUpdate.BackColor  = System.Drawing.Color.FromArgb(52, 152, 219)
-        Me.btnUpdate.FlatStyle  = System.Windows.Forms.FlatStyle.Flat
-        Me.btnUpdate.FlatAppearance.BorderSize = 0
-        Me.btnUpdate.Font       = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.btnUpdate.ForeColor  = System.Drawing.Color.White
-        Me.btnUpdate.Location   = New System.Drawing.Point(114, 14)
-        Me.btnUpdate.Name       = "btnUpdate"
-        Me.btnUpdate.Size       = New System.Drawing.Size(90, 30)
-        Me.btnUpdate.Text       = "Update"
-        Me.btnUpdate.UseVisualStyleBackColor = False
-        Me.btnUpdate.Cursor     = System.Windows.Forms.Cursors.Hand
-        Me.btnUpdate.Enabled    = False
-
-        ' btnDelete
-        Me.btnDelete.BackColor  = System.Drawing.Color.FromArgb(192, 57, 43)
-        Me.btnDelete.FlatStyle  = System.Windows.Forms.FlatStyle.Flat
-        Me.btnDelete.FlatAppearance.BorderSize = 0
-        Me.btnDelete.Font       = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.btnDelete.ForeColor  = System.Drawing.Color.White
-        Me.btnDelete.Location   = New System.Drawing.Point(212, 14)
-        Me.btnDelete.Name       = "btnDelete"
-        Me.btnDelete.Size       = New System.Drawing.Size(90, 30)
-        Me.btnDelete.Text       = "Delete"
-        Me.btnDelete.UseVisualStyleBackColor = False
-        Me.btnDelete.Cursor     = System.Windows.Forms.Cursors.Hand
-        Me.btnDelete.Enabled    = False
-
-        ' btnClear
-        Me.btnClear.BackColor  = System.Drawing.Color.FromArgb(150, 155, 165)
-        Me.btnClear.FlatStyle  = System.Windows.Forms.FlatStyle.Flat
-        Me.btnClear.FlatAppearance.BorderSize = 0
-        Me.btnClear.Font       = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular)
-        Me.btnClear.ForeColor  = System.Drawing.Color.White
-        Me.btnClear.Location   = New System.Drawing.Point(310, 14)
-        Me.btnClear.Name       = "btnClear"
-        Me.btnClear.Size       = New System.Drawing.Size(90, 30)
-        Me.btnClear.Text       = "Clear"
-        Me.btnClear.UseVisualStyleBackColor = False
-        Me.btnClear.Cursor     = System.Windows.Forms.Cursors.Hand
-
-        ' Move buttons to bottom of panel — reposition after field layout
-        Me.btnAdd.Location    = New System.Drawing.Point(16, 252)
-        Me.btnUpdate.Location = New System.Drawing.Point(114, 252)
-        Me.btnDelete.Location = New System.Drawing.Point(212, 252)
-        Me.btnClear.Location  = New System.Drawing.Point(310, 252)
-        Me.pnlForm.Size       = New System.Drawing.Size(540, 292)
-
-        ' ── dgvSuppliers ─────────────────────────────────────────────────
-        Me.dgvSuppliers.AllowUserToAddRows        = False
-        Me.dgvSuppliers.AllowUserToDeleteRows     = False
-        Me.dgvSuppliers.BackgroundColor           = System.Drawing.Color.White
-        Me.dgvSuppliers.BorderStyle               = System.Windows.Forms.BorderStyle.None
-        Me.dgvSuppliers.ColumnHeadersHeight       = 36
-        Me.dgvSuppliers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
-        Me.dgvSuppliers.Font                      = New System.Drawing.Font("Segoe UI", 9.5!)
-        Me.dgvSuppliers.GridColor                 = System.Drawing.Color.FromArgb(220, 223, 228)
-        Me.dgvSuppliers.Location                  = New System.Drawing.Point(30, 382)
-        Me.dgvSuppliers.MultiSelect               = False
-        Me.dgvSuppliers.Name                      = "dgvSuppliers"
-        Me.dgvSuppliers.ReadOnly                  = True
-        Me.dgvSuppliers.RowHeadersVisible         = False
-        Me.dgvSuppliers.RowTemplate.Height        = 32
-        Me.dgvSuppliers.SelectionMode             = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.dgvSuppliers.Size                      = New System.Drawing.Size(900, 220)
-
-        ' ── frmSuppliers ─────────────────────────────────────────────────
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
-        Me.AutoScaleMode       = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackColor           = System.Drawing.Color.FromArgb(245, 246, 248)
-        Me.ClientSize          = New System.Drawing.Size(980, 640)
-        Me.Controls.Add(Me.lblPageHeader)
-        Me.Controls.Add(Me.pnlForm)
-        Me.Controls.Add(Me.dgvSuppliers)
-        Me.FormBorderStyle     = System.Windows.Forms.FormBorderStyle.None
-        Me.Name                = "frmSuppliers"
-        Me.Text                = "Supplier Management"
-
-        Me.pnlForm.ResumeLayout(False)
-        CType(Me.dgvSuppliers, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ResumeLayout(False)
+        btnClear.BackColor = Color.FromArgb(CByte(150), CByte(155), CByte(165))
+        btnClear.Cursor    = Cursors.Hand
+        btnClear.FlatAppearance.BorderSize = 0
+        btnClear.FlatStyle = FlatStyle.Flat
+        btnClear.Font      = New Font("Segoe UI", 9F)
+        btnClear.ForeColor = Color.White
+        btnClear.Location  = New Point(274, 252)
+        btnClear.Name      = "btnClear"
+        btnClear.Size      = New Size(78, 32)
+        btnClear.TabIndex  = 13
+        btnClear.Text      = "Clear"
+        btnClear.UseVisualStyleBackColor = False
+        '
+        ' dgvSuppliers
+        '
+        dgvSuppliers.AllowUserToAddRows          = False
+        dgvSuppliers.AllowUserToDeleteRows        = False
+        dgvSuppliers.AutoSizeColumnsMode          = DataGridViewAutoSizeColumnsMode.Fill
+        dgvSuppliers.BackgroundColor              = Color.White
+        dgvSuppliers.BorderStyle                  = BorderStyle.None
+        dgvSuppliers.ColumnHeadersHeight          = 36
+        dgvSuppliers.ColumnHeadersHeightSizeMode  = DataGridViewColumnHeadersHeightSizeMode.DisableResizing
+        dgvSuppliers.Dock                         = DockStyle.Fill
+        dgvSuppliers.Font                         = New Font("Segoe UI", 9.5F)
+        dgvSuppliers.GridColor                    = Color.FromArgb(CByte(220), CByte(223), CByte(228))
+        dgvSuppliers.Location                     = New Point(0, 0)
+        dgvSuppliers.MultiSelect                  = False
+        dgvSuppliers.Name                         = "dgvSuppliers"
+        dgvSuppliers.ReadOnly                     = True
+        dgvSuppliers.RowHeadersVisible            = False
+        dgvSuppliers.RowHeadersWidth              = 45
+        dgvSuppliers.RowTemplate.Height           = 32
+        dgvSuppliers.SelectionMode                = DataGridViewSelectionMode.FullRowSelect
+        dgvSuppliers.TabIndex                     = 0
+        '
+        ' Panel1 — header
+        '
+        Panel1.Controls.Add(lblPageHeader)
+        Panel1.Dock     = DockStyle.Top
+        Panel1.Location = New Point(0, 0)
+        Panel1.Name     = "Panel1"
+        Panel1.Size     = New Size(980, 76)
+        Panel1.TabIndex = 3
+        '
+        ' Panel2 — input card
+        '
+        Panel2.Controls.Add(pnlForm)
+        Panel2.Dock     = DockStyle.Top
+        Panel2.Location = New Point(0, 76)
+        Panel2.Name     = "Panel2"
+        Panel2.Size     = New Size(980, 312)
+        Panel2.TabIndex = 4
+        '
+        ' Panel3 — grid (fills rest)
+        '
+        Panel3.Controls.Add(dgvSuppliers)
+        Panel3.Dock     = DockStyle.Fill
+        Panel3.Location = New Point(0, 388)
+        Panel3.Name     = "Panel3"
+        Panel3.TabIndex = 5
+        '
+        ' frmSuppliers
+        '
+        AutoScaleDimensions = New SizeF(7F, 17F)
+        AutoScaleMode       = AutoScaleMode.Font
+        BackColor           = Color.FromArgb(CByte(245), CByte(246), CByte(248))
+        ClientSize          = New Size(980, 725)
+        Controls.Add(Panel3)
+        Controls.Add(Panel2)
+        Controls.Add(Panel1)
+        FormBorderStyle     = FormBorderStyle.None
+        Name                = "frmSuppliers"
+        Text                = "Supplier Management"
+        pnlForm.ResumeLayout(False)
+        pnlForm.PerformLayout()
+        CType(dgvSuppliers, ComponentModel.ISupportInitialize).EndInit()
+        Panel1.ResumeLayout(False)
+        Panel2.ResumeLayout(False)
+        Panel3.ResumeLayout(False)
+        ResumeLayout(False)
     End Sub
 
-    Friend WithEvents lblPageHeader As System.Windows.Forms.Label
-    Friend WithEvents pnlForm       As System.Windows.Forms.Panel
-    Friend WithEvents lblName       As System.Windows.Forms.Label
-    Friend WithEvents txtName       As System.Windows.Forms.TextBox
-    Friend WithEvents lblContact    As System.Windows.Forms.Label
-    Friend WithEvents txtContact    As System.Windows.Forms.TextBox
-    Friend WithEvents lblPhone      As System.Windows.Forms.Label
-    Friend WithEvents txtPhone      As System.Windows.Forms.TextBox
-    Friend WithEvents lblEmail      As System.Windows.Forms.Label
-    Friend WithEvents txtEmail      As System.Windows.Forms.TextBox
-    Friend WithEvents lblAddress    As System.Windows.Forms.Label
-    Friend WithEvents txtAddress    As System.Windows.Forms.TextBox
-    Friend WithEvents btnAdd        As System.Windows.Forms.Button
-    Friend WithEvents btnUpdate     As System.Windows.Forms.Button
-    Friend WithEvents btnDelete     As System.Windows.Forms.Button
-    Friend WithEvents btnClear      As System.Windows.Forms.Button
-    Friend WithEvents dgvSuppliers  As System.Windows.Forms.DataGridView
+    Friend WithEvents lblPageHeader As Label
+    Friend WithEvents pnlForm       As Panel
+    Friend WithEvents lblName       As Label
+    Friend WithEvents txtName       As TextBox
+    Friend WithEvents lblContact    As Label
+    Friend WithEvents txtContact    As TextBox
+    Friend WithEvents lblPhone      As Label
+    Friend WithEvents txtPhone      As TextBox
+    Friend WithEvents lblEmail      As Label
+    Friend WithEvents txtEmail      As TextBox
+    Friend WithEvents lblAddress    As Label
+    Friend WithEvents txtAddress    As TextBox
+    Friend WithEvents btnAdd        As Button
+    Friend WithEvents btnUpdate     As Button
+    Friend WithEvents btnDelete     As Button
+    Friend WithEvents btnClear      As Button
+    Friend WithEvents dgvSuppliers  As DataGridView
+    Friend WithEvents Panel1        As Panel
+    Friend WithEvents Panel2        As Panel
+    Friend WithEvents Panel3        As Panel
 
 End Class

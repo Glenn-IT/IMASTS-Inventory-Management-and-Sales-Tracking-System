@@ -96,15 +96,15 @@ Public Class frmMain
     End Sub
 
     Private Sub btnInventory_Click(sender As Object, e As EventArgs) Handles btnInventory.Click
-        MessageBox.Show("Inventory — coming in Phase 8.", "Coming Soon", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        OpenChildForm(New frmInventory())
     End Sub
 
     Private Sub btnNewSale_Click(sender As Object, e As EventArgs) Handles btnNewSale.Click
-        MessageBox.Show("New Sale — coming in Phase 9.", "Coming Soon", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        OpenChildForm(New frmNewSale())
     End Sub
 
     Private Sub btnSalesHistory_Click(sender As Object, e As EventArgs) Handles btnSalesHistory.Click
-        MessageBox.Show("Sales History — coming in Phase 9.", "Coming Soon", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        OpenChildForm(New frmSalesHistory())
     End Sub
 
     Private Sub btnSuppliers_Click(sender As Object, e As EventArgs) Handles btnSuppliers.Click
@@ -116,11 +116,11 @@ Public Class frmMain
     End Sub
 
     Private Sub btnReports_Click(sender As Object, e As EventArgs) Handles btnReports.Click
-        MessageBox.Show("Reports — coming in Phase 10.", "Coming Soon", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        OpenChildForm(New frmReports())
     End Sub
 
     Private Sub btnSettings_Click(sender As Object, e As EventArgs) Handles btnSettings.Click
-        MessageBox.Show("Settings — coming in Phase 11.", "Coming Soon", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        OpenChildForm(New frmSettings())
     End Sub
 
     ' ── Logout ───────────────────────────────────────────────────────────
