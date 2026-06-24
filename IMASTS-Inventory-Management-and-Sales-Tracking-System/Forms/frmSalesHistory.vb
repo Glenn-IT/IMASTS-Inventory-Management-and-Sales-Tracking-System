@@ -5,6 +5,12 @@ Public Class frmSalesHistory
     Private _selectedVoided As Boolean = False
 
     Private Sub frmSalesHistory_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ' GATE — remove this block when unlocking for v1.07
+        Dim gate As New UnderConstructionForm()
+        gate.ShowDialog()
+        Me.Close()
+        Return
+        ' END GATE
         Me.Text = "Sales History"
         ConfigureGrids()
         dtpFrom.Value         = DateTime.Today.AddDays(-30)

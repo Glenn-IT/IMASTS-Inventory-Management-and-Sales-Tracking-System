@@ -5,6 +5,12 @@ Public Class frmNewSale
     Private _products  As DataTable
 
     Private Sub frmNewSale_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ' GATE — remove this block when unlocking for v1.06
+        Dim gate As New UnderConstructionForm()
+        gate.ShowDialog()
+        Me.Close()
+        Return
+        ' END GATE
         Me.Text = "New Sale"
         InitSaleItemsTable()
         ConfigureGrid()
