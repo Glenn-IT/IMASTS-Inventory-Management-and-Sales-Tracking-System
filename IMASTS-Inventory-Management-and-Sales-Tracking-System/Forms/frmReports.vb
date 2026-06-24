@@ -3,13 +3,7 @@ Public Class frmReports
     Private _repo As New ReportRepository()
 
     Private Sub frmReports_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ' GATE — remove this block when unlocking for v1.08
-        Dim gate As New UnderConstructionForm()
-        gate.ShowDialog()
-        Me.Close()
-        Return
-        ' END GATE
-        Me.Text       = "Reports"
+Me.Text       = "Reports"
         dtpFrom.Value = DateTime.Today.AddDays(-30)
         dtpTo.Value   = DateTime.Today
         ConfigureInventoryGrid()
