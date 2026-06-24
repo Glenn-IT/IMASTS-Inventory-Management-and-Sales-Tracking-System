@@ -80,16 +80,16 @@ A tag is a permanent, named pointer to a specific commit. Unlike branches (which
 
 | Version | Tag Name | Commit Hash |
 |---------|----------|-------------|
-| v1.00 | v1.00 | |
-| v1.01 | v1.01 | |
-| v1.02 | v1.02 | |
-| v1.03 | v1.03 | |
-| v1.04 | v1.04 | |
-| v1.05 | v1.05 | |
-| v1.06 | v1.06 | |
-| v1.07 | v1.07 | |
-| v1.08 | v1.08 | |
-| v1.09 | v1.09 | |
+| v1.00 | v1.00 | 35f52673b7afdd71aa645173023b7fe22c55f77d |
+| v1.01 | v1.01 | 70cfdf2ba11af405bf0a7e131f3ee1b146a7e1af |
+| v1.02 | v1.02 | 977d81b3c636507e546f31e213f1f60c9e38c811 |
+| v1.03 | v1.03 | 56e578b661b867647ab030856043bd03c3928908 |
+| v1.04 | v1.04 | ef0c4c65168068904d266aee74cfbce23ea90919 |
+| v1.05 | v1.05 | 02b5aca63ef1f828a080da2f6162b7a7be9be119 |
+| v1.06 | v1.06 | 4d9cb0dd582e746d2cbf8c4a938981141f430fec |
+| v1.07 | v1.07 | 976e71f3cb86577141c092d15e02ea479c02ff68 |
+| v1.08 | v1.08 | b67c2190ac8320ea0765837154d0cfecd6082eac |
+| v1.09 | v1.09 | 0b94611f63b6a02369caea6cd60f026de8e00591 |
 
 After all versions are committed and pushed, fill in the hash column with:
 
