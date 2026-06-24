@@ -4,13 +4,7 @@ Public Class frmSuppliers
     Private _selectedId As Integer = 0
 
     Private Sub frmSuppliers_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ' GATE — remove this block when unlocking for v1.03
-        Dim gate As New UnderConstructionForm()
-        gate.ShowDialog()
-        Me.Close()
-        Return
-        ' END GATE
-        Me.Text = "Supplier Management"
+Me.Text = "Supplier Management"
         ConfigureGrid()
         LoadSuppliers()
     End Sub
