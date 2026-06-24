@@ -3,13 +3,7 @@ Public Class frmDashboard
     Private _repo As New DashboardRepository()
 
     Private Sub frmDashboard_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ' GATE — remove this block when unlocking for v1.01
-        Dim gate As New UnderConstructionForm()
-        gate.ShowDialog()
-        Me.Close()
-        Return
-        ' END GATE
-        Me.Text = "Dashboard"
+Me.Text = "Dashboard"
         LoadDashboard()
     End Sub
 
