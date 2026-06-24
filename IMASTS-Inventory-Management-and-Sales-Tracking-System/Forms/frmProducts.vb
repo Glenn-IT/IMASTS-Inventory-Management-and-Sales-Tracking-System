@@ -4,13 +4,7 @@ Public Class frmProducts
     Private _selectedId As Integer = 0
 
     Private Sub frmProducts_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ' GATE — remove this block when unlocking for v1.04
-        Dim gate As New UnderConstructionForm()
-        gate.ShowDialog()
-        Me.Close()
-        Return
-        ' END GATE
-        Me.Text = "Product Management"
+Me.Text = "Product Management"
         ConfigureGrid()
         LoadComboBoxes()
         LoadProducts()
