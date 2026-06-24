@@ -4,13 +4,7 @@ Public Class frmSettings
     Private _selectedUsername As String  = ""
 
     Private Sub frmSettings_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ' GATE — remove this block when unlocking for v1.09
-        Dim gate As New UnderConstructionForm()
-        gate.ShowDialog()
-        Me.Close()
-        Return
-        ' END GATE
-        Me.Text = "Settings"
+Me.Text = "Settings"
         ConfigureGrid()
         PopulateUserTypeCombo()
         LoadUsers()
