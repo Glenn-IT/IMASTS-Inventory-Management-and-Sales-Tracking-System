@@ -6,7 +6,8 @@ Public Class frmMain
         btnSettings.Visible = (SessionManager.UserType = Constants.RoleAdmin)
         UpdateStatusBar()
         tmrClock.Start()
-        OpenChildForm(New frmDashboard())
+        ' GATE — swap to New frmDashboard() when unlocking for v2.01
+        OpenChildForm(New UnderConstructionForm())
     End Sub
 
     ' ── Theme ────────────────────────────────────────────────────────────
@@ -88,39 +89,48 @@ Public Class frmMain
     ' ── Navigation ───────────────────────────────────────────────────────
 
     Private Sub btnDashboard_Click(sender As Object, e As EventArgs) Handles btnDashboard.Click
-        OpenChildForm(New frmDashboard())
+        ' GATE — swap to New frmDashboard() when unlocking for v2.01
+        OpenChildForm(New UnderConstructionForm())
     End Sub
 
     Private Sub btnProducts_Click(sender As Object, e As EventArgs) Handles btnProducts.Click
-        OpenChildForm(New frmProducts())
+        ' GATE — swap to New frmProducts() when unlocking for v2.04
+        OpenChildForm(New UnderConstructionForm())
     End Sub
 
     Private Sub btnInventory_Click(sender As Object, e As EventArgs) Handles btnInventory.Click
-        OpenChildForm(New frmInventory())
+        ' GATE — swap to New frmInventory() when unlocking for v2.05
+        OpenChildForm(New UnderConstructionForm())
     End Sub
 
     Private Sub btnNewSale_Click(sender As Object, e As EventArgs) Handles btnNewSale.Click
-        OpenChildForm(New frmNewSale())
+        ' GATE — swap to New frmNewSale() when unlocking for v2.06
+        OpenChildForm(New UnderConstructionForm())
     End Sub
 
     Private Sub btnSalesHistory_Click(sender As Object, e As EventArgs) Handles btnSalesHistory.Click
-        OpenChildForm(New frmSalesHistory())
+        ' GATE — swap to New frmSalesHistory() when unlocking for v2.07
+        OpenChildForm(New UnderConstructionForm())
     End Sub
 
     Private Sub btnSuppliers_Click(sender As Object, e As EventArgs) Handles btnSuppliers.Click
-        OpenChildForm(New frmSuppliers())
+        ' GATE — swap to New frmSuppliers() when unlocking for v2.03
+        OpenChildForm(New UnderConstructionForm())
     End Sub
 
     Private Sub btnCategories_Click(sender As Object, e As EventArgs) Handles btnCategories.Click
-        OpenChildForm(New frmCategories())
+        ' GATE — swap to New frmCategories() when unlocking for v2.02
+        OpenChildForm(New UnderConstructionForm())
     End Sub
 
     Private Sub btnReports_Click(sender As Object, e As EventArgs) Handles btnReports.Click
-        OpenChildForm(New frmReports())
+        ' GATE — swap to New frmReports() when unlocking for v2.08
+        OpenChildForm(New UnderConstructionForm())
     End Sub
 
     Private Sub btnSettings_Click(sender As Object, e As EventArgs) Handles btnSettings.Click
-        OpenChildForm(New frmSettings())
+        ' GATE — swap to New frmSettings() when unlocking for v2.09
+        OpenChildForm(New UnderConstructionForm())
     End Sub
 
     ' ── Logout ───────────────────────────────────────────────────────────
