@@ -92,8 +92,7 @@ Public Class frmMain
     End Sub
 
     Private Sub btnProducts_Click(sender As Object, e As EventArgs) Handles btnProducts.Click
-        ' GATE — swap to New frmProducts() when unlocking for v2.04
-        OpenChildForm(New UnderConstructionForm())
+        OpenChildForm(New frmProducts())
     End Sub
 
     Private Sub btnInventory_Click(sender As Object, e As EventArgs) Handles btnInventory.Click
