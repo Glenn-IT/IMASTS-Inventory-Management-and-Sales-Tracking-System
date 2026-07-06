@@ -126,3 +126,90 @@ git push origin vX.XX
 ```
 
 The tag now points to the updated commit. All other version tags are unaffected.
+
+---
+
+## v2.xx Series — Docked Gate Rollout
+
+The v1.xx tags above are frozen history from the original rollout. The v2.xx
+series redoes the same progressive-unlock idea with a different gate
+mechanism: instead of `UnderConstructionForm.ShowDialog()` popping a modal
+and closing the host form, `frmMain` now docks `UnderConstructionForm`
+directly into `pnlContent` for any feature that isn't unlocked yet — the
+same way real feature forms are docked via `OpenChildForm`.
+
+`UnderConstructionForm` was also updated so it displays correctly at any
+size: every control has `Anchor = None`, which makes WinForms resize and
+reposition them proportionally instead of pinning them top-left, so the
+content stays centered whether `pnlContent` is small or maximized.
+
+### Rollout Plan
+
+| Version | Feature Unlocked | Forms Unlocked | Forms Still Gated |
+|---------|-----------------|----------------|-------------------|
+| v2.00 | Base state (nothing) | frmLogin, frmMain | frmDashboard, frmCategories, frmSuppliers, frmProducts, frmInventory, frmNewSale, frmSalesHistory, frmReports, frmSettings |
+| v2.01 | Dashboard | frmDashboard | frmCategories, frmSuppliers, frmProducts, frmInventory, frmNewSale, frmSalesHistory, frmReports, frmSettings |
+| v2.02 | Categories | frmCategories | frmSuppliers, frmProducts, frmInventory, frmNewSale, frmSalesHistory, frmReports, frmSettings |
+| v2.03 | Suppliers | frmSuppliers | frmProducts, frmInventory, frmNewSale, frmSalesHistory, frmReports, frmSettings |
+| v2.04 | Products | frmProducts | frmInventory, frmNewSale, frmSalesHistory, frmReports, frmSettings |
+| v2.05 | Inventory | frmInventory | frmNewSale, frmSalesHistory, frmReports, frmSettings |
+| v2.06 | New Sale | frmNewSale | frmSalesHistory, frmReports, frmSettings |
+| v2.07 | Sales History | frmSalesHistory | frmReports, frmSettings |
+| v2.08 | Reports | frmReports | frmSettings |
+| v2.09 | Settings (Full System) | frmSettings | — |
+
+### Docked Gate Strategy
+
+The gate now lives in `frmMain`'s own Click handlers (and `frmMain_Load`
+for the initial Dashboard open) rather than inside each individual form's
+`Load` event:
+
+```vb
+Private Sub btnProducts_Click(sender As Object, e As EventArgs) Handles btnProducts.Click
+    ' GATE — swap to New frmProducts() when unlocking for v2.04
+    OpenChildForm(New UnderConstructionForm())
+End Sub
+```
+
+Unlocking a feature is a one-line swap back to the real form:
+
+```vb
+Private Sub btnProducts_Click(sender As Object, e As EventArgs) Handles btnProducts.Click
+    OpenChildForm(New frmProducts())
+End Sub
+```
+
+`UnderConstructionForm.vb` still holds the single constant, bumped once per
+version:
+
+```vb
+Public Const CURRENT_VERSION As String = "v2.09"
+```
+
+### Git Commands Per Version (v2.xx)
+
+```bash
+# 1. Swap the GATE line in the relevant frmMain Click handler back to the real form
+# 2. Update CURRENT_VERSION in UnderConstructionForm.vb
+
+git add Forms/frmMain.vb Forms/UnderConstructionForm.vb
+git commit -m "feat: implement v2.XX - unlock [Feature Name]"
+git tag v2.XX
+git push origin master
+git push origin v2.XX
+```
+
+### GitHub Release Tags (v2.xx)
+
+| Version | Tag Name | Commit Hash |
+|---------|----------|--------------|
+| v2.00 | v2.00 | e5017b5f704ebf5541f3b6cf27cac962e3927a8e |
+| v2.01 | v2.01 | 1f59f7fdd969d7d06457ca206830bf874cc9bd9c |
+| v2.02 | v2.02 | 67238d8b7ee1fbb1e7a8db77c15910bca9ea4539 |
+| v2.03 | v2.03 | 795336705ea4f95133835fe7b071eb2451c989ec |
+| v2.04 | v2.04 | f7f78beb775e7eadbff38a7c9ceaf53fb95b4693 |
+| v2.05 | v2.05 | 31678e8797cad8f4c6604ddbab1dc462f3a7af39 |
+| v2.06 | v2.06 | 3b1e19c797d943925a04daabbc2d3d1da3e12bd6 |
+| v2.07 | v2.07 | c72e2d9659a0223b5e1e427d9d041ce71b54ccbc |
+| v2.08 | v2.08 | 4f265305d493e8528268fe1fd9e4706f94a3109d |
+| v2.09 | v2.09 | d046fb7ade61a7d17b5c9f244cdb16e38a097d45 |
