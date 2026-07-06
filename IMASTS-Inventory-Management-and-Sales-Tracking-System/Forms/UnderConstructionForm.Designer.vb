@@ -38,6 +38,7 @@ Partial Class UnderConstructionForm
         ' lblEmoji
         '
         lblEmoji.AutoSize = False
+        lblEmoji.Anchor = AnchorStyles.None
         lblEmoji.Font = New Drawing.Font("Segoe UI Emoji", 36.0!, Drawing.FontStyle.Regular, Drawing.GraphicsUnit.Point)
         lblEmoji.ForeColor = Drawing.Color.White
         lblEmoji.Location = New Drawing.Point(0, 30)
@@ -49,6 +50,7 @@ Partial Class UnderConstructionForm
         ' lblTitle
         '
         lblTitle.AutoSize = False
+        lblTitle.Anchor = AnchorStyles.None
         lblTitle.Font = New Drawing.Font("Segoe UI", 24.0!, Drawing.FontStyle.Bold, Drawing.GraphicsUnit.Point)
         lblTitle.ForeColor = Drawing.Color.White
         lblTitle.Location = New Drawing.Point(0, 110)
@@ -60,6 +62,7 @@ Partial Class UnderConstructionForm
         ' lblVersion
         '
         lblVersion.AutoSize = False
+        lblVersion.Anchor = AnchorStyles.None
         lblVersion.Font = New Drawing.Font("Segoe UI", 13.0!, Drawing.FontStyle.Regular, Drawing.GraphicsUnit.Point)
         lblVersion.ForeColor = Drawing.Color.FromArgb(255, 167, 38)
         lblVersion.Location = New Drawing.Point(0, 170)
@@ -71,6 +74,7 @@ Partial Class UnderConstructionForm
         ' lblDescription
         '
         lblDescription.AutoSize = False
+        lblDescription.Anchor = AnchorStyles.None
         lblDescription.Font = New Drawing.Font("Segoe UI", 10.0!, Drawing.FontStyle.Regular, Drawing.GraphicsUnit.Point)
         lblDescription.ForeColor = Drawing.Color.FromArgb(200, 200, 200)
         lblDescription.Location = New Drawing.Point(40, 220)
@@ -81,6 +85,7 @@ Partial Class UnderConstructionForm
         '
         ' btnGoBack
         '
+        btnGoBack.Anchor = AnchorStyles.None
         btnGoBack.BackColor = Drawing.Color.FromArgb(255, 167, 38)
         btnGoBack.FlatStyle = FlatStyle.Flat
         btnGoBack.FlatAppearance.BorderSize = 0
