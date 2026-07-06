@@ -104,8 +104,7 @@ Public Class frmMain
     End Sub
 
     Private Sub btnSalesHistory_Click(sender As Object, e As EventArgs) Handles btnSalesHistory.Click
-        ' GATE — swap to New frmSalesHistory() when unlocking for v2.07
-        OpenChildForm(New UnderConstructionForm())
+        OpenChildForm(New frmSalesHistory())
     End Sub
 
     Private Sub btnSuppliers_Click(sender As Object, e As EventArgs) Handles btnSuppliers.Click
