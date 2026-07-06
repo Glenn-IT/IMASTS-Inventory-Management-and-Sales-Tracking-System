@@ -120,8 +120,7 @@ Public Class frmMain
     End Sub
 
     Private Sub btnSettings_Click(sender As Object, e As EventArgs) Handles btnSettings.Click
-        ' GATE — swap to New frmSettings() when unlocking for v2.09
-        OpenChildForm(New UnderConstructionForm())
+        OpenChildForm(New frmSettings())
     End Sub
 
     ' ── Logout ───────────────────────────────────────────────────────────
