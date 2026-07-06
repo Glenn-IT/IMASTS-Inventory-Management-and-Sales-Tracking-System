@@ -1,6 +1,6 @@
 Public Class UnderConstructionForm
 
-    Public Const CURRENT_VERSION As String = "v2.07"
+    Public Const CURRENT_VERSION As String = "v2.08"
 
     Private Sub UnderConstructionForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         lblVersion.Text = "Current Version: " & CURRENT_VERSION

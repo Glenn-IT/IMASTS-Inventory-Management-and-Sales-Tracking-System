@@ -116,8 +116,7 @@ Public Class frmMain
     End Sub
 
     Private Sub btnReports_Click(sender As Object, e As EventArgs) Handles btnReports.Click
-        ' GATE — swap to New frmReports() when unlocking for v2.08
-        OpenChildForm(New UnderConstructionForm())
+        OpenChildForm(New frmReports())
     End Sub
 
     Private Sub btnSettings_Click(sender As Object, e As EventArgs) Handles btnSettings.Click
