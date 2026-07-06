@@ -112,8 +112,7 @@ Public Class frmMain
     End Sub
 
     Private Sub btnSuppliers_Click(sender As Object, e As EventArgs) Handles btnSuppliers.Click
-        ' GATE — swap to New frmSuppliers() when unlocking for v2.03
-        OpenChildForm(New UnderConstructionForm())
+        OpenChildForm(New frmSuppliers())
     End Sub
 
     Private Sub btnCategories_Click(sender As Object, e As EventArgs) Handles btnCategories.Click
