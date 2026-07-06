@@ -6,8 +6,7 @@ Public Class frmMain
         btnSettings.Visible = (SessionManager.UserType = Constants.RoleAdmin)
         UpdateStatusBar()
         tmrClock.Start()
-        ' GATE — swap to New frmDashboard() when unlocking for v2.01
-        OpenChildForm(New UnderConstructionForm())
+        OpenChildForm(New frmDashboard())
     End Sub
 
     ' ── Theme ────────────────────────────────────────────────────────────
@@ -89,8 +88,7 @@ Public Class frmMain
     ' ── Navigation ───────────────────────────────────────────────────────
 
     Private Sub btnDashboard_Click(sender As Object, e As EventArgs) Handles btnDashboard.Click
-        ' GATE — swap to New frmDashboard() when unlocking for v2.01
-        OpenChildForm(New UnderConstructionForm())
+        OpenChildForm(New frmDashboard())
     End Sub
 
     Private Sub btnProducts_Click(sender As Object, e As EventArgs) Handles btnProducts.Click
