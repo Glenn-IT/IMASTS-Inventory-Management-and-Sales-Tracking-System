@@ -17,4 +17,14 @@ Public Module Constants
     Public Const StockLow      As String = "Low Stock"
     Public Const StockCritical As String = "Critical"
 
+    ' Security questions for password recovery
+    Public ReadOnly SecurityQuestions As String() = {
+        "What is your mother's maiden name?",
+        "What was the name of your first pet?",
+        "What city were you born in?",
+        "What was the model of your first car?",
+        "What is your favorite teacher's name?",
+        "What was the name of your elementary school?"
+    }
+
 End Module

@@ -213,3 +213,33 @@ git push origin v2.XX
 | v2.07 | v2.07 | c72e2d9659a0223b5e1e427d9d041ce71b54ccbc |
 | v2.08 | v2.08 | 4f265305d493e8528268fe1fd9e4706f94a3109d |
 | v2.09 | v2.09 | d046fb7ade61a7d17b5c9f244cdb16e38a097d45 |
+
+---
+
+## v3.xx Series — Feature Additions
+
+With all forms unlocked as of v2.09, the v3.xx series tags new features
+added on top of the fully-unlocked system (not progressive unlocks). Each
+v3.xx tag is a snapshot after one feature is completed and tested.
+
+### Rollout Plan
+
+| Version | Feature Added | Files Touched |
+|---------|---------------|---------------|
+| v3.00 | Forgot Password + Security Question | `Forms/frmForgotPassword.vb/.Designer.vb` (new), `Forms/frmLogin.vb/.Designer.vb`, `Forms/frmSettings.vb/.Designer.vb`, `Forms/frmMain.vb`, `DataAccess/UserRepository.vb`, `Helpers/Constants.vb`, `docs/IMASTS_CreateTables.sql`, `docs/DATABASE_SCHEMA.md` |
+
+### Git Commands Per Version (v3.xx)
+
+```bash
+git add <changed and new files for the feature>
+git commit -m "feat: implement v3.XX - [Feature Name]"
+git tag v3.XX
+git push origin master
+git push origin v3.XX
+```
+
+### GitHub Release Tags (v3.xx)
+
+| Version | Tag Name | Commit Hash |
+|---------|----------|--------------|
+| v3.00 | v3.00 | _(filled in after commit — see below)_ |

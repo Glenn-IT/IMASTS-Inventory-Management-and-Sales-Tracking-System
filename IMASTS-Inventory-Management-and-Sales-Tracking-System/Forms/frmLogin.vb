@@ -61,6 +61,12 @@ Public Class frmLogin
         If e.KeyCode = Keys.Enter Then txtPassword.Focus()
     End Sub
 
+    Private Sub lnkForgotPassword_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles lnkForgotPassword.LinkClicked
+        Using frm As New frmForgotPassword()
+            frm.ShowDialog()
+        End Using
+    End Sub
+
     Private Sub ShowError(msg As String)
         lblError.Text    = msg
         lblError.Visible = True

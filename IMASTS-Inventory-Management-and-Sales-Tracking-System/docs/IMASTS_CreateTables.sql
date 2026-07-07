@@ -12,12 +12,23 @@ GO
 -- ------------------------------------------------------------
 IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='tbl_Users' AND xtype='U')
 CREATE TABLE tbl_Users (
-    UserID       INT           IDENTITY(1,1) PRIMARY KEY,
-    Username     NVARCHAR(50)  NOT NULL UNIQUE,
-    PasswordHash NVARCHAR(255) NOT NULL,
-    UserType     NVARCHAR(20)  NOT NULL DEFAULT 'Staff',  -- 'Admin' or 'Staff'
-    CreatedAt    DATETIME      NOT NULL DEFAULT GETDATE()
+    UserID             INT           IDENTITY(1,1) PRIMARY KEY,
+    Username           NVARCHAR(50)  NOT NULL UNIQUE,
+    PasswordHash       NVARCHAR(255) NOT NULL,
+    UserType           NVARCHAR(20)  NOT NULL DEFAULT 'Staff',  -- 'Admin' or 'Staff'
+    CreatedAt          DATETIME      NOT NULL DEFAULT GETDATE(),
+    SecurityQuestion   NVARCHAR(255) NULL,
+    SecurityAnswerHash NVARCHAR(255) NULL
 );
+GO
+
+-- Add security question columns to an already-existing tbl_Users (upgrade path)
+IF NOT EXISTS (SELECT * FROM sys.columns WHERE object_id = OBJECT_ID('tbl_Users') AND name = 'SecurityQuestion')
+ALTER TABLE tbl_Users ADD SecurityQuestion NVARCHAR(255) NULL;
+GO
+
+IF NOT EXISTS (SELECT * FROM sys.columns WHERE object_id = OBJECT_ID('tbl_Users') AND name = 'SecurityAnswerHash')
+ALTER TABLE tbl_Users ADD SecurityAnswerHash NVARCHAR(255) NULL;
 GO
 
 -- ------------------------------------------------------------

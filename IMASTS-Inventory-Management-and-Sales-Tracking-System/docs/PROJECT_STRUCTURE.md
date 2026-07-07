@@ -30,6 +30,7 @@ IMASTS-Inventory-Management-and-Sales-Tracking-System/
 │
 ├── Forms/
 │   ├── frmLogin.vb                     ✓ done
+│   ├── frmForgotPassword.vb            ✓ done — security-question password reset
 │   ├── frmMain.vb                      ✓ done — MDI parent + navigation
 │   ├── frmDashboard.vb                 (Phase 4 — next)
 │   ├── frmProducts.vb                  (Phase 7)

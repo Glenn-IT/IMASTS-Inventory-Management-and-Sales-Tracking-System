@@ -44,11 +44,22 @@ Partial Class frmSettings
         lblCurrencySymbol = New Label()
         txtCurrencySymbol = New TextBox()
         btnSavePreferences = New Button()
+        tabSecurity           = New TabPage()
+        lblSecurityTitle      = New Label()
+        lblSecurityStatus     = New Label()
+        lblSecurityQuestion   = New Label()
+        cboSecurityQuestion   = New ComboBox()
+        lblSecurityAnswer     = New Label()
+        txtSecurityAnswer     = New TextBox()
+        lblConfirmSecurityAnswer = New Label()
+        txtConfirmSecurityAnswer = New TextBox()
+        btnSaveSecurityQA     = New Button()
         Panel1            = New Panel()
         Panel2            = New Panel()
         tabControl.SuspendLayout()
         tabUsers.SuspendLayout()
         tabPrefs.SuspendLayout()
+        tabSecurity.SuspendLayout()
         pnlAddUser.SuspendLayout()
         pnlChangePass.SuspendLayout()
         CType(dgvUsers, ComponentModel.ISupportInitialize).BeginInit()
@@ -79,6 +90,7 @@ Partial Class frmSettings
         tabControl.TabIndex = 0
         tabControl.TabPages.Add(tabUsers)
         tabControl.TabPages.Add(tabPrefs)
+        tabControl.TabPages.Add(tabSecurity)
         '
         ' tabUsers — User Management
         '
@@ -335,6 +347,96 @@ Partial Class frmSettings
         tabPrefs.Controls.Add(txtCurrencySymbol)
         tabPrefs.Controls.Add(btnSavePreferences)
         '
+        ' tabSecurity — My Security Question (self-service, all roles)
+        '
+        tabSecurity.BackColor = Color.FromArgb(CByte(245), CByte(246), CByte(248))
+        tabSecurity.Name      = "tabSecurity"
+        tabSecurity.Text      = "  My Security Question  "
+
+        lblSecurityTitle.Font      = New Font("Segoe UI", 11F, FontStyle.Bold)
+        lblSecurityTitle.ForeColor = Color.FromArgb(CByte(40), CByte(44), CByte(52))
+        lblSecurityTitle.Location  = New Point(30, 30)
+        lblSecurityTitle.Name      = "lblSecurityTitle"
+        lblSecurityTitle.Size      = New Size(400, 26)
+        lblSecurityTitle.TabIndex  = 0
+        lblSecurityTitle.Text      = "My Security Question"
+
+        lblSecurityStatus.Font      = New Font("Segoe UI", 8.5F, FontStyle.Italic)
+        lblSecurityStatus.ForeColor = Color.FromArgb(CByte(120), CByte(125), CByte(135))
+        lblSecurityStatus.Location  = New Point(30, 60)
+        lblSecurityStatus.Name      = "lblSecurityStatus"
+        lblSecurityStatus.Size      = New Size(500, 20)
+        lblSecurityStatus.TabIndex  = 1
+        lblSecurityStatus.Text      = "No security question set."
+
+        lblSecurityQuestion.Font      = lblFont
+        lblSecurityQuestion.ForeColor = lblColor
+        lblSecurityQuestion.Location  = New Point(30, 92)
+        lblSecurityQuestion.Name      = "lblSecurityQuestion"
+        lblSecurityQuestion.Size      = New Size(300, 20)
+        lblSecurityQuestion.TabIndex  = 2
+        lblSecurityQuestion.Text      = "Security Question *"
+
+        cboSecurityQuestion.DropDownStyle = ComboBoxStyle.DropDownList
+        cboSecurityQuestion.Font          = txtFont
+        cboSecurityQuestion.Location      = New Point(30, 114)
+        cboSecurityQuestion.Name          = "cboSecurityQuestion"
+        cboSecurityQuestion.Size          = New Size(500, 28)
+        cboSecurityQuestion.TabIndex      = 3
+
+        lblSecurityAnswer.Font      = lblFont
+        lblSecurityAnswer.ForeColor = lblColor
+        lblSecurityAnswer.Location  = New Point(30, 156)
+        lblSecurityAnswer.Name      = "lblSecurityAnswer"
+        lblSecurityAnswer.Size      = New Size(300, 20)
+        lblSecurityAnswer.TabIndex  = 4
+        lblSecurityAnswer.Text      = "Answer *"
+
+        txtSecurityAnswer.Font      = txtFont
+        txtSecurityAnswer.Location  = New Point(30, 178)
+        txtSecurityAnswer.MaxLength = 255
+        txtSecurityAnswer.Name      = "txtSecurityAnswer"
+        txtSecurityAnswer.Size      = New Size(500, 27)
+        txtSecurityAnswer.TabIndex  = 5
+
+        lblConfirmSecurityAnswer.Font      = lblFont
+        lblConfirmSecurityAnswer.ForeColor = lblColor
+        lblConfirmSecurityAnswer.Location  = New Point(30, 216)
+        lblConfirmSecurityAnswer.Name      = "lblConfirmSecurityAnswer"
+        lblConfirmSecurityAnswer.Size      = New Size(300, 20)
+        lblConfirmSecurityAnswer.TabIndex  = 6
+        lblConfirmSecurityAnswer.Text      = "Confirm Answer *"
+
+        txtConfirmSecurityAnswer.Font      = txtFont
+        txtConfirmSecurityAnswer.Location  = New Point(30, 238)
+        txtConfirmSecurityAnswer.MaxLength = 255
+        txtConfirmSecurityAnswer.Name      = "txtConfirmSecurityAnswer"
+        txtConfirmSecurityAnswer.Size      = New Size(500, 27)
+        txtConfirmSecurityAnswer.TabIndex  = 7
+
+        btnSaveSecurityQA.BackColor = Color.FromArgb(CByte(39), CByte(174), CByte(96))
+        btnSaveSecurityQA.Cursor    = Cursors.Hand
+        btnSaveSecurityQA.FlatAppearance.BorderSize = 0
+        btnSaveSecurityQA.FlatStyle = FlatStyle.Flat
+        btnSaveSecurityQA.Font      = New Font("Segoe UI", 9.5F, FontStyle.Bold)
+        btnSaveSecurityQA.ForeColor = Color.White
+        btnSaveSecurityQA.Location  = New Point(30, 284)
+        btnSaveSecurityQA.Name      = "btnSaveSecurityQA"
+        btnSaveSecurityQA.Size      = New Size(200, 34)
+        btnSaveSecurityQA.TabIndex  = 8
+        btnSaveSecurityQA.Text      = "Save Security Question"
+        btnSaveSecurityQA.UseVisualStyleBackColor = False
+
+        tabSecurity.Controls.Add(lblSecurityTitle)
+        tabSecurity.Controls.Add(lblSecurityStatus)
+        tabSecurity.Controls.Add(lblSecurityQuestion)
+        tabSecurity.Controls.Add(cboSecurityQuestion)
+        tabSecurity.Controls.Add(lblSecurityAnswer)
+        tabSecurity.Controls.Add(txtSecurityAnswer)
+        tabSecurity.Controls.Add(lblConfirmSecurityAnswer)
+        tabSecurity.Controls.Add(txtConfirmSecurityAnswer)
+        tabSecurity.Controls.Add(btnSaveSecurityQA)
+        '
         ' Panel1 — header
         '
         Panel1.Controls.Add(lblPageHeader)
@@ -366,6 +468,8 @@ Partial Class frmSettings
         tabControl.ResumeLayout(False)
         tabUsers.ResumeLayout(False)
         tabPrefs.ResumeLayout(False)
+        tabSecurity.ResumeLayout(False)
+        tabSecurity.PerformLayout()
         pnlAddUser.ResumeLayout(False)
         pnlAddUser.PerformLayout()
         pnlChangePass.ResumeLayout(False)
@@ -403,6 +507,16 @@ Partial Class frmSettings
     Friend WithEvents lblCurrencySymbol  As Label
     Friend WithEvents txtCurrencySymbol  As TextBox
     Friend WithEvents btnSavePreferences As Button
+    Friend WithEvents tabSecurity            As TabPage
+    Friend WithEvents lblSecurityTitle       As Label
+    Friend WithEvents lblSecurityStatus      As Label
+    Friend WithEvents lblSecurityQuestion    As Label
+    Friend WithEvents cboSecurityQuestion    As ComboBox
+    Friend WithEvents lblSecurityAnswer      As Label
+    Friend WithEvents txtSecurityAnswer      As TextBox
+    Friend WithEvents lblConfirmSecurityAnswer As Label
+    Friend WithEvents txtConfirmSecurityAnswer As TextBox
+    Friend WithEvents btnSaveSecurityQA      As Button
     Friend WithEvents Panel1             As Panel
     Friend WithEvents Panel2             As Panel
 

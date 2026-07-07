@@ -3,7 +3,7 @@ Public Class frmMain
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ApplyTheme()
         Me.Text            = $"IMASTS  —  {SessionManager.Username}  ({SessionManager.UserType})"
-        btnSettings.Visible = (SessionManager.UserType = Constants.RoleAdmin)
+        btnSettings.Visible = True
         UpdateStatusBar()
         tmrClock.Start()
         OpenChildForm(New frmDashboard())

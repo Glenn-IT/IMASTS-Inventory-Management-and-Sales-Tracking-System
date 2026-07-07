@@ -12,6 +12,8 @@
 | PasswordHash | NVARCHAR(255) | BCrypt hash — never plain text |
 | UserType | NVARCHAR(10) | `'Admin'` or `'Staff'` |
 | CreatedAt | DATETIME | default GETDATE() |
+| SecurityQuestion | NVARCHAR(255) | NULL until user sets it in Settings; one of `Constants.SecurityQuestions` |
+| SecurityAnswerHash | NVARCHAR(255) | BCrypt hash of the (trimmed, lowercased) answer — never plain text |
 
 ---
 

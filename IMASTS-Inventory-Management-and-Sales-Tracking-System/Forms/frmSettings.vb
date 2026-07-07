@@ -5,10 +5,17 @@ Public Class frmSettings
 
     Private Sub frmSettings_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 Me.Text = "Settings"
-        ConfigureGrid()
-        PopulateUserTypeCombo()
-        LoadUsers()
-        LoadPreferences()
+        If SessionManager.IsAdmin Then
+            ConfigureGrid()
+            PopulateUserTypeCombo()
+            LoadUsers()
+            LoadPreferences()
+        Else
+            tabControl.TabPages.Remove(tabUsers)
+            tabControl.TabPages.Remove(tabPrefs)
+        End If
+        PopulateSecurityQuestionCombo()
+        LoadSecurityQA()
     End Sub
 
     ' ── Tab 1 — User Management ───────────────────────────────────────────
@@ -163,6 +170,59 @@ Me.Text = "Settings"
         Catch ex As Exception
             MessageBox.Show($"Failed to save preferences: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
+    End Sub
+
+    ' ── Tab 3 — My Security Question (self-service) ──────────────────────
+
+    Private Sub PopulateSecurityQuestionCombo()
+        cboSecurityQuestion.Items.Clear()
+        For Each q In Constants.SecurityQuestions
+            cboSecurityQuestion.Items.Add(q)
+        Next
+    End Sub
+
+    Private Sub LoadSecurityQA()
+        Dim dt As DataTable = UserRepository.GetSecurityInfo(SessionManager.Username)
+        If dt.Rows.Count = 0 Then Return
+
+        Dim question = dt.Rows(0)("SecurityQuestion").ToString()
+        If question <> "" Then
+            lblSecurityStatus.Text = "Security question is set. Enter a new answer below to update it."
+            cboSecurityQuestion.SelectedIndex = Array.IndexOf(Constants.SecurityQuestions, question)
+        Else
+            lblSecurityStatus.Text = "No security question set. Set one below so you can recover your password."
+            cboSecurityQuestion.SelectedIndex = 0
+        End If
+    End Sub
+
+    Private Sub btnSaveSecurityQA_Click(sender As Object, e As EventArgs) Handles btnSaveSecurityQA.Click
+        If cboSecurityQuestion.SelectedItem Is Nothing Then
+            MessageBox.Show("Please select a security question.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+
+        Dim answer  = InputHelper.SanitizeInput(txtSecurityAnswer.Text)
+        Dim confirm = InputHelper.SanitizeInput(txtConfirmSecurityAnswer.Text)
+
+        If InputHelper.IsEmpty(answer) Then
+            MessageBox.Show("Answer is required.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+        If answer <> confirm Then
+            MessageBox.Show("Answers do not match.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+
+        Dim question   = cboSecurityQuestion.SelectedItem.ToString()
+        Dim answerHash = PasswordHelper.HashPassword(answer.Trim().ToLowerInvariant())
+
+        UserRepository.UpdateSecurityQA(SessionManager.UserID, question, answerHash)
+        ActivityLogger.Log(SessionManager.Username, Constants.LogSuccess, "Updated security question.")
+
+        txtSecurityAnswer.Clear()
+        txtConfirmSecurityAnswer.Clear()
+        lblSecurityStatus.Text = "Security question is set. Enter a new answer below to update it."
+        MessageBox.Show("Security question saved.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
 
 End Class

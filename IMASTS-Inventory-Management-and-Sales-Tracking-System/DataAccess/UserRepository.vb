@@ -68,4 +68,35 @@ Public Module UserRepository
         End Using
     End Sub
 
+    ' ── Security Question / Forgot Password ─────────────────────────────
+
+    Public Function GetSecurityInfo(username As String) As DataTable
+        Dim dt As New DataTable()
+        Using con As New SqlConnection(dbconstring.Connection)
+            con.Open()
+            Using cmd As New SqlCommand(
+                "SELECT UserID, Username, SecurityQuestion, SecurityAnswerHash " &
+                "FROM tbl_Users WHERE Username = @username", con)
+                cmd.Parameters.AddWithValue("@username", username)
+                Dim adapter As New SqlDataAdapter(cmd)
+                adapter.Fill(dt)
+            End Using
+        End Using
+        Return dt
+    End Function
+
+    Public Sub UpdateSecurityQA(userID As Integer, question As String, answerHash As String)
+        Using con As New SqlConnection(dbconstring.Connection)
+            con.Open()
+            Using cmd As New SqlCommand(
+                "UPDATE tbl_Users SET SecurityQuestion = @question, SecurityAnswerHash = @hash " &
+                "WHERE UserID = @id", con)
+                cmd.Parameters.AddWithValue("@question", question)
+                cmd.Parameters.AddWithValue("@hash",     answerHash)
+                cmd.Parameters.AddWithValue("@id",       userID)
+                cmd.ExecuteNonQuery()
+            End Using
+        End Using
+    End Sub
+
 End Module

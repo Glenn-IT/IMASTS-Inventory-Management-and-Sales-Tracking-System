@@ -29,6 +29,7 @@ Partial Class frmLogin
         Me.chkShowPassword = New System.Windows.Forms.CheckBox()
         Me.btnLogin       = New System.Windows.Forms.Button()
         Me.lblError       = New System.Windows.Forms.Label()
+        Me.lnkForgotPassword = New System.Windows.Forms.LinkLabel()
         Me.pnlBackground.SuspendLayout()
         Me.pnlCard.SuspendLayout()
         Me.pnlHeader.SuspendLayout()
@@ -50,6 +51,7 @@ Partial Class frmLogin
         Me.pnlCard.Controls.Add(Me.chkShowPassword)
         Me.pnlCard.Controls.Add(Me.btnLogin)
         Me.pnlCard.Controls.Add(Me.lblError)
+        Me.pnlCard.Controls.Add(Me.lnkForgotPassword)
         Me.pnlCard.Location  = New System.Drawing.Point(40, 50)
         Me.pnlCard.Name      = "pnlCard"
         Me.pnlCard.Size      = New System.Drawing.Size(380, 450)
@@ -144,10 +146,20 @@ Partial Class frmLogin
         Me.lblError.ForeColor = System.Drawing.Color.FromArgb(192, 57, 43)
         Me.lblError.Location  = New System.Drawing.Point(30, 362)
         Me.lblError.Name      = "lblError"
-        Me.lblError.Size      = New System.Drawing.Size(320, 52)
+        Me.lblError.Size      = New System.Drawing.Size(320, 30)
         Me.lblError.Text      = String.Empty
         Me.lblError.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         Me.lblError.Visible   = False
+
+        ' ── lnkForgotPassword ────────────────────────────────────────
+        Me.lnkForgotPassword.AutoSize  = False
+        Me.lnkForgotPassword.Font      = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.lnkForgotPassword.LinkColor = System.Drawing.Color.FromArgb(41, 128, 185)
+        Me.lnkForgotPassword.Location  = New System.Drawing.Point(30, 396)
+        Me.lnkForgotPassword.Name      = "lnkForgotPassword"
+        Me.lnkForgotPassword.Size      = New System.Drawing.Size(320, 20)
+        Me.lnkForgotPassword.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.lnkForgotPassword.Text      = "Forgot Password?"
 
         ' ── frmLogin ─────────────────────────────────────────────────
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
@@ -180,5 +192,6 @@ Partial Class frmLogin
     Friend WithEvents chkShowPassword As System.Windows.Forms.CheckBox
     Friend WithEvents btnLogin        As System.Windows.Forms.Button
     Friend WithEvents lblError        As System.Windows.Forms.Label
+    Friend WithEvents lnkForgotPassword As System.Windows.Forms.LinkLabel
 
 End Class
