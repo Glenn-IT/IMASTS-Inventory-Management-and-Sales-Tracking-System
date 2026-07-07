@@ -1,7 +1,6 @@
 # CURRENT_TASKS.md
 **Last Updated:** 2026-07-07
-**Current Phase:** Phase 11 — Settings (`frmSettings`) — BUILT, pending test
-**UI Task:** Layout redesign (all Designer.vb files) — DONE, pending build/test
+**Current Rollout:** v3.xx docked-gate series — v3.01 tagged (Dashboard unlocked), next is v3.02 (Categories)
 **Add-on:** Forgot Password (security question) — BUILT, pending test
 
 ---

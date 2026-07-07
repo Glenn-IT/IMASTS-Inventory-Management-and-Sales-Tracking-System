@@ -287,3 +287,4 @@ git push origin v3.XX
 | Version | Tag Name | Commit Hash |
 |---------|----------|--------------|
 | v3.00 | v3.00 | c3c08d2 |
+| v3.01 | v3.01 | b4f8b62 |
