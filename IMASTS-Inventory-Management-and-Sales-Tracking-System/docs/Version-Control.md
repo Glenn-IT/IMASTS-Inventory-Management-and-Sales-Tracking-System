@@ -216,23 +216,67 @@ git push origin v2.XX
 
 ---
 
-## v3.xx Series — Feature Additions
+## v3.xx Series — Docked Gate Rollout, Restarted with Forgot Password
 
-With all forms unlocked as of v2.09, the v3.xx series tags new features
-added on top of the fully-unlocked system (not progressive unlocks). Each
-v3.xx tag is a snapshot after one feature is completed and tested.
+The v2.xx tags above are frozen history. v3.00 restarts the same
+progressive-unlock rollout from a clean, fully-gated base — the same
+Docked Gate Strategy as v2.xx — but this time the **Forgot Password +
+Security Question** feature (`frmForgotPassword`, the security-question
+columns on `tbl_Users`, and the "My Security Question" tab in
+`frmSettings`) is baked into the base state instead of being a separate
+add-on tag. `frmLogin`'s "Forgot Password?" link is never gated — it's
+reachable at every v3.xx version, same as the login screen itself.
 
 ### Rollout Plan
 
-| Version | Feature Added | Files Touched |
-|---------|---------------|---------------|
-| v3.00 | Forgot Password + Security Question | `Forms/frmForgotPassword.vb/.Designer.vb` (new), `Forms/frmLogin.vb/.Designer.vb`, `Forms/frmSettings.vb/.Designer.vb`, `Forms/frmMain.vb`, `DataAccess/UserRepository.vb`, `Helpers/Constants.vb`, `docs/IMASTS_CreateTables.sql`, `docs/DATABASE_SCHEMA.md` |
+| Version | Feature Unlocked | Forms Unlocked | Forms Still Gated |
+|---------|-----------------|----------------|-------------------|
+| v3.00 | Base state (nothing) — Forgot Password available from Login | frmLogin, frmMain | frmDashboard, frmCategories, frmSuppliers, frmProducts, frmInventory, frmNewSale, frmSalesHistory, frmReports, frmSettings |
+| v3.01 | Dashboard | frmDashboard | frmCategories, frmSuppliers, frmProducts, frmInventory, frmNewSale, frmSalesHistory, frmReports, frmSettings |
+| v3.02 | Categories | frmCategories | frmSuppliers, frmProducts, frmInventory, frmNewSale, frmSalesHistory, frmReports, frmSettings |
+| v3.03 | Suppliers | frmSuppliers | frmProducts, frmInventory, frmNewSale, frmSalesHistory, frmReports, frmSettings |
+| v3.04 | Products | frmProducts | frmInventory, frmNewSale, frmSalesHistory, frmReports, frmSettings |
+| v3.05 | Inventory | frmInventory | frmNewSale, frmSalesHistory, frmReports, frmSettings |
+| v3.06 | New Sale | frmNewSale | frmSalesHistory, frmReports, frmSettings |
+| v3.07 | Sales History | frmSalesHistory | frmReports, frmSettings |
+| v3.08 | Reports | frmReports | frmSettings |
+| v3.09 | Settings (Full System, incl. self-service Security Q&A tab) | frmSettings | — |
+
+### Docked Gate Strategy
+
+Same mechanism as v2.xx — the gate lives in `frmMain`'s Click handlers
+(and `frmMain_Load` for the initial Dashboard open):
+
+```vb
+Private Sub btnProducts_Click(sender As Object, e As EventArgs) Handles btnProducts.Click
+    ' GATE — swap to New frmProducts() when unlocking for v3.04
+    OpenChildForm(New UnderConstructionForm())
+End Sub
+```
+
+Unlocking a feature is a one-line swap back to the real form:
+
+```vb
+Private Sub btnProducts_Click(sender As Object, e As EventArgs) Handles btnProducts.Click
+    OpenChildForm(New frmProducts())
+End Sub
+```
+
+`UnderConstructionForm.vb` still holds the single constant, bumped once per
+version:
+
+```vb
+Public Const CURRENT_VERSION As String = "v3.00"
+```
 
 ### Git Commands Per Version (v3.xx)
 
 ```bash
-git add <changed and new files for the feature>
-git commit -m "feat: implement v3.XX - [Feature Name]"
+# 1. Swap the GATE line in the relevant frmMain Click handler back to the real form
+# 2. Update CURRENT_VERSION in UnderConstructionForm.vb
+
+git add Forms/frmMain.vb Forms/UnderConstructionForm.vb
+git commit -m "feat: implement v3.XX - unlock [Feature Name]"
 git tag v3.XX
 git push origin master
 git push origin v3.XX
@@ -242,4 +286,4 @@ git push origin v3.XX
 
 | Version | Tag Name | Commit Hash |
 |---------|----------|--------------|
-| v3.00 | v3.00 | 59b25cb |
+| v3.00 | v3.00 | _(filled in after re-tagging — see below)_ |
