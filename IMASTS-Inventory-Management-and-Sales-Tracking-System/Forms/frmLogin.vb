@@ -1,5 +1,8 @@
 Public Class frmLogin
 
+    Private failedAttempts As Integer = 0
+    Private secondsRemaining As Integer = 0
+
     Private Sub frmLogin_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         txtUsername.Select()
     End Sub
@@ -19,8 +22,8 @@ Public Class frmLogin
             Dim dt As DataTable = UserRepository.GetByUsername(uname)
 
             If dt.Rows.Count = 0 Then
-                ShowError("Invalid username or password.")
                 ActivityLogger.Log(uname, Constants.LogFailed, "Login failed — user not found.")
+                RegisterFailedAttempt(uname)
                 Return
             End If
 
@@ -28,10 +31,12 @@ Public Class frmLogin
             Dim hash As String  = row("PasswordHash").ToString()
 
             If Not PasswordHelper.VerifyPassword(pwd, hash) Then
-                ShowError("Invalid username or password.")
                 ActivityLogger.Log(uname, Constants.LogFailed, "Login failed — wrong password.")
+                RegisterFailedAttempt(uname)
                 Return
             End If
+
+            failedAttempts = 0
 
             SessionManager.UserID   = CInt(row("UserID"))
             SessionManager.Username = row("Username").ToString()
@@ -47,6 +52,47 @@ Public Class frmLogin
         Catch ex As Exception
             ShowError("A system error occurred. Please try again.")
         End Try
+    End Sub
+
+    Private Sub RegisterFailedAttempt(uname As String)
+        failedAttempts += 1
+
+        If failedAttempts >= Constants.MaxLoginAttempts Then
+            ActivityLogger.Log(uname, Constants.LogFailed, "Account locked — too many failed attempts.")
+            StartLockout()
+        Else
+            Dim attemptsLeft As Integer = Constants.MaxLoginAttempts - failedAttempts
+            ShowError($"Invalid username or password. {attemptsLeft} attempt(s) left.")
+        End If
+    End Sub
+
+    Private Sub StartLockout()
+        secondsRemaining = Constants.LockoutSeconds
+
+        txtUsername.Enabled = False
+        txtPassword.Enabled = False
+        btnLogin.Enabled    = False
+
+        ShowError($"Too many failed attempts. Try again in {secondsRemaining}s.")
+        tmrLockout.Start()
+    End Sub
+
+    Private Sub tmrLockout_Tick(sender As Object, e As EventArgs) Handles tmrLockout.Tick
+        secondsRemaining -= 1
+
+        If secondsRemaining <= 0 Then
+            tmrLockout.Stop()
+            failedAttempts = 0
+
+            txtUsername.Enabled = True
+            txtPassword.Enabled = True
+            btnLogin.Enabled    = True
+
+            HideError()
+            txtUsername.Select()
+        Else
+            ShowError($"Too many failed attempts. Try again in {secondsRemaining}s.")
+        End If
     End Sub
 
     Private Sub chkShowPassword_CheckedChanged(sender As Object, e As EventArgs) Handles chkShowPassword.CheckedChanged

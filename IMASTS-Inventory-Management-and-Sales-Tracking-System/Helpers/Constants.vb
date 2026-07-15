@@ -8,6 +8,10 @@ Public Module Constants
     Public Const LogSuccess As String = "Success"
     Public Const LogFailed  As String = "Failed"
 
+    ' Login lockout
+    Public Const MaxLoginAttempts As Integer = 3
+    Public Const LockoutSeconds   As Integer = 30
+
     ' Sale status
     Public Const SaleActive As String = "Active"
     Public Const SaleVoided As String = "Voided"

@@ -17,6 +17,7 @@ Partial Class frmLogin
 
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components     = New System.ComponentModel.Container()
         Me.pnlBackground  = New System.Windows.Forms.Panel()
         Me.pnlCard        = New System.Windows.Forms.Panel()
         Me.pnlHeader      = New System.Windows.Forms.Panel()
@@ -30,6 +31,7 @@ Partial Class frmLogin
         Me.btnLogin       = New System.Windows.Forms.Button()
         Me.lblError       = New System.Windows.Forms.Label()
         Me.lnkForgotPassword = New System.Windows.Forms.LinkLabel()
+        Me.tmrLockout        = New System.Windows.Forms.Timer(Me.components)
         Me.pnlBackground.SuspendLayout()
         Me.pnlCard.SuspendLayout()
         Me.pnlHeader.SuspendLayout()
@@ -161,6 +163,9 @@ Partial Class frmLogin
         Me.lnkForgotPassword.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         Me.lnkForgotPassword.Text      = "Forgot Password?"
 
+        ' ── tmrLockout ───────────────────────────────────────────────
+        Me.tmrLockout.Interval = 1000
+
         ' ── frmLogin ─────────────────────────────────────────────────
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode       = System.Windows.Forms.AutoScaleMode.Font
@@ -193,5 +198,6 @@ Partial Class frmLogin
     Friend WithEvents btnLogin        As System.Windows.Forms.Button
     Friend WithEvents lblError        As System.Windows.Forms.Label
     Friend WithEvents lnkForgotPassword As System.Windows.Forms.LinkLabel
+    Friend WithEvents tmrLockout As System.Windows.Forms.Timer
 
 End Class
