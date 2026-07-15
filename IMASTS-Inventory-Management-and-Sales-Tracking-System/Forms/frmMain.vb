@@ -117,8 +117,7 @@ Public Class frmMain
     End Sub
 
     Private Sub btnCategories_Click(sender As Object, e As EventArgs) Handles btnCategories.Click
-        ' GATE — swap to New frmCategories() when unlocking for v3.02
-        OpenChildForm(New UnderConstructionForm())
+        OpenChildForm(New frmCategories())
     End Sub
 
     Private Sub btnReports_Click(sender As Object, e As EventArgs) Handles btnReports.Click
