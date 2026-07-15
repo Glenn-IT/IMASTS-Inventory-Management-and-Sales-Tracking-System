@@ -34,12 +34,14 @@ Me.Text = "Category Management"
     End Sub
 
     Private Sub ClearForm()
+        dgvCategories.ClearSelection()
+        dgvCategories.CurrentCell = Nothing
+
         txtCategoryName.Clear()
-        txtCategoryName.Focus()
         _selectedId = 0
         btnUpdate.Enabled = False
         btnDelete.Enabled = False
-        dgvCategories.ClearSelection()
+        txtCategoryName.Focus()
     End Sub
 
     ' ── Grid selection ────────────────────────────────────────────────────
