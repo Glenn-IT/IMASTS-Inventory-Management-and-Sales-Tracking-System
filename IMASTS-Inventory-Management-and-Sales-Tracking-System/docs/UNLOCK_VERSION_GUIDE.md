@@ -1,5 +1,5 @@
 # UNLOCK_VERSION_GUIDE.md
-Quick reference for unlocking the next v3.xx version. See `Version-Control.md`
+Quick reference for unlocking the next v4.xx version. See `Version-Control.md`
 for the full rollout plan and history — this file is just the repeatable
 checklist.
 
@@ -30,18 +30,21 @@ are easy to lose.
 | Version | Feature | `frmMain.vb` handler(s) to swap |
 |---------|---------|----------------------------------|
 | v3.01 | Dashboard | `frmMain_Load` **and** `btnDashboard_Click` |
-| v3.02 | Categories | `btnCategories_Click` |
-| v3.03 | Suppliers | `btnSuppliers_Click` |
-| v3.04 | Products | `btnProducts_Click` |
-| v3.05 | Inventory | `btnInventory_Click` |
-| v3.06 | New Sale | `btnNewSale_Click` |
-| v3.07 | Sales History | `btnSalesHistory_Click` |
-| v3.08 | Reports | `btnReports_Click` |
-| v3.09 | Settings (Full System) | `btnSettings_Click` |
+| v4.00 | Categories | `btnCategories_Click` |
+| v4.01 | Suppliers | `btnSuppliers_Click` |
+| v4.02 | Products | `btnProducts_Click` |
+| v4.03 | Inventory | `btnInventory_Click` |
+| v4.04 | New Sale | `btnNewSale_Click` |
+| v4.05 | Sales History | `btnSalesHistory_Click` |
+| v4.06 | Reports | `btnReports_Click` |
+| v4.07 | Settings (Full System) | `btnSettings_Click` |
 
 Note: v3.01 is the only version that touches two places — `frmMain_Load`
 also opens a form directly (the default view on login), same as
-`btnDashboard_Click`.
+`btnDashboard_Click`. Numbering jumped from v3.01 to v4.00 for the
+Categories unlock because the login lockout feature was baked into the
+base state at the same time — see the "v4.xx Series" section in
+`Version-Control.md`.
 
 ---
 
@@ -75,7 +78,7 @@ line, replacing the latter with `New <frmName>()`.
 In `Forms/UnderConstructionForm.vb`:
 
 ```vb
-Public Const CURRENT_VERSION As String = "v3.02"
+Public Const CURRENT_VERSION As String = "v4.01"
 ```
 
 ---
@@ -95,13 +98,13 @@ Must show `Build succeeded. 0 Error(s)` before committing.
 
 ```bash
 git add Forms/frmMain.vb Forms/UnderConstructionForm.vb
-git commit -m "feat: implement v3.XX - unlock [Feature Name]"
-git tag v3.XX
+git commit -m "feat: implement v4.XX - unlock [Feature Name]"
+git tag v4.XX
 git push origin master
-git push origin v3.XX
+git push origin v4.XX
 ```
 
-Replace `v3.XX` and `[Feature Name]` with the actual version/feature from
+Replace `v4.XX` and `[Feature Name]` with the actual version/feature from
 the table above.
 
 ---
@@ -114,11 +117,11 @@ After pushing, get the short hash of the commit you just made:
 git log -1 --format=%h
 ```
 
-Then in `docs/Version-Control.md`, under **### GitHub Release Tags (v3.xx)**,
+Then in `docs/Version-Control.md`, under **### GitHub Release Tags (v4.xx)**,
 add a row:
 
 ```
-| v3.XX | v3.XX | <hash> |
+| v4.XX | v4.XX | <hash> |
 ```
 
 Also update the **Current Rollout** line near the top of

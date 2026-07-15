@@ -1,6 +1,6 @@
 # CURRENT_TASKS.md
-**Last Updated:** 2026-07-07
-**Current Rollout:** v3.xx docked-gate series — v3.01 tagged (Dashboard unlocked), next is v3.02 (Categories)
+**Last Updated:** 2026-07-15
+**Current Rollout:** v4.xx series (continues from v3.01) — v4.00 tagged (Categories unlocked, login lockout baked in), next is v4.01 (Suppliers)
 **Add-on:** Forgot Password (security question) — BUILT, pending test
 
 ---

@@ -288,3 +288,41 @@ git push origin v3.XX
 |---------|----------|--------------|
 | v3.00 | v3.00 | c3c08d2 |
 | v3.01 | v3.01 | b4f8b62 |
+
+---
+
+## v4.xx Series — Continues from v3.01, Login Lockout Baked In
+
+v4.00 does not restart the rollout from a clean base like v2.xx and v3.xx
+did. It continues directly from v3.01's unlocked state (Login + Main
+Window + Dashboard), with the **login lockout** feature (3 failed
+attempts locks the form for 30 seconds, with a live countdown and
+remaining-attempts messaging — `tmrLockout` in `frmLogin`) baked into the
+base state, the same way v3.00 baked in Forgot Password. v4.00 also
+unlocks **Categories**, matching what would have been v3.02 under the old
+numbering.
+
+### Rollout Plan
+
+| Version | Feature Unlocked | Forms Unlocked | Forms Still Gated |
+|---------|-----------------|----------------|-------------------|
+| v4.00 | Categories — Login lockout available from Login | frmLogin, frmMain, frmDashboard, frmCategories | frmSuppliers, frmProducts, frmInventory, frmNewSale, frmSalesHistory, frmReports, frmSettings |
+
+### Git Commands Per Version (v4.xx)
+
+```bash
+# 1. Swap the GATE line in the relevant frmMain Click handler back to the real form
+# 2. Update CURRENT_VERSION in UnderConstructionForm.vb
+
+git add Forms/frmMain.vb Forms/UnderConstructionForm.vb
+git commit -m "feat: implement v4.XX - unlock [Feature Name]"
+git tag v4.XX
+git push origin master
+git push origin v4.XX
+```
+
+### GitHub Release Tags (v4.xx)
+
+| Version | Tag Name | Commit Hash |
+|---------|----------|--------------|
+| v4.00 | v4.00 | aa00bec |
