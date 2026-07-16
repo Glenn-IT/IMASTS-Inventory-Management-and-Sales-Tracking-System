@@ -31,14 +31,18 @@ Partial Class frmDashboard
         lblTodayRevenue = New Label()
         lblPageHeader = New Label()
         btnRefresh = New Button()
+        pnlSalesChart = New Panel()
+        pnlChartCanvas = New Panel()
+        lblChartTitle = New Label()
         pnlTotalProducts.SuspendLayout()
         pnlLowStock.SuspendLayout()
         pnlTodaySales.SuspendLayout()
         pnlTodayRevenue.SuspendLayout()
+        pnlSalesChart.SuspendLayout()
         SuspendLayout()
-        ' 
+        '
         ' pnlTotalProducts
-        ' 
+        '
         pnlTotalProducts.BackColor = Color.White
         pnlTotalProducts.Controls.Add(lblTitleProducts)
         pnlTotalProducts.Controls.Add(lblTotalProducts)
@@ -47,9 +51,9 @@ Partial Class frmDashboard
         pnlTotalProducts.Name = "pnlTotalProducts"
         pnlTotalProducts.Size = New Size(210, 136)
         pnlTotalProducts.TabIndex = 2
-        ' 
+        '
         ' lblTitleProducts
-        ' 
+        '
         lblTitleProducts.Font = New Font("Segoe UI", 9.5F)
         lblTitleProducts.ForeColor = Color.FromArgb(CByte(130), CByte(135), CByte(145))
         lblTitleProducts.Location = New Point(16, 20)
@@ -57,9 +61,9 @@ Partial Class frmDashboard
         lblTitleProducts.Size = New Size(180, 23)
         lblTitleProducts.TabIndex = 0
         lblTitleProducts.Text = "Total Products"
-        ' 
+        '
         ' lblTotalProducts
-        ' 
+        '
         lblTotalProducts.Font = New Font("Segoe UI", 32F, FontStyle.Bold)
         lblTotalProducts.ForeColor = Color.FromArgb(CByte(40), CByte(44), CByte(52))
         lblTotalProducts.Location = New Point(16, 50)
@@ -67,9 +71,9 @@ Partial Class frmDashboard
         lblTotalProducts.Size = New Size(178, 68)
         lblTotalProducts.TabIndex = 1
         lblTotalProducts.Text = "0"
-        ' 
+        '
         ' pnlLowStock
-        ' 
+        '
         pnlLowStock.BackColor = Color.White
         pnlLowStock.Controls.Add(lblTitleLowStock)
         pnlLowStock.Controls.Add(lblLowStock)
@@ -78,9 +82,9 @@ Partial Class frmDashboard
         pnlLowStock.Name = "pnlLowStock"
         pnlLowStock.Size = New Size(210, 136)
         pnlLowStock.TabIndex = 3
-        ' 
+        '
         ' lblTitleLowStock
-        ' 
+        '
         lblTitleLowStock.Font = New Font("Segoe UI", 9.5F)
         lblTitleLowStock.ForeColor = Color.FromArgb(CByte(130), CByte(135), CByte(145))
         lblTitleLowStock.Location = New Point(16, 20)
@@ -88,9 +92,9 @@ Partial Class frmDashboard
         lblTitleLowStock.Size = New Size(180, 23)
         lblTitleLowStock.TabIndex = 0
         lblTitleLowStock.Text = "Low Stock Items"
-        ' 
+        '
         ' lblLowStock
-        ' 
+        '
         lblLowStock.Font = New Font("Segoe UI", 32F, FontStyle.Bold)
         lblLowStock.ForeColor = Color.FromArgb(CByte(231), CByte(76), CByte(60))
         lblLowStock.Location = New Point(16, 50)
@@ -98,9 +102,9 @@ Partial Class frmDashboard
         lblLowStock.Size = New Size(178, 68)
         lblLowStock.TabIndex = 1
         lblLowStock.Text = "0"
-        ' 
+        '
         ' pnlTodaySales
-        ' 
+        '
         pnlTodaySales.BackColor = Color.White
         pnlTodaySales.Controls.Add(lblTitleSales)
         pnlTodaySales.Controls.Add(lblTodaySales)
@@ -109,9 +113,9 @@ Partial Class frmDashboard
         pnlTodaySales.Name = "pnlTodaySales"
         pnlTodaySales.Size = New Size(210, 136)
         pnlTodaySales.TabIndex = 4
-        ' 
+        '
         ' lblTitleSales
-        ' 
+        '
         lblTitleSales.Font = New Font("Segoe UI", 9.5F)
         lblTitleSales.ForeColor = Color.FromArgb(CByte(130), CByte(135), CByte(145))
         lblTitleSales.Location = New Point(16, 20)
@@ -119,9 +123,9 @@ Partial Class frmDashboard
         lblTitleSales.Size = New Size(180, 23)
         lblTitleSales.TabIndex = 0
         lblTitleSales.Text = "Today's Sales"
-        ' 
+        '
         ' lblTodaySales
-        ' 
+        '
         lblTodaySales.Font = New Font("Segoe UI", 32F, FontStyle.Bold)
         lblTodaySales.ForeColor = Color.FromArgb(CByte(39), CByte(174), CByte(96))
         lblTodaySales.Location = New Point(16, 50)
@@ -129,9 +133,9 @@ Partial Class frmDashboard
         lblTodaySales.Size = New Size(178, 68)
         lblTodaySales.TabIndex = 1
         lblTodaySales.Text = "0"
-        ' 
+        '
         ' pnlTodayRevenue
-        ' 
+        '
         pnlTodayRevenue.BackColor = Color.White
         pnlTodayRevenue.Controls.Add(lblTitleRevenue)
         pnlTodayRevenue.Controls.Add(lblTodayRevenue)
@@ -140,9 +144,9 @@ Partial Class frmDashboard
         pnlTodayRevenue.Name = "pnlTodayRevenue"
         pnlTodayRevenue.Size = New Size(240, 136)
         pnlTodayRevenue.TabIndex = 5
-        ' 
+        '
         ' lblTitleRevenue
-        ' 
+        '
         lblTitleRevenue.Font = New Font("Segoe UI", 9.5F)
         lblTitleRevenue.ForeColor = Color.FromArgb(CByte(130), CByte(135), CByte(145))
         lblTitleRevenue.Location = New Point(16, 20)
@@ -150,9 +154,9 @@ Partial Class frmDashboard
         lblTitleRevenue.Size = New Size(210, 23)
         lblTitleRevenue.TabIndex = 0
         lblTitleRevenue.Text = "Today's Revenue"
-        ' 
+        '
         ' lblTodayRevenue
-        ' 
+        '
         lblTodayRevenue.Font = New Font("Segoe UI", 26F, FontStyle.Bold)
         lblTodayRevenue.ForeColor = Color.FromArgb(CByte(52), CByte(152), CByte(219))
         lblTodayRevenue.Location = New Point(16, 50)
@@ -160,9 +164,9 @@ Partial Class frmDashboard
         lblTodayRevenue.Size = New Size(210, 68)
         lblTodayRevenue.TabIndex = 1
         lblTodayRevenue.Text = "₱0.00"
-        ' 
+        '
         ' lblPageHeader
-        ' 
+        '
         lblPageHeader.Font = New Font("Segoe UI", 16F, FontStyle.Bold)
         lblPageHeader.ForeColor = Color.FromArgb(CByte(40), CByte(44), CByte(52))
         lblPageHeader.Location = New Point(30, 23)
@@ -170,9 +174,9 @@ Partial Class frmDashboard
         lblPageHeader.Size = New Size(300, 41)
         lblPageHeader.TabIndex = 0
         lblPageHeader.Text = "Dashboard"
-        ' 
+        '
         ' btnRefresh
-        ' 
+        '
         btnRefresh.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         btnRefresh.BackColor = Color.FromArgb(CByte(52), CByte(152), CByte(219))
         btnRefresh.Cursor = Cursors.Hand
@@ -186,13 +190,45 @@ Partial Class frmDashboard
         btnRefresh.TabIndex = 1
         btnRefresh.Text = "Refresh"
         btnRefresh.UseVisualStyleBackColor = False
-        ' 
+        '
+        ' pnlSalesChart
+        '
+        pnlSalesChart.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
+        pnlSalesChart.BackColor = Color.White
+        pnlSalesChart.Controls.Add(pnlChartCanvas)
+        pnlSalesChart.Controls.Add(lblChartTitle)
+        pnlSalesChart.Location = New Point(18, 260)
+        pnlSalesChart.Margin = New Padding(20, 3, 3, 3)
+        pnlSalesChart.Name = "pnlSalesChart"
+        pnlSalesChart.Size = New Size(939, 430)
+        pnlSalesChart.TabIndex = 6
+        '
+        ' lblChartTitle
+        '
+        lblChartTitle.Font = New Font("Segoe UI", 9.5F)
+        lblChartTitle.ForeColor = Color.FromArgb(CByte(130), CByte(135), CByte(145))
+        lblChartTitle.Location = New Point(16, 16)
+        lblChartTitle.Name = "lblChartTitle"
+        lblChartTitle.Size = New Size(400, 23)
+        lblChartTitle.TabIndex = 0
+        lblChartTitle.Text = "Weekly Sales Trend (Demo Data)"
+        '
+        ' pnlChartCanvas
+        '
+        pnlChartCanvas.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
+        pnlChartCanvas.BackColor = Color.White
+        pnlChartCanvas.Location = New Point(16, 50)
+        pnlChartCanvas.Name = "pnlChartCanvas"
+        pnlChartCanvas.Size = New Size(907, 364)
+        pnlChartCanvas.TabIndex = 1
+        '
         ' frmDashboard
-        ' 
+        '
         AutoScaleDimensions = New SizeF(7F, 17F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.FromArgb(CByte(245), CByte(246), CByte(248))
         ClientSize = New Size(980, 725)
+        Controls.Add(pnlSalesChart)
         Controls.Add(pnlTotalProducts)
         Controls.Add(pnlTodayRevenue)
         Controls.Add(pnlTodaySales)
@@ -207,6 +243,7 @@ Partial Class frmDashboard
         pnlLowStock.ResumeLayout(False)
         pnlTodaySales.ResumeLayout(False)
         pnlTodayRevenue.ResumeLayout(False)
+        pnlSalesChart.ResumeLayout(False)
         ResumeLayout(False)
     End Sub
 
@@ -214,6 +251,8 @@ Partial Class frmDashboard
     Friend WithEvents pnlLowStock      As System.Windows.Forms.Panel
     Friend WithEvents pnlTodaySales    As System.Windows.Forms.Panel
     Friend WithEvents pnlTodayRevenue  As System.Windows.Forms.Panel
+    Friend WithEvents pnlSalesChart    As System.Windows.Forms.Panel
+    Friend WithEvents pnlChartCanvas   As System.Windows.Forms.Panel
 
     Friend WithEvents lblPageHeader    As System.Windows.Forms.Label
     Friend WithEvents btnRefresh       As System.Windows.Forms.Button
@@ -222,6 +261,7 @@ Partial Class frmDashboard
     Friend WithEvents lblTitleLowStock As System.Windows.Forms.Label
     Friend WithEvents lblTitleSales    As System.Windows.Forms.Label
     Friend WithEvents lblTitleRevenue  As System.Windows.Forms.Label
+    Friend WithEvents lblChartTitle    As System.Windows.Forms.Label
 
     Friend WithEvents lblTotalProducts As System.Windows.Forms.Label
     Friend WithEvents lblLowStock      As System.Windows.Forms.Label
