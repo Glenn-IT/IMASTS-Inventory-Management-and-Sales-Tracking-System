@@ -92,28 +92,23 @@ Public Class frmMain
     End Sub
 
     Private Sub btnProducts_Click(sender As Object, e As EventArgs) Handles btnProducts.Click
-        ' GATE — swap to New frmProducts() when unlocking for v3.04
-        OpenChildForm(New UnderConstructionForm())
+        OpenChildForm(New frmProducts())
     End Sub
 
     Private Sub btnInventory_Click(sender As Object, e As EventArgs) Handles btnInventory.Click
-        ' GATE — swap to New frmInventory() when unlocking for v3.05
-        OpenChildForm(New UnderConstructionForm())
+        OpenChildForm(New frmInventory())
     End Sub
 
     Private Sub btnNewSale_Click(sender As Object, e As EventArgs) Handles btnNewSale.Click
-        ' GATE — swap to New frmNewSale() when unlocking for v3.06
-        OpenChildForm(New UnderConstructionForm())
+        OpenChildForm(New frmNewSale())
     End Sub
 
     Private Sub btnSalesHistory_Click(sender As Object, e As EventArgs) Handles btnSalesHistory.Click
-        ' GATE — swap to New frmSalesHistory() when unlocking for v3.07
-        OpenChildForm(New UnderConstructionForm())
+        OpenChildForm(New frmSalesHistory())
     End Sub
 
     Private Sub btnSuppliers_Click(sender As Object, e As EventArgs) Handles btnSuppliers.Click
-        ' GATE — swap to New frmSuppliers() when unlocking for v3.03
-        OpenChildForm(New UnderConstructionForm())
+        OpenChildForm(New frmSuppliers())
     End Sub
 
     Private Sub btnCategories_Click(sender As Object, e As EventArgs) Handles btnCategories.Click
@@ -121,13 +116,11 @@ Public Class frmMain
     End Sub
 
     Private Sub btnReports_Click(sender As Object, e As EventArgs) Handles btnReports.Click
-        ' GATE — swap to New frmReports() when unlocking for v3.08
-        OpenChildForm(New UnderConstructionForm())
+        OpenChildForm(New frmReports())
     End Sub
 
     Private Sub btnSettings_Click(sender As Object, e As EventArgs) Handles btnSettings.Click
-        ' GATE — swap to New frmSettings() when unlocking for v3.09
-        OpenChildForm(New UnderConstructionForm())
+        OpenChildForm(New frmSettings())
     End Sub
 
     ' ── Logout ───────────────────────────────────────────────────────────
