@@ -17,179 +17,194 @@ Partial Class frmLogin
 
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.components     = New System.ComponentModel.Container()
-        Me.pnlBackground  = New System.Windows.Forms.Panel()
-        Me.pnlCard        = New System.Windows.Forms.Panel()
-        Me.pnlHeader      = New System.Windows.Forms.Panel()
-        Me.lblAppName     = New System.Windows.Forms.Label()
-        Me.lblAppSub      = New System.Windows.Forms.Label()
-        Me.lblUsernameHdr = New System.Windows.Forms.Label()
-        Me.txtUsername    = New System.Windows.Forms.TextBox()
-        Me.lblPasswordHdr = New System.Windows.Forms.Label()
-        Me.txtPassword    = New System.Windows.Forms.TextBox()
-        Me.chkShowPassword = New System.Windows.Forms.CheckBox()
-        Me.btnLogin       = New System.Windows.Forms.Button()
-        Me.lblError       = New System.Windows.Forms.Label()
-        Me.lnkForgotPassword = New System.Windows.Forms.LinkLabel()
-        Me.tmrLockout        = New System.Windows.Forms.Timer(Me.components)
-        Me.pnlBackground.SuspendLayout()
-        Me.pnlCard.SuspendLayout()
-        Me.pnlHeader.SuspendLayout()
-        Me.SuspendLayout()
-
-        ' ── pnlBackground ────────────────────────────────────────────
-        Me.pnlBackground.BackColor = System.Drawing.Color.FromArgb(44, 62, 80)
-        Me.pnlBackground.Controls.Add(Me.pnlCard)
-        Me.pnlBackground.Dock      = System.Windows.Forms.DockStyle.Fill
-        Me.pnlBackground.Name      = "pnlBackground"
-
-        ' ── pnlCard ──────────────────────────────────────────────────
-        Me.pnlCard.BackColor = System.Drawing.Color.White
-        Me.pnlCard.Controls.Add(Me.pnlHeader)
-        Me.pnlCard.Controls.Add(Me.lblUsernameHdr)
-        Me.pnlCard.Controls.Add(Me.txtUsername)
-        Me.pnlCard.Controls.Add(Me.lblPasswordHdr)
-        Me.pnlCard.Controls.Add(Me.txtPassword)
-        Me.pnlCard.Controls.Add(Me.chkShowPassword)
-        Me.pnlCard.Controls.Add(Me.btnLogin)
-        Me.pnlCard.Controls.Add(Me.lblError)
-        Me.pnlCard.Controls.Add(Me.lnkForgotPassword)
-        Me.pnlCard.Location  = New System.Drawing.Point(40, 50)
-        Me.pnlCard.Name      = "pnlCard"
-        Me.pnlCard.Size      = New System.Drawing.Size(380, 450)
-
-        ' ── pnlHeader ────────────────────────────────────────────────
-        Me.pnlHeader.BackColor = System.Drawing.Color.FromArgb(28, 43, 74)
-        Me.pnlHeader.Controls.Add(Me.lblAppName)
-        Me.pnlHeader.Controls.Add(Me.lblAppSub)
-        Me.pnlHeader.Dock      = System.Windows.Forms.DockStyle.Top
-        Me.pnlHeader.Height    = 112
-        Me.pnlHeader.Name      = "pnlHeader"
-
-        ' ── lblAppName ───────────────────────────────────────────────
-        Me.lblAppName.AutoSize  = False
-        Me.lblAppName.BackColor = System.Drawing.Color.Transparent
-        Me.lblAppName.Dock      = System.Windows.Forms.DockStyle.None
-        Me.lblAppName.Font      = New System.Drawing.Font("Segoe UI", 26.0!, System.Drawing.FontStyle.Bold)
-        Me.lblAppName.ForeColor = System.Drawing.Color.White
-        Me.lblAppName.Location  = New System.Drawing.Point(0, 18)
-        Me.lblAppName.Name      = "lblAppName"
-        Me.lblAppName.Size      = New System.Drawing.Size(380, 48)
-        Me.lblAppName.Text      = "IMASTS"
-        Me.lblAppName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-
-        ' ── lblAppSub ────────────────────────────────────────────────
-        Me.lblAppSub.AutoSize  = False
-        Me.lblAppSub.BackColor = System.Drawing.Color.Transparent
-        Me.lblAppSub.Font      = New System.Drawing.Font("Segoe UI", 8.0!)
-        Me.lblAppSub.ForeColor = System.Drawing.Color.FromArgb(160, 195, 225)
-        Me.lblAppSub.Location  = New System.Drawing.Point(10, 72)
-        Me.lblAppSub.Name      = "lblAppSub"
-        Me.lblAppSub.Size      = New System.Drawing.Size(360, 28)
-        Me.lblAppSub.Text      = "Inventory Management && Sales Tracking System"
-        Me.lblAppSub.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-
-        ' ── lblUsernameHdr ───────────────────────────────────────────
-        Me.lblUsernameHdr.AutoSize  = True
-        Me.lblUsernameHdr.Font      = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.lblUsernameHdr.ForeColor = System.Drawing.Color.FromArgb(100, 100, 100)
-        Me.lblUsernameHdr.Location  = New System.Drawing.Point(30, 130)
-        Me.lblUsernameHdr.Name      = "lblUsernameHdr"
-        Me.lblUsernameHdr.Text      = "USERNAME"
-
-        ' ── txtUsername ──────────────────────────────────────────────
-        Me.txtUsername.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.txtUsername.Font        = New System.Drawing.Font("Segoe UI", 10.5!)
-        Me.txtUsername.Location    = New System.Drawing.Point(30, 150)
-        Me.txtUsername.Name        = "txtUsername"
-        Me.txtUsername.Size        = New System.Drawing.Size(320, 36)
-        Me.txtUsername.MaxLength   = 50
-
-        ' ── lblPasswordHdr ───────────────────────────────────────────
-        Me.lblPasswordHdr.AutoSize  = True
-        Me.lblPasswordHdr.Font      = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.lblPasswordHdr.ForeColor = System.Drawing.Color.FromArgb(100, 100, 100)
-        Me.lblPasswordHdr.Location  = New System.Drawing.Point(30, 205)
-        Me.lblPasswordHdr.Name      = "lblPasswordHdr"
-        Me.lblPasswordHdr.Text      = "PASSWORD"
-
-        ' ── txtPassword ──────────────────────────────────────────────
-        Me.txtPassword.BorderStyle  = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.txtPassword.Font         = New System.Drawing.Font("Segoe UI", 10.5!)
-        Me.txtPassword.Location     = New System.Drawing.Point(30, 225)
-        Me.txtPassword.Name         = "txtPassword"
-        Me.txtPassword.PasswordChar = "*"c
-        Me.txtPassword.Size         = New System.Drawing.Size(320, 36)
-        Me.txtPassword.MaxLength    = 100
-
-        ' ── chkShowPassword ──────────────────────────────────────────
-        Me.chkShowPassword.AutoSize  = True
-        Me.chkShowPassword.Font      = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.chkShowPassword.ForeColor = System.Drawing.Color.FromArgb(100, 100, 100)
-        Me.chkShowPassword.Location  = New System.Drawing.Point(30, 272)
-        Me.chkShowPassword.Name      = "chkShowPassword"
-        Me.chkShowPassword.Text      = "Show Password"
-
-        ' ── btnLogin ─────────────────────────────────────────────────
-        Me.btnLogin.BackColor = System.Drawing.Color.FromArgb(41, 128, 185)
-        Me.btnLogin.Cursor    = System.Windows.Forms.Cursors.Hand
-        Me.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnLogin.FlatAppearance.BorderSize = 0
-        Me.btnLogin.Font      = New System.Drawing.Font("Segoe UI", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.btnLogin.ForeColor = System.Drawing.Color.White
-        Me.btnLogin.Location  = New System.Drawing.Point(30, 310)
-        Me.btnLogin.Name      = "btnLogin"
-        Me.btnLogin.Size      = New System.Drawing.Size(320, 42)
-        Me.btnLogin.Text      = "LOG IN"
-
-        ' ── lblError ─────────────────────────────────────────────────
-        Me.lblError.AutoSize  = False
-        Me.lblError.Font      = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.lblError.ForeColor = System.Drawing.Color.FromArgb(192, 57, 43)
-        Me.lblError.Location  = New System.Drawing.Point(30, 362)
-        Me.lblError.Name      = "lblError"
-        Me.lblError.Size      = New System.Drawing.Size(320, 30)
-        Me.lblError.Text      = String.Empty
-        Me.lblError.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.lblError.Visible   = False
-
-        ' ── lnkForgotPassword ────────────────────────────────────────
-        Me.lnkForgotPassword.AutoSize  = False
-        Me.lnkForgotPassword.Font      = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.lnkForgotPassword.LinkColor = System.Drawing.Color.FromArgb(41, 128, 185)
-        Me.lnkForgotPassword.Location  = New System.Drawing.Point(30, 396)
-        Me.lnkForgotPassword.Name      = "lnkForgotPassword"
-        Me.lnkForgotPassword.Size      = New System.Drawing.Size(320, 20)
-        Me.lnkForgotPassword.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.lnkForgotPassword.Text      = "Forgot Password?"
-
-        ' ── tmrLockout ───────────────────────────────────────────────
-        Me.tmrLockout.Interval = 1000
-
-        ' ── frmLogin ─────────────────────────────────────────────────
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
-        Me.AutoScaleMode       = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackColor           = System.Drawing.Color.FromArgb(44, 62, 80)
-        Me.ClientSize          = New System.Drawing.Size(460, 550)
-        Me.Controls.Add(Me.pnlBackground)
-        Me.FormBorderStyle     = System.Windows.Forms.FormBorderStyle.FixedSingle
-        Me.MaximizeBox         = False
-        Me.Name                = "frmLogin"
-        Me.StartPosition       = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text                = "IMASTS — Login"
-
-        Me.pnlHeader.ResumeLayout(False)
-        Me.pnlCard.ResumeLayout(False)
-        Me.pnlCard.PerformLayout()
-        Me.pnlBackground.ResumeLayout(False)
-        Me.ResumeLayout(False)
+        components = New ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmLogin))
+        pnlBackground = New Panel()
+        pnlCard = New Panel()
+        pnlHeader = New Panel()
+        lblUsernameHdr = New Label()
+        txtUsername = New TextBox()
+        lblPasswordHdr = New Label()
+        txtPassword = New TextBox()
+        chkShowPassword = New CheckBox()
+        btnLogin = New Button()
+        lblError = New Label()
+        lnkForgotPassword = New LinkLabel()
+        tmrLockout = New Timer(components)
+        PictureBox1 = New PictureBox()
+        pnlBackground.SuspendLayout()
+        pnlCard.SuspendLayout()
+        pnlHeader.SuspendLayout()
+        CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
+        SuspendLayout()
+        ' 
+        ' pnlBackground
+        ' 
+        pnlBackground.BackColor = Color.FromArgb(CByte(44), CByte(62), CByte(80))
+        pnlBackground.Controls.Add(pnlCard)
+        pnlBackground.Dock = DockStyle.Fill
+        pnlBackground.Location = New Point(0, 0)
+        pnlBackground.Name = "pnlBackground"
+        pnlBackground.Size = New Size(460, 684)
+        pnlBackground.TabIndex = 0
+        ' 
+        ' pnlCard
+        ' 
+        pnlCard.BackColor = Color.White
+        pnlCard.Controls.Add(pnlHeader)
+        pnlCard.Controls.Add(lblUsernameHdr)
+        pnlCard.Controls.Add(txtUsername)
+        pnlCard.Controls.Add(lblPasswordHdr)
+        pnlCard.Controls.Add(txtPassword)
+        pnlCard.Controls.Add(chkShowPassword)
+        pnlCard.Controls.Add(btnLogin)
+        pnlCard.Controls.Add(lblError)
+        pnlCard.Controls.Add(lnkForgotPassword)
+        pnlCard.Location = New Point(40, 57)
+        pnlCard.Name = "pnlCard"
+        pnlCard.Size = New Size(380, 588)
+        pnlCard.TabIndex = 0
+        ' 
+        ' pnlHeader
+        ' 
+        pnlHeader.BackColor = Color.FromArgb(CByte(28), CByte(43), CByte(74))
+        pnlHeader.Controls.Add(PictureBox1)
+        pnlHeader.Dock = DockStyle.Top
+        pnlHeader.Location = New Point(0, 0)
+        pnlHeader.Name = "pnlHeader"
+        pnlHeader.Size = New Size(380, 216)
+        pnlHeader.TabIndex = 0
+        ' 
+        ' lblUsernameHdr
+        ' 
+        lblUsernameHdr.AutoSize = True
+        lblUsernameHdr.Font = New Font("Segoe UI", 8F, FontStyle.Bold)
+        lblUsernameHdr.ForeColor = Color.FromArgb(CByte(100), CByte(100), CByte(100))
+        lblUsernameHdr.Location = New Point(30, 242)
+        lblUsernameHdr.Name = "lblUsernameHdr"
+        lblUsernameHdr.Size = New Size(71, 15)
+        lblUsernameHdr.TabIndex = 1
+        lblUsernameHdr.Text = "USERNAME"
+        ' 
+        ' txtUsername
+        ' 
+        txtUsername.BorderStyle = BorderStyle.FixedSingle
+        txtUsername.Font = New Font("Segoe UI", 10.5F)
+        txtUsername.Location = New Point(30, 265)
+        txtUsername.MaxLength = 50
+        txtUsername.Name = "txtUsername"
+        txtUsername.Size = New Size(320, 28)
+        txtUsername.TabIndex = 2
+        ' 
+        ' lblPasswordHdr
+        ' 
+        lblPasswordHdr.AutoSize = True
+        lblPasswordHdr.Font = New Font("Segoe UI", 8F, FontStyle.Bold)
+        lblPasswordHdr.ForeColor = Color.FromArgb(CByte(100), CByte(100), CByte(100))
+        lblPasswordHdr.Location = New Point(30, 327)
+        lblPasswordHdr.Name = "lblPasswordHdr"
+        lblPasswordHdr.Size = New Size(73, 15)
+        lblPasswordHdr.TabIndex = 3
+        lblPasswordHdr.Text = "PASSWORD"
+        ' 
+        ' txtPassword
+        ' 
+        txtPassword.BorderStyle = BorderStyle.FixedSingle
+        txtPassword.Font = New Font("Segoe UI", 10.5F)
+        txtPassword.Location = New Point(30, 350)
+        txtPassword.MaxLength = 100
+        txtPassword.Name = "txtPassword"
+        txtPassword.PasswordChar = "*"c
+        txtPassword.Size = New Size(320, 28)
+        txtPassword.TabIndex = 4
+        ' 
+        ' chkShowPassword
+        ' 
+        chkShowPassword.AutoSize = True
+        chkShowPassword.Font = New Font("Segoe UI", 9F)
+        chkShowPassword.ForeColor = Color.FromArgb(CByte(100), CByte(100), CByte(100))
+        chkShowPassword.Location = New Point(30, 403)
+        chkShowPassword.Name = "chkShowPassword"
+        chkShowPassword.Size = New Size(123, 23)
+        chkShowPassword.TabIndex = 5
+        chkShowPassword.Text = "Show Password"
+        ' 
+        ' btnLogin
+        ' 
+        btnLogin.BackColor = Color.FromArgb(CByte(41), CByte(128), CByte(185))
+        btnLogin.Cursor = Cursors.Hand
+        btnLogin.FlatAppearance.BorderSize = 0
+        btnLogin.FlatStyle = FlatStyle.Flat
+        btnLogin.Font = New Font("Segoe UI", 10F, FontStyle.Bold)
+        btnLogin.ForeColor = Color.White
+        btnLogin.Location = New Point(30, 446)
+        btnLogin.Name = "btnLogin"
+        btnLogin.Size = New Size(320, 48)
+        btnLogin.TabIndex = 6
+        btnLogin.Text = "LOG IN"
+        btnLogin.UseVisualStyleBackColor = False
+        ' 
+        ' lblError
+        ' 
+        lblError.Font = New Font("Segoe UI", 9F)
+        lblError.ForeColor = Color.FromArgb(CByte(192), CByte(57), CByte(43))
+        lblError.Location = New Point(30, 505)
+        lblError.Name = "lblError"
+        lblError.Size = New Size(320, 34)
+        lblError.TabIndex = 7
+        lblError.TextAlign = ContentAlignment.MiddleCenter
+        lblError.Visible = False
+        ' 
+        ' lnkForgotPassword
+        ' 
+        lnkForgotPassword.Font = New Font("Segoe UI", 9F)
+        lnkForgotPassword.LinkColor = Color.FromArgb(CByte(41), CByte(128), CByte(185))
+        lnkForgotPassword.Location = New Point(30, 544)
+        lnkForgotPassword.Name = "lnkForgotPassword"
+        lnkForgotPassword.Size = New Size(320, 23)
+        lnkForgotPassword.TabIndex = 8
+        lnkForgotPassword.TabStop = True
+        lnkForgotPassword.Text = "Forgot Password?"
+        lnkForgotPassword.TextAlign = ContentAlignment.MiddleCenter
+        ' 
+        ' tmrLockout
+        ' 
+        tmrLockout.Interval = 1000
+        ' 
+        ' PictureBox1
+        ' 
+        PictureBox1.Dock = DockStyle.Fill
+        PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), Image)
+        PictureBox1.Location = New Point(0, 0)
+        PictureBox1.Name = "PictureBox1"
+        PictureBox1.Size = New Size(380, 216)
+        PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
+        PictureBox1.TabIndex = 0
+        PictureBox1.TabStop = False
+        ' 
+        ' frmLogin
+        ' 
+        AutoScaleDimensions = New SizeF(7F, 17F)
+        AutoScaleMode = AutoScaleMode.Font
+        BackColor = Color.FromArgb(CByte(44), CByte(62), CByte(80))
+        ClientSize = New Size(460, 684)
+        Controls.Add(pnlBackground)
+        FormBorderStyle = FormBorderStyle.FixedSingle
+        MaximizeBox = False
+        Name = "frmLogin"
+        StartPosition = FormStartPosition.CenterScreen
+        Text = "IMASTS — Login"
+        pnlBackground.ResumeLayout(False)
+        pnlCard.ResumeLayout(False)
+        pnlCard.PerformLayout()
+        pnlHeader.ResumeLayout(False)
+        CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
+        ResumeLayout(False)
     End Sub
 
     Friend WithEvents pnlBackground   As System.Windows.Forms.Panel
     Friend WithEvents pnlCard         As System.Windows.Forms.Panel
     Friend WithEvents pnlHeader       As System.Windows.Forms.Panel
-    Friend WithEvents lblAppName      As System.Windows.Forms.Label
-    Friend WithEvents lblAppSub       As System.Windows.Forms.Label
     Friend WithEvents lblUsernameHdr  As System.Windows.Forms.Label
     Friend WithEvents txtUsername     As System.Windows.Forms.TextBox
     Friend WithEvents lblPasswordHdr  As System.Windows.Forms.Label
@@ -199,5 +214,6 @@ Partial Class frmLogin
     Friend WithEvents lblError        As System.Windows.Forms.Label
     Friend WithEvents lnkForgotPassword As System.Windows.Forms.LinkLabel
     Friend WithEvents tmrLockout As System.Windows.Forms.Timer
+    Friend WithEvents PictureBox1 As PictureBox
 
 End Class
