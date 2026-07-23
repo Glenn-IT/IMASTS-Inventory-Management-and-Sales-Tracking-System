@@ -326,3 +326,36 @@ git push origin v4.XX
 | Version | Tag Name | Commit Hash |
 |---------|----------|--------------|
 | v4.00 | v4.00 | aa00bec |
+
+---
+
+## v5.xx Series — Continues from v4.00, Products Unlocked
+
+v5.00 continues directly from v4.00's unlocked state (Login + Main Window +
+Dashboard + Categories) and additionally unlocks **Products**. Inventory,
+New Sale, Sales History, Suppliers, Reports, and Settings remain gated.
+
+### Rollout Plan
+
+| Version | Feature Unlocked | Forms Unlocked | Forms Still Gated |
+|---------|-----------------|----------------|-------------------|
+| v5.00 | Products | frmLogin, frmMain, frmDashboard, frmCategories, frmProducts | frmInventory, frmNewSale, frmSalesHistory, frmSuppliers, frmReports, frmSettings |
+
+### Git Commands Per Version (v5.xx)
+
+```bash
+# 1. Swap the GATE line in the relevant frmMain Click handler back to the real form
+# 2. Update CURRENT_VERSION in UnderConstructionForm.vb
+
+git add Forms/frmMain.vb Forms/UnderConstructionForm.vb
+git commit -m "feat: implement v5.XX - unlock [Feature Name]"
+git tag v5.XX
+git push origin master
+git push origin v5.XX
+```
+
+### GitHub Release Tags (v5.xx)
+
+| Version | Tag Name | Commit Hash |
+|---------|----------|--------------|
+| v5.00 | v5.00 | _pending_ |
