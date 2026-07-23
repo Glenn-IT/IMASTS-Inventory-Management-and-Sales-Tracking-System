@@ -106,6 +106,8 @@ Me.Text = "Product Management"
     End Sub
 
     Private Sub ClearForm()
+        dgvProducts.ClearSelection()
+        dgvProducts.CurrentCell = Nothing
         txtName.Clear()
         cboCategory.SelectedIndex = -1
         cboSupplier.SelectedIndex = -1
@@ -117,7 +119,28 @@ Me.Text = "Product Management"
         _selectedId       = 0
         btnUpdate.Enabled = False
         btnDelete.Enabled = False
-        dgvProducts.ClearSelection()
+    End Sub
+
+    ' ── Numeric-only input guards ─────────────────────────────────────────
+
+    Private Sub txtUnitPrice_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtUnitPrice.KeyPress
+        If Not Char.IsControl(e.KeyChar) AndAlso Not Char.IsDigit(e.KeyChar) AndAlso e.KeyChar <> "."c Then
+            e.Handled = True
+        ElseIf e.KeyChar = "."c AndAlso txtUnitPrice.Text.Contains(".") Then
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub txtStockQty_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtStockQty.KeyPress
+        If Not Char.IsControl(e.KeyChar) AndAlso Not Char.IsDigit(e.KeyChar) Then
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub txtReorderLevel_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtReorderLevel.KeyPress
+        If Not Char.IsControl(e.KeyChar) AndAlso Not Char.IsDigit(e.KeyChar) Then
+            e.Handled = True
+        End If
     End Sub
 
     ' ── Grid selection ────────────────────────────────────────────────────
