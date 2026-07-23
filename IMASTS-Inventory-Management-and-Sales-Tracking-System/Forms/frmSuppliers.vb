@@ -1,3 +1,5 @@
+Imports Microsoft.Data.SqlClient
+
 Public Class frmSuppliers
 
     Private _repo As New SupplierRepository()
@@ -7,6 +9,13 @@ Public Class frmSuppliers
 Me.Text = "Supplier Management"
         ConfigureGrid()
         LoadSuppliers()
+        txtPhone.MaxLength = 11
+    End Sub
+
+    Private Sub txtPhone_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtPhone.KeyPress
+        If Not Char.IsControl(e.KeyChar) AndAlso Not Char.IsDigit(e.KeyChar) Then
+            e.Handled = True
+        End If
     End Sub
 
     Private Sub ConfigureGrid()
@@ -55,6 +64,8 @@ Me.Text = "Supplier Management"
     End Sub
 
     Private Sub ClearForm()
+        dgvSuppliers.ClearSelection()
+        dgvSuppliers.CurrentCell = Nothing
         txtName.Clear()
         txtContact.Clear()
         txtPhone.Clear()
@@ -64,7 +75,6 @@ Me.Text = "Supplier Management"
         _selectedId = 0
         btnUpdate.Enabled = False
         btnDelete.Enabled = False
-        dgvSuppliers.ClearSelection()
     End Sub
 
     ' ── Grid selection ────────────────────────────────────────────────────
@@ -103,6 +113,16 @@ Me.Text = "Supplier Management"
         Dim email   As String = InputHelper.SanitizeInput(txtEmail.Text)
         Dim address As String = InputHelper.SanitizeInput(txtAddress.Text)
 
+        If phone <> "" AndAlso Not InputHelper.IsValidPhone(phone) Then
+            MessageBox.Show("Phone must be exactly 11 digits.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+
+        If email <> "" AndAlso Not InputHelper.IsValidEmail(email) Then
+            MessageBox.Show("Please enter a valid email address.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+
         If _repo.Add(name, contact, phone, email, address) Then
             ActivityLogger.Log(SessionManager.Username, Constants.LogSuccess, $"Added supplier: {name}")
             LoadSuppliers()
@@ -127,6 +147,16 @@ Me.Text = "Supplier Management"
         Dim email   As String = InputHelper.SanitizeInput(txtEmail.Text)
         Dim address As String = InputHelper.SanitizeInput(txtAddress.Text)
 
+        If phone <> "" AndAlso Not InputHelper.IsValidPhone(phone) Then
+            MessageBox.Show("Phone must be exactly 11 digits.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+
+        If email <> "" AndAlso Not InputHelper.IsValidEmail(email) Then
+            MessageBox.Show("Please enter a valid email address.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+
         If _repo.Update(_selectedId, name, contact, phone, email, address) Then
             ActivityLogger.Log(SessionManager.Username, Constants.LogSuccess, $"Updated supplier ID {_selectedId}: {name}")
             LoadSuppliers()
@@ -150,13 +180,22 @@ Me.Text = "Supplier Management"
 
         If confirm <> DialogResult.Yes Then Return
 
-        If _repo.Delete(_selectedId) Then
-            ActivityLogger.Log(SessionManager.Username, Constants.LogSuccess, $"Deleted supplier: {name}")
-            LoadSuppliers()
-            ClearForm()
-        Else
-            MessageBox.Show("Failed to delete supplier. It may be linked to existing products or stock receipts.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End If
+        Try
+            If _repo.Delete(_selectedId) Then
+                ActivityLogger.Log(SessionManager.Username, Constants.LogSuccess, $"Deleted supplier: {name}")
+                LoadSuppliers()
+                ClearForm()
+            Else
+                MessageBox.Show("Failed to delete supplier. It may be linked to existing products or stock receipts.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
+        Catch ex As SqlException When ex.Number = 547
+            MessageBox.Show(
+                $"""{name}"" cannot be deleted because one or more products still reference it as their supplier." & vbCrLf & vbCrLf &
+                "Reassign or delete those products first, then try again.",
+                "Supplier In Use", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        Catch ex As Exception
+            MessageBox.Show($"Failed to delete supplier: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
     End Sub
 
     ' ── Clear ─────────────────────────────────────────────────────────────

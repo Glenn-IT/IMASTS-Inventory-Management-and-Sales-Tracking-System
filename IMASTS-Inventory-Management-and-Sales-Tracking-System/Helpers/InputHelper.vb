@@ -1,3 +1,5 @@
+Imports System.Text.RegularExpressions
+
 Public Module InputHelper
 
     ''' <summary>Trims whitespace and strips angle brackets and null bytes from user input.</summary>
@@ -19,6 +21,15 @@ Public Module InputHelper
 
     Public Function IsValidInteger(text As String, ByRef result As Integer) As Boolean
         Return Integer.TryParse(text, result) AndAlso result >= 0
+    End Function
+
+    ''' <summary>11-digit numeric phone format, e.g. 09123456789.</summary>
+    Public Function IsValidPhone(text As String) As Boolean
+        Return Regex.IsMatch(If(text, String.Empty).Trim(), "^\d{11}$")
+    End Function
+
+    Public Function IsValidEmail(text As String) As Boolean
+        Return Regex.IsMatch(If(text, String.Empty).Trim(), "^[^@\s]+@[^@\s]+\.[^@\s]+$")
     End Function
 
 End Module

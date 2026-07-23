@@ -1,3 +1,5 @@
+Imports Microsoft.Data.SqlClient
+
 Public Class frmProducts
 
     Private _repo As New ProductRepository()
@@ -229,13 +231,22 @@ Me.Text = "Product Management"
 
         If confirm <> DialogResult.Yes Then Return
 
-        If _repo.Delete(_selectedId) Then
-            ActivityLogger.Log(SessionManager.Username, Constants.LogSuccess, $"Deleted product: {name}")
-            LoadProducts()
-            ClearForm()
-        Else
-            MessageBox.Show("Failed to delete product. It may be linked to existing sales or stock receipts.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End If
+        Try
+            If _repo.Delete(_selectedId) Then
+                ActivityLogger.Log(SessionManager.Username, Constants.LogSuccess, $"Deleted product: {name}")
+                LoadProducts()
+                ClearForm()
+            Else
+                MessageBox.Show("Failed to delete product. It may be linked to existing sales or stock receipts.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
+        Catch ex As SqlException When ex.Number = 547
+            MessageBox.Show(
+                $"""{name}"" cannot be deleted because it is still referenced by existing sales, inventory, or stock receipt records." & vbCrLf & vbCrLf &
+                "Remove those records first, then try again.",
+                "Product In Use", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        Catch ex As Exception
+            MessageBox.Show($"Failed to delete product: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
     End Sub
 
     ' ── Clear ─────────────────────────────────────────────────────────────
