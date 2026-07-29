@@ -340,6 +340,7 @@ New Sale, Sales History, Suppliers, Reports, and Settings remain gated.
 | Version | Feature Unlocked | Forms Unlocked | Forms Still Gated |
 |---------|-----------------|----------------|-------------------|
 | v5.00 | Products | frmLogin, frmMain, frmDashboard, frmCategories, frmProducts | frmInventory, frmNewSale, frmSalesHistory, frmSuppliers, frmReports, frmSettings |
+| v5.01 | Suppliers | frmLogin, frmMain, frmDashboard, frmCategories, frmProducts, frmSuppliers | frmInventory, frmNewSale, frmSalesHistory, frmReports, frmSettings |
 
 ### Git Commands Per Version (v5.xx)
 
@@ -359,3 +360,4 @@ git push origin v5.XX
 | Version | Tag Name | Commit Hash |
 |---------|----------|--------------|
 | v5.00 | v5.00 | ec7ddb9 |
+| v5.01 | v5.01 | 8bb647a |

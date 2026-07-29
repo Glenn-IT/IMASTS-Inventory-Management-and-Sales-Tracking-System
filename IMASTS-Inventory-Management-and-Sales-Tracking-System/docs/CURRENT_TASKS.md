@@ -1,6 +1,6 @@
 # CURRENT_TASKS.md
-**Last Updated:** 2026-07-15
-**Current Rollout:** v4.xx series (continues from v3.01) — v4.00 tagged (Categories unlocked, login lockout baked in), next is v4.01 (Suppliers)
+**Last Updated:** 2026-07-29
+**Current Rollout:** v5.xx series (continues from v4.00) — v5.01 tagged (Suppliers unlocked), next is v5.02 (Inventory)
 **Add-on:** Forgot Password (security question) — BUILT, pending test
 
 ---
