@@ -31,14 +31,22 @@ Partial Class frmDashboard
         lblTodayRevenue = New Label()
         lblPageHeader = New Label()
         btnRefresh = New Button()
-        pnlSalesChart = New Panel()
-        pnlChartCanvas = New Panel()
-        lblChartTitle = New Label()
+        pnlSalesTrendChart = New Panel()
+        pnlTrendCanvas = New Panel()
+        lblTrendChartTitle = New Label()
+        pnlCategoryChart = New Panel()
+        pnlCategoryCanvas = New Panel()
+        lblCategoryChartTitle = New Label()
+        pnlTopProductsChart = New Panel()
+        pnlTopProductsCanvas = New Panel()
+        lblTopProductsChartTitle = New Label()
         pnlTotalProducts.SuspendLayout()
         pnlLowStock.SuspendLayout()
         pnlTodaySales.SuspendLayout()
         pnlTodayRevenue.SuspendLayout()
-        pnlSalesChart.SuspendLayout()
+        pnlSalesTrendChart.SuspendLayout()
+        pnlCategoryChart.SuspendLayout()
+        pnlTopProductsChart.SuspendLayout()
         SuspendLayout()
         '
         ' pnlTotalProducts
@@ -191,36 +199,98 @@ Partial Class frmDashboard
         btnRefresh.Text = "Refresh"
         btnRefresh.UseVisualStyleBackColor = False
         '
-        ' pnlSalesChart
+        ' pnlSalesTrendChart
         '
-        pnlSalesChart.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
-        pnlSalesChart.BackColor = Color.White
-        pnlSalesChart.Controls.Add(pnlChartCanvas)
-        pnlSalesChart.Controls.Add(lblChartTitle)
-        pnlSalesChart.Location = New Point(18, 260)
-        pnlSalesChart.Margin = New Padding(20, 3, 3, 3)
-        pnlSalesChart.Name = "pnlSalesChart"
-        pnlSalesChart.Size = New Size(939, 430)
-        pnlSalesChart.TabIndex = 6
+        pnlSalesTrendChart.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left
+        pnlSalesTrendChart.BackColor = Color.White
+        pnlSalesTrendChart.Controls.Add(pnlTrendCanvas)
+        pnlSalesTrendChart.Controls.Add(lblTrendChartTitle)
+        pnlSalesTrendChart.Location = New Point(18, 260)
+        pnlSalesTrendChart.Margin = New Padding(20, 3, 3, 3)
+        pnlSalesTrendChart.Name = "pnlSalesTrendChart"
+        pnlSalesTrendChart.Size = New Size(390, 430)
+        pnlSalesTrendChart.TabIndex = 6
         '
-        ' lblChartTitle
+        ' lblTrendChartTitle
         '
-        lblChartTitle.Font = New Font("Segoe UI", 9.5F)
-        lblChartTitle.ForeColor = Color.FromArgb(CByte(130), CByte(135), CByte(145))
-        lblChartTitle.Location = New Point(16, 16)
-        lblChartTitle.Name = "lblChartTitle"
-        lblChartTitle.Size = New Size(400, 23)
-        lblChartTitle.TabIndex = 0
-        lblChartTitle.Text = "Weekly Sales Trend (Demo Data)"
+        lblTrendChartTitle.Font = New Font("Segoe UI", 9.5F)
+        lblTrendChartTitle.ForeColor = Color.FromArgb(CByte(130), CByte(135), CByte(145))
+        lblTrendChartTitle.Location = New Point(16, 16)
+        lblTrendChartTitle.Name = "lblTrendChartTitle"
+        lblTrendChartTitle.Size = New Size(358, 23)
+        lblTrendChartTitle.TabIndex = 0
+        lblTrendChartTitle.Text = "Sales Trend (Last 7 Days)"
         '
-        ' pnlChartCanvas
+        ' pnlTrendCanvas
         '
-        pnlChartCanvas.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
-        pnlChartCanvas.BackColor = Color.White
-        pnlChartCanvas.Location = New Point(16, 50)
-        pnlChartCanvas.Name = "pnlChartCanvas"
-        pnlChartCanvas.Size = New Size(907, 364)
-        pnlChartCanvas.TabIndex = 1
+        pnlTrendCanvas.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
+        pnlTrendCanvas.BackColor = Color.White
+        pnlTrendCanvas.Location = New Point(16, 50)
+        pnlTrendCanvas.Name = "pnlTrendCanvas"
+        pnlTrendCanvas.Size = New Size(358, 364)
+        pnlTrendCanvas.TabIndex = 1
+        '
+        ' pnlCategoryChart
+        '
+        pnlCategoryChart.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left
+        pnlCategoryChart.BackColor = Color.White
+        pnlCategoryChart.Controls.Add(pnlCategoryCanvas)
+        pnlCategoryChart.Controls.Add(lblCategoryChartTitle)
+        pnlCategoryChart.Location = New Point(423, 260)
+        pnlCategoryChart.Margin = New Padding(20, 3, 3, 3)
+        pnlCategoryChart.Name = "pnlCategoryChart"
+        pnlCategoryChart.Size = New Size(300, 430)
+        pnlCategoryChart.TabIndex = 7
+        '
+        ' lblCategoryChartTitle
+        '
+        lblCategoryChartTitle.Font = New Font("Segoe UI", 9.5F)
+        lblCategoryChartTitle.ForeColor = Color.FromArgb(CByte(130), CByte(135), CByte(145))
+        lblCategoryChartTitle.Location = New Point(16, 16)
+        lblCategoryChartTitle.Name = "lblCategoryChartTitle"
+        lblCategoryChartTitle.Size = New Size(268, 23)
+        lblCategoryChartTitle.TabIndex = 0
+        lblCategoryChartTitle.Text = "Sales by Category (This Month)"
+        '
+        ' pnlCategoryCanvas
+        '
+        pnlCategoryCanvas.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
+        pnlCategoryCanvas.BackColor = Color.White
+        pnlCategoryCanvas.Location = New Point(16, 50)
+        pnlCategoryCanvas.Name = "pnlCategoryCanvas"
+        pnlCategoryCanvas.Size = New Size(268, 364)
+        pnlCategoryCanvas.TabIndex = 1
+        '
+        ' pnlTopProductsChart
+        '
+        pnlTopProductsChart.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
+        pnlTopProductsChart.BackColor = Color.White
+        pnlTopProductsChart.Controls.Add(pnlTopProductsCanvas)
+        pnlTopProductsChart.Controls.Add(lblTopProductsChartTitle)
+        pnlTopProductsChart.Location = New Point(738, 260)
+        pnlTopProductsChart.Margin = New Padding(20, 3, 3, 3)
+        pnlTopProductsChart.Name = "pnlTopProductsChart"
+        pnlTopProductsChart.Size = New Size(219, 430)
+        pnlTopProductsChart.TabIndex = 8
+        '
+        ' lblTopProductsChartTitle
+        '
+        lblTopProductsChartTitle.Font = New Font("Segoe UI", 9.5F)
+        lblTopProductsChartTitle.ForeColor = Color.FromArgb(CByte(130), CByte(135), CByte(145))
+        lblTopProductsChartTitle.Location = New Point(16, 16)
+        lblTopProductsChartTitle.Name = "lblTopProductsChartTitle"
+        lblTopProductsChartTitle.Size = New Size(187, 23)
+        lblTopProductsChartTitle.TabIndex = 0
+        lblTopProductsChartTitle.Text = "Top 5 Products (This Month)"
+        '
+        ' pnlTopProductsCanvas
+        '
+        pnlTopProductsCanvas.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
+        pnlTopProductsCanvas.BackColor = Color.White
+        pnlTopProductsCanvas.Location = New Point(16, 50)
+        pnlTopProductsCanvas.Name = "pnlTopProductsCanvas"
+        pnlTopProductsCanvas.Size = New Size(187, 364)
+        pnlTopProductsCanvas.TabIndex = 1
         '
         ' frmDashboard
         '
@@ -228,7 +298,9 @@ Partial Class frmDashboard
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.FromArgb(CByte(245), CByte(246), CByte(248))
         ClientSize = New Size(980, 725)
-        Controls.Add(pnlSalesChart)
+        Controls.Add(pnlSalesTrendChart)
+        Controls.Add(pnlCategoryChart)
+        Controls.Add(pnlTopProductsChart)
         Controls.Add(pnlTotalProducts)
         Controls.Add(pnlTodayRevenue)
         Controls.Add(pnlTodaySales)
@@ -243,7 +315,9 @@ Partial Class frmDashboard
         pnlLowStock.ResumeLayout(False)
         pnlTodaySales.ResumeLayout(False)
         pnlTodayRevenue.ResumeLayout(False)
-        pnlSalesChart.ResumeLayout(False)
+        pnlSalesTrendChart.ResumeLayout(False)
+        pnlCategoryChart.ResumeLayout(False)
+        pnlTopProductsChart.ResumeLayout(False)
         ResumeLayout(False)
     End Sub
 
@@ -251,8 +325,12 @@ Partial Class frmDashboard
     Friend WithEvents pnlLowStock      As System.Windows.Forms.Panel
     Friend WithEvents pnlTodaySales    As System.Windows.Forms.Panel
     Friend WithEvents pnlTodayRevenue  As System.Windows.Forms.Panel
-    Friend WithEvents pnlSalesChart    As System.Windows.Forms.Panel
-    Friend WithEvents pnlChartCanvas   As System.Windows.Forms.Panel
+    Friend WithEvents pnlSalesTrendChart  As System.Windows.Forms.Panel
+    Friend WithEvents pnlTrendCanvas      As System.Windows.Forms.Panel
+    Friend WithEvents pnlCategoryChart    As System.Windows.Forms.Panel
+    Friend WithEvents pnlCategoryCanvas   As System.Windows.Forms.Panel
+    Friend WithEvents pnlTopProductsChart As System.Windows.Forms.Panel
+    Friend WithEvents pnlTopProductsCanvas As System.Windows.Forms.Panel
 
     Friend WithEvents lblPageHeader    As System.Windows.Forms.Label
     Friend WithEvents btnRefresh       As System.Windows.Forms.Button
@@ -261,7 +339,9 @@ Partial Class frmDashboard
     Friend WithEvents lblTitleLowStock As System.Windows.Forms.Label
     Friend WithEvents lblTitleSales    As System.Windows.Forms.Label
     Friend WithEvents lblTitleRevenue  As System.Windows.Forms.Label
-    Friend WithEvents lblChartTitle    As System.Windows.Forms.Label
+    Friend WithEvents lblTrendChartTitle       As System.Windows.Forms.Label
+    Friend WithEvents lblCategoryChartTitle    As System.Windows.Forms.Label
+    Friend WithEvents lblTopProductsChartTitle As System.Windows.Forms.Label
 
     Friend WithEvents lblTotalProducts As System.Windows.Forms.Label
     Friend WithEvents lblLowStock      As System.Windows.Forms.Label
