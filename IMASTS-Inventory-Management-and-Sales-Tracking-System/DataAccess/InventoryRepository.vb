@@ -5,7 +5,7 @@ Public Class InventoryRepository
 
     Public Function GetAllWithStockLevel() As DataTable
         Dim sql As String =
-            "SELECT p.ProductID, p.Name, c.CategoryName, p.StockQty, p.ReorderLevel, " &
+            "SELECT p.ProductID, p.Name, c.CategoryName, p.StockQty, p.ReorderLevel, ISNULL(p.Unit, 'pcs') AS Unit, " &
             "CASE WHEN p.StockQty = 0            THEN 'Out of Stock' " &
             "     WHEN p.StockQty <= p.ReorderLevel THEN 'Low Stock' " &
             "     ELSE 'OK' END AS StockStatus " &

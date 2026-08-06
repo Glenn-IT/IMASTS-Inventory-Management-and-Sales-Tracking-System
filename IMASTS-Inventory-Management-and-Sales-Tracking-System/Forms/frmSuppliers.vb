@@ -26,41 +26,44 @@ Me.Text = "Supplier Management"
             .Name             = "SupplierID",
             .DataPropertyName = "SupplierID",
             .HeaderText       = "ID",
-            .Width            = 50,
+            .Width            = 60,
+            .AutoSizeMode     = DataGridViewAutoSizeColumnMode.None,
             .ReadOnly         = True
         })
         dgvSuppliers.Columns.Add(New DataGridViewTextBoxColumn() With {
             .Name             = "Name",
             .DataPropertyName = "Name",
             .HeaderText       = "Supplier Name",
-            .Width            = 180,
+            .FillWeight       = 180,
             .ReadOnly         = True
         })
         dgvSuppliers.Columns.Add(New DataGridViewTextBoxColumn() With {
             .Name             = "ContactPerson",
             .DataPropertyName = "ContactPerson",
             .HeaderText       = "Contact Person",
-            .Width            = 150,
+            .FillWeight       = 150,
             .ReadOnly         = True
         })
         dgvSuppliers.Columns.Add(New DataGridViewTextBoxColumn() With {
             .Name             = "Phone",
             .DataPropertyName = "Phone",
             .HeaderText       = "Phone",
-            .Width            = 120,
+            .FillWeight       = 120,
             .ReadOnly         = True
         })
         dgvSuppliers.Columns.Add(New DataGridViewTextBoxColumn() With {
             .Name             = "Email",
             .DataPropertyName = "Email",
             .HeaderText       = "Email",
-            .AutoSizeMode     = DataGridViewAutoSizeColumnMode.Fill,
+            .FillWeight       = 180,
             .ReadOnly         = True
         })
     End Sub
 
     Private Sub LoadSuppliers()
-        dgvSuppliers.DataSource = _repo.GetAll()
+        Dim dt = _repo.GetAll()
+        dgvSuppliers.DataSource = dt
+        lblTotalRecords.Text = $"Total Records: {If(dt IsNot Nothing, dt.Rows.Count, 0)}"
     End Sub
 
     Private Sub ClearForm()

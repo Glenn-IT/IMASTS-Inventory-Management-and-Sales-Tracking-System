@@ -29,11 +29,14 @@ Partial Class frmCategories
         Panel1 = New Panel()
         Panel2 = New Panel()
         Panel3 = New Panel()
+        pnlFooter = New Panel()
+        lblTotalRecords = New Label()
         pnlForm.SuspendLayout()
         CType(dgvCategories, ComponentModel.ISupportInitialize).BeginInit()
         Panel1.SuspendLayout()
         Panel2.SuspendLayout()
         Panel3.SuspendLayout()
+        pnlFooter.SuspendLayout()
         SuspendLayout()
         ' 
         ' lblPageHeader
@@ -51,13 +54,15 @@ Partial Class frmCategories
         pnlForm.BackColor = Color.White
         pnlForm.Controls.Add(lblCategoryName)
         pnlForm.Controls.Add(txtCategoryName)
+        pnlForm.Controls.Add(lblDefaultUnit)
+        pnlForm.Controls.Add(cboDefaultUnit)
         pnlForm.Controls.Add(btnAdd)
         pnlForm.Controls.Add(btnUpdate)
         pnlForm.Controls.Add(btnDelete)
         pnlForm.Controls.Add(btnClear)
         pnlForm.Location = New Point(12, 6)
         pnlForm.Name = "pnlForm"
-        pnlForm.Size = New Size(380, 136)
+        pnlForm.Size = New Size(520, 136)
         pnlForm.TabIndex = 1
         ' 
         ' lblCategoryName
@@ -68,7 +73,7 @@ Partial Class frmCategories
         lblCategoryName.Name = "lblCategoryName"
         lblCategoryName.Size = New Size(110, 23)
         lblCategoryName.TabIndex = 0
-        lblCategoryName.Text = "Category Name"
+        lblCategoryName.Text = "Category Name *"
         ' 
         ' txtCategoryName
         ' 
@@ -76,8 +81,28 @@ Partial Class frmCategories
         txtCategoryName.Location = New Point(16, 43)
         txtCategoryName.MaxLength = 100
         txtCategoryName.Name = "txtCategoryName"
-        txtCategoryName.Size = New Size(348, 27)
+        txtCategoryName.Size = New Size(320, 27)
         txtCategoryName.TabIndex = 1
+        ' 
+        ' lblDefaultUnit
+        ' 
+        lblDefaultUnit.Font = New Font("Segoe UI", 9F)
+        lblDefaultUnit.ForeColor = Color.FromArgb(CByte(80), CByte(85), CByte(95))
+        lblDefaultUnit.Location = New Point(352, 18)
+        lblDefaultUnit.Name = "lblDefaultUnit"
+        lblDefaultUnit.Size = New Size(110, 23)
+        lblDefaultUnit.TabIndex = 2
+        lblDefaultUnit.Text = "Default Unit"
+        ' 
+        ' cboDefaultUnit
+        ' 
+        cboDefaultUnit.Font = New Font("Segoe UI", 10F)
+        cboDefaultUnit.FormattingEnabled = True
+        cboDefaultUnit.Items.AddRange(New Object() {"pcs", "box", "case", "pack", "bottle", "can", "kg", "liter", "bag", "set", "roll", "pair"})
+        cboDefaultUnit.Location = New Point(352, 43)
+        cboDefaultUnit.Name = "cboDefaultUnit"
+        cboDefaultUnit.Size = New Size(152, 27)
+        cboDefaultUnit.TabIndex = 3
         ' 
         ' btnAdd
         ' 
@@ -90,7 +115,7 @@ Partial Class frmCategories
         btnAdd.Location = New Point(16, 88)
         btnAdd.Name = "btnAdd"
         btnAdd.Size = New Size(78, 32)
-        btnAdd.TabIndex = 2
+        btnAdd.TabIndex = 4
         btnAdd.Text = "Add"
         btnAdd.UseVisualStyleBackColor = False
         ' 
@@ -106,7 +131,7 @@ Partial Class frmCategories
         btnUpdate.Location = New Point(102, 88)
         btnUpdate.Name = "btnUpdate"
         btnUpdate.Size = New Size(78, 32)
-        btnUpdate.TabIndex = 3
+        btnUpdate.TabIndex = 5
         btnUpdate.Text = "Update"
         btnUpdate.UseVisualStyleBackColor = False
         ' 
@@ -122,7 +147,7 @@ Partial Class frmCategories
         btnDelete.Location = New Point(188, 88)
         btnDelete.Name = "btnDelete"
         btnDelete.Size = New Size(78, 32)
-        btnDelete.TabIndex = 4
+        btnDelete.TabIndex = 6
         btnDelete.Text = "Delete"
         btnDelete.UseVisualStyleBackColor = False
         ' 
@@ -137,7 +162,7 @@ Partial Class frmCategories
         btnClear.Location = New Point(274, 88)
         btnClear.Name = "btnClear"
         btnClear.Size = New Size(78, 32)
-        btnClear.TabIndex = 5
+        btnClear.TabIndex = 7
         btnClear.Text = "Clear"
         btnClear.UseVisualStyleBackColor = False
         ' 
@@ -164,6 +189,23 @@ Partial Class frmCategories
         dgvCategories.Size = New Size(980, 493)
         dgvCategories.TabIndex = 2
         ' 
+        ' pnlFooter
+        ' 
+        pnlFooter.BackColor = Color.White
+        pnlFooter.Controls.Add(lblTotalRecords)
+        pnlFooter.Dock = DockStyle.Bottom
+        pnlFooter.Height = 36
+        pnlFooter.Name = "pnlFooter"
+        ' 
+        ' lblTotalRecords
+        ' 
+        lblTotalRecords.AutoSize = True
+        lblTotalRecords.Font = New Font("Segoe UI", 9.5F, FontStyle.Bold)
+        lblTotalRecords.ForeColor = Color.FromArgb(CByte(80), CByte(85), CByte(95))
+        lblTotalRecords.Location = New Point(12, 8)
+        lblTotalRecords.Name = "lblTotalRecords"
+        lblTotalRecords.Text = "Total Records: 0"
+        ' 
         ' Panel1
         ' 
         Panel1.Controls.Add(lblPageHeader)
@@ -185,6 +227,7 @@ Partial Class frmCategories
         ' Panel3
         ' 
         Panel3.Controls.Add(dgvCategories)
+        Panel3.Controls.Add(pnlFooter)
         Panel3.Dock = DockStyle.Fill
         Panel3.Location = New Point(0, 232)
         Panel3.Name = "Panel3"
@@ -210,6 +253,8 @@ Partial Class frmCategories
         Panel1.ResumeLayout(False)
         Panel2.ResumeLayout(False)
         Panel3.ResumeLayout(False)
+        pnlFooter.ResumeLayout(False)
+        pnlFooter.PerformLayout()
         ResumeLayout(False)
     End Sub
 
@@ -217,6 +262,8 @@ Partial Class frmCategories
     Friend WithEvents pnlForm         As System.Windows.Forms.Panel
     Friend WithEvents lblCategoryName As System.Windows.Forms.Label
     Friend WithEvents txtCategoryName As System.Windows.Forms.TextBox
+    Friend WithEvents lblDefaultUnit  As System.Windows.Forms.Label
+    Friend WithEvents cboDefaultUnit  As System.Windows.Forms.ComboBox
     Friend WithEvents btnAdd          As System.Windows.Forms.Button
     Friend WithEvents btnUpdate       As System.Windows.Forms.Button
     Friend WithEvents btnDelete       As System.Windows.Forms.Button
@@ -225,5 +272,7 @@ Partial Class frmCategories
     Friend WithEvents Panel1 As Panel
     Friend WithEvents Panel2 As Panel
     Friend WithEvents Panel3 As Panel
+    Friend WithEvents pnlFooter As Panel
+    Friend WithEvents lblTotalRecords As Label
 
 End Class

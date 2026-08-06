@@ -23,6 +23,7 @@
 |--------|------|-------|
 | CategoryID | INT | PK, IDENTITY |
 | CategoryName | NVARCHAR(100) | UNIQUE, NOT NULL |
+| DefaultUnit | NVARCHAR(20) | default `'pcs'` (e.g. `'pcs'`, `'box'`, `'case'`, `'pack'`, `'bottle'`, `'can'`, `'kg'`) |
 
 ---
 
@@ -50,6 +51,7 @@
 | Description | NVARCHAR(255) | |
 | UnitPrice | DECIMAL(10,2) | NOT NULL |
 | StockQty | INT | NOT NULL, default 0 |
+| Unit | NVARCHAR(20) | default `'pcs'` (e.g. `'pcs'`, `'box'`, `'case'`, `'pack'`) |
 | ReorderLevel | INT | NOT NULL, default 0 |
 
 Low-stock condition: `StockQty <= ReorderLevel`

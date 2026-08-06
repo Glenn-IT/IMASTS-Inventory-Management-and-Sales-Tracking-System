@@ -4,9 +4,10 @@ Public Class frmProducts
 
     Private _repo As New ProductRepository()
     Private _selectedId As Integer = 0
+    Private _categoriesTable As DataTable
 
     Private Sub frmProducts_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-Me.Text = "Product Management"
+        Me.Text = "Product Management"
         ConfigureGrid()
         LoadComboBoxes()
         LoadProducts()
@@ -20,35 +21,36 @@ Me.Text = "Product Management"
             .Name             = "ProductID",
             .DataPropertyName = "ProductID",
             .HeaderText       = "ID",
-            .Width            = 50,
+            .Width            = 60,
+            .AutoSizeMode     = DataGridViewAutoSizeColumnMode.None,
             .ReadOnly         = True
         })
         dgvProducts.Columns.Add(New DataGridViewTextBoxColumn() With {
             .Name             = "Name",
             .DataPropertyName = "Name",
             .HeaderText       = "Product Name",
-            .Width            = 180,
+            .FillWeight       = 180,
             .ReadOnly         = True
         })
         dgvProducts.Columns.Add(New DataGridViewTextBoxColumn() With {
             .Name             = "CategoryName",
             .DataPropertyName = "CategoryName",
             .HeaderText       = "Category",
-            .Width            = 120,
+            .FillWeight       = 120,
             .ReadOnly         = True
         })
         dgvProducts.Columns.Add(New DataGridViewTextBoxColumn() With {
             .Name             = "SupplierName",
             .DataPropertyName = "SupplierName",
             .HeaderText       = "Supplier",
-            .Width            = 140,
+            .FillWeight       = 140,
             .ReadOnly         = True
         })
         dgvProducts.Columns.Add(New DataGridViewTextBoxColumn() With {
             .Name                       = "UnitPrice",
             .DataPropertyName           = "UnitPrice",
             .HeaderText                 = "Unit Price",
-            .Width                      = 90,
+            .FillWeight                 = 90,
             .ReadOnly                   = True,
             .DefaultCellStyle           = New DataGridViewCellStyle() With {.Format = "N2", .Alignment = DataGridViewContentAlignment.MiddleRight}
         })
@@ -56,15 +58,22 @@ Me.Text = "Product Management"
             .Name             = "StockQty",
             .DataPropertyName = "StockQty",
             .HeaderText       = "Stock",
-            .Width            = 70,
+            .FillWeight       = 70,
             .ReadOnly         = True,
             .DefaultCellStyle = New DataGridViewCellStyle() With {.Alignment = DataGridViewContentAlignment.MiddleRight}
+        })
+        dgvProducts.Columns.Add(New DataGridViewTextBoxColumn() With {
+            .Name             = "Unit",
+            .DataPropertyName = "Unit",
+            .HeaderText       = "Unit",
+            .FillWeight       = 70,
+            .ReadOnly         = True
         })
         dgvProducts.Columns.Add(New DataGridViewTextBoxColumn() With {
             .Name             = "ReorderLevel",
             .DataPropertyName = "ReorderLevel",
             .HeaderText       = "Reorder",
-            .Width            = 70,
+            .FillWeight       = 70,
             .ReadOnly         = True,
             .DefaultCellStyle = New DataGridViewCellStyle() With {.Alignment = DataGridViewContentAlignment.MiddleRight}
         })
@@ -88,8 +97,8 @@ Me.Text = "Product Management"
     End Sub
 
     Private Sub LoadComboBoxes()
-        Dim cats = _repo.GetCategories()
-        cboCategory.DataSource    = cats
+        _categoriesTable          = _repo.GetCategories()
+        cboCategory.DataSource    = _categoriesTable
         cboCategory.DisplayMember = "CategoryName"
         cboCategory.ValueMember   = "CategoryID"
         cboCategory.SelectedIndex = -1
@@ -111,6 +120,7 @@ Me.Text = "Product Management"
         txtName.Clear()
         cboCategory.SelectedIndex = -1
         cboSupplier.SelectedIndex = -1
+        cboUnit.Text = "pcs"
         txtDescription.Clear()
         txtUnitPrice.Clear()
         txtStockQty.Clear()
@@ -119,6 +129,21 @@ Me.Text = "Product Management"
         _selectedId       = 0
         btnUpdate.Enabled = False
         btnDelete.Enabled = False
+    End Sub
+
+    Private Sub cboCategory_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboCategory.SelectedIndexChanged
+        If _categoriesTable Is Nothing OrElse cboCategory.SelectedValue Is Nothing Then Return
+        If TypeOf cboCategory.SelectedValue Is DataRowView Then Return
+        Dim catId As Integer
+        If Integer.TryParse(cboCategory.SelectedValue.ToString(), catId) AndAlso catId > 0 Then
+            Dim rows = _categoriesTable.Select($"CategoryID = {catId}")
+            If rows.Length > 0 AndAlso Not IsDBNull(rows(0)("DefaultUnit")) Then
+                Dim defUnit = rows(0)("DefaultUnit").ToString()
+                If Not String.IsNullOrWhiteSpace(defUnit) AndAlso _selectedId = 0 Then
+                    cboUnit.Text = defUnit
+                End If
+            End If
+        End If
     End Sub
 
     ' ── Numeric-only input guards ─────────────────────────────────────────
@@ -154,6 +179,7 @@ Me.Text = "Product Management"
         txtUnitPrice.Text      = row.Cells("UnitPrice").Value?.ToString()
         txtStockQty.Text       = row.Cells("StockQty").Value?.ToString()
         txtReorderLevel.Text   = row.Cells("ReorderLevel").Value?.ToString()
+        cboUnit.Text           = If(row.Cells("Unit").Value?.ToString(), "pcs")
         cboCategory.SelectedValue = row.Cells("CategoryID").Value
         cboSupplier.SelectedValue = row.Cells("SupplierID").Value
         btnUpdate.Enabled = True
@@ -210,9 +236,11 @@ Me.Text = "Product Management"
         If Not ValidateInputs(name, categoryId, supplierId, unitPrice, stockQty, reorderLevel) Then Return
 
         Dim description As String = InputHelper.SanitizeInput(txtDescription.Text)
+        Dim unit As String = InputHelper.SanitizeInput(cboUnit.Text)
+        If unit = "" Then unit = "pcs"
 
-        If _repo.Add(name, categoryId, supplierId, description, unitPrice, stockQty, reorderLevel) Then
-            ActivityLogger.Log(SessionManager.Username, Constants.LogSuccess, $"Added product: {name}")
+        If _repo.Add(name, categoryId, supplierId, description, unitPrice, stockQty, reorderLevel, unit) Then
+            ActivityLogger.Log(SessionManager.Username, Constants.LogSuccess, $"Added product: {name} ({unit})")
             LoadProducts()
             ClearForm()
         Else
@@ -230,9 +258,11 @@ Me.Text = "Product Management"
         If Not ValidateInputs(name, categoryId, supplierId, unitPrice, stockQty, reorderLevel) Then Return
 
         Dim description As String = InputHelper.SanitizeInput(txtDescription.Text)
+        Dim unit As String = InputHelper.SanitizeInput(cboUnit.Text)
+        If unit = "" Then unit = "pcs"
 
-        If _repo.Update(_selectedId, name, categoryId, supplierId, description, unitPrice, stockQty, reorderLevel) Then
-            ActivityLogger.Log(SessionManager.Username, Constants.LogSuccess, $"Updated product ID {_selectedId}: {name}")
+        If _repo.Update(_selectedId, name, categoryId, supplierId, description, unitPrice, stockQty, reorderLevel, unit) Then
+            ActivityLogger.Log(SessionManager.Username, Constants.LogSuccess, $"Updated product ID {_selectedId}: {name} ({unit})")
             LoadProducts()
             ClearForm()
         Else

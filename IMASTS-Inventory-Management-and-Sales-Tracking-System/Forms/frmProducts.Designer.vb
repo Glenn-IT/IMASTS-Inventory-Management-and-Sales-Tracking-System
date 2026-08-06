@@ -33,6 +33,8 @@ Partial Class frmProducts
         txtStockQty     = New TextBox()
         lblReorderLevel = New Label()
         txtReorderLevel = New TextBox()
+        lblUnit         = New Label()
+        cboUnit         = New ComboBox()
         btnAdd          = New Button()
         btnUpdate       = New Button()
         btnDelete       = New Button()
@@ -73,6 +75,8 @@ Partial Class frmProducts
         pnlForm.Controls.Add(txtUnitPrice)
         pnlForm.Controls.Add(lblStockQty)
         pnlForm.Controls.Add(txtStockQty)
+        pnlForm.Controls.Add(lblUnit)
+        pnlForm.Controls.Add(cboUnit)
         pnlForm.Controls.Add(lblReorderLevel)
         pnlForm.Controls.Add(txtReorderLevel)
         pnlForm.Controls.Add(btnAdd)
@@ -154,7 +158,7 @@ Partial Class frmProducts
         txtDescription.Size      = New Size(868, 27)
         txtDescription.TabIndex  = 7
         '
-        ' Row 4 — UnitPrice | StockQty | ReorderLevel
+        ' Row 4 — UnitPrice | StockQty | Unit | ReorderLevel
         '
         lblUnitPrice.Font      = lblFont
         lblUnitPrice.ForeColor = lblColor
@@ -168,38 +172,54 @@ Partial Class frmProducts
         txtUnitPrice.Location  = New Point(16, 218)
         txtUnitPrice.MaxLength = 12
         txtUnitPrice.Name      = "txtUnitPrice"
-        txtUnitPrice.Size      = New Size(260, 27)
+        txtUnitPrice.Size      = New Size(200, 27)
         txtUnitPrice.TabIndex  = 9
 
         lblStockQty.Font      = lblFont
         lblStockQty.ForeColor = lblColor
-        lblStockQty.Location  = New Point(292, 196)
+        lblStockQty.Location  = New Point(232, 196)
         lblStockQty.Name      = "lblStockQty"
         lblStockQty.Size      = New Size(120, 20)
         lblStockQty.TabIndex  = 10
         lblStockQty.Text      = "Stock Qty *"
 
         txtStockQty.Font      = txtFont
-        txtStockQty.Location  = New Point(292, 218)
+        txtStockQty.Location  = New Point(232, 218)
         txtStockQty.MaxLength = 8
         txtStockQty.Name      = "txtStockQty"
-        txtStockQty.Size      = New Size(260, 27)
+        txtStockQty.Size      = New Size(200, 27)
         txtStockQty.TabIndex  = 11
+
+        lblUnit.Font      = lblFont
+        lblUnit.ForeColor = lblColor
+        lblUnit.Location  = New Point(448, 196)
+        lblUnit.Name      = "lblUnit"
+        lblUnit.Size      = New Size(120, 20)
+        lblUnit.TabIndex  = 12
+        lblUnit.Text      = "Unit (pcs/box/etc)"
+
+        cboUnit.Font      = txtFont
+        cboUnit.FormattingEnabled = True
+        cboUnit.Items.AddRange(New Object() {"pcs", "box", "case", "pack", "bottle", "can", "kg", "liter", "bag", "set", "roll", "pair"})
+        cboUnit.Location  = New Point(448, 218)
+        cboUnit.Name      = "cboUnit"
+        cboUnit.Size      = New Size(200, 28)
+        cboUnit.TabIndex  = 13
 
         lblReorderLevel.Font      = lblFont
         lblReorderLevel.ForeColor = lblColor
-        lblReorderLevel.Location  = New Point(568, 196)
+        lblReorderLevel.Location  = New Point(664, 196)
         lblReorderLevel.Name      = "lblReorderLevel"
         lblReorderLevel.Size      = New Size(130, 20)
-        lblReorderLevel.TabIndex  = 12
+        lblReorderLevel.TabIndex  = 14
         lblReorderLevel.Text      = "Reorder Level *"
 
         txtReorderLevel.Font      = txtFont
-        txtReorderLevel.Location  = New Point(568, 218)
+        txtReorderLevel.Location  = New Point(664, 218)
         txtReorderLevel.MaxLength = 8
         txtReorderLevel.Name      = "txtReorderLevel"
-        txtReorderLevel.Size      = New Size(316, 27)
-        txtReorderLevel.TabIndex  = 13
+        txtReorderLevel.Size      = New Size(220, 27)
+        txtReorderLevel.TabIndex  = 15
         '
         ' Row 5 — Buttons
         '
@@ -342,6 +362,8 @@ Partial Class frmProducts
     Friend WithEvents txtStockQty     As TextBox
     Friend WithEvents lblReorderLevel As Label
     Friend WithEvents txtReorderLevel As TextBox
+    Friend WithEvents lblUnit         As Label
+    Friend WithEvents cboUnit         As ComboBox
     Friend WithEvents btnAdd          As Button
     Friend WithEvents btnUpdate       As Button
     Friend WithEvents btnDelete       As Button

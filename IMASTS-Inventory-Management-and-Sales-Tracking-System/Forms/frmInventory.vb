@@ -20,33 +20,37 @@ Me.Text = "Inventory Management"
 
         dgvInventory.Columns.Add(New DataGridViewTextBoxColumn() With {
             .Name = "ProductID", .DataPropertyName = "ProductID",
-            .HeaderText = "ID", .Width = 50, .ReadOnly = True
+            .HeaderText = "ID", .Width = 60, .AutoSizeMode = DataGridViewAutoSizeColumnMode.None, .ReadOnly = True
         })
         dgvInventory.Columns.Add(New DataGridViewTextBoxColumn() With {
             .Name = "Name", .DataPropertyName = "Name",
-            .HeaderText = "Product Name", .Width = 220, .ReadOnly = True
+            .HeaderText = "Product Name", .FillWeight = 220, .ReadOnly = True
         })
         dgvInventory.Columns.Add(New DataGridViewTextBoxColumn() With {
             .Name = "CategoryName", .DataPropertyName = "CategoryName",
-            .HeaderText = "Category", .Width = 150, .ReadOnly = True
+            .HeaderText = "Category", .FillWeight = 150, .ReadOnly = True
         })
         dgvInventory.Columns.Add(New DataGridViewTextBoxColumn() With {
             .Name = "StockQty", .DataPropertyName = "StockQty",
-            .HeaderText = "Stock Qty", .Width = 90, .ReadOnly = True,
+            .HeaderText = "Stock Qty", .FillWeight = 90, .ReadOnly = True,
             .DefaultCellStyle = New DataGridViewCellStyle() With {
                 .Alignment = DataGridViewContentAlignment.MiddleRight
             }
         })
         dgvInventory.Columns.Add(New DataGridViewTextBoxColumn() With {
+            .Name = "Unit", .DataPropertyName = "Unit",
+            .HeaderText = "Unit", .FillWeight = 70, .ReadOnly = True
+        })
+        dgvInventory.Columns.Add(New DataGridViewTextBoxColumn() With {
             .Name = "ReorderLevel", .DataPropertyName = "ReorderLevel",
-            .HeaderText = "Reorder Lvl", .Width = 90, .ReadOnly = True,
+            .HeaderText = "Reorder Lvl", .FillWeight = 90, .ReadOnly = True,
             .DefaultCellStyle = New DataGridViewCellStyle() With {
                 .Alignment = DataGridViewContentAlignment.MiddleRight
             }
         })
         dgvInventory.Columns.Add(New DataGridViewTextBoxColumn() With {
             .Name = "StockStatus", .DataPropertyName = "StockStatus",
-            .HeaderText = "Status", .Width = 110, .ReadOnly = True
+            .HeaderText = "Status", .FillWeight = 110, .ReadOnly = True
         })
     End Sub
 

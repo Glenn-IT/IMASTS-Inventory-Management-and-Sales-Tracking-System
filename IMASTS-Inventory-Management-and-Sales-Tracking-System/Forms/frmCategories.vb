@@ -18,6 +18,7 @@ Me.Text = "Category Management"
             .DataPropertyName = "CategoryID",
             .HeaderText       = "ID",
             .Width            = 60,
+            .AutoSizeMode     = DataGridViewAutoSizeColumnMode.None,
             .ReadOnly         = True
         })
         dgvCategories.Columns.Add(New DataGridViewTextBoxColumn() With {
@@ -27,10 +28,19 @@ Me.Text = "Category Management"
             .AutoSizeMode     = DataGridViewAutoSizeColumnMode.Fill,
             .ReadOnly         = True
         })
+        dgvCategories.Columns.Add(New DataGridViewTextBoxColumn() With {
+            .Name             = "DefaultUnit",
+            .DataPropertyName = "DefaultUnit",
+            .HeaderText       = "Default Unit",
+            .Width            = 120,
+            .ReadOnly         = True
+        })
     End Sub
 
     Private Sub LoadCategories()
-        dgvCategories.DataSource = _repo.GetAll()
+        Dim dt = _repo.GetAll()
+        dgvCategories.DataSource = dt
+        lblTotalRecords.Text = $"Total Records: {If(dt IsNot Nothing, dt.Rows.Count, 0)}"
     End Sub
 
     Private Sub ClearForm()
@@ -38,6 +48,7 @@ Me.Text = "Category Management"
         dgvCategories.CurrentCell = Nothing
 
         txtCategoryName.Clear()
+        cboDefaultUnit.Text = "pcs"
         _selectedId = 0
         btnUpdate.Enabled = False
         btnDelete.Enabled = False
@@ -50,7 +61,8 @@ Me.Text = "Category Management"
         If dgvCategories.CurrentRow Is Nothing Then Return
         Dim row = dgvCategories.CurrentRow
         _selectedId               = CInt(row.Cells("CategoryID").Value)
-        txtCategoryName.Text      = row.Cells("CategoryName").Value.ToString()
+        txtCategoryName.Text      = row.Cells("CategoryName").Value?.ToString()
+        cboDefaultUnit.Text       = If(row.Cells("DefaultUnit").Value?.ToString(), "pcs")
         btnUpdate.Enabled         = True
         btnDelete.Enabled         = True
     End Sub
@@ -59,6 +71,9 @@ Me.Text = "Category Management"
 
     Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
         Dim name As String = InputHelper.SanitizeInput(txtCategoryName.Text)
+        Dim defaultUnit As String = InputHelper.SanitizeInput(cboDefaultUnit.Text)
+        If defaultUnit = "" Then defaultUnit = "pcs"
+
         If name = "" Then
             MessageBox.Show("Category name cannot be empty.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
@@ -68,8 +83,8 @@ Me.Text = "Category Management"
             Return
         End If
 
-        If _repo.Add(name) Then
-            ActivityLogger.Log(SessionManager.Username, Constants.LogSuccess, $"Added category: {name}")
+        If _repo.Add(name, defaultUnit) Then
+            ActivityLogger.Log(SessionManager.Username, Constants.LogSuccess, $"Added category: {name} (Default Unit: {defaultUnit})")
             LoadCategories()
             ClearForm()
         Else
@@ -82,6 +97,9 @@ Me.Text = "Category Management"
     Private Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
         If _selectedId = 0 Then Return
         Dim name As String = InputHelper.SanitizeInput(txtCategoryName.Text)
+        Dim defaultUnit As String = InputHelper.SanitizeInput(cboDefaultUnit.Text)
+        If defaultUnit = "" Then defaultUnit = "pcs"
+
         If name = "" Then
             MessageBox.Show("Category name cannot be empty.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Return
@@ -91,8 +109,8 @@ Me.Text = "Category Management"
             Return
         End If
 
-        If _repo.Update(_selectedId, name) Then
-            ActivityLogger.Log(SessionManager.Username, Constants.LogSuccess, $"Updated category ID {_selectedId} to: {name}")
+        If _repo.Update(_selectedId, name, defaultUnit) Then
+            ActivityLogger.Log(SessionManager.Username, Constants.LogSuccess, $"Updated category ID {_selectedId} to: {name} ({defaultUnit})")
             LoadCategories()
             ClearForm()
         Else
