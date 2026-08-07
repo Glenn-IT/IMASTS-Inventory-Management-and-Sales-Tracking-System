@@ -21,6 +21,8 @@ Partial Class frmCategories
         pnlForm = New Panel()
         lblCategoryName = New Label()
         txtCategoryName = New TextBox()
+        lblDefaultUnit = New Label()
+        cboDefaultUnit = New ComboBox()
         btnAdd = New Button()
         btnUpdate = New Button()
         btnDelete = New Button()
