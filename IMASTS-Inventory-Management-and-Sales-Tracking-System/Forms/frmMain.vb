@@ -96,18 +96,16 @@ Public Class frmMain
     End Sub
 
     Private Sub btnInventory_Click(sender As Object, e As EventArgs) Handles btnInventory.Click
-        ' GATE — swap to New frmInventory() when unlocking for v5.02
+        ' GATE — swap to New frmInventory() when unlocking
         OpenChildForm(New UnderConstructionForm())
     End Sub
 
     Private Sub btnNewSale_Click(sender As Object, e As EventArgs) Handles btnNewSale.Click
-        ' GATE — swap to New frmNewSale() when unlocking for v5.03
-        OpenChildForm(New UnderConstructionForm())
+        OpenChildForm(New frmNewSale())
     End Sub
 
     Private Sub btnSalesHistory_Click(sender As Object, e As EventArgs) Handles btnSalesHistory.Click
-        ' GATE — swap to New frmSalesHistory() when unlocking for v5.04
-        OpenChildForm(New UnderConstructionForm())
+        OpenChildForm(New frmSalesHistory())
     End Sub
 
     Private Sub btnSuppliers_Click(sender As Object, e As EventArgs) Handles btnSuppliers.Click

@@ -43,8 +43,11 @@ Partial Class frmProducts
         Panel1          = New Panel()
         Panel2          = New Panel()
         Panel3          = New Panel()
+        pnlFooter       = New Panel()
+        lblTotalRecords = New Label()
         pnlForm.SuspendLayout()
         CType(dgvProducts, ComponentModel.ISupportInitialize).BeginInit()
+        pnlFooter.SuspendLayout()
         Panel1.SuspendLayout()
         Panel2.SuspendLayout()
         Panel3.SuspendLayout()
@@ -320,10 +323,28 @@ Partial Class frmProducts
         ' Panel3 — grid (fills rest)
         '
         Panel3.Controls.Add(dgvProducts)
+        Panel3.Controls.Add(pnlFooter)
         Panel3.Dock     = DockStyle.Fill
         Panel3.Location = New Point(0, 396)
         Panel3.Name     = "Panel3"
         Panel3.TabIndex = 4
+        '
+        ' pnlFooter
+        '
+        pnlFooter.BackColor = Color.White
+        pnlFooter.Controls.Add(lblTotalRecords)
+        pnlFooter.Dock     = DockStyle.Bottom
+        pnlFooter.Height   = 36
+        pnlFooter.Name     = "pnlFooter"
+        '
+        ' lblTotalRecords
+        '
+        lblTotalRecords.AutoSize  = True
+        lblTotalRecords.Font      = New Font("Segoe UI", 9.5F, FontStyle.Bold)
+        lblTotalRecords.ForeColor = Color.FromArgb(CByte(80), CByte(85), CByte(95))
+        lblTotalRecords.Location  = New Point(12, 8)
+        lblTotalRecords.Name      = "lblTotalRecords"
+        lblTotalRecords.Text      = "Total Records: 0"
         '
         ' frmProducts
         '
@@ -340,6 +361,8 @@ Partial Class frmProducts
         pnlForm.ResumeLayout(False)
         pnlForm.PerformLayout()
         CType(dgvProducts, ComponentModel.ISupportInitialize).EndInit()
+        pnlFooter.ResumeLayout(False)
+        pnlFooter.PerformLayout()
         Panel1.ResumeLayout(False)
         Panel2.ResumeLayout(False)
         Panel3.ResumeLayout(False)
@@ -372,5 +395,7 @@ Partial Class frmProducts
     Friend WithEvents Panel1          As Panel
     Friend WithEvents Panel2          As Panel
     Friend WithEvents Panel3          As Panel
+    Friend WithEvents pnlFooter       As Panel
+    Friend WithEvents lblTotalRecords As Label
 
 End Class

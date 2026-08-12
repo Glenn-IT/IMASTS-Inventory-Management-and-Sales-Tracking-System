@@ -341,6 +341,8 @@ New Sale, Sales History, Suppliers, Reports, and Settings remain gated.
 |---------|-----------------|----------------|-------------------|
 | v5.00 | Products | frmLogin, frmMain, frmDashboard, frmCategories, frmProducts | frmInventory, frmNewSale, frmSalesHistory, frmSuppliers, frmReports, frmSettings |
 | v5.01 | Suppliers | frmLogin, frmMain, frmDashboard, frmCategories, frmProducts, frmSuppliers | frmInventory, frmNewSale, frmSalesHistory, frmReports, frmSettings |
+| v5.03 | New Sale | frmLogin, frmMain, frmDashboard, frmCategories, frmProducts, frmSuppliers, frmNewSale | frmInventory, frmSalesHistory, frmReports, frmSettings |
+| v5.04 | Sales History | frmLogin, frmMain, frmDashboard, frmCategories, frmProducts, frmSuppliers, frmNewSale, frmSalesHistory | frmInventory, frmReports, frmSettings |
 
 ### Git Commands Per Version (v5.xx)
 

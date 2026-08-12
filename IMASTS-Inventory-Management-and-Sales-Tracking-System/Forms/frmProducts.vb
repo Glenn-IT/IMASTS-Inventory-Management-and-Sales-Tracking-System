@@ -111,7 +111,9 @@ Public Class frmProducts
     End Sub
 
     Private Sub LoadProducts()
-        dgvProducts.DataSource = _repo.GetAll()
+        Dim dt = _repo.GetAll()
+        dgvProducts.DataSource = dt
+        lblTotalRecords.Text = $"Total Records: {If(dt IsNot Nothing, dt.Rows.Count, 0)}"
     End Sub
 
     Private Sub ClearForm()
