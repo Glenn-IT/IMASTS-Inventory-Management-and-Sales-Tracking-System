@@ -4,8 +4,9 @@ Imports System.Data
 Public Class SaleRepository
 
     Public Function GetProductsForSale() As DataTable
+        ProductRepository.EnsureSchema()
         Dim sql As String =
-            "SELECT ProductID, Name, UnitPrice, StockQty " &
+            "SELECT ProductID, ISNULL(Barcode, '') AS Barcode, Name, UnitPrice, StockQty " &
             "FROM tbl_Products " &
             "ORDER BY Name"
         Dim dt As New DataTable()

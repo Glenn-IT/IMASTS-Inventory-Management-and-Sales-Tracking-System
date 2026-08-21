@@ -19,6 +19,9 @@ Partial Class frmProducts
     Private Sub InitializeComponent()
         lblPageHeader   = New Label()
         pnlForm         = New Panel()
+        lblBarcode      = New Label()
+        txtBarcode      = New TextBox()
+        btnGenBarcode   = New Button()
         lblName         = New Label()
         txtName         = New TextBox()
         lblCategory     = New Label()
@@ -41,6 +44,9 @@ Partial Class frmProducts
         btnClear        = New Button()
         dgvProducts     = New DataGridView()
         Panel1          = New Panel()
+        lblSearch       = New Label()
+        txtSearch       = New TextBox()
+        btnClearSearch  = New Button()
         Panel2          = New Panel()
         Panel3          = New Panel()
         pnlFooter       = New Panel()
@@ -66,6 +72,9 @@ Partial Class frmProducts
         ' pnlForm
         '
         pnlForm.BackColor = Color.White
+        pnlForm.Controls.Add(lblBarcode)
+        pnlForm.Controls.Add(txtBarcode)
+        pnlForm.Controls.Add(btnGenBarcode)
         pnlForm.Controls.Add(lblName)
         pnlForm.Controls.Add(txtName)
         pnlForm.Controls.Add(lblCategory)
@@ -95,22 +104,51 @@ Partial Class frmProducts
         Dim lblColor As Color = Color.FromArgb(CByte(80), CByte(85), CByte(95))
         Dim txtFont  As New Font("Segoe UI", 10F)
         '
-        ' Row 1 — Name (full width)
+        ' Row 1 — Barcode & Name
         '
+        lblBarcode.Font      = lblFont
+        lblBarcode.ForeColor = lblColor
+        lblBarcode.Location  = New Point(16, 14)
+        lblBarcode.Name      = "lblBarcode"
+        lblBarcode.Size      = New Size(100, 20)
+        lblBarcode.TabIndex  = 0
+        lblBarcode.Text      = "Barcode"
+
+        txtBarcode.Font      = txtFont
+        txtBarcode.Location  = New Point(16, 36)
+        txtBarcode.MaxLength = 100
+        txtBarcode.Name      = "txtBarcode"
+        txtBarcode.PlaceholderText = "Scan or enter barcode"
+        txtBarcode.Size      = New Size(220, 27)
+        txtBarcode.TabIndex  = 1
+
+        btnGenBarcode.BackColor = Color.FromArgb(CByte(108), CByte(117), CByte(125))
+        btnGenBarcode.Cursor    = Cursors.Hand
+        btnGenBarcode.FlatAppearance.BorderSize = 0
+        btnGenBarcode.FlatStyle = FlatStyle.Flat
+        btnGenBarcode.Font      = New Font("Segoe UI", 8.5F, FontStyle.Bold)
+        btnGenBarcode.ForeColor = Color.White
+        btnGenBarcode.Location  = New Point(242, 36)
+        btnGenBarcode.Name      = "btnGenBarcode"
+        btnGenBarcode.Size      = New Size(62, 27)
+        btnGenBarcode.TabIndex  = 2
+        btnGenBarcode.Text      = "Gen"
+        btnGenBarcode.UseVisualStyleBackColor = False
+
         lblName.Font      = lblFont
         lblName.ForeColor = lblColor
-        lblName.Location  = New Point(16, 14)
+        lblName.Location  = New Point(320, 14)
         lblName.Name      = "lblName"
-        lblName.Size      = New Size(120, 20)
-        lblName.TabIndex  = 0
+        lblName.Size      = New Size(140, 20)
+        lblName.TabIndex  = 3
         lblName.Text      = "Product Name *"
 
         txtName.Font      = txtFont
-        txtName.Location  = New Point(16, 36)
+        txtName.Location  = New Point(320, 36)
         txtName.MaxLength = 100
         txtName.Name      = "txtName"
-        txtName.Size      = New Size(868, 27)
-        txtName.TabIndex  = 1
+        txtName.Size      = New Size(564, 27)
+        txtName.TabIndex  = 4
         '
         ' Row 2 — Category | Supplier
         '
@@ -305,11 +343,48 @@ Partial Class frmProducts
         ' Panel1 — header
         '
         Panel1.Controls.Add(lblPageHeader)
+        Panel1.Controls.Add(lblSearch)
+        Panel1.Controls.Add(txtSearch)
+        Panel1.Controls.Add(btnClearSearch)
         Panel1.Dock     = DockStyle.Top
         Panel1.Location = New Point(0, 0)
         Panel1.Name     = "Panel1"
         Panel1.Size     = New Size(980, 76)
         Panel1.TabIndex = 2
+        '
+        ' lblSearch
+        '
+        lblSearch.Font      = New Font("Segoe UI", 9.5F, FontStyle.Bold)
+        lblSearch.ForeColor = Color.FromArgb(CByte(80), CByte(85), CByte(95))
+        lblSearch.Location  = New Point(570, 26)
+        lblSearch.Name      = "lblSearch"
+        lblSearch.Size      = New Size(110, 22)
+        lblSearch.TabIndex  = 1
+        lblSearch.Text      = "Search / Scan:"
+        '
+        ' txtSearch
+        '
+        txtSearch.Font      = New Font("Segoe UI", 10F)
+        txtSearch.Location  = New Point(685, 23)
+        txtSearch.Name      = "txtSearch"
+        txtSearch.PlaceholderText = "Scan barcode or search..."
+        txtSearch.Size      = New Size(245, 27)
+        txtSearch.TabIndex  = 2
+        '
+        ' btnClearSearch
+        '
+        btnClearSearch.BackColor = Color.FromArgb(CByte(220), CByte(223), CByte(228))
+        btnClearSearch.Cursor    = Cursors.Hand
+        btnClearSearch.FlatAppearance.BorderSize = 0
+        btnClearSearch.FlatStyle = FlatStyle.Flat
+        btnClearSearch.Font      = New Font("Segoe UI", 9F, FontStyle.Bold)
+        btnClearSearch.ForeColor = Color.FromArgb(CByte(80), CByte(85), CByte(95))
+        btnClearSearch.Location  = New Point(934, 23)
+        btnClearSearch.Name      = "btnClearSearch"
+        btnClearSearch.Size      = New Size(27, 27)
+        btnClearSearch.TabIndex  = 3
+        btnClearSearch.Text      = "X"
+        btnClearSearch.UseVisualStyleBackColor = False
         '
         ' Panel2 — input card
         '
@@ -364,13 +439,20 @@ Partial Class frmProducts
         pnlFooter.ResumeLayout(False)
         pnlFooter.PerformLayout()
         Panel1.ResumeLayout(False)
+        Panel1.PerformLayout()
         Panel2.ResumeLayout(False)
         Panel3.ResumeLayout(False)
         ResumeLayout(False)
     End Sub
 
     Friend WithEvents lblPageHeader   As Label
+    Friend WithEvents lblSearch       As Label
+    Friend WithEvents txtSearch       As TextBox
+    Friend WithEvents btnClearSearch  As Button
     Friend WithEvents pnlForm         As Panel
+    Friend WithEvents lblBarcode      As Label
+    Friend WithEvents txtBarcode      As TextBox
+    Friend WithEvents btnGenBarcode   As Button
     Friend WithEvents lblName         As Label
     Friend WithEvents txtName         As TextBox
     Friend WithEvents lblCategory     As Label

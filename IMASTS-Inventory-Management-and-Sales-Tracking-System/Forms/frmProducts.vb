@@ -5,6 +5,7 @@ Public Class frmProducts
     Private _repo As New ProductRepository()
     Private _selectedId As Integer = 0
     Private _categoriesTable As DataTable
+    Private _productsTable As DataTable
 
     Private Sub frmProducts_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.Text = "Product Management"
@@ -21,36 +22,43 @@ Public Class frmProducts
             .Name             = "ProductID",
             .DataPropertyName = "ProductID",
             .HeaderText       = "ID",
-            .Width            = 60,
+            .Width            = 50,
             .AutoSizeMode     = DataGridViewAutoSizeColumnMode.None,
+            .ReadOnly         = True
+        })
+        dgvProducts.Columns.Add(New DataGridViewTextBoxColumn() With {
+            .Name             = "Barcode",
+            .DataPropertyName = "Barcode",
+            .HeaderText       = "Barcode",
+            .FillWeight       = 110,
             .ReadOnly         = True
         })
         dgvProducts.Columns.Add(New DataGridViewTextBoxColumn() With {
             .Name             = "Name",
             .DataPropertyName = "Name",
             .HeaderText       = "Product Name",
-            .FillWeight       = 180,
+            .FillWeight       = 170,
             .ReadOnly         = True
         })
         dgvProducts.Columns.Add(New DataGridViewTextBoxColumn() With {
             .Name             = "CategoryName",
             .DataPropertyName = "CategoryName",
             .HeaderText       = "Category",
-            .FillWeight       = 120,
+            .FillWeight       = 110,
             .ReadOnly         = True
         })
         dgvProducts.Columns.Add(New DataGridViewTextBoxColumn() With {
             .Name             = "SupplierName",
             .DataPropertyName = "SupplierName",
             .HeaderText       = "Supplier",
-            .FillWeight       = 140,
+            .FillWeight       = 130,
             .ReadOnly         = True
         })
         dgvProducts.Columns.Add(New DataGridViewTextBoxColumn() With {
             .Name                       = "UnitPrice",
             .DataPropertyName           = "UnitPrice",
             .HeaderText                 = "Unit Price",
-            .FillWeight                 = 90,
+            .FillWeight                 = 85,
             .ReadOnly                   = True,
             .DefaultCellStyle           = New DataGridViewCellStyle() With {.Format = "N2", .Alignment = DataGridViewContentAlignment.MiddleRight}
         })
@@ -58,7 +66,7 @@ Public Class frmProducts
             .Name             = "StockQty",
             .DataPropertyName = "StockQty",
             .HeaderText       = "Stock",
-            .FillWeight       = 70,
+            .FillWeight       = 65,
             .ReadOnly         = True,
             .DefaultCellStyle = New DataGridViewCellStyle() With {.Alignment = DataGridViewContentAlignment.MiddleRight}
         })
@@ -66,14 +74,14 @@ Public Class frmProducts
             .Name             = "Unit",
             .DataPropertyName = "Unit",
             .HeaderText       = "Unit",
-            .FillWeight       = 70,
+            .FillWeight       = 65,
             .ReadOnly         = True
         })
         dgvProducts.Columns.Add(New DataGridViewTextBoxColumn() With {
             .Name             = "ReorderLevel",
             .DataPropertyName = "ReorderLevel",
             .HeaderText       = "Reorder",
-            .FillWeight       = 70,
+            .FillWeight       = 65,
             .ReadOnly         = True,
             .DefaultCellStyle = New DataGridViewCellStyle() With {.Alignment = DataGridViewContentAlignment.MiddleRight}
         })
@@ -111,14 +119,46 @@ Public Class frmProducts
     End Sub
 
     Private Sub LoadProducts()
-        Dim dt = _repo.GetAll()
-        dgvProducts.DataSource = dt
-        lblTotalRecords.Text = $"Total Records: {If(dt IsNot Nothing, dt.Rows.Count, 0)}"
+        _productsTable = _repo.GetAll()
+        ApplySearchFilter()
+    End Sub
+
+    Private Sub ApplySearchFilter()
+        If _productsTable Is Nothing Then Return
+        Dim search = txtSearch.Text.Trim().Replace("'", "''")
+        If String.IsNullOrWhiteSpace(search) Then
+            _productsTable.DefaultView.RowFilter = ""
+        Else
+            _productsTable.DefaultView.RowFilter = $"Name LIKE '%{search}%' OR Barcode LIKE '%{search}%' OR CategoryName LIKE '%{search}%' OR SupplierName LIKE '%{search}%'"
+        End If
+        dgvProducts.DataSource = _productsTable.DefaultView
+        lblTotalRecords.Text = $"Total Records: {_productsTable.DefaultView.Count}"
+    End Sub
+
+    Private Sub txtSearch_TextChanged(sender As Object, e As EventArgs) Handles txtSearch.TextChanged
+        ApplySearchFilter()
+    End Sub
+
+    Private Sub txtSearch_KeyDown(sender As Object, e As KeyEventArgs) Handles txtSearch.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            e.SuppressKeyPress = True
+            ' If there's an exact barcode match or first row, select it
+            If dgvProducts.Rows.Count > 0 Then
+                dgvProducts.Rows(0).Selected = True
+                dgvProducts_SelectionChanged(Nothing, Nothing)
+            End If
+        End If
+    End Sub
+
+    Private Sub btnClearSearch_Click(sender As Object, e As EventArgs) Handles btnClearSearch.Click
+        txtSearch.Clear()
+        txtSearch.Focus()
     End Sub
 
     Private Sub ClearForm()
         dgvProducts.ClearSelection()
         dgvProducts.CurrentCell = Nothing
+        txtBarcode.Clear()
         txtName.Clear()
         cboCategory.SelectedIndex = -1
         cboSupplier.SelectedIndex = -1
@@ -127,10 +167,19 @@ Public Class frmProducts
         txtUnitPrice.Clear()
         txtStockQty.Clear()
         txtReorderLevel.Clear()
-        txtName.Focus()
+        txtBarcode.Focus()
         _selectedId       = 0
         btnUpdate.Enabled = False
         btnDelete.Enabled = False
+    End Sub
+
+    Private Sub btnGenBarcode_Click(sender As Object, e As EventArgs) Handles btnGenBarcode.Click
+        ' Auto-generate a unique barcode
+        Dim prefix = "PRD"
+        Dim timestamp = DateTime.Now.ToString("yyMMddHHmmss")
+        Dim candidate = prefix & timestamp
+        txtBarcode.Text = candidate
+        txtName.Focus()
     End Sub
 
     Private Sub cboCategory_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboCategory.SelectedIndexChanged
@@ -176,6 +225,7 @@ Public Class frmProducts
         If dgvProducts.CurrentRow Is Nothing Then Return
         Dim row = dgvProducts.CurrentRow
         _selectedId            = CInt(row.Cells("ProductID").Value)
+        txtBarcode.Text        = row.Cells("Barcode").Value?.ToString()
         txtName.Text           = row.Cells("Name").Value?.ToString()
         txtDescription.Text    = row.Cells("Description").Value?.ToString()
         txtUnitPrice.Text      = row.Cells("UnitPrice").Value?.ToString()
@@ -190,13 +240,26 @@ Public Class frmProducts
 
     ' ── Validation ────────────────────────────────────────────────────────
 
-    Private Function ValidateInputs(ByRef name As String, ByRef categoryId As Integer,
-                                    ByRef supplierId As Integer, ByRef unitPrice As Decimal,
-                                    ByRef stockQty As Integer, ByRef reorderLevel As Integer) As Boolean
+    Private Function ValidateInputs(ByRef barcode As String, ByRef name As String,
+                                    ByRef categoryId As Integer, ByRef supplierId As Integer,
+                                    ByRef unitPrice As Decimal, ByRef stockQty As Integer,
+                                    ByRef reorderLevel As Integer) As Boolean
+        barcode = InputHelper.SanitizeInput(txtBarcode.Text)
         name = InputHelper.SanitizeInput(txtName.Text)
+
         If name = "" Then
             MessageBox.Show("Product name is required.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            txtName.Focus()
             Return False
+        End If
+
+        If Not String.IsNullOrWhiteSpace(barcode) Then
+            If _repo.BarcodeExists(barcode, _selectedId) Then
+                MessageBox.Show($"Barcode ""{barcode}"" is already assigned to another product. Please use a unique barcode.",
+                                "Duplicate Barcode", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                txtBarcode.Focus()
+                Return False
+            End If
         End If
 
         If cboCategory.SelectedValue Is Nothing Then
@@ -232,17 +295,18 @@ Public Class frmProducts
     ' ── Add ───────────────────────────────────────────────────────────────
 
     Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
+        Dim barcode As String = ""
         Dim name As String = ""
         Dim categoryId, supplierId, stockQty, reorderLevel As Integer
         Dim unitPrice As Decimal
-        If Not ValidateInputs(name, categoryId, supplierId, unitPrice, stockQty, reorderLevel) Then Return
+        If Not ValidateInputs(barcode, name, categoryId, supplierId, unitPrice, stockQty, reorderLevel) Then Return
 
         Dim description As String = InputHelper.SanitizeInput(txtDescription.Text)
         Dim unit As String = InputHelper.SanitizeInput(cboUnit.Text)
         If unit = "" Then unit = "pcs"
 
-        If _repo.Add(name, categoryId, supplierId, description, unitPrice, stockQty, reorderLevel, unit) Then
-            ActivityLogger.Log(SessionManager.Username, Constants.LogSuccess, $"Added product: {name} ({unit})")
+        If _repo.Add(name, categoryId, supplierId, description, unitPrice, stockQty, reorderLevel, unit, barcode) Then
+            ActivityLogger.Log(SessionManager.Username, Constants.LogSuccess, $"Added product: {name} (Barcode: {If(barcode = "", "N/A", barcode)})")
             LoadProducts()
             ClearForm()
         Else
@@ -254,17 +318,18 @@ Public Class frmProducts
 
     Private Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
         If _selectedId = 0 Then Return
+        Dim barcode As String = ""
         Dim name As String = ""
         Dim categoryId, supplierId, stockQty, reorderLevel As Integer
         Dim unitPrice As Decimal
-        If Not ValidateInputs(name, categoryId, supplierId, unitPrice, stockQty, reorderLevel) Then Return
+        If Not ValidateInputs(barcode, name, categoryId, supplierId, unitPrice, stockQty, reorderLevel) Then Return
 
         Dim description As String = InputHelper.SanitizeInput(txtDescription.Text)
         Dim unit As String = InputHelper.SanitizeInput(cboUnit.Text)
         If unit = "" Then unit = "pcs"
 
-        If _repo.Update(_selectedId, name, categoryId, supplierId, description, unitPrice, stockQty, reorderLevel, unit) Then
-            ActivityLogger.Log(SessionManager.Username, Constants.LogSuccess, $"Updated product ID {_selectedId}: {name} ({unit})")
+        If _repo.Update(_selectedId, name, categoryId, supplierId, description, unitPrice, stockQty, reorderLevel, unit, barcode) Then
+            ActivityLogger.Log(SessionManager.Username, Constants.LogSuccess, $"Updated product ID {_selectedId}: {name} (Barcode: {If(barcode = "", "N/A", barcode)})")
             LoadProducts()
             ClearForm()
         Else

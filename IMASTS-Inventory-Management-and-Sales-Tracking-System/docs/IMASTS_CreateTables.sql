@@ -61,12 +61,14 @@ GO
 IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='tbl_Products' AND xtype='U')
 CREATE TABLE tbl_Products (
     ProductID    INT            IDENTITY(1,1) PRIMARY KEY,
+    Barcode      NVARCHAR(100)  NULL,
     Name         NVARCHAR(150)  NOT NULL,
     Description  NVARCHAR(500)  NULL,
     CategoryID   INT            NULL REFERENCES tbl_Categories(CategoryID),
     SupplierID   INT            NULL REFERENCES tbl_Suppliers(SupplierID),
     UnitPrice    DECIMAL(18,2)  NOT NULL DEFAULT 0.00,
     StockQty     INT            NOT NULL DEFAULT 0,
+    Unit         NVARCHAR(20)   NOT NULL DEFAULT 'pcs',
     ReorderLevel INT            NOT NULL DEFAULT 0,
     CreatedAt    DATETIME       NOT NULL DEFAULT GETDATE()
 );

@@ -45,6 +45,7 @@
 | Column | Type | Notes |
 |--------|------|-------|
 | ProductID | INT | PK, IDENTITY |
+| Barcode | NVARCHAR(100) | Unique barcode string, indexed |
 | Name | NVARCHAR(100) | NOT NULL |
 | CategoryID | INT | FK → tbl_Categories |
 | SupplierID | INT | FK → tbl_Suppliers |

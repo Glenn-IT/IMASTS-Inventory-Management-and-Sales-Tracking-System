@@ -5,11 +5,16 @@ Public Class frmNewSale
     Private _products  As DataTable
 
     Private Sub frmNewSale_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-Me.Text = "New Sale"
+        Me.Text = "New Sale"
         InitSaleItemsTable()
         ConfigureGrid()
         LoadProducts()
         RecalculateTotals()
+        txtScanBarcode.Focus()
+    End Sub
+
+    Private Sub frmNewSale_Shown(sender As Object, e As EventArgs) Handles MyBase.Shown
+        txtScanBarcode.Focus()
     End Sub
 
     ' ── Setup ─────────────────────────────────────────────────────────────
@@ -67,7 +72,71 @@ Me.Text = "New Sale"
         cboProduct.SelectedIndex = -1
     End Sub
 
-    ' ── Add item ──────────────────────────────────────────────────────────
+    ' ── Barcode Scanner handler ───────────────────────────────────────────
+
+    Private Sub txtScanBarcode_KeyDown(sender As Object, e As KeyEventArgs) Handles txtScanBarcode.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            e.SuppressKeyPress = True
+            Dim scannedCode = txtScanBarcode.Text.Trim()
+            If String.IsNullOrWhiteSpace(scannedCode) Then Return
+
+            ' Look up product by Barcode first, or by ProductID if numeric
+            Dim prodRows As DataRow() = _products.Select($"Barcode = '{scannedCode.Replace("'", "''")}'")
+            If prodRows.Length = 0 Then
+                Dim numId As Integer
+                If Integer.TryParse(scannedCode, numId) Then
+                    prodRows = _products.Select($"ProductID = {numId}")
+                End If
+            End If
+
+            If prodRows.Length > 0 Then
+                Dim row = prodRows(0)
+                Dim productId   = CInt(row("ProductID"))
+                Dim productName = row("Name").ToString()
+                Dim unitPrice   = CDec(row("UnitPrice"))
+                Dim stockQty    = CInt(row("StockQty"))
+
+                ' Sum qty already in cart for this product
+                Dim cartQty As Integer = 0
+                Dim existing = _saleItems.Select($"ProductID = {productId}")
+                If existing.Length > 0 Then cartQty = CInt(existing(0)("Quantity"))
+
+                If cartQty + 1 > stockQty Then
+                    Dim avail = stockQty - cartQty
+                    lblScanStatus.ForeColor = Color.FromArgb(192, 57, 43)
+                    lblScanStatus.Text = $"✗ Stock limit: Only {avail} left for ""{productName}""."
+                    Try : Media.SystemSounds.Exclamation.Play() : Catch : End Try
+                    txtScanBarcode.SelectAll()
+                    Return
+                End If
+
+                Dim newQty As Integer
+                If existing.Length > 0 Then
+                    newQty = cartQty + 1
+                    existing(0)("Quantity") = newQty
+                    existing(0)("Subtotal") = newQty * unitPrice
+                Else
+                    newQty = 1
+                    _saleItems.Rows.Add(productId, productName, 1, unitPrice, unitPrice)
+                End If
+
+                RecalculateTotals()
+                lblScanStatus.ForeColor = Color.FromArgb(39, 174, 96)
+                lblScanStatus.Text = $"✓ Scanned: {productName} (x{newQty})"
+                Try : Media.SystemSounds.Asterisk.Play() : Catch : End Try
+
+                txtScanBarcode.Clear()
+                txtScanBarcode.Focus()
+            Else
+                lblScanStatus.ForeColor = Color.FromArgb(192, 57, 43)
+                lblScanStatus.Text = $"✗ Barcode ""{scannedCode}"" not found."
+                Try : Media.SystemSounds.Hand.Play() : Catch : End Try
+                txtScanBarcode.SelectAll()
+            End If
+        End If
+    End Sub
+
+    ' ── Add item manually ─────────────────────────────────────────────────
 
     Private Sub btnAddItem_Click(sender As Object, e As EventArgs) Handles btnAddItem.Click
         If cboProduct.SelectedValue Is Nothing Then
@@ -100,18 +169,22 @@ Me.Text = "New Sale"
             Return
         End If
 
+        Dim newQty As Integer
         If existing.Length > 0 Then
-            Dim newQty = qty + cartQty
+            newQty = qty + cartQty
             existing(0)("Quantity") = newQty
             existing(0)("Subtotal") = newQty * unitPrice
         Else
+            newQty = qty
             _saleItems.Rows.Add(productId, productName, qty, unitPrice, qty * unitPrice)
         End If
 
         RecalculateTotals()
+        lblScanStatus.ForeColor = Color.FromArgb(39, 174, 96)
+        lblScanStatus.Text = $"✓ Added: {productName} (x{newQty})"
         cboProduct.SelectedIndex = -1
         txtQty.Clear()
-        cboProduct.Focus()
+        txtScanBarcode.Focus()
     End Sub
 
     ' ── Remove item ───────────────────────────────────────────────────────
@@ -120,6 +193,7 @@ Me.Text = "New Sale"
         If e.ColumnIndex = dgvSaleItems.Columns("colRemove").Index AndAlso e.RowIndex >= 0 Then
             _saleItems.Rows.Remove(_saleItems.Rows(e.RowIndex))
             RecalculateTotals()
+            txtScanBarcode.Focus()
         End If
     End Sub
 
@@ -187,9 +261,12 @@ Me.Text = "New Sale"
     Private Sub ClearSale()
         _saleItems.Rows.Clear()
         txtDiscount.Clear()
+        lblScanStatus.Text = ""
         RecalculateTotals()
         cboProduct.SelectedIndex = -1
         txtQty.Clear()
+        txtScanBarcode.Clear()
+        txtScanBarcode.Focus()
     End Sub
 
 End Class

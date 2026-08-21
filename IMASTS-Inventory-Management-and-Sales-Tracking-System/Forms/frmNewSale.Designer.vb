@@ -19,11 +19,16 @@ Partial Class frmNewSale
     Private Sub InitializeComponent()
         lblPageHeader = New Label()
         pnlInput = New Panel()
+        lblScanBarcode = New Label()
+        txtScanBarcode = New TextBox()
+        lblScanHint = New Label()
+        lblDivider = New Label()
         lblProduct = New Label()
         cboProduct = New ComboBox()
         lblQty = New Label()
         txtQty = New TextBox()
         btnAddItem = New Button()
+        lblScanStatus = New Label()
         dgvSaleItems = New DataGridView()
         pnlTotals = New Panel()
         lblSumTitle = New Label()
@@ -57,54 +62,99 @@ Partial Class frmNewSale
         ' pnlInput
         ' 
         pnlInput.BackColor = Color.White
+        pnlInput.Controls.Add(lblScanBarcode)
+        pnlInput.Controls.Add(txtScanBarcode)
+        pnlInput.Controls.Add(lblScanHint)
+        pnlInput.Controls.Add(lblDivider)
         pnlInput.Controls.Add(lblProduct)
         pnlInput.Controls.Add(cboProduct)
         pnlInput.Controls.Add(lblQty)
         pnlInput.Controls.Add(txtQty)
         pnlInput.Controls.Add(btnAddItem)
+        pnlInput.Controls.Add(lblScanStatus)
         pnlInput.Dock = DockStyle.Left
         pnlInput.Location = New Point(0, 0)
         pnlInput.Name = "pnlInput"
         pnlInput.Size = New Size(265, 649)
         pnlInput.TabIndex = 0
         ' 
+        ' lblScanBarcode
+        ' 
+        lblScanBarcode.Font = New Font("Segoe UI", 9.5F, FontStyle.Bold)
+        lblScanBarcode.ForeColor = Color.FromArgb(CByte(39), CByte(174), CByte(96))
+        lblScanBarcode.Location = New Point(12, 14)
+        lblScanBarcode.Name = "lblScanBarcode"
+        lblScanBarcode.Size = New Size(241, 20)
+        lblScanBarcode.TabIndex = 0
+        lblScanBarcode.Text = "Scan Barcode"
+        ' 
+        ' txtScanBarcode
+        ' 
+        txtScanBarcode.Font = New Font("Segoe UI", 10.5F)
+        txtScanBarcode.Location = New Point(12, 36)
+        txtScanBarcode.Name = "txtScanBarcode"
+        txtScanBarcode.PlaceholderText = "Ready to scan..."
+        txtScanBarcode.Size = New Size(241, 28)
+        txtScanBarcode.TabIndex = 1
+        ' 
+        ' lblScanHint
+        ' 
+        lblScanHint.Font = New Font("Segoe UI", 8F)
+        lblScanHint.ForeColor = Color.FromArgb(CByte(140), CByte(145), CByte(155))
+        lblScanHint.Location = New Point(12, 67)
+        lblScanHint.Name = "lblScanHint"
+        lblScanHint.Size = New Size(241, 16)
+        lblScanHint.TabIndex = 2
+        lblScanHint.Text = "Scan with reader or press Enter"
+        ' 
+        ' lblDivider
+        ' 
+        lblDivider.Font = New Font("Segoe UI", 8.5F)
+        lblDivider.ForeColor = Color.FromArgb(CByte(180), CByte(185), CByte(195))
+        lblDivider.Location = New Point(12, 90)
+        lblDivider.Name = "lblDivider"
+        lblDivider.Size = New Size(241, 18)
+        lblDivider.TabIndex = 3
+        lblDivider.Text = "──────── OR ────────"
+        lblDivider.TextAlign = ContentAlignment.MiddleCenter
+        ' 
         ' lblProduct
         ' 
         lblProduct.Font = New Font("Segoe UI", 9F)
         lblProduct.ForeColor = Color.FromArgb(CByte(80), CByte(85), CByte(95))
-        lblProduct.Location = New Point(12, 14)
+        lblProduct.Location = New Point(12, 114)
         lblProduct.Name = "lblProduct"
         lblProduct.Size = New Size(180, 20)
-        lblProduct.TabIndex = 0
-        lblProduct.Text = "Product *"
+        lblProduct.TabIndex = 4
+        lblProduct.Text = "Select Product *"
         ' 
         ' cboProduct
         ' 
         cboProduct.DropDownStyle = ComboBoxStyle.DropDownList
         cboProduct.Font = New Font("Segoe UI", 10F)
-        cboProduct.Location = New Point(12, 36)
+        cboProduct.Location = New Point(12, 136)
         cboProduct.Name = "cboProduct"
         cboProduct.Size = New Size(241, 28)
-        cboProduct.TabIndex = 1
+        cboProduct.TabIndex = 5
         ' 
         ' lblQty
         ' 
         lblQty.Font = New Font("Segoe UI", 9F)
         lblQty.ForeColor = Color.FromArgb(CByte(80), CByte(85), CByte(95))
-        lblQty.Location = New Point(12, 80)
+        lblQty.Location = New Point(12, 174)
         lblQty.Name = "lblQty"
         lblQty.Size = New Size(180, 20)
-        lblQty.TabIndex = 2
+        lblQty.TabIndex = 6
         lblQty.Text = "Quantity *"
         ' 
         ' txtQty
         ' 
         txtQty.Font = New Font("Segoe UI", 10F)
-        txtQty.Location = New Point(12, 102)
+        txtQty.Location = New Point(12, 196)
         txtQty.MaxLength = 6
         txtQty.Name = "txtQty"
         txtQty.Size = New Size(241, 27)
-        txtQty.TabIndex = 3
+        txtQty.TabIndex = 7
         ' 
         ' btnAddItem
         ' 
@@ -114,12 +164,22 @@ Partial Class frmNewSale
         btnAddItem.FlatStyle = FlatStyle.Flat
         btnAddItem.Font = New Font("Segoe UI", 9.5F, FontStyle.Bold)
         btnAddItem.ForeColor = Color.White
-        btnAddItem.Location = New Point(12, 148)
+        btnAddItem.Location = New Point(12, 238)
         btnAddItem.Name = "btnAddItem"
         btnAddItem.Size = New Size(241, 34)
-        btnAddItem.TabIndex = 4
+        btnAddItem.TabIndex = 8
         btnAddItem.Text = "Add to Sale"
         btnAddItem.UseVisualStyleBackColor = False
+        ' 
+        ' lblScanStatus
+        ' 
+        lblScanStatus.Font = New Font("Segoe UI", 8.5F, FontStyle.Bold)
+        lblScanStatus.ForeColor = Color.FromArgb(CByte(39), CByte(174), CByte(96))
+        lblScanStatus.Location = New Point(12, 284)
+        lblScanStatus.Name = "lblScanStatus"
+        lblScanStatus.Size = New Size(241, 45)
+        lblScanStatus.TabIndex = 9
+        lblScanStatus.TextAlign = ContentAlignment.TopLeft
         ' 
         ' dgvSaleItems
         ' 
@@ -308,25 +368,30 @@ Partial Class frmNewSale
         ResumeLayout(False)
     End Sub
 
-    Friend WithEvents lblPageHeader  As Label
-    Friend WithEvents pnlInput       As Panel
-    Friend WithEvents lblProduct     As Label
-    Friend WithEvents cboProduct     As ComboBox
-    Friend WithEvents lblQty         As Label
-    Friend WithEvents txtQty         As TextBox
-    Friend WithEvents btnAddItem     As Button
-    Friend WithEvents dgvSaleItems   As DataGridView
-    Friend WithEvents pnlTotals      As Panel
-    Friend WithEvents lblSumTitle    As Label
-    Friend WithEvents lblSubtotalLbl As Label
-    Friend WithEvents txtSubtotal    As TextBox
-    Friend WithEvents lblDiscountLbl As Label
-    Friend WithEvents txtDiscount    As TextBox
-    Friend WithEvents lblNetLbl      As Label
-    Friend WithEvents txtNetAmount   As TextBox
-    Friend WithEvents btnConfirmSale As Button
-    Friend WithEvents btnCancelSale  As Button
-    Friend WithEvents Panel1         As Panel
-    Friend WithEvents Panel2         As Panel
+    Friend WithEvents lblPageHeader   As Label
+    Friend WithEvents pnlInput        As Panel
+    Friend WithEvents lblScanBarcode  As Label
+    Friend WithEvents txtScanBarcode  As TextBox
+    Friend WithEvents lblScanHint     As Label
+    Friend WithEvents lblDivider      As Label
+    Friend WithEvents lblProduct      As Label
+    Friend WithEvents cboProduct      As ComboBox
+    Friend WithEvents lblQty          As Label
+    Friend WithEvents txtQty          As TextBox
+    Friend WithEvents btnAddItem      As Button
+    Friend WithEvents lblScanStatus   As Label
+    Friend WithEvents dgvSaleItems    As DataGridView
+    Friend WithEvents pnlTotals       As Panel
+    Friend WithEvents lblSumTitle     As Label
+    Friend WithEvents lblSubtotalLbl  As Label
+    Friend WithEvents txtSubtotal     As TextBox
+    Friend WithEvents lblDiscountLbl  As Label
+    Friend WithEvents txtDiscount     As TextBox
+    Friend WithEvents lblNetLbl       As Label
+    Friend WithEvents txtNetAmount    As TextBox
+    Friend WithEvents btnConfirmSale  As Button
+    Friend WithEvents btnCancelSale   As Button
+    Friend WithEvents Panel1          As Panel
+    Friend WithEvents Panel2          As Panel
 
 End Class

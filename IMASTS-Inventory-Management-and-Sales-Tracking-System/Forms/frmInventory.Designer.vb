@@ -128,6 +128,158 @@ Partial Class frmInventory
         dgvInventory.MultiSelect = False
         dgvInventory.Name = "dgvInventory"
         dgvInventory.ReadOnly = True
+        lblPageHeader = New Label()
+        btnReceiveStock = New Button()
+        btnAdjustStock = New Button()
+        btnRefresh = New Button()
+        lblSearch = New Label()
+        txtSearch = New TextBox()
+        btnClearSearch = New Button()
+        dgvInventory = New DataGridView()
+        pnlReceive = New Panel()
+        lblReceiveTitle = New Label()
+        lblRBarcode = New Label()
+        txtRBarcode = New TextBox()
+        lblRProduct = New Label()
+        cboProduct = New ComboBox()
+        lblRSupplier = New Label()
+        cboSupplier = New ComboBox()
+        lblRQty = New Label()
+        txtQuantity = New TextBox()
+        lblRNotes = New Label()
+        txtNotes = New TextBox()
+        btnConfirmReceipt = New Button()
+        btnCancelReceipt = New Button()
+        pnlAdjust = New Panel()
+        lblAdjTitle = New Label()
+        lblAdjBarcode = New Label()
+        txtAdjBarcode = New TextBox()
+        lblAdjProduct = New Label()
+        cboAdjProduct = New ComboBox()
+        lblAdjNewQty = New Label()
+        txtNewQty = New TextBox()
+        lblAdjNotes = New Label()
+        txtAdjNotes = New TextBox()
+        btnConfirmAdjust = New Button()
+        btnCancelAdjust = New Button()
+        Panel1 = New Panel()
+        Panel2 = New Panel()
+        pnlDetail = New Panel()
+        pnlActionBar = New Panel()
+        CType(dgvInventory, ComponentModel.ISupportInitialize).BeginInit()
+        pnlReceive.SuspendLayout()
+        pnlAdjust.SuspendLayout()
+        Panel1.SuspendLayout()
+        Panel2.SuspendLayout()
+        pnlDetail.SuspendLayout()
+        pnlActionBar.SuspendLayout()
+        SuspendLayout()
+        ' 
+        ' lblPageHeader
+        ' 
+        lblPageHeader.Font = New Font("Segoe UI", 16F, FontStyle.Bold)
+        lblPageHeader.ForeColor = Color.FromArgb(CByte(40), CByte(44), CByte(52))
+        lblPageHeader.Location = New Point(12, 20)
+        lblPageHeader.Name = "lblPageHeader"
+        lblPageHeader.Size = New Size(400, 41)
+        lblPageHeader.TabIndex = 0
+        lblPageHeader.Text = "Inventory Management"
+        ' 
+        ' btnReceiveStock
+        ' 
+        btnReceiveStock.BackColor = Color.FromArgb(CByte(39), CByte(174), CByte(96))
+        btnReceiveStock.Cursor = Cursors.Hand
+        btnReceiveStock.FlatAppearance.BorderSize = 0
+        btnReceiveStock.FlatStyle = FlatStyle.Flat
+        btnReceiveStock.Font = New Font("Segoe UI", 9F, FontStyle.Bold)
+        btnReceiveStock.ForeColor = Color.White
+        btnReceiveStock.Location = New Point(12, 10)
+        btnReceiveStock.Name = "btnReceiveStock"
+        btnReceiveStock.Size = New Size(140, 32)
+        btnReceiveStock.TabIndex = 0
+        btnReceiveStock.Text = "Receive Stock"
+        btnReceiveStock.UseVisualStyleBackColor = False
+        ' 
+        ' btnAdjustStock
+        ' 
+        btnAdjustStock.BackColor = Color.FromArgb(CByte(230), CByte(126), CByte(34))
+        btnAdjustStock.Cursor = Cursors.Hand
+        btnAdjustStock.FlatAppearance.BorderSize = 0
+        btnAdjustStock.FlatStyle = FlatStyle.Flat
+        btnAdjustStock.Font = New Font("Segoe UI", 9F, FontStyle.Bold)
+        btnAdjustStock.ForeColor = Color.White
+        btnAdjustStock.Location = New Point(160, 10)
+        btnAdjustStock.Name = "btnAdjustStock"
+        btnAdjustStock.Size = New Size(140, 32)
+        btnAdjustStock.TabIndex = 1
+        btnAdjustStock.Text = "Adjust Stock"
+        btnAdjustStock.UseVisualStyleBackColor = False
+        ' 
+        ' btnRefresh
+        ' 
+        btnRefresh.BackColor = Color.FromArgb(CByte(150), CByte(155), CByte(165))
+        btnRefresh.Cursor = Cursors.Hand
+        btnRefresh.FlatAppearance.BorderSize = 0
+        btnRefresh.FlatStyle = FlatStyle.Flat
+        btnRefresh.Font = New Font("Segoe UI", 9F)
+        btnRefresh.ForeColor = Color.White
+        btnRefresh.Location = New Point(308, 10)
+        btnRefresh.Name = "btnRefresh"
+        btnRefresh.Size = New Size(100, 32)
+        btnRefresh.TabIndex = 2
+        btnRefresh.Text = "Refresh"
+        btnRefresh.UseVisualStyleBackColor = False
+        ' 
+        ' lblSearch
+        ' 
+        lblSearch.Font = New Font("Segoe UI", 9.5F, FontStyle.Bold)
+        lblSearch.ForeColor = Color.FromArgb(CByte(80), CByte(85), CByte(95))
+        lblSearch.Location = New Point(550, 15)
+        lblSearch.Name = "lblSearch"
+        lblSearch.Size = New Size(110, 22)
+        lblSearch.TabIndex = 3
+        lblSearch.Text = "Search / Scan:"
+        ' 
+        ' txtSearch
+        ' 
+        txtSearch.Font = New Font("Segoe UI", 10F)
+        txtSearch.Location = New Point(665, 12)
+        txtSearch.Name = "txtSearch"
+        txtSearch.PlaceholderText = "Scan barcode or search..."
+        txtSearch.Size = New Size(265, 27)
+        txtSearch.TabIndex = 4
+        ' 
+        ' btnClearSearch
+        ' 
+        btnClearSearch.BackColor = Color.FromArgb(CByte(220), CByte(223), CByte(228))
+        btnClearSearch.Cursor = Cursors.Hand
+        btnClearSearch.FlatAppearance.BorderSize = 0
+        btnClearSearch.FlatStyle = FlatStyle.Flat
+        btnClearSearch.Font = New Font("Segoe UI", 9F, FontStyle.Bold)
+        btnClearSearch.ForeColor = Color.FromArgb(CByte(80), CByte(85), CByte(95))
+        btnClearSearch.Location = New Point(936, 12)
+        btnClearSearch.Name = "btnClearSearch"
+        btnClearSearch.Size = New Size(27, 27)
+        btnClearSearch.TabIndex = 5
+        btnClearSearch.Text = "X"
+        btnClearSearch.UseVisualStyleBackColor = False
+        ' 
+        ' dgvInventory
+        ' 
+        dgvInventory.AllowUserToAddRows = False
+        dgvInventory.AllowUserToDeleteRows = False
+        dgvInventory.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+        dgvInventory.BackgroundColor = Color.White
+        dgvInventory.BorderStyle = BorderStyle.None
+        dgvInventory.ColumnHeadersHeight = 36
+        dgvInventory.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing
+        dgvInventory.Dock = DockStyle.Fill
+        dgvInventory.Font = New Font("Segoe UI", 9.5F)
+        dgvInventory.GridColor = Color.FromArgb(CByte(220), CByte(223), CByte(228))
+        dgvInventory.Location = New Point(0, 52)
+        dgvInventory.MultiSelect = False
+        dgvInventory.Name = "dgvInventory"
+        dgvInventory.ReadOnly = True
         dgvInventory.RowHeadersVisible = False
         dgvInventory.RowHeadersWidth = 45
         dgvInventory.RowTemplate.Height = 32
@@ -140,6 +292,8 @@ Partial Class frmInventory
         pnlReceive.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
         pnlReceive.BackColor = Color.White
         pnlReceive.Controls.Add(lblReceiveTitle)
+        pnlReceive.Controls.Add(lblRBarcode)
+        pnlReceive.Controls.Add(txtRBarcode)
         pnlReceive.Controls.Add(lblRProduct)
         pnlReceive.Controls.Add(cboProduct)
         pnlReceive.Controls.Add(lblRSupplier)
@@ -166,24 +320,43 @@ Partial Class frmInventory
         lblReceiveTitle.TabIndex = 0
         lblReceiveTitle.Text = "Receive Stock"
         ' 
+        ' lblRBarcode
+        ' 
+        lblRBarcode.Font = New Font("Segoe UI", 9F)
+        lblRBarcode.ForeColor = Color.FromArgb(CByte(80), CByte(85), CByte(95))
+        lblRBarcode.Location = New Point(16, 44)
+        lblRBarcode.Name = "lblRBarcode"
+        lblRBarcode.Size = New Size(170, 20)
+        lblRBarcode.TabIndex = 1
+        lblRBarcode.Text = "Scan Barcode"
+        ' 
+        ' txtRBarcode
+        ' 
+        txtRBarcode.Font = New Font("Segoe UI", 10F)
+        txtRBarcode.Location = New Point(16, 66)
+        txtRBarcode.Name = "txtRBarcode"
+        txtRBarcode.PlaceholderText = "Scan or type..."
+        txtRBarcode.Size = New Size(170, 27)
+        txtRBarcode.TabIndex = 2
+        ' 
         ' lblRProduct
         ' 
         lblRProduct.Font = New Font("Segoe UI", 9F)
         lblRProduct.ForeColor = Color.FromArgb(CByte(80), CByte(85), CByte(95))
-        lblRProduct.Location = New Point(16, 44)
+        lblRProduct.Location = New Point(198, 44)
         lblRProduct.Name = "lblRProduct"
         lblRProduct.Size = New Size(150, 20)
-        lblRProduct.TabIndex = 1
+        lblRProduct.TabIndex = 3
         lblRProduct.Text = "Product *"
         ' 
         ' cboProduct
         ' 
         cboProduct.DropDownStyle = ComboBoxStyle.DropDownList
         cboProduct.Font = New Font("Segoe UI", 10F)
-        cboProduct.Location = New Point(16, 66)
+        cboProduct.Location = New Point(198, 66)
         cboProduct.Name = "cboProduct"
-        cboProduct.Size = New Size(420, 28)
-        cboProduct.TabIndex = 2
+        cboProduct.Size = New Size(240, 28)
+        cboProduct.TabIndex = 4
         ' 
         ' lblRSupplier
         ' 
@@ -192,7 +365,7 @@ Partial Class frmInventory
         lblRSupplier.Location = New Point(452, 44)
         lblRSupplier.Name = "lblRSupplier"
         lblRSupplier.Size = New Size(150, 20)
-        lblRSupplier.TabIndex = 3
+        lblRSupplier.TabIndex = 5
         lblRSupplier.Text = "Supplier *"
         ' 
         ' cboSupplier
@@ -202,7 +375,7 @@ Partial Class frmInventory
         cboSupplier.Location = New Point(452, 66)
         cboSupplier.Name = "cboSupplier"
         cboSupplier.Size = New Size(452, 28)
-        cboSupplier.TabIndex = 4
+        cboSupplier.TabIndex = 6
         ' 
         ' lblRQty
         ' 
@@ -211,7 +384,7 @@ Partial Class frmInventory
         lblRQty.Location = New Point(16, 106)
         lblRQty.Name = "lblRQty"
         lblRQty.Size = New Size(150, 20)
-        lblRQty.TabIndex = 5
+        lblRQty.TabIndex = 7
         lblRQty.Text = "Quantity *"
         ' 
         ' txtQuantity
@@ -221,7 +394,7 @@ Partial Class frmInventory
         txtQuantity.MaxLength = 8
         txtQuantity.Name = "txtQuantity"
         txtQuantity.Size = New Size(180, 27)
-        txtQuantity.TabIndex = 6
+        txtQuantity.TabIndex = 8
         ' 
         ' lblRNotes
         ' 
@@ -230,7 +403,7 @@ Partial Class frmInventory
         lblRNotes.Location = New Point(212, 106)
         lblRNotes.Name = "lblRNotes"
         lblRNotes.Size = New Size(100, 20)
-        lblRNotes.TabIndex = 7
+        lblRNotes.TabIndex = 9
         lblRNotes.Text = "Notes"
         ' 
         ' txtNotes
@@ -240,7 +413,7 @@ Partial Class frmInventory
         txtNotes.MaxLength = 255
         txtNotes.Name = "txtNotes"
         txtNotes.Size = New Size(692, 27)
-        txtNotes.TabIndex = 8
+        txtNotes.TabIndex = 10
         ' 
         ' btnConfirmReceipt
         ' 
@@ -253,7 +426,7 @@ Partial Class frmInventory
         btnConfirmReceipt.Location = New Point(16, 164)
         btnConfirmReceipt.Name = "btnConfirmReceipt"
         btnConfirmReceipt.Size = New Size(130, 30)
-        btnConfirmReceipt.TabIndex = 9
+        btnConfirmReceipt.TabIndex = 11
         btnConfirmReceipt.Text = "Confirm Receipt"
         btnConfirmReceipt.UseVisualStyleBackColor = False
         ' 
@@ -268,7 +441,7 @@ Partial Class frmInventory
         btnCancelReceipt.Location = New Point(154, 164)
         btnCancelReceipt.Name = "btnCancelReceipt"
         btnCancelReceipt.Size = New Size(100, 30)
-        btnCancelReceipt.TabIndex = 10
+        btnCancelReceipt.TabIndex = 12
         btnCancelReceipt.Text = "Cancel"
         btnCancelReceipt.UseVisualStyleBackColor = False
         ' 
@@ -277,6 +450,8 @@ Partial Class frmInventory
         pnlAdjust.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
         pnlAdjust.BackColor = Color.White
         pnlAdjust.Controls.Add(lblAdjTitle)
+        pnlAdjust.Controls.Add(lblAdjBarcode)
+        pnlAdjust.Controls.Add(txtAdjBarcode)
         pnlAdjust.Controls.Add(lblAdjProduct)
         pnlAdjust.Controls.Add(cboAdjProduct)
         pnlAdjust.Controls.Add(lblAdjNewQty)
@@ -301,24 +476,43 @@ Partial Class frmInventory
         lblAdjTitle.TabIndex = 0
         lblAdjTitle.Text = "Adjust Stock"
         ' 
+        ' lblAdjBarcode
+        ' 
+        lblAdjBarcode.Font = New Font("Segoe UI", 9F)
+        lblAdjBarcode.ForeColor = Color.FromArgb(CByte(80), CByte(85), CByte(95))
+        lblAdjBarcode.Location = New Point(16, 44)
+        lblAdjBarcode.Name = "lblAdjBarcode"
+        lblAdjBarcode.Size = New Size(170, 20)
+        lblAdjBarcode.TabIndex = 1
+        lblAdjBarcode.Text = "Scan Barcode"
+        ' 
+        ' txtAdjBarcode
+        ' 
+        txtAdjBarcode.Font = New Font("Segoe UI", 10F)
+        txtAdjBarcode.Location = New Point(16, 66)
+        txtAdjBarcode.Name = "txtAdjBarcode"
+        txtAdjBarcode.PlaceholderText = "Scan or type..."
+        txtAdjBarcode.Size = New Size(170, 27)
+        txtAdjBarcode.TabIndex = 2
+        ' 
         ' lblAdjProduct
         ' 
         lblAdjProduct.Font = New Font("Segoe UI", 9F)
         lblAdjProduct.ForeColor = Color.FromArgb(CByte(80), CByte(85), CByte(95))
-        lblAdjProduct.Location = New Point(16, 44)
+        lblAdjProduct.Location = New Point(198, 44)
         lblAdjProduct.Name = "lblAdjProduct"
         lblAdjProduct.Size = New Size(150, 20)
-        lblAdjProduct.TabIndex = 1
+        lblAdjProduct.TabIndex = 3
         lblAdjProduct.Text = "Product *"
         ' 
         ' cboAdjProduct
         ' 
         cboAdjProduct.DropDownStyle = ComboBoxStyle.DropDownList
         cboAdjProduct.Font = New Font("Segoe UI", 10F)
-        cboAdjProduct.Location = New Point(16, 66)
+        cboAdjProduct.Location = New Point(198, 66)
         cboAdjProduct.Name = "cboAdjProduct"
-        cboAdjProduct.Size = New Size(888, 28)
-        cboAdjProduct.TabIndex = 2
+        cboAdjProduct.Size = New Size(706, 28)
+        cboAdjProduct.TabIndex = 4
         ' 
         ' lblAdjNewQty
         ' 
@@ -327,7 +521,7 @@ Partial Class frmInventory
         lblAdjNewQty.Location = New Point(16, 106)
         lblAdjNewQty.Name = "lblAdjNewQty"
         lblAdjNewQty.Size = New Size(150, 20)
-        lblAdjNewQty.TabIndex = 3
+        lblAdjNewQty.TabIndex = 5
         lblAdjNewQty.Text = "New Quantity *"
         ' 
         ' txtNewQty
@@ -337,7 +531,7 @@ Partial Class frmInventory
         txtNewQty.MaxLength = 8
         txtNewQty.Name = "txtNewQty"
         txtNewQty.Size = New Size(180, 27)
-        txtNewQty.TabIndex = 4
+        txtNewQty.TabIndex = 6
         ' 
         ' lblAdjNotes
         ' 
@@ -346,7 +540,7 @@ Partial Class frmInventory
         lblAdjNotes.Location = New Point(212, 106)
         lblAdjNotes.Name = "lblAdjNotes"
         lblAdjNotes.Size = New Size(130, 20)
-        lblAdjNotes.TabIndex = 5
+        lblAdjNotes.TabIndex = 7
         lblAdjNotes.Text = "Reason / Notes"
         ' 
         ' txtAdjNotes
@@ -356,7 +550,7 @@ Partial Class frmInventory
         txtAdjNotes.MaxLength = 255
         txtAdjNotes.Name = "txtAdjNotes"
         txtAdjNotes.Size = New Size(692, 27)
-        txtAdjNotes.TabIndex = 6
+        txtAdjNotes.TabIndex = 8
         ' 
         ' btnConfirmAdjust
         ' 
@@ -369,7 +563,7 @@ Partial Class frmInventory
         btnConfirmAdjust.Location = New Point(16, 164)
         btnConfirmAdjust.Name = "btnConfirmAdjust"
         btnConfirmAdjust.Size = New Size(140, 30)
-        btnConfirmAdjust.TabIndex = 7
+        btnConfirmAdjust.TabIndex = 9
         btnConfirmAdjust.Text = "Confirm Adjustment"
         btnConfirmAdjust.UseVisualStyleBackColor = False
         ' 
@@ -384,7 +578,7 @@ Partial Class frmInventory
         btnCancelAdjust.Location = New Point(164, 164)
         btnCancelAdjust.Name = "btnCancelAdjust"
         btnCancelAdjust.Size = New Size(100, 30)
-        btnCancelAdjust.TabIndex = 8
+        btnCancelAdjust.TabIndex = 10
         btnCancelAdjust.Text = "Cancel"
         btnCancelAdjust.UseVisualStyleBackColor = False
         ' 
@@ -425,6 +619,9 @@ Partial Class frmInventory
         pnlActionBar.Controls.Add(btnReceiveStock)
         pnlActionBar.Controls.Add(btnAdjustStock)
         pnlActionBar.Controls.Add(btnRefresh)
+        pnlActionBar.Controls.Add(lblSearch)
+        pnlActionBar.Controls.Add(txtSearch)
+        pnlActionBar.Controls.Add(btnClearSearch)
         pnlActionBar.Dock = DockStyle.Top
         pnlActionBar.Location = New Point(0, 0)
         pnlActionBar.Name = "pnlActionBar"
@@ -452,6 +649,7 @@ Partial Class frmInventory
         Panel2.ResumeLayout(False)
         pnlDetail.ResumeLayout(False)
         pnlActionBar.ResumeLayout(False)
+        pnlActionBar.PerformLayout()
         ResumeLayout(False)
     End Sub
 
@@ -459,9 +657,14 @@ Partial Class frmInventory
     Friend WithEvents btnReceiveStock   As Button
     Friend WithEvents btnAdjustStock    As Button
     Friend WithEvents btnRefresh        As Button
+    Friend WithEvents lblSearch         As Label
+    Friend WithEvents txtSearch         As TextBox
+    Friend WithEvents btnClearSearch    As Button
     Friend WithEvents dgvInventory      As DataGridView
     Friend WithEvents pnlReceive        As Panel
     Friend WithEvents lblReceiveTitle   As Label
+    Friend WithEvents lblRBarcode       As Label
+    Friend WithEvents txtRBarcode       As TextBox
     Friend WithEvents lblRProduct       As Label
     Friend WithEvents cboProduct        As ComboBox
     Friend WithEvents lblRSupplier      As Label
@@ -474,6 +677,8 @@ Partial Class frmInventory
     Friend WithEvents btnCancelReceipt  As Button
     Friend WithEvents pnlAdjust         As Panel
     Friend WithEvents lblAdjTitle       As Label
+    Friend WithEvents lblAdjBarcode     As Label
+    Friend WithEvents txtAdjBarcode     As TextBox
     Friend WithEvents lblAdjProduct     As Label
     Friend WithEvents cboAdjProduct     As ComboBox
     Friend WithEvents lblAdjNewQty      As Label

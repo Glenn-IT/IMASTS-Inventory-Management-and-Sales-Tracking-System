@@ -4,20 +4,7 @@ Imports System.Data
 Public Class CategoryRepository
 
     Private Shared Sub EnsureSchema()
-        Try
-            Dim sql As String =
-                "IF NOT EXISTS (SELECT * FROM sys.columns WHERE object_id = OBJECT_ID('tbl_Categories') AND name = 'DefaultUnit') " &
-                "ALTER TABLE tbl_Categories ADD DefaultUnit NVARCHAR(20) NOT NULL DEFAULT 'pcs'; " &
-                "IF NOT EXISTS (SELECT * FROM sys.columns WHERE object_id = OBJECT_ID('tbl_Products') AND name = 'Unit') " &
-                "ALTER TABLE tbl_Products ADD Unit NVARCHAR(20) NOT NULL DEFAULT 'pcs';"
-            Using conn As New SqlConnection(dbconstring.Connection)
-                Using cmd As New SqlCommand(sql, conn)
-                    conn.Open()
-                    cmd.ExecuteNonQuery()
-                End Using
-            End Using
-        Catch ex As Exception
-        End Try
+        ProductRepository.EnsureSchema()
     End Sub
 
     Public Function GetAll() As DataTable

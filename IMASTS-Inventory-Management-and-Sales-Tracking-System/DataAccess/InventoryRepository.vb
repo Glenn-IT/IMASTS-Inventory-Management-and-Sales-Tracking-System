@@ -4,8 +4,9 @@ Imports System.Data
 Public Class InventoryRepository
 
     Public Function GetAllWithStockLevel() As DataTable
+        ProductRepository.EnsureSchema()
         Dim sql As String =
-            "SELECT p.ProductID, p.Name, c.CategoryName, p.StockQty, p.ReorderLevel, ISNULL(p.Unit, 'pcs') AS Unit, " &
+            "SELECT p.ProductID, ISNULL(p.Barcode, '') AS Barcode, p.Name, c.CategoryName, p.StockQty, p.ReorderLevel, ISNULL(p.Unit, 'pcs') AS Unit, " &
             "CASE WHEN p.StockQty = 0            THEN 'Out of Stock' " &
             "     WHEN p.StockQty <= p.ReorderLevel THEN 'Low Stock' " &
             "     ELSE 'OK' END AS StockStatus " &
@@ -23,7 +24,8 @@ Public Class InventoryRepository
     End Function
 
     Public Function GetProducts() As DataTable
-        Dim sql As String = "SELECT ProductID, Name FROM tbl_Products ORDER BY Name"
+        ProductRepository.EnsureSchema()
+        Dim sql As String = "SELECT ProductID, ISNULL(Barcode, '') AS Barcode, Name FROM tbl_Products ORDER BY Name"
         Dim dt As New DataTable()
         Using conn As New SqlConnection(dbconstring.Connection)
             Using cmd As New SqlCommand(sql, conn)
