@@ -1,7 +1,7 @@
 # CURRENT_TASKS.md
-**Last Updated:** 2026-07-29
-**Current Rollout:** v5.xx series (continues from v4.00) — v5.04 (New Sale & Sales History unlocked; Inventory gated), next is v5.05 (Reports)
-**Add-on:** Forgot Password (security question) — BUILT, pending test
+**Last Updated:** 2026-08-24
+**Current Rollout:** All modules unlocked (Inventory, Reports, Settings fully accessible)
+**Add-on:** Forgot Password (security question) — BUILT
 
 ---
 

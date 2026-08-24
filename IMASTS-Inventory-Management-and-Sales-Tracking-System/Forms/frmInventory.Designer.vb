@@ -18,161 +18,42 @@ Partial Class frmInventory
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         lblPageHeader = New Label()
-        btnReceiveStock = New Button()
-        btnAdjustStock = New Button()
-        btnRefresh = New Button()
-        dgvInventory = New DataGridView()
-        pnlReceive = New Panel()
-        lblReceiveTitle = New Label()
-        lblRProduct = New Label()
-        cboProduct = New ComboBox()
-        lblRSupplier = New Label()
-        cboSupplier = New ComboBox()
-        lblRQty = New Label()
-        txtQuantity = New TextBox()
-        lblRNotes = New Label()
-        txtNotes = New TextBox()
-        btnConfirmReceipt = New Button()
-        btnCancelReceipt = New Button()
-        pnlAdjust = New Panel()
-        lblAdjTitle = New Label()
-        lblAdjProduct = New Label()
-        cboAdjProduct = New ComboBox()
-        lblAdjNewQty = New Label()
-        txtNewQty = New TextBox()
-        lblAdjNotes = New Label()
-        txtAdjNotes = New TextBox()
-        btnConfirmAdjust = New Button()
-        btnCancelAdjust = New Button()
         Panel1 = New Panel()
-        Panel2 = New Panel()
-        pnlDetail = New Panel()
-        pnlActionBar = New Panel()
-        CType(dgvInventory, ComponentModel.ISupportInitialize).BeginInit()
-        pnlReceive.SuspendLayout()
-        pnlAdjust.SuspendLayout()
-        Panel1.SuspendLayout()
-        Panel2.SuspendLayout()
-        pnlDetail.SuspendLayout()
-        pnlActionBar.SuspendLayout()
-        SuspendLayout()
-        ' 
-        ' lblPageHeader
-        ' 
-        lblPageHeader.Font = New Font("Segoe UI", 16F, FontStyle.Bold)
-        lblPageHeader.ForeColor = Color.FromArgb(CByte(40), CByte(44), CByte(52))
-        lblPageHeader.Location = New Point(12, 20)
-        lblPageHeader.Name = "lblPageHeader"
-        lblPageHeader.Size = New Size(400, 41)
-        lblPageHeader.TabIndex = 0
-        lblPageHeader.Text = "Inventory Management"
-        ' 
-        ' btnReceiveStock
-        ' 
-        btnReceiveStock.BackColor = Color.FromArgb(CByte(39), CByte(174), CByte(96))
-        btnReceiveStock.Cursor = Cursors.Hand
-        btnReceiveStock.FlatAppearance.BorderSize = 0
-        btnReceiveStock.FlatStyle = FlatStyle.Flat
-        btnReceiveStock.Font = New Font("Segoe UI", 9F, FontStyle.Bold)
-        btnReceiveStock.ForeColor = Color.White
-        btnReceiveStock.Location = New Point(12, 10)
-        btnReceiveStock.Name = "btnReceiveStock"
-        btnReceiveStock.Size = New Size(140, 32)
-        btnReceiveStock.TabIndex = 0
-        btnReceiveStock.Text = "Receive Stock"
-        btnReceiveStock.UseVisualStyleBackColor = False
-        ' 
-        ' btnAdjustStock
-        ' 
-        btnAdjustStock.BackColor = Color.FromArgb(CByte(230), CByte(126), CByte(34))
-        btnAdjustStock.Cursor = Cursors.Hand
-        btnAdjustStock.FlatAppearance.BorderSize = 0
-        btnAdjustStock.FlatStyle = FlatStyle.Flat
-        btnAdjustStock.Font = New Font("Segoe UI", 9F, FontStyle.Bold)
-        btnAdjustStock.ForeColor = Color.White
-        btnAdjustStock.Location = New Point(160, 10)
-        btnAdjustStock.Name = "btnAdjustStock"
-        btnAdjustStock.Size = New Size(140, 32)
-        btnAdjustStock.TabIndex = 1
-        btnAdjustStock.Text = "Adjust Stock"
-        btnAdjustStock.UseVisualStyleBackColor = False
-        ' 
-        ' btnRefresh
-        ' 
-        btnRefresh.BackColor = Color.FromArgb(CByte(150), CByte(155), CByte(165))
-        btnRefresh.Cursor = Cursors.Hand
-        btnRefresh.FlatAppearance.BorderSize = 0
-        btnRefresh.FlatStyle = FlatStyle.Flat
-        btnRefresh.Font = New Font("Segoe UI", 9F)
-        btnRefresh.ForeColor = Color.White
-        btnRefresh.Location = New Point(308, 10)
-        btnRefresh.Name = "btnRefresh"
-        btnRefresh.Size = New Size(100, 32)
-        btnRefresh.TabIndex = 2
-        btnRefresh.Text = "Refresh"
-        btnRefresh.UseVisualStyleBackColor = False
-        ' 
-        ' dgvInventory
-        ' 
-        dgvInventory.AllowUserToAddRows = False
-        dgvInventory.AllowUserToDeleteRows = False
-        dgvInventory.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
-        dgvInventory.BackgroundColor = Color.White
-        dgvInventory.BorderStyle = BorderStyle.None
-        dgvInventory.ColumnHeadersHeight = 36
-        dgvInventory.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing
-        dgvInventory.Dock = DockStyle.Fill
-        dgvInventory.Font = New Font("Segoe UI", 9.5F)
-        dgvInventory.GridColor = Color.FromArgb(CByte(220), CByte(223), CByte(228))
-        dgvInventory.Location = New Point(0, 52)
-        dgvInventory.MultiSelect = False
-        dgvInventory.Name = "dgvInventory"
-        dgvInventory.ReadOnly = True
-        lblPageHeader = New Label()
-        btnReceiveStock = New Button()
-        btnAdjustStock = New Button()
-        btnRefresh = New Button()
         lblSearch = New Label()
         txtSearch = New TextBox()
         btnClearSearch = New Button()
-        dgvInventory = New DataGridView()
-        pnlReceive = New Panel()
-        lblReceiveTitle = New Label()
-        lblRBarcode = New Label()
-        txtRBarcode = New TextBox()
-        lblRProduct = New Label()
-        cboProduct = New ComboBox()
-        lblRSupplier = New Label()
-        cboSupplier = New ComboBox()
-        lblRQty = New Label()
-        txtQuantity = New TextBox()
-        lblRNotes = New Label()
-        txtNotes = New TextBox()
-        btnConfirmReceipt = New Button()
-        btnCancelReceipt = New Button()
-        pnlAdjust = New Panel()
-        lblAdjTitle = New Label()
-        lblAdjBarcode = New Label()
-        txtAdjBarcode = New TextBox()
-        lblAdjProduct = New Label()
-        cboAdjProduct = New ComboBox()
-        lblAdjNewQty = New Label()
-        txtNewQty = New TextBox()
-        lblAdjNotes = New Label()
-        txtAdjNotes = New TextBox()
-        btnConfirmAdjust = New Button()
-        btnCancelAdjust = New Button()
-        Panel1 = New Panel()
         Panel2 = New Panel()
-        pnlDetail = New Panel()
-        pnlActionBar = New Panel()
-        CType(dgvInventory, ComponentModel.ISupportInitialize).BeginInit()
-        pnlReceive.SuspendLayout()
-        pnlAdjust.SuspendLayout()
+        pnlForm = New Panel()
+        lblBarcode = New Label()
+        txtBarcode = New TextBox()
+        lblProduct = New Label()
+        cboProduct = New ComboBox()
+        lblCategory = New Label()
+        txtCategory = New TextBox()
+        lblCurrentStock = New Label()
+        txtCurrentStock = New TextBox()
+        lblUnit = New Label()
+        txtUnit = New TextBox()
+        lblSupplier = New Label()
+        cboSupplier = New ComboBox()
+        lblQuantity = New Label()
+        txtQuantity = New TextBox()
+        lblNotes = New Label()
+        txtNotes = New TextBox()
+        btnReceiveStock = New Button()
+        btnAdjustStock = New Button()
+        btnClear = New Button()
+        btnRefresh = New Button()
+        Panel3 = New Panel()
+        dgvInventory = New DataGridView()
+        pnlFooter = New Panel()
+        lblTotalRecords = New Label()
         Panel1.SuspendLayout()
         Panel2.SuspendLayout()
-        pnlDetail.SuspendLayout()
-        pnlActionBar.SuspendLayout()
+        pnlForm.SuspendLayout()
+        Panel3.SuspendLayout()
+        CType(dgvInventory, ComponentModel.ISupportInitialize).BeginInit()
+        pnlFooter.SuspendLayout()
         SuspendLayout()
         ' 
         ' lblPageHeader
@@ -181,88 +62,327 @@ Partial Class frmInventory
         lblPageHeader.ForeColor = Color.FromArgb(CByte(40), CByte(44), CByte(52))
         lblPageHeader.Location = New Point(12, 20)
         lblPageHeader.Name = "lblPageHeader"
-        lblPageHeader.Size = New Size(400, 41)
+        lblPageHeader.Size = New Size(320, 41)
         lblPageHeader.TabIndex = 0
         lblPageHeader.Text = "Inventory Management"
         ' 
-        ' btnReceiveStock
+        ' Panel1
         ' 
-        btnReceiveStock.BackColor = Color.FromArgb(CByte(39), CByte(174), CByte(96))
-        btnReceiveStock.Cursor = Cursors.Hand
-        btnReceiveStock.FlatAppearance.BorderSize = 0
-        btnReceiveStock.FlatStyle = FlatStyle.Flat
-        btnReceiveStock.Font = New Font("Segoe UI", 9F, FontStyle.Bold)
-        btnReceiveStock.ForeColor = Color.White
-        btnReceiveStock.Location = New Point(12, 10)
-        btnReceiveStock.Name = "btnReceiveStock"
-        btnReceiveStock.Size = New Size(140, 32)
-        btnReceiveStock.TabIndex = 0
-        btnReceiveStock.Text = "Receive Stock"
-        btnReceiveStock.UseVisualStyleBackColor = False
-        ' 
-        ' btnAdjustStock
-        ' 
-        btnAdjustStock.BackColor = Color.FromArgb(CByte(230), CByte(126), CByte(34))
-        btnAdjustStock.Cursor = Cursors.Hand
-        btnAdjustStock.FlatAppearance.BorderSize = 0
-        btnAdjustStock.FlatStyle = FlatStyle.Flat
-        btnAdjustStock.Font = New Font("Segoe UI", 9F, FontStyle.Bold)
-        btnAdjustStock.ForeColor = Color.White
-        btnAdjustStock.Location = New Point(160, 10)
-        btnAdjustStock.Name = "btnAdjustStock"
-        btnAdjustStock.Size = New Size(140, 32)
-        btnAdjustStock.TabIndex = 1
-        btnAdjustStock.Text = "Adjust Stock"
-        btnAdjustStock.UseVisualStyleBackColor = False
-        ' 
-        ' btnRefresh
-        ' 
-        btnRefresh.BackColor = Color.FromArgb(CByte(150), CByte(155), CByte(165))
-        btnRefresh.Cursor = Cursors.Hand
-        btnRefresh.FlatAppearance.BorderSize = 0
-        btnRefresh.FlatStyle = FlatStyle.Flat
-        btnRefresh.Font = New Font("Segoe UI", 9F)
-        btnRefresh.ForeColor = Color.White
-        btnRefresh.Location = New Point(308, 10)
-        btnRefresh.Name = "btnRefresh"
-        btnRefresh.Size = New Size(100, 32)
-        btnRefresh.TabIndex = 2
-        btnRefresh.Text = "Refresh"
-        btnRefresh.UseVisualStyleBackColor = False
+        Panel1.Controls.Add(lblPageHeader)
+        Panel1.Controls.Add(lblSearch)
+        Panel1.Controls.Add(txtSearch)
+        Panel1.Controls.Add(btnClearSearch)
+        Panel1.Dock = DockStyle.Top
+        Panel1.Location = New Point(0, 0)
+        Panel1.Name = "Panel1"
+        Panel1.Size = New Size(980, 76)
+        Panel1.TabIndex = 1
         ' 
         ' lblSearch
         ' 
+        lblSearch.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         lblSearch.Font = New Font("Segoe UI", 9.5F, FontStyle.Bold)
         lblSearch.ForeColor = Color.FromArgb(CByte(80), CByte(85), CByte(95))
-        lblSearch.Location = New Point(550, 15)
+        lblSearch.Location = New Point(570, 26)
         lblSearch.Name = "lblSearch"
         lblSearch.Size = New Size(110, 22)
-        lblSearch.TabIndex = 3
+        lblSearch.TabIndex = 1
         lblSearch.Text = "Search / Scan:"
         ' 
         ' txtSearch
         ' 
+        txtSearch.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         txtSearch.Font = New Font("Segoe UI", 10F)
-        txtSearch.Location = New Point(665, 12)
+        txtSearch.Location = New Point(685, 23)
         txtSearch.Name = "txtSearch"
         txtSearch.PlaceholderText = "Scan barcode or search..."
-        txtSearch.Size = New Size(265, 27)
-        txtSearch.TabIndex = 4
+        txtSearch.Size = New Size(245, 27)
+        txtSearch.TabIndex = 2
         ' 
         ' btnClearSearch
         ' 
+        btnClearSearch.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         btnClearSearch.BackColor = Color.FromArgb(CByte(220), CByte(223), CByte(228))
         btnClearSearch.Cursor = Cursors.Hand
         btnClearSearch.FlatAppearance.BorderSize = 0
         btnClearSearch.FlatStyle = FlatStyle.Flat
         btnClearSearch.Font = New Font("Segoe UI", 9F, FontStyle.Bold)
         btnClearSearch.ForeColor = Color.FromArgb(CByte(80), CByte(85), CByte(95))
-        btnClearSearch.Location = New Point(936, 12)
+        btnClearSearch.Location = New Point(934, 23)
         btnClearSearch.Name = "btnClearSearch"
         btnClearSearch.Size = New Size(27, 27)
-        btnClearSearch.TabIndex = 5
+        btnClearSearch.TabIndex = 3
         btnClearSearch.Text = "X"
         btnClearSearch.UseVisualStyleBackColor = False
+        ' 
+        ' Panel2
+        ' 
+        Panel2.Controls.Add(pnlForm)
+        Panel2.Dock = DockStyle.Top
+        Panel2.Location = New Point(0, 76)
+        Panel2.Name = "Panel2"
+        Panel2.Size = New Size(980, 205)
+        Panel2.TabIndex = 2
+        ' 
+        ' pnlForm
+        ' 
+        pnlForm.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
+        pnlForm.BackColor = Color.White
+        pnlForm.Controls.Add(lblBarcode)
+        pnlForm.Controls.Add(txtBarcode)
+        pnlForm.Controls.Add(lblProduct)
+        pnlForm.Controls.Add(cboProduct)
+        pnlForm.Controls.Add(lblCategory)
+        pnlForm.Controls.Add(txtCategory)
+        pnlForm.Controls.Add(lblCurrentStock)
+        pnlForm.Controls.Add(txtCurrentStock)
+        pnlForm.Controls.Add(lblUnit)
+        pnlForm.Controls.Add(txtUnit)
+        pnlForm.Controls.Add(lblSupplier)
+        pnlForm.Controls.Add(cboSupplier)
+        pnlForm.Controls.Add(lblQuantity)
+        pnlForm.Controls.Add(txtQuantity)
+        pnlForm.Controls.Add(lblNotes)
+        pnlForm.Controls.Add(txtNotes)
+        pnlForm.Controls.Add(btnReceiveStock)
+        pnlForm.Controls.Add(btnAdjustStock)
+        pnlForm.Controls.Add(btnClear)
+        pnlForm.Controls.Add(btnRefresh)
+        pnlForm.Location = New Point(12, 6)
+        pnlForm.Name = "pnlForm"
+        pnlForm.Size = New Size(956, 192)
+        pnlForm.TabIndex = 0
+        ' 
+        ' lblBarcode
+        ' 
+        lblBarcode.Font = New Font("Segoe UI", 9F)
+        lblBarcode.ForeColor = Color.FromArgb(CByte(80), CByte(85), CByte(95))
+        lblBarcode.Location = New Point(16, 12)
+        lblBarcode.Name = "lblBarcode"
+        lblBarcode.Size = New Size(120, 18)
+        lblBarcode.TabIndex = 0
+        lblBarcode.Text = "Barcode / Scan"
+        ' 
+        ' txtBarcode
+        ' 
+        txtBarcode.Font = New Font("Segoe UI", 10F)
+        txtBarcode.Location = New Point(16, 32)
+        txtBarcode.MaxLength = 100
+        txtBarcode.Name = "txtBarcode"
+        txtBarcode.PlaceholderText = "Scan or enter barcode"
+        txtBarcode.Size = New Size(180, 27)
+        txtBarcode.TabIndex = 1
+        ' 
+        ' lblProduct
+        ' 
+        lblProduct.Font = New Font("Segoe UI", 9F)
+        lblProduct.ForeColor = Color.FromArgb(CByte(80), CByte(85), CByte(95))
+        lblProduct.Location = New Point(206, 12)
+        lblProduct.Name = "lblProduct"
+        lblProduct.Size = New Size(120, 18)
+        lblProduct.TabIndex = 2
+        lblProduct.Text = "Product *"
+        ' 
+        ' cboProduct
+        ' 
+        cboProduct.DropDownStyle = ComboBoxStyle.DropDownList
+        cboProduct.Font = New Font("Segoe UI", 10F)
+        cboProduct.Location = New Point(206, 32)
+        cboProduct.Name = "cboProduct"
+        cboProduct.Size = New Size(290, 28)
+        cboProduct.TabIndex = 3
+        ' 
+        ' lblCategory
+        ' 
+        lblCategory.Font = New Font("Segoe UI", 9F)
+        lblCategory.ForeColor = Color.FromArgb(CByte(80), CByte(85), CByte(95))
+        lblCategory.Location = New Point(506, 12)
+        lblCategory.Name = "lblCategory"
+        lblCategory.Size = New Size(100, 18)
+        lblCategory.TabIndex = 4
+        lblCategory.Text = "Category"
+        ' 
+        ' txtCategory
+        ' 
+        txtCategory.BackColor = Color.FromArgb(CByte(245), CByte(246), CByte(248))
+        txtCategory.Font = New Font("Segoe UI", 10F)
+        txtCategory.Location = New Point(506, 32)
+        txtCategory.Name = "txtCategory"
+        txtCategory.ReadOnly = True
+        txtCategory.Size = New Size(140, 27)
+        txtCategory.TabIndex = 5
+        ' 
+        ' lblCurrentStock
+        ' 
+        lblCurrentStock.Font = New Font("Segoe UI", 9F)
+        lblCurrentStock.ForeColor = Color.FromArgb(CByte(80), CByte(85), CByte(95))
+        lblCurrentStock.Location = New Point(656, 12)
+        lblCurrentStock.Name = "lblCurrentStock"
+        lblCurrentStock.Size = New Size(110, 18)
+        lblCurrentStock.TabIndex = 6
+        lblCurrentStock.Text = "Current Stock"
+        ' 
+        ' txtCurrentStock
+        ' 
+        txtCurrentStock.BackColor = Color.FromArgb(CByte(245), CByte(246), CByte(248))
+        txtCurrentStock.Font = New Font("Segoe UI", 10F, FontStyle.Bold)
+        txtCurrentStock.Location = New Point(656, 32)
+        txtCurrentStock.Name = "txtCurrentStock"
+        txtCurrentStock.ReadOnly = True
+        txtCurrentStock.Size = New Size(140, 27)
+        txtCurrentStock.TabIndex = 7
+        txtCurrentStock.TextAlign = HorizontalAlignment.Right
+        ' 
+        ' lblUnit
+        ' 
+        lblUnit.Font = New Font("Segoe UI", 9F)
+        lblUnit.ForeColor = Color.FromArgb(CByte(80), CByte(85), CByte(95))
+        lblUnit.Location = New Point(806, 12)
+        lblUnit.Name = "lblUnit"
+        lblUnit.Size = New Size(80, 18)
+        lblUnit.TabIndex = 8
+        lblUnit.Text = "Unit"
+        ' 
+        ' txtUnit
+        ' 
+        txtUnit.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
+        txtUnit.BackColor = Color.FromArgb(CByte(245), CByte(246), CByte(248))
+        txtUnit.Font = New Font("Segoe UI", 10F)
+        txtUnit.Location = New Point(806, 32)
+        txtUnit.Name = "txtUnit"
+        txtUnit.ReadOnly = True
+        txtUnit.Size = New Size(134, 27)
+        txtUnit.TabIndex = 9
+        ' 
+        ' lblSupplier
+        ' 
+        lblSupplier.Font = New Font("Segoe UI", 9F)
+        lblSupplier.ForeColor = Color.FromArgb(CByte(80), CByte(85), CByte(95))
+        lblSupplier.Location = New Point(16, 70)
+        lblSupplier.Name = "lblSupplier"
+        lblSupplier.Size = New Size(170, 18)
+        lblSupplier.TabIndex = 10
+        lblSupplier.Text = "Supplier (for receiving)"
+        ' 
+        ' cboSupplier
+        ' 
+        cboSupplier.DropDownStyle = ComboBoxStyle.DropDownList
+        cboSupplier.Font = New Font("Segoe UI", 10F)
+        cboSupplier.Location = New Point(16, 92)
+        cboSupplier.Name = "cboSupplier"
+        cboSupplier.Size = New Size(270, 28)
+        cboSupplier.TabIndex = 11
+        ' 
+        ' lblQuantity
+        ' 
+        lblQuantity.Font = New Font("Segoe UI", 9F)
+        lblQuantity.ForeColor = Color.FromArgb(CByte(80), CByte(85), CByte(95))
+        lblQuantity.Location = New Point(296, 70)
+        lblQuantity.Name = "lblQuantity"
+        lblQuantity.Size = New Size(200, 18)
+        lblQuantity.TabIndex = 12
+        lblQuantity.Text = "Quantity / New Stock *"
+        ' 
+        ' txtQuantity
+        ' 
+        txtQuantity.Font = New Font("Segoe UI", 10F)
+        txtQuantity.Location = New Point(296, 92)
+        txtQuantity.MaxLength = 8
+        txtQuantity.Name = "txtQuantity"
+        txtQuantity.PlaceholderText = "Enter quantity"
+        txtQuantity.Size = New Size(200, 27)
+        txtQuantity.TabIndex = 13
+        ' 
+        ' lblNotes
+        ' 
+        lblNotes.Font = New Font("Segoe UI", 9F)
+        lblNotes.ForeColor = Color.FromArgb(CByte(80), CByte(85), CByte(95))
+        lblNotes.Location = New Point(506, 70)
+        lblNotes.Name = "lblNotes"
+        lblNotes.Size = New Size(120, 18)
+        lblNotes.TabIndex = 14
+        lblNotes.Text = "Reason / Notes"
+        ' 
+        ' txtNotes
+        ' 
+        txtNotes.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
+        txtNotes.Font = New Font("Segoe UI", 10F)
+        txtNotes.Location = New Point(506, 92)
+        txtNotes.MaxLength = 255
+        txtNotes.Name = "txtNotes"
+        txtNotes.PlaceholderText = "Optional notes or adjustment reason..."
+        txtNotes.Size = New Size(434, 27)
+        txtNotes.TabIndex = 15
+        ' 
+        ' btnReceiveStock
+        ' 
+        btnReceiveStock.BackColor = Color.FromArgb(CByte(39), CByte(174), CByte(96))
+        btnReceiveStock.Cursor = Cursors.Hand
+        btnReceiveStock.FlatAppearance.BorderSize = 0
+        btnReceiveStock.FlatStyle = FlatStyle.Flat
+        btnReceiveStock.Font = New Font("Segoe UI", 9.5F, FontStyle.Bold)
+        btnReceiveStock.ForeColor = Color.White
+        btnReceiveStock.Location = New Point(16, 138)
+        btnReceiveStock.Name = "btnReceiveStock"
+        btnReceiveStock.Size = New Size(170, 36)
+        btnReceiveStock.TabIndex = 16
+        btnReceiveStock.Text = "+ Receive Stock"
+        btnReceiveStock.UseVisualStyleBackColor = False
+        ' 
+        ' btnAdjustStock
+        ' 
+        btnAdjustStock.BackColor = Color.FromArgb(CByte(230), CByte(126), CByte(34))
+        btnAdjustStock.Cursor = Cursors.Hand
+        btnAdjustStock.FlatAppearance.BorderSize = 0
+        btnAdjustStock.FlatStyle = FlatStyle.Flat
+        btnAdjustStock.Font = New Font("Segoe UI", 9.5F, FontStyle.Bold)
+        btnAdjustStock.ForeColor = Color.White
+        btnAdjustStock.Location = New Point(196, 138)
+        btnAdjustStock.Name = "btnAdjustStock"
+        btnAdjustStock.Size = New Size(170, 36)
+        btnAdjustStock.TabIndex = 17
+        btnAdjustStock.Text = "✎ Adjust Stock"
+        btnAdjustStock.UseVisualStyleBackColor = False
+        ' 
+        ' btnClear
+        ' 
+        btnClear.BackColor = Color.FromArgb(CByte(150), CByte(155), CByte(165))
+        btnClear.Cursor = Cursors.Hand
+        btnClear.FlatAppearance.BorderSize = 0
+        btnClear.FlatStyle = FlatStyle.Flat
+        btnClear.Font = New Font("Segoe UI", 9.5F)
+        btnClear.ForeColor = Color.White
+        btnClear.Location = New Point(376, 138)
+        btnClear.Name = "btnClear"
+        btnClear.Size = New Size(90, 36)
+        btnClear.TabIndex = 18
+        btnClear.Text = "Clear"
+        btnClear.UseVisualStyleBackColor = False
+        ' 
+        ' btnRefresh
+        ' 
+        btnRefresh.BackColor = Color.FromArgb(CByte(52), CByte(152), CByte(219))
+        btnRefresh.Cursor = Cursors.Hand
+        btnRefresh.FlatAppearance.BorderSize = 0
+        btnRefresh.FlatStyle = FlatStyle.Flat
+        btnRefresh.Font = New Font("Segoe UI", 9.5F)
+        btnRefresh.ForeColor = Color.White
+        btnRefresh.Location = New Point(476, 138)
+        btnRefresh.Name = "btnRefresh"
+        btnRefresh.Size = New Size(90, 36)
+        btnRefresh.TabIndex = 19
+        btnRefresh.Text = "Refresh"
+        btnRefresh.UseVisualStyleBackColor = False
+        ' 
+        ' Panel3
+        ' 
+        Panel3.Controls.Add(dgvInventory)
+        Panel3.Controls.Add(pnlFooter)
+        Panel3.Dock = DockStyle.Fill
+        Panel3.Location = New Point(0, 281)
+        Panel3.Name = "Panel3"
+        Panel3.Size = New Size(980, 444)
+        Panel3.TabIndex = 3
         ' 
         ' dgvInventory
         ' 
@@ -276,7 +396,7 @@ Partial Class frmInventory
         dgvInventory.Dock = DockStyle.Fill
         dgvInventory.Font = New Font("Segoe UI", 9.5F)
         dgvInventory.GridColor = Color.FromArgb(CByte(220), CByte(223), CByte(228))
-        dgvInventory.Location = New Point(0, 52)
+        dgvInventory.Location = New Point(0, 0)
         dgvInventory.MultiSelect = False
         dgvInventory.Name = "dgvInventory"
         dgvInventory.ReadOnly = True
@@ -284,349 +404,29 @@ Partial Class frmInventory
         dgvInventory.RowHeadersWidth = 45
         dgvInventory.RowTemplate.Height = 32
         dgvInventory.SelectionMode = DataGridViewSelectionMode.FullRowSelect
-        dgvInventory.Size = New Size(980, 382)
-        dgvInventory.TabIndex = 3
+        dgvInventory.Size = New Size(980, 408)
+        dgvInventory.TabIndex = 0
         ' 
-        ' pnlReceive
+        ' pnlFooter
         ' 
-        pnlReceive.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
-        pnlReceive.BackColor = Color.White
-        pnlReceive.Controls.Add(lblReceiveTitle)
-        pnlReceive.Controls.Add(lblRBarcode)
-        pnlReceive.Controls.Add(txtRBarcode)
-        pnlReceive.Controls.Add(lblRProduct)
-        pnlReceive.Controls.Add(cboProduct)
-        pnlReceive.Controls.Add(lblRSupplier)
-        pnlReceive.Controls.Add(cboSupplier)
-        pnlReceive.Controls.Add(lblRQty)
-        pnlReceive.Controls.Add(txtQuantity)
-        pnlReceive.Controls.Add(lblRNotes)
-        pnlReceive.Controls.Add(txtNotes)
-        pnlReceive.Controls.Add(btnConfirmReceipt)
-        pnlReceive.Controls.Add(btnCancelReceipt)
-        pnlReceive.Location = New Point(0, 0)
-        pnlReceive.Name = "pnlReceive"
-        pnlReceive.Size = New Size(1760, 215)
-        pnlReceive.TabIndex = 4
-        pnlReceive.Visible = False
+        pnlFooter.BackColor = Color.White
+        pnlFooter.Controls.Add(lblTotalRecords)
+        pnlFooter.Dock = DockStyle.Bottom
+        pnlFooter.Location = New Point(0, 408)
+        pnlFooter.Name = "pnlFooter"
+        pnlFooter.Size = New Size(980, 36)
+        pnlFooter.TabIndex = 1
         ' 
-        ' lblReceiveTitle
+        ' lblTotalRecords
         ' 
-        lblReceiveTitle.Font = New Font("Segoe UI", 10F, FontStyle.Bold)
-        lblReceiveTitle.ForeColor = Color.FromArgb(CByte(39), CByte(174), CByte(96))
-        lblReceiveTitle.Location = New Point(16, 12)
-        lblReceiveTitle.Name = "lblReceiveTitle"
-        lblReceiveTitle.Size = New Size(200, 22)
-        lblReceiveTitle.TabIndex = 0
-        lblReceiveTitle.Text = "Receive Stock"
-        ' 
-        ' lblRBarcode
-        ' 
-        lblRBarcode.Font = New Font("Segoe UI", 9F)
-        lblRBarcode.ForeColor = Color.FromArgb(CByte(80), CByte(85), CByte(95))
-        lblRBarcode.Location = New Point(16, 44)
-        lblRBarcode.Name = "lblRBarcode"
-        lblRBarcode.Size = New Size(170, 20)
-        lblRBarcode.TabIndex = 1
-        lblRBarcode.Text = "Scan Barcode"
-        ' 
-        ' txtRBarcode
-        ' 
-        txtRBarcode.Font = New Font("Segoe UI", 10F)
-        txtRBarcode.Location = New Point(16, 66)
-        txtRBarcode.Name = "txtRBarcode"
-        txtRBarcode.PlaceholderText = "Scan or type..."
-        txtRBarcode.Size = New Size(170, 27)
-        txtRBarcode.TabIndex = 2
-        ' 
-        ' lblRProduct
-        ' 
-        lblRProduct.Font = New Font("Segoe UI", 9F)
-        lblRProduct.ForeColor = Color.FromArgb(CByte(80), CByte(85), CByte(95))
-        lblRProduct.Location = New Point(198, 44)
-        lblRProduct.Name = "lblRProduct"
-        lblRProduct.Size = New Size(150, 20)
-        lblRProduct.TabIndex = 3
-        lblRProduct.Text = "Product *"
-        ' 
-        ' cboProduct
-        ' 
-        cboProduct.DropDownStyle = ComboBoxStyle.DropDownList
-        cboProduct.Font = New Font("Segoe UI", 10F)
-        cboProduct.Location = New Point(198, 66)
-        cboProduct.Name = "cboProduct"
-        cboProduct.Size = New Size(240, 28)
-        cboProduct.TabIndex = 4
-        ' 
-        ' lblRSupplier
-        ' 
-        lblRSupplier.Font = New Font("Segoe UI", 9F)
-        lblRSupplier.ForeColor = Color.FromArgb(CByte(80), CByte(85), CByte(95))
-        lblRSupplier.Location = New Point(452, 44)
-        lblRSupplier.Name = "lblRSupplier"
-        lblRSupplier.Size = New Size(150, 20)
-        lblRSupplier.TabIndex = 5
-        lblRSupplier.Text = "Supplier *"
-        ' 
-        ' cboSupplier
-        ' 
-        cboSupplier.DropDownStyle = ComboBoxStyle.DropDownList
-        cboSupplier.Font = New Font("Segoe UI", 10F)
-        cboSupplier.Location = New Point(452, 66)
-        cboSupplier.Name = "cboSupplier"
-        cboSupplier.Size = New Size(452, 28)
-        cboSupplier.TabIndex = 6
-        ' 
-        ' lblRQty
-        ' 
-        lblRQty.Font = New Font("Segoe UI", 9F)
-        lblRQty.ForeColor = Color.FromArgb(CByte(80), CByte(85), CByte(95))
-        lblRQty.Location = New Point(16, 106)
-        lblRQty.Name = "lblRQty"
-        lblRQty.Size = New Size(150, 20)
-        lblRQty.TabIndex = 7
-        lblRQty.Text = "Quantity *"
-        ' 
-        ' txtQuantity
-        ' 
-        txtQuantity.Font = New Font("Segoe UI", 10F)
-        txtQuantity.Location = New Point(16, 128)
-        txtQuantity.MaxLength = 8
-        txtQuantity.Name = "txtQuantity"
-        txtQuantity.Size = New Size(180, 27)
-        txtQuantity.TabIndex = 8
-        ' 
-        ' lblRNotes
-        ' 
-        lblRNotes.Font = New Font("Segoe UI", 9F)
-        lblRNotes.ForeColor = Color.FromArgb(CByte(80), CByte(85), CByte(95))
-        lblRNotes.Location = New Point(212, 106)
-        lblRNotes.Name = "lblRNotes"
-        lblRNotes.Size = New Size(100, 20)
-        lblRNotes.TabIndex = 9
-        lblRNotes.Text = "Notes"
-        ' 
-        ' txtNotes
-        ' 
-        txtNotes.Font = New Font("Segoe UI", 10F)
-        txtNotes.Location = New Point(212, 128)
-        txtNotes.MaxLength = 255
-        txtNotes.Name = "txtNotes"
-        txtNotes.Size = New Size(692, 27)
-        txtNotes.TabIndex = 10
-        ' 
-        ' btnConfirmReceipt
-        ' 
-        btnConfirmReceipt.BackColor = Color.FromArgb(CByte(39), CByte(174), CByte(96))
-        btnConfirmReceipt.Cursor = Cursors.Hand
-        btnConfirmReceipt.FlatAppearance.BorderSize = 0
-        btnConfirmReceipt.FlatStyle = FlatStyle.Flat
-        btnConfirmReceipt.Font = New Font("Segoe UI", 9F, FontStyle.Bold)
-        btnConfirmReceipt.ForeColor = Color.White
-        btnConfirmReceipt.Location = New Point(16, 164)
-        btnConfirmReceipt.Name = "btnConfirmReceipt"
-        btnConfirmReceipt.Size = New Size(130, 30)
-        btnConfirmReceipt.TabIndex = 11
-        btnConfirmReceipt.Text = "Confirm Receipt"
-        btnConfirmReceipt.UseVisualStyleBackColor = False
-        ' 
-        ' btnCancelReceipt
-        ' 
-        btnCancelReceipt.BackColor = Color.FromArgb(CByte(150), CByte(155), CByte(165))
-        btnCancelReceipt.Cursor = Cursors.Hand
-        btnCancelReceipt.FlatAppearance.BorderSize = 0
-        btnCancelReceipt.FlatStyle = FlatStyle.Flat
-        btnCancelReceipt.Font = New Font("Segoe UI", 9F)
-        btnCancelReceipt.ForeColor = Color.White
-        btnCancelReceipt.Location = New Point(154, 164)
-        btnCancelReceipt.Name = "btnCancelReceipt"
-        btnCancelReceipt.Size = New Size(100, 30)
-        btnCancelReceipt.TabIndex = 12
-        btnCancelReceipt.Text = "Cancel"
-        btnCancelReceipt.UseVisualStyleBackColor = False
-        ' 
-        ' pnlAdjust
-        ' 
-        pnlAdjust.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
-        pnlAdjust.BackColor = Color.White
-        pnlAdjust.Controls.Add(lblAdjTitle)
-        pnlAdjust.Controls.Add(lblAdjBarcode)
-        pnlAdjust.Controls.Add(txtAdjBarcode)
-        pnlAdjust.Controls.Add(lblAdjProduct)
-        pnlAdjust.Controls.Add(cboAdjProduct)
-        pnlAdjust.Controls.Add(lblAdjNewQty)
-        pnlAdjust.Controls.Add(txtNewQty)
-        pnlAdjust.Controls.Add(lblAdjNotes)
-        pnlAdjust.Controls.Add(txtAdjNotes)
-        pnlAdjust.Controls.Add(btnConfirmAdjust)
-        pnlAdjust.Controls.Add(btnCancelAdjust)
-        pnlAdjust.Location = New Point(0, 0)
-        pnlAdjust.Name = "pnlAdjust"
-        pnlAdjust.Size = New Size(1760, 215)
-        pnlAdjust.TabIndex = 5
-        pnlAdjust.Visible = False
-        ' 
-        ' lblAdjTitle
-        ' 
-        lblAdjTitle.Font = New Font("Segoe UI", 10F, FontStyle.Bold)
-        lblAdjTitle.ForeColor = Color.FromArgb(CByte(230), CByte(126), CByte(34))
-        lblAdjTitle.Location = New Point(16, 12)
-        lblAdjTitle.Name = "lblAdjTitle"
-        lblAdjTitle.Size = New Size(200, 22)
-        lblAdjTitle.TabIndex = 0
-        lblAdjTitle.Text = "Adjust Stock"
-        ' 
-        ' lblAdjBarcode
-        ' 
-        lblAdjBarcode.Font = New Font("Segoe UI", 9F)
-        lblAdjBarcode.ForeColor = Color.FromArgb(CByte(80), CByte(85), CByte(95))
-        lblAdjBarcode.Location = New Point(16, 44)
-        lblAdjBarcode.Name = "lblAdjBarcode"
-        lblAdjBarcode.Size = New Size(170, 20)
-        lblAdjBarcode.TabIndex = 1
-        lblAdjBarcode.Text = "Scan Barcode"
-        ' 
-        ' txtAdjBarcode
-        ' 
-        txtAdjBarcode.Font = New Font("Segoe UI", 10F)
-        txtAdjBarcode.Location = New Point(16, 66)
-        txtAdjBarcode.Name = "txtAdjBarcode"
-        txtAdjBarcode.PlaceholderText = "Scan or type..."
-        txtAdjBarcode.Size = New Size(170, 27)
-        txtAdjBarcode.TabIndex = 2
-        ' 
-        ' lblAdjProduct
-        ' 
-        lblAdjProduct.Font = New Font("Segoe UI", 9F)
-        lblAdjProduct.ForeColor = Color.FromArgb(CByte(80), CByte(85), CByte(95))
-        lblAdjProduct.Location = New Point(198, 44)
-        lblAdjProduct.Name = "lblAdjProduct"
-        lblAdjProduct.Size = New Size(150, 20)
-        lblAdjProduct.TabIndex = 3
-        lblAdjProduct.Text = "Product *"
-        ' 
-        ' cboAdjProduct
-        ' 
-        cboAdjProduct.DropDownStyle = ComboBoxStyle.DropDownList
-        cboAdjProduct.Font = New Font("Segoe UI", 10F)
-        cboAdjProduct.Location = New Point(198, 66)
-        cboAdjProduct.Name = "cboAdjProduct"
-        cboAdjProduct.Size = New Size(706, 28)
-        cboAdjProduct.TabIndex = 4
-        ' 
-        ' lblAdjNewQty
-        ' 
-        lblAdjNewQty.Font = New Font("Segoe UI", 9F)
-        lblAdjNewQty.ForeColor = Color.FromArgb(CByte(80), CByte(85), CByte(95))
-        lblAdjNewQty.Location = New Point(16, 106)
-        lblAdjNewQty.Name = "lblAdjNewQty"
-        lblAdjNewQty.Size = New Size(150, 20)
-        lblAdjNewQty.TabIndex = 5
-        lblAdjNewQty.Text = "New Quantity *"
-        ' 
-        ' txtNewQty
-        ' 
-        txtNewQty.Font = New Font("Segoe UI", 10F)
-        txtNewQty.Location = New Point(16, 128)
-        txtNewQty.MaxLength = 8
-        txtNewQty.Name = "txtNewQty"
-        txtNewQty.Size = New Size(180, 27)
-        txtNewQty.TabIndex = 6
-        ' 
-        ' lblAdjNotes
-        ' 
-        lblAdjNotes.Font = New Font("Segoe UI", 9F)
-        lblAdjNotes.ForeColor = Color.FromArgb(CByte(80), CByte(85), CByte(95))
-        lblAdjNotes.Location = New Point(212, 106)
-        lblAdjNotes.Name = "lblAdjNotes"
-        lblAdjNotes.Size = New Size(130, 20)
-        lblAdjNotes.TabIndex = 7
-        lblAdjNotes.Text = "Reason / Notes"
-        ' 
-        ' txtAdjNotes
-        ' 
-        txtAdjNotes.Font = New Font("Segoe UI", 10F)
-        txtAdjNotes.Location = New Point(212, 128)
-        txtAdjNotes.MaxLength = 255
-        txtAdjNotes.Name = "txtAdjNotes"
-        txtAdjNotes.Size = New Size(692, 27)
-        txtAdjNotes.TabIndex = 8
-        ' 
-        ' btnConfirmAdjust
-        ' 
-        btnConfirmAdjust.BackColor = Color.FromArgb(CByte(230), CByte(126), CByte(34))
-        btnConfirmAdjust.Cursor = Cursors.Hand
-        btnConfirmAdjust.FlatAppearance.BorderSize = 0
-        btnConfirmAdjust.FlatStyle = FlatStyle.Flat
-        btnConfirmAdjust.Font = New Font("Segoe UI", 9F, FontStyle.Bold)
-        btnConfirmAdjust.ForeColor = Color.White
-        btnConfirmAdjust.Location = New Point(16, 164)
-        btnConfirmAdjust.Name = "btnConfirmAdjust"
-        btnConfirmAdjust.Size = New Size(140, 30)
-        btnConfirmAdjust.TabIndex = 9
-        btnConfirmAdjust.Text = "Confirm Adjustment"
-        btnConfirmAdjust.UseVisualStyleBackColor = False
-        ' 
-        ' btnCancelAdjust
-        ' 
-        btnCancelAdjust.BackColor = Color.FromArgb(CByte(150), CByte(155), CByte(165))
-        btnCancelAdjust.Cursor = Cursors.Hand
-        btnCancelAdjust.FlatAppearance.BorderSize = 0
-        btnCancelAdjust.FlatStyle = FlatStyle.Flat
-        btnCancelAdjust.Font = New Font("Segoe UI", 9F)
-        btnCancelAdjust.ForeColor = Color.White
-        btnCancelAdjust.Location = New Point(164, 164)
-        btnCancelAdjust.Name = "btnCancelAdjust"
-        btnCancelAdjust.Size = New Size(100, 30)
-        btnCancelAdjust.TabIndex = 10
-        btnCancelAdjust.Text = "Cancel"
-        btnCancelAdjust.UseVisualStyleBackColor = False
-        ' 
-        ' Panel1
-        ' 
-        Panel1.Controls.Add(lblPageHeader)
-        Panel1.Dock = DockStyle.Top
-        Panel1.Location = New Point(0, 0)
-        Panel1.Name = "Panel1"
-        Panel1.Size = New Size(980, 76)
-        Panel1.TabIndex = 2
-        ' 
-        ' Panel2
-        ' 
-        Panel2.Controls.Add(dgvInventory)
-        Panel2.Controls.Add(pnlDetail)
-        Panel2.Controls.Add(pnlActionBar)
-        Panel2.Dock = DockStyle.Fill
-        Panel2.Location = New Point(0, 76)
-        Panel2.Name = "Panel2"
-        Panel2.Size = New Size(980, 649)
-        Panel2.TabIndex = 3
-        ' 
-        ' pnlDetail
-        ' 
-        pnlDetail.Controls.Add(pnlReceive)
-        pnlDetail.Controls.Add(pnlAdjust)
-        pnlDetail.Dock = DockStyle.Bottom
-        pnlDetail.Location = New Point(0, 434)
-        pnlDetail.Name = "pnlDetail"
-        pnlDetail.Size = New Size(980, 215)
-        pnlDetail.TabIndex = 7
-        pnlDetail.Visible = False
-        ' 
-        ' pnlActionBar
-        ' 
-        pnlActionBar.BackColor = Color.FromArgb(CByte(245), CByte(246), CByte(248))
-        pnlActionBar.Controls.Add(btnReceiveStock)
-        pnlActionBar.Controls.Add(btnAdjustStock)
-        pnlActionBar.Controls.Add(btnRefresh)
-        pnlActionBar.Controls.Add(lblSearch)
-        pnlActionBar.Controls.Add(txtSearch)
-        pnlActionBar.Controls.Add(btnClearSearch)
-        pnlActionBar.Dock = DockStyle.Top
-        pnlActionBar.Location = New Point(0, 0)
-        pnlActionBar.Name = "pnlActionBar"
-        pnlActionBar.Size = New Size(980, 52)
-        pnlActionBar.TabIndex = 6
+        lblTotalRecords.AutoSize = True
+        lblTotalRecords.Font = New Font("Segoe UI", 9.5F, FontStyle.Bold)
+        lblTotalRecords.ForeColor = Color.FromArgb(CByte(80), CByte(85), CByte(95))
+        lblTotalRecords.Location = New Point(12, 8)
+        lblTotalRecords.Name = "lblTotalRecords"
+        lblTotalRecords.Size = New Size(116, 19)
+        lblTotalRecords.TabIndex = 0
+        lblTotalRecords.Text = "Total Records: 0"
         ' 
         ' frmInventory
         ' 
@@ -634,62 +434,54 @@ Partial Class frmInventory
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.FromArgb(CByte(245), CByte(246), CByte(248))
         ClientSize = New Size(980, 725)
+        Controls.Add(Panel3)
         Controls.Add(Panel2)
         Controls.Add(Panel1)
         FormBorderStyle = FormBorderStyle.None
         Name = "frmInventory"
         Text = "Inventory Management"
-        WindowState = FormWindowState.Maximized
-        CType(dgvInventory, ComponentModel.ISupportInitialize).EndInit()
-        pnlReceive.ResumeLayout(False)
-        pnlReceive.PerformLayout()
-        pnlAdjust.ResumeLayout(False)
-        pnlAdjust.PerformLayout()
         Panel1.ResumeLayout(False)
+        Panel1.PerformLayout()
         Panel2.ResumeLayout(False)
-        pnlDetail.ResumeLayout(False)
-        pnlActionBar.ResumeLayout(False)
-        pnlActionBar.PerformLayout()
+        pnlForm.ResumeLayout(False)
+        pnlForm.PerformLayout()
+        Panel3.ResumeLayout(False)
+        CType(dgvInventory, ComponentModel.ISupportInitialize).EndInit()
+        pnlFooter.ResumeLayout(False)
+        pnlFooter.PerformLayout()
         ResumeLayout(False)
     End Sub
 
-    Friend WithEvents lblPageHeader     As Label
-    Friend WithEvents btnReceiveStock   As Button
-    Friend WithEvents btnAdjustStock    As Button
-    Friend WithEvents btnRefresh        As Button
-    Friend WithEvents lblSearch         As Label
-    Friend WithEvents txtSearch         As TextBox
-    Friend WithEvents btnClearSearch    As Button
-    Friend WithEvents dgvInventory      As DataGridView
-    Friend WithEvents pnlReceive        As Panel
-    Friend WithEvents lblReceiveTitle   As Label
-    Friend WithEvents lblRBarcode       As Label
-    Friend WithEvents txtRBarcode       As TextBox
-    Friend WithEvents lblRProduct       As Label
-    Friend WithEvents cboProduct        As ComboBox
-    Friend WithEvents lblRSupplier      As Label
-    Friend WithEvents cboSupplier       As ComboBox
-    Friend WithEvents lblRQty           As Label
-    Friend WithEvents txtQuantity       As TextBox
-    Friend WithEvents lblRNotes         As Label
-    Friend WithEvents txtNotes          As TextBox
-    Friend WithEvents btnConfirmReceipt As Button
-    Friend WithEvents btnCancelReceipt  As Button
-    Friend WithEvents pnlAdjust         As Panel
-    Friend WithEvents lblAdjTitle       As Label
-    Friend WithEvents lblAdjBarcode     As Label
-    Friend WithEvents txtAdjBarcode     As TextBox
-    Friend WithEvents lblAdjProduct     As Label
-    Friend WithEvents cboAdjProduct     As ComboBox
-    Friend WithEvents lblAdjNewQty      As Label
-    Friend WithEvents txtNewQty         As TextBox
-    Friend WithEvents lblAdjNotes       As Label
-    Friend WithEvents txtAdjNotes       As TextBox
-    Friend WithEvents btnConfirmAdjust  As Button
-    Friend WithEvents btnCancelAdjust   As Button
-    Friend WithEvents Panel1            As Panel
-    Friend WithEvents Panel2            As Panel
-    Friend WithEvents pnlActionBar      As Panel
-    Friend WithEvents pnlDetail         As Panel
+    Friend WithEvents lblPageHeader As Label
+    Friend WithEvents Panel1 As Panel
+    Friend WithEvents lblSearch As Label
+    Friend WithEvents txtSearch As TextBox
+    Friend WithEvents btnClearSearch As Button
+    Friend WithEvents Panel2 As Panel
+    Friend WithEvents pnlForm As Panel
+    Friend WithEvents lblBarcode As Label
+    Friend WithEvents txtBarcode As TextBox
+    Friend WithEvents lblProduct As Label
+    Friend WithEvents cboProduct As ComboBox
+    Friend WithEvents lblCategory As Label
+    Friend WithEvents txtCategory As TextBox
+    Friend WithEvents lblCurrentStock As Label
+    Friend WithEvents txtCurrentStock As TextBox
+    Friend WithEvents lblUnit As Label
+    Friend WithEvents txtUnit As TextBox
+    Friend WithEvents lblSupplier As Label
+    Friend WithEvents cboSupplier As ComboBox
+    Friend WithEvents lblQuantity As Label
+    Friend WithEvents txtQuantity As TextBox
+    Friend WithEvents lblNotes As Label
+    Friend WithEvents txtNotes As TextBox
+    Friend WithEvents btnReceiveStock As Button
+    Friend WithEvents btnAdjustStock As Button
+    Friend WithEvents btnClear As Button
+    Friend WithEvents btnRefresh As Button
+    Friend WithEvents Panel3 As Panel
+    Friend WithEvents dgvInventory As DataGridView
+    Friend WithEvents pnlFooter As Panel
+    Friend WithEvents lblTotalRecords As Label
 
 End Class
