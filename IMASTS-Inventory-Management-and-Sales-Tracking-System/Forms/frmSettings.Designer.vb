@@ -17,48 +17,40 @@ Partial Class frmSettings
 
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        lblPageHeader     = New Label()
-        tabControl        = New TabControl()
-        tabUsers          = New TabPage()
-        dgvUsers          = New DataGridView()
-        pnlAddUser        = New Panel()
-        lblAddTitle       = New Label()
-        lblNewUsername    = New Label()
-        txtNewUsername    = New TextBox()
-        lblNewPassword    = New Label()
-        txtNewPassword    = New TextBox()
-        lblNewType        = New Label()
-        cboNewUserType    = New ComboBox()
-        btnAddUser        = New Button()
-        pnlChangePass     = New Panel()
-        lblChangeTitle    = New Label()
-        lblSelectedUser   = New Label()
-        lblChangePass     = New Label()
-        txtChangePassword = New TextBox()
-        btnChangePass     = New Button()
-        btnDeleteUser     = New Button()
-        tabPrefs          = New TabPage()
-        lblPrefTitle      = New Label()
-        lblCompanyName    = New Label()
-        txtCompanyName    = New TextBox()
-        lblCurrencySymbol = New Label()
-        txtCurrencySymbol = New TextBox()
-        btnSavePreferences = New Button()
-        tabSecurity           = New TabPage()
-        lblSecurityTitle      = New Label()
-        lblSecurityStatus     = New Label()
-        lblSecurityQuestion   = New Label()
-        cboSecurityQuestion   = New ComboBox()
-        lblSecurityAnswer     = New Label()
-        txtSecurityAnswer     = New TextBox()
+        lblPageHeader            = New Label()
+        tabControl               = New TabControl()
+        tabUsers                 = New TabPage()
+        dgvUsers                 = New DataGridView()
+        pnlAddUser               = New Panel()
+        lblAddTitle              = New Label()
+        lblNewUsername           = New Label()
+        txtNewUsername           = New TextBox()
+        lblNewPassword           = New Label()
+        txtNewPassword           = New TextBox()
+        lblNewType               = New Label()
+        cboNewUserType           = New ComboBox()
+        btnAddUser               = New Button()
+        pnlChangePass            = New Panel()
+        lblChangeTitle           = New Label()
+        lblSelectedUser          = New Label()
+        lblChangePass            = New Label()
+        txtChangePassword        = New TextBox()
+        btnChangePass            = New Button()
+        btnDeleteUser            = New Button()
+        tabSecurity              = New TabPage()
+        lblSecurityTitle         = New Label()
+        lblSecurityStatus        = New Label()
+        lblSecurityQuestion      = New Label()
+        cboSecurityQuestion      = New ComboBox()
+        lblSecurityAnswer        = New Label()
+        txtSecurityAnswer        = New TextBox()
         lblConfirmSecurityAnswer = New Label()
         txtConfirmSecurityAnswer = New TextBox()
-        btnSaveSecurityQA     = New Button()
-        Panel1            = New Panel()
-        Panel2            = New Panel()
+        btnSaveSecurityQA        = New Button()
+        Panel1                   = New Panel()
+        Panel2                   = New Panel()
         tabControl.SuspendLayout()
         tabUsers.SuspendLayout()
-        tabPrefs.SuspendLayout()
         tabSecurity.SuspendLayout()
         pnlAddUser.SuspendLayout()
         pnlChangePass.SuspendLayout()
@@ -89,7 +81,6 @@ Partial Class frmSettings
         tabControl.Name     = "tabControl"
         tabControl.TabIndex = 0
         tabControl.TabPages.Add(tabUsers)
-        tabControl.TabPages.Add(tabPrefs)
         tabControl.TabPages.Add(tabSecurity)
         '
         ' tabUsers — User Management
@@ -283,70 +274,6 @@ Partial Class frmSettings
         tabUsers.Controls.Add(pnlChangePass)
         tabUsers.Controls.Add(btnDeleteUser)
         '
-        ' tabPrefs — System Preferences
-        '
-        tabPrefs.BackColor = Color.FromArgb(CByte(245), CByte(246), CByte(248))
-        tabPrefs.Name      = "tabPrefs"
-        tabPrefs.Text      = "  System Preferences  "
-
-        lblPrefTitle.Font      = New Font("Segoe UI", 11F, FontStyle.Bold)
-        lblPrefTitle.ForeColor = Color.FromArgb(CByte(40), CByte(44), CByte(52))
-        lblPrefTitle.Location  = New Point(30, 30)
-        lblPrefTitle.Name      = "lblPrefTitle"
-        lblPrefTitle.Size      = New Size(300, 26)
-        lblPrefTitle.TabIndex  = 0
-        lblPrefTitle.Text      = "Application Settings"
-
-        lblCompanyName.Font      = lblFont
-        lblCompanyName.ForeColor = lblColor
-        lblCompanyName.Location  = New Point(30, 76)
-        lblCompanyName.Name      = "lblCompanyName"
-        lblCompanyName.Size      = New Size(200, 20)
-        lblCompanyName.TabIndex  = 1
-        lblCompanyName.Text      = "Company Name *"
-
-        txtCompanyName.Font      = txtFont
-        txtCompanyName.Location  = New Point(30, 98)
-        txtCompanyName.MaxLength = 100
-        txtCompanyName.Name      = "txtCompanyName"
-        txtCompanyName.Size      = New Size(500, 27)
-        txtCompanyName.TabIndex  = 2
-
-        lblCurrencySymbol.Font      = lblFont
-        lblCurrencySymbol.ForeColor = lblColor
-        lblCurrencySymbol.Location  = New Point(30, 140)
-        lblCurrencySymbol.Name      = "lblCurrencySymbol"
-        lblCurrencySymbol.Size      = New Size(200, 20)
-        lblCurrencySymbol.TabIndex  = 3
-        lblCurrencySymbol.Text      = "Currency Symbol *"
-
-        txtCurrencySymbol.Font      = txtFont
-        txtCurrencySymbol.Location  = New Point(30, 162)
-        txtCurrencySymbol.MaxLength = 5
-        txtCurrencySymbol.Name      = "txtCurrencySymbol"
-        txtCurrencySymbol.Size      = New Size(120, 27)
-        txtCurrencySymbol.TabIndex  = 4
-
-        btnSavePreferences.BackColor = Color.FromArgb(CByte(39), CByte(174), CByte(96))
-        btnSavePreferences.Cursor    = Cursors.Hand
-        btnSavePreferences.FlatAppearance.BorderSize = 0
-        btnSavePreferences.FlatStyle = FlatStyle.Flat
-        btnSavePreferences.Font      = New Font("Segoe UI", 9.5F, FontStyle.Bold)
-        btnSavePreferences.ForeColor = Color.White
-        btnSavePreferences.Location  = New Point(30, 208)
-        btnSavePreferences.Name      = "btnSavePreferences"
-        btnSavePreferences.Size      = New Size(160, 34)
-        btnSavePreferences.TabIndex  = 5
-        btnSavePreferences.Text      = "Save Preferences"
-        btnSavePreferences.UseVisualStyleBackColor = False
-
-        tabPrefs.Controls.Add(lblPrefTitle)
-        tabPrefs.Controls.Add(lblCompanyName)
-        tabPrefs.Controls.Add(txtCompanyName)
-        tabPrefs.Controls.Add(lblCurrencySymbol)
-        tabPrefs.Controls.Add(txtCurrencySymbol)
-        tabPrefs.Controls.Add(btnSavePreferences)
-        '
         ' tabSecurity — My Security Question (self-service, all roles)
         '
         tabSecurity.BackColor = Color.FromArgb(CByte(245), CByte(246), CByte(248))
@@ -467,7 +394,6 @@ Partial Class frmSettings
         Text                = "Settings"
         tabControl.ResumeLayout(False)
         tabUsers.ResumeLayout(False)
-        tabPrefs.ResumeLayout(False)
         tabSecurity.ResumeLayout(False)
         tabSecurity.PerformLayout()
         pnlAddUser.ResumeLayout(False)
@@ -500,13 +426,6 @@ Partial Class frmSettings
     Friend WithEvents txtChangePassword  As TextBox
     Friend WithEvents btnChangePass      As Button
     Friend WithEvents btnDeleteUser      As Button
-    Friend WithEvents tabPrefs           As TabPage
-    Friend WithEvents lblPrefTitle       As Label
-    Friend WithEvents lblCompanyName     As Label
-    Friend WithEvents txtCompanyName     As TextBox
-    Friend WithEvents lblCurrencySymbol  As Label
-    Friend WithEvents txtCurrencySymbol  As TextBox
-    Friend WithEvents btnSavePreferences As Button
     Friend WithEvents tabSecurity            As TabPage
     Friend WithEvents lblSecurityTitle       As Label
     Friend WithEvents lblSecurityStatus      As Label

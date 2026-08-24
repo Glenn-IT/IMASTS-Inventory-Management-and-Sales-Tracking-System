@@ -4,15 +4,13 @@ Public Class frmSettings
     Private _selectedUsername As String  = ""
 
     Private Sub frmSettings_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-Me.Text = "Settings"
+        Me.Text = "Settings"
         If SessionManager.IsAdmin Then
             ConfigureGrid()
             PopulateUserTypeCombo()
             LoadUsers()
-            LoadPreferences()
         Else
             tabControl.TabPages.Remove(tabUsers)
-            tabControl.TabPages.Remove(tabPrefs)
         End If
         PopulateSecurityQuestionCombo()
         LoadSecurityQA()
@@ -142,37 +140,7 @@ Me.Text = "Settings"
         LoadUsers()
     End Sub
 
-    ' ── Tab 2 — System Preferences ────────────────────────────────────────
-
-    Private Sub LoadPreferences()
-        SettingsManager.Load()
-        txtCompanyName.Text    = SettingsManager.CompanyName
-        txtCurrencySymbol.Text = SettingsManager.CurrencySymbol
-    End Sub
-
-    Private Sub btnSavePreferences_Click(sender As Object, e As EventArgs) Handles btnSavePreferences.Click
-        Dim company  = InputHelper.SanitizeInput(txtCompanyName.Text)
-        Dim currency = InputHelper.SanitizeInput(txtCurrencySymbol.Text)
-        If company = "" Then
-            MessageBox.Show("Company name cannot be empty.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            Return
-        End If
-        If currency = "" Then
-            MessageBox.Show("Currency symbol cannot be empty.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            Return
-        End If
-        Try
-            SettingsManager.CompanyName    = company
-            SettingsManager.CurrencySymbol = currency
-            SettingsManager.Save()
-            ActivityLogger.Log(SessionManager.Username, Constants.LogSuccess, "System preferences updated.")
-            MessageBox.Show("Preferences saved successfully.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information)
-        Catch ex As Exception
-            MessageBox.Show($"Failed to save preferences: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
-    End Sub
-
-    ' ── Tab 3 — My Security Question (self-service) ──────────────────────
+    ' ── Tab 2 — My Security Question (self-service) ──────────────────────
 
     Private Sub PopulateSecurityQuestionCombo()
         cboSecurityQuestion.Items.Clear()

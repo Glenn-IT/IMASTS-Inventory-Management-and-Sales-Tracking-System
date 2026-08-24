@@ -37,7 +37,8 @@ Public Class frmMain
         For Each btn As Button In {btnDashboard, btnProducts, btnInventory,
                                    btnNewSale, btnSalesHistory,
                                    btnSuppliers, btnCategories,
-                                   btnReports, btnSettings}
+                                   btnReports, btnSettings,
+                                   btnSystemManual, btnDevelopers}
             btn.BackColor = Drawing.Color.Transparent
             btn.Cursor    = Cursors.Hand
             btn.FlatStyle = FlatStyle.Flat
@@ -121,6 +122,14 @@ Public Class frmMain
 
     Private Sub btnSettings_Click(sender As Object, e As EventArgs) Handles btnSettings.Click
         OpenChildForm(New frmSettings())
+    End Sub
+
+    Private Sub btnSystemManual_Click(sender As Object, e As EventArgs) Handles btnSystemManual.Click
+        OpenChildForm(New frmSystemManual())
+    End Sub
+
+    Private Sub btnDevelopers_Click(sender As Object, e As EventArgs) Handles btnDevelopers.Click
+        OpenChildForm(New frmDevelopers())
     End Sub
 
     ' ── Logout ───────────────────────────────────────────────────────────

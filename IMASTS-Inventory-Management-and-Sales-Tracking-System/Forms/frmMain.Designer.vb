@@ -37,6 +37,8 @@ Partial Class frmMain
         Me.lblToolsSep        = New System.Windows.Forms.Label()
         Me.btnReports         = New System.Windows.Forms.Button()
         Me.btnSettings        = New System.Windows.Forms.Button()
+        Me.btnSystemManual    = New System.Windows.Forms.Button()
+        Me.btnDevelopers      = New System.Windows.Forms.Button()
         Me.pnlStatus          = New System.Windows.Forms.Panel()
         Me.lblStatusUser      = New System.Windows.Forms.Label()
         Me.lblStatusDateTime  = New System.Windows.Forms.Label()
@@ -107,7 +109,7 @@ Partial Class frmMain
         Me.btnLogout.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
 
         ' flpNav
-        Me.flpNav.AutoScroll    = False
+        Me.flpNav.AutoScroll    = True
         Me.flpNav.Dock          = System.Windows.Forms.DockStyle.Fill
         Me.flpNav.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
         Me.flpNav.Name          = "flpNav"
@@ -126,9 +128,11 @@ Partial Class frmMain
         Me.flpNav.Controls.Add(Me.lblToolsSep)
         Me.flpNav.Controls.Add(Me.btnReports)
         Me.flpNav.Controls.Add(Me.btnSettings)
+        Me.flpNav.Controls.Add(Me.btnSystemManual)
+        Me.flpNav.Controls.Add(Me.btnDevelopers)
 
-        Dim btnSz As New System.Drawing.Size(210, 40)
-        Dim sepSz As New System.Drawing.Size(210, 26)
+        Dim btnSz As New System.Drawing.Size(200, 38)
+        Dim sepSz As New System.Drawing.Size(200, 26)
         Dim zero  As New System.Windows.Forms.Padding(0)
 
         ' lblNavHeader
@@ -220,7 +224,7 @@ Partial Class frmMain
         Me.lblToolsSep.Name      = "lblToolsSep"
         Me.lblToolsSep.Padding   = New System.Windows.Forms.Padding(14, 0, 0, 0)
         Me.lblToolsSep.Size      = sepSz
-        Me.lblToolsSep.Text      = "TOOLS"
+        Me.lblToolsSep.Text      = "TOOLS & HELP"
         Me.lblToolsSep.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
 
         ' btnReports
@@ -238,6 +242,22 @@ Partial Class frmMain
         Me.btnSettings.Size      = btnSz
         Me.btnSettings.Text      = "  Settings"
         Me.btnSettings.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+
+        ' btnSystemManual
+        Me.btnSystemManual.AutoSize  = False
+        Me.btnSystemManual.Margin    = zero
+        Me.btnSystemManual.Name      = "btnSystemManual"
+        Me.btnSystemManual.Size      = btnSz
+        Me.btnSystemManual.Text      = "  System Manual"
+        Me.btnSystemManual.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+
+        ' btnDevelopers
+        Me.btnDevelopers.AutoSize  = False
+        Me.btnDevelopers.Margin    = zero
+        Me.btnDevelopers.Name      = "btnDevelopers"
+        Me.btnDevelopers.Size      = btnSz
+        Me.btnDevelopers.Text      = "  Developers Page"
+        Me.btnDevelopers.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
 
         ' ── pnlContent ──────────────────────────────────────────────
         Me.pnlContent.BackColor = System.Drawing.Color.FromArgb(245, 246, 248)
@@ -289,6 +309,8 @@ Partial Class frmMain
     Friend WithEvents lblToolsSep       As System.Windows.Forms.Label
     Friend WithEvents btnReports        As System.Windows.Forms.Button
     Friend WithEvents btnSettings       As System.Windows.Forms.Button
+    Friend WithEvents btnSystemManual   As System.Windows.Forms.Button
+    Friend WithEvents btnDevelopers     As System.Windows.Forms.Button
     Friend WithEvents pnlStatus         As System.Windows.Forms.Panel
     Friend WithEvents lblStatusUser     As System.Windows.Forms.Label
     Friend WithEvents lblStatusDateTime As System.Windows.Forms.Label
