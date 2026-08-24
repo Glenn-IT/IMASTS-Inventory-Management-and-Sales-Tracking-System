@@ -5,12 +5,30 @@ Imports System.Data
 
 Public Module ReceiptHelper
 
+    Private Function GetLogoBase64() As String
+        Try
+            Dim rm As New System.ComponentModel.ComponentResourceManager(GetType(frmLogin))
+            Dim img = CType(rm.GetObject("PictureBox1.Image"), System.Drawing.Image)
+            If img IsNot Nothing Then
+                Using ms As New MemoryStream()
+                    img.Save(ms, System.Drawing.Imaging.ImageFormat.Png)
+                    Return "data:image/png;base64," & Convert.ToBase64String(ms.ToArray())
+                End Using
+            End If
+        Catch
+        End Try
+        Return ""
+    End Function
+
     Public Function GenerateReceiptHtml(saleId As Integer, cashier As String, saleDate As DateTime,
                                         items As DataTable, subtotal As Decimal,
                                         discount As Decimal, netAmount As Decimal) As String
         SettingsManager.Load()
-        Dim companyName As String = If(String.IsNullOrWhiteSpace(SettingsManager.CompanyName), "IMASTS Store", SettingsManager.CompanyName)
+        Dim customCompany As String = SettingsManager.CompanyName
         Dim currency As String = If(String.IsNullOrWhiteSpace(SettingsManager.CurrencySymbol), "₱", SettingsManager.CurrencySymbol)
+        Dim logoUri As String = GetLogoBase64()
+
+        Dim showCustomCompany As Boolean = Not String.IsNullOrWhiteSpace(customCompany) AndAlso customCompany.Trim().ToUpperInvariant() <> "MY COMPANY"
 
         Dim sb As New StringBuilder()
         sb.AppendLine("<!DOCTYPE html>")
@@ -18,7 +36,7 @@ Public Module ReceiptHelper
         sb.AppendLine("<head>")
         sb.AppendLine("  <meta charset=""UTF-8"">")
         sb.AppendLine("  <meta name=""viewport"" content=""width=device-width, initial-scale=1.0"">")
-        sb.AppendLine($"  <title>Sales Receipt #{saleId:D6}</title>")
+        sb.AppendLine($"  <title>IMASTS Receipt #{saleId:D6}</title>")
         sb.AppendLine("  <style>")
         sb.AppendLine("    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif; }")
         sb.AppendLine("    body { background-color: #eef2f7; display: flex; flex-direction: column; align-items: center; padding: 30px 15px; min-height: 100vh; }")
@@ -29,9 +47,12 @@ Public Module ReceiptHelper
         sb.AppendLine("    .btn-close { background: #7f8c8d; color: #fff; }")
         sb.AppendLine("    .btn-close:hover { background: #6c7a7b; }")
         sb.AppendLine("    .receipt-container { background: #ffffff; width: 100%; max-width: 380px; padding: 25px 22px; border-radius: 10px; box-shadow: 0 8px 24px rgba(0,0,0,0.08); border: 1px solid #e1e8ed; color: #2c3e50; }")
-        sb.AppendLine("    .header { text-align: center; margin-bottom: 16px; }")
-        sb.AppendLine("    .company-title { font-size: 20px; font-weight: 800; color: #1c2b4a; letter-spacing: 0.5px; margin-bottom: 3px; }")
-        sb.AppendLine("    .receipt-badge { display: inline-block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #7f8c8d; padding: 2px 8px; border-radius: 4px; background: #f0f3f6; margin-top: 4px; }")
+        sb.AppendLine("    .header { text-align: center; margin-bottom: 12px; }")
+        sb.AppendLine("    .logo-img { max-width: 160px; max-height: 75px; object-fit: contain; margin-bottom: 8px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.08)); }")
+        sb.AppendLine("    .system-title { font-size: 20px; font-weight: 800; color: #1c2b4a; letter-spacing: 0.8px; margin-bottom: 2px; }")
+        sb.AppendLine("    .system-subtitle { font-size: 11.5px; font-weight: 600; color: #475569; margin-bottom: 4px; line-height: 1.3; }")
+        sb.AppendLine("    .custom-company { font-size: 13px; font-weight: 700; color: #2980b9; margin-top: 4px; }")
+        sb.AppendLine("    .receipt-badge { display: inline-block; font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #64748b; padding: 3px 10px; border-radius: 4px; background: #f1f5f9; margin-top: 6px; }")
         sb.AppendLine("    .dash-line { border-top: 1px dashed #cbd5e1; margin: 14px 0; }")
         sb.AppendLine("    .solid-line { border-top: 2px solid #1c2b4a; margin: 14px 0; }")
         sb.AppendLine("    .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; font-size: 12.5px; color: #475569; }")
@@ -45,8 +66,8 @@ Public Module ReceiptHelper
         sb.AppendLine("    .item-sub { font-size: 11px; color: #64748b; }")
         sb.AppendLine("    .summary-row { display: flex; justify-content: space-between; font-size: 13px; color: #475569; margin-bottom: 5px; }")
         sb.AppendLine("    .grand-total { display: flex; justify-content: space-between; font-size: 18px; font-weight: 800; color: #1b5e20; padding-top: 6px; }")
-        sb.AppendLine("    .footer { text-align: center; margin-top: 20px; font-size: 11.5px; color: #64748b; line-height: 1.5; }")
-        sb.AppendLine("    .barcode-mock { text-align: center; margin: 15px 0 5px 0; font-family: 'Courier New', monospace; letter-spacing: 4px; font-weight: bold; font-size: 15px; color: #334155; }")
+        sb.AppendLine("    .footer { text-align: center; margin-top: 18px; font-size: 11.5px; color: #64748b; line-height: 1.5; }")
+        sb.AppendLine("    .barcode-mock { text-align: center; margin: 14px 0 6px 0; font-family: 'Courier New', monospace; letter-spacing: 4px; font-weight: bold; font-size: 15px; color: #334155; }")
         sb.AppendLine("    @media print {")
         sb.AppendLine("      body { background: #fff !important; padding: 0 !important; }")
         sb.AppendLine("      .no-print, .no-print-toolbar { display: none !important; }")
@@ -62,7 +83,18 @@ Public Module ReceiptHelper
         sb.AppendLine("  </div>")
         sb.AppendLine("  <div class=""receipt-container"">")
         sb.AppendLine("    <div class=""header"">")
-        sb.AppendLine($"      <div class=""company-title"">{System.Net.WebUtility.HtmlEncode(companyName)}</div>")
+
+        If Not String.IsNullOrWhiteSpace(logoUri) Then
+            sb.AppendLine($"      <img src=""{logoUri}"" alt=""IMASTS Logo"" class=""logo-img"" />")
+        End If
+
+        sb.AppendLine("      <div class=""system-title"">IMASTS</div>")
+        sb.AppendLine("      <div class=""system-subtitle"">Inventory Management &amp; Sales Tracking System</div>")
+
+        If showCustomCompany Then
+            sb.AppendLine($"      <div class=""custom-company"">{System.Net.WebUtility.HtmlEncode(customCompany)}</div>")
+        End If
+
         sb.AppendLine("      <div class=""receipt-badge"">Official Sales Receipt</div>")
         sb.AppendLine("    </div>")
         sb.AppendLine("    <div class=""dash-line""></div>")
@@ -132,6 +164,7 @@ Public Module ReceiptHelper
         sb.AppendLine("    <div class=""footer"">")
         sb.AppendLine("      <p><strong>Thank you for your purchase!</strong></p>")
         sb.AppendLine("      <p>Please keep this receipt for your records.</p>")
+        sb.AppendLine("      <p style=""margin-top: 8px; font-size: 10px; color: #94a3b8;"">Powered by IMASTS</p>")
         sb.AppendLine("    </div>")
         sb.AppendLine("  </div>")
         sb.AppendLine("  <script>")
