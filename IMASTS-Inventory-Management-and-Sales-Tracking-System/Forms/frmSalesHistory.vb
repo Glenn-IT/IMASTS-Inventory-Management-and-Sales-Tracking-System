@@ -3,14 +3,21 @@ Public Class frmSalesHistory
     Private _repo           As New SaleRepository()
     Private _selectedSaleId As Integer = 0
     Private _selectedVoided As Boolean = False
+    Private _selectedCashier As String = ""
+    Private _selectedDate   As DateTime = DateTime.Now
+    Private _selectedTotal  As Decimal = 0
+    Private _selectedDiscount As Decimal = 0
+    Private _selectedNet    As Decimal = 0
+    Private _selectedItemsTable As DataTable = Nothing
 
     Private Sub frmSalesHistory_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-Me.Text = "Sales History"
+        Me.Text = "Sales History"
         ConfigureGrids()
         dtpFrom.Value         = DateTime.Today.AddDays(-30)
         dtpTo.Value           = DateTime.Today
         btnVoidSale.Visible   = (SessionManager.UserType = Constants.RoleAdmin)
         btnVoidSale.Enabled   = False
+        btnPrintReceipt.Enabled = False
         LoadSales()
     End Sub
 
@@ -90,7 +97,9 @@ Me.Text = "Sales History"
         dgvSaleItems.DataSource = Nothing
         _selectedSaleId      = 0
         _selectedVoided      = False
+        _selectedItemsTable  = Nothing
         btnVoidSale.Enabled  = False
+        btnPrintReceipt.Enabled = False
         ColorizeStatusRows()
     End Sub
 
@@ -114,12 +123,37 @@ Me.Text = "Sales History"
     ' ── Grid selection ────────────────────────────────────────────────────
 
     Private Sub dgvSales_SelectionChanged(sender As Object, e As EventArgs) Handles dgvSales.SelectionChanged
-        If dgvSales.CurrentRow Is Nothing Then Return
+        If dgvSales.CurrentRow Is Nothing Then
+            btnPrintReceipt.Enabled = False
+            btnVoidSale.Enabled = False
+            Return
+        End If
+
         Dim row = dgvSales.CurrentRow
-        _selectedSaleId  = CInt(row.Cells("SaleID").Value)
-        _selectedVoided  = CBool(row.Cells("IsVoided").Value)
-        dgvSaleItems.DataSource = _repo.GetSaleItems(_selectedSaleId)
+        _selectedSaleId   = CInt(row.Cells("SaleID").Value)
+        _selectedVoided   = CBool(row.Cells("IsVoided").Value)
+        _selectedCashier  = row.Cells("Cashier").Value?.ToString()
+        _selectedDate     = If(IsDate(row.Cells("SaleDate").Value), CDate(row.Cells("SaleDate").Value), DateTime.Now)
+        _selectedTotal    = If(IsNumeric(row.Cells("TotalAmount").Value), CDec(row.Cells("TotalAmount").Value), 0)
+        _selectedDiscount = If(IsNumeric(row.Cells("Discount").Value), CDec(row.Cells("Discount").Value), 0)
+        _selectedNet      = If(IsNumeric(row.Cells("NetAmount").Value), CDec(row.Cells("NetAmount").Value), 0)
+
+        _selectedItemsTable = _repo.GetSaleItems(_selectedSaleId)
+        dgvSaleItems.DataSource = _selectedItemsTable
+
         btnVoidSale.Enabled = (SessionManager.UserType = Constants.RoleAdmin) AndAlso Not _selectedVoided
+        btnPrintReceipt.Enabled = (_selectedSaleId > 0 AndAlso _selectedItemsTable IsNot Nothing AndAlso _selectedItemsTable.Rows.Count > 0)
+    End Sub
+
+    ' ── Print receipt ─────────────────────────────────────────────────────
+
+    Private Sub btnPrintReceipt_Click(sender As Object, e As EventArgs) Handles btnPrintReceipt.Click
+        If _selectedSaleId <= 0 OrElse _selectedItemsTable Is Nothing OrElse _selectedItemsTable.Rows.Count = 0 Then
+            MessageBox.Show("Please select a sale to print.", "Print Receipt", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+
+        ReceiptHelper.OpenReceiptInChrome(_selectedSaleId, _selectedCashier, _selectedDate, _selectedItemsTable, _selectedTotal, _selectedDiscount, _selectedNet)
     End Sub
 
     ' ── Void sale ─────────────────────────────────────────────────────────

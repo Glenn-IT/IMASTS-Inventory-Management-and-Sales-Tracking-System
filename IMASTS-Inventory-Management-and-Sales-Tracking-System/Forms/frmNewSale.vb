@@ -4,12 +4,22 @@ Public Class frmNewSale
     Private _saleItems As New DataTable()
     Private _products  As DataTable
 
+    ' Last confirmed sale state for printing
+    Private _lastSaleId     As Integer = 0
+    Private _lastCashier    As String = ""
+    Private _lastSaleDate   As DateTime = DateTime.Now
+    Private _lastItems      As DataTable = Nothing
+    Private _lastSubtotal   As Decimal = 0
+    Private _lastDiscount   As Decimal = 0
+    Private _lastNetAmount  As Decimal = 0
+
     Private Sub frmNewSale_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.Text = "New Sale"
         InitSaleItemsTable()
         ConfigureGrid()
         LoadProducts()
         RecalculateTotals()
+        ResetPrintButton()
         txtScanBarcode.Focus()
     End Sub
 
@@ -70,6 +80,18 @@ Public Class frmNewSale
         cboProduct.DisplayMember = "Name"
         cboProduct.ValueMember   = "ProductID"
         cboProduct.SelectedIndex = -1
+    End Sub
+
+    Private Sub ResetPrintButton()
+        If _lastSaleId > 0 Then
+            btnPrintReceipt.Enabled = True
+            btnPrintReceipt.BackColor = Color.FromArgb(41, 128, 185)
+            btnPrintReceipt.Text = $"🖶 Print Receipt #{_lastSaleId:D4}"
+        Else
+            btnPrintReceipt.Enabled = False
+            btnPrintReceipt.BackColor = Color.FromArgb(189, 195, 199)
+            btnPrintReceipt.Text = "🖶 Print Receipt"
+        End If
     End Sub
 
     ' ── Barcode Scanner handler ───────────────────────────────────────────
@@ -230,12 +252,41 @@ Public Class frmNewSale
         Dim discount As Decimal = 0
         If Not Decimal.TryParse(txtDiscount.Text, discount) OrElse discount < 0 Then discount = 0
 
+        Dim subtotal As Decimal = 0
+        For Each row As DataRow In _saleItems.Rows
+            subtotal += CDec(row("Subtotal"))
+        Next
+        Dim netAmount As Decimal = subtotal - discount
+
+        ' Copy items before completing sale
+        Dim receiptItemsCopy = _saleItems.Copy()
+
         Dim saleId = _repo.CreateSale(SessionManager.Username, _saleItems, discount)
         If saleId > 0 Then
+            _lastSaleId = saleId
+            _lastCashier = SessionManager.Username
+            _lastSaleDate = DateTime.Now
+            _lastItems = receiptItemsCopy
+            _lastSubtotal = subtotal
+            _lastDiscount = discount
+            _lastNetAmount = netAmount
+
+            ResetPrintButton()
+
             ActivityLogger.Log(SessionManager.Username, Constants.LogSuccess,
-                $"Sale #{saleId} confirmed. {_saleItems.Rows.Count} item(s), net: {txtNetAmount.Text}.")
-            MessageBox.Show($"Sale #{saleId} completed successfully!",
-                            "Sale Complete", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                $"Sale #{saleId} confirmed. {_lastItems.Rows.Count} item(s), net: {txtNetAmount.Text}.")
+
+            Dim askPrint = MessageBox.Show(
+                $"Sale #{saleId} completed successfully!" & vbCrLf & vbCrLf &
+                "Do you want to print the receipt now in Chrome / PDF?",
+                "Sale Complete",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question)
+
+            If askPrint = DialogResult.Yes Then
+                ReceiptHelper.OpenReceiptInChrome(_lastSaleId, _lastCashier, _lastSaleDate, _lastItems, _lastSubtotal, _lastDiscount, _lastNetAmount)
+            End If
+
             ClearSale()
             LoadProducts()
         Else
@@ -244,12 +295,23 @@ Public Class frmNewSale
         End If
     End Sub
 
+    ' ── Print Receipt ─────────────────────────────────────────────────────
+
+    Private Sub btnPrintReceipt_Click(sender As Object, e As EventArgs) Handles btnPrintReceipt.Click
+        If _lastSaleId <= 0 OrElse _lastItems Is Nothing OrElse _lastItems.Rows.Count = 0 Then
+            MessageBox.Show("No completed sale available to print.", "Print Receipt", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Return
+        End If
+
+        ReceiptHelper.OpenReceiptInChrome(_lastSaleId, _lastCashier, _lastSaleDate, _lastItems, _lastSubtotal, _lastDiscount, _lastNetAmount)
+    End Sub
+
     ' ── Cancel / Clear ────────────────────────────────────────────────────
 
     Private Sub btnCancelSale_Click(sender As Object, e As EventArgs) Handles btnCancelSale.Click
         If _saleItems.Rows.Count > 0 Then
             Dim confirm = MessageBox.Show(
-                "Cancel this sale? All items will be cleared.",
+                "Cancel this sale? All items in the current cart will be cleared.",
                 "Confirm Cancel",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question)

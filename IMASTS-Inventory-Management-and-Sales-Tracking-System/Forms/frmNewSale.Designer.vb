@@ -39,6 +39,7 @@ Partial Class frmNewSale
         lblNetLbl = New Label()
         txtNetAmount = New TextBox()
         btnConfirmSale = New Button()
+        btnPrintReceipt = New Button()
         btnCancelSale = New Button()
         Panel1 = New Panel()
         Panel2 = New Panel()
@@ -214,6 +215,7 @@ Partial Class frmNewSale
         pnlTotals.Controls.Add(lblNetLbl)
         pnlTotals.Controls.Add(txtNetAmount)
         pnlTotals.Controls.Add(btnConfirmSale)
+        pnlTotals.Controls.Add(btnPrintReceipt)
         pnlTotals.Controls.Add(btnCancelSale)
         pnlTotals.Dock = DockStyle.Right
         pnlTotals.Location = New Point(813, 0)
@@ -312,6 +314,22 @@ Partial Class frmNewSale
         btnConfirmSale.Text = "Confirm Sale"
         btnConfirmSale.UseVisualStyleBackColor = False
         ' 
+        ' btnPrintReceipt
+        ' 
+        btnPrintReceipt.BackColor = Color.FromArgb(CByte(189), CByte(195), CByte(199))
+        btnPrintReceipt.Cursor = Cursors.Hand
+        btnPrintReceipt.Enabled = False
+        btnPrintReceipt.FlatAppearance.BorderSize = 0
+        btnPrintReceipt.FlatStyle = FlatStyle.Flat
+        btnPrintReceipt.Font = New Font("Segoe UI", 9F, FontStyle.Bold)
+        btnPrintReceipt.ForeColor = Color.White
+        btnPrintReceipt.Location = New Point(12, 290)
+        btnPrintReceipt.Name = "btnPrintReceipt"
+        btnPrintReceipt.Size = New Size(143, 36)
+        btnPrintReceipt.TabIndex = 8
+        btnPrintReceipt.Text = "🖶 Print Receipt"
+        btnPrintReceipt.UseVisualStyleBackColor = False
+        ' 
         ' btnCancelSale
         ' 
         btnCancelSale.BackColor = Color.FromArgb(CByte(192), CByte(57), CByte(43))
@@ -320,10 +338,10 @@ Partial Class frmNewSale
         btnCancelSale.FlatStyle = FlatStyle.Flat
         btnCancelSale.Font = New Font("Segoe UI", 9F)
         btnCancelSale.ForeColor = Color.White
-        btnCancelSale.Location = New Point(12, 290)
+        btnCancelSale.Location = New Point(12, 334)
         btnCancelSale.Name = "btnCancelSale"
         btnCancelSale.Size = New Size(143, 30)
-        btnCancelSale.TabIndex = 8
+        btnCancelSale.TabIndex = 9
         btnCancelSale.Text = "Cancel Sale"
         btnCancelSale.UseVisualStyleBackColor = False
         ' 
@@ -390,6 +408,7 @@ Partial Class frmNewSale
     Friend WithEvents lblNetLbl       As Label
     Friend WithEvents txtNetAmount    As TextBox
     Friend WithEvents btnConfirmSale  As Button
+    Friend WithEvents btnPrintReceipt As Button
     Friend WithEvents btnCancelSale   As Button
     Friend WithEvents Panel1          As Panel
     Friend WithEvents Panel2          As Panel

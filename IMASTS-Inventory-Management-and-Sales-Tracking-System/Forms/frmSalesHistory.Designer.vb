@@ -23,6 +23,7 @@ Partial Class frmSalesHistory
         lblTo = New Label()
         dtpTo = New DateTimePicker()
         btnFilter = New Button()
+        btnPrintReceipt = New Button()
         btnVoidSale = New Button()
         dgvSales = New DataGridView()
         lblDetailHeader = New Label()
@@ -97,10 +98,26 @@ Partial Class frmSalesHistory
         btnFilter.ForeColor = Color.White
         btnFilter.Location = New Point(356, 28)
         btnFilter.Name = "btnFilter"
-        btnFilter.Size = New Size(100, 30)
+        btnFilter.Size = New Size(90, 30)
         btnFilter.TabIndex = 4
         btnFilter.Text = "Filter"
         btnFilter.UseVisualStyleBackColor = False
+        ' 
+        ' btnPrintReceipt
+        ' 
+        btnPrintReceipt.BackColor = Color.FromArgb(CByte(41), CByte(128), CByte(185))
+        btnPrintReceipt.Cursor = Cursors.Hand
+        btnPrintReceipt.Enabled = False
+        btnPrintReceipt.FlatAppearance.BorderSize = 0
+        btnPrintReceipt.FlatStyle = FlatStyle.Flat
+        btnPrintReceipt.Font = New Font("Segoe UI", 9F, FontStyle.Bold)
+        btnPrintReceipt.ForeColor = Color.White
+        btnPrintReceipt.Location = New Point(454, 28)
+        btnPrintReceipt.Name = "btnPrintReceipt"
+        btnPrintReceipt.Size = New Size(130, 30)
+        btnPrintReceipt.TabIndex = 5
+        btnPrintReceipt.Text = "🖶 Print Receipt"
+        btnPrintReceipt.UseVisualStyleBackColor = False
         ' 
         ' btnVoidSale
         ' 
@@ -111,10 +128,10 @@ Partial Class frmSalesHistory
         btnVoidSale.FlatStyle = FlatStyle.Flat
         btnVoidSale.Font = New Font("Segoe UI", 9F, FontStyle.Bold)
         btnVoidSale.ForeColor = Color.White
-        btnVoidSale.Location = New Point(464, 28)
+        btnVoidSale.Location = New Point(592, 28)
         btnVoidSale.Name = "btnVoidSale"
-        btnVoidSale.Size = New Size(120, 30)
-        btnVoidSale.TabIndex = 5
+        btnVoidSale.Size = New Size(110, 30)
+        btnVoidSale.TabIndex = 6
         btnVoidSale.Text = "Void Sale"
         btnVoidSale.UseVisualStyleBackColor = False
         btnVoidSale.Visible = False
@@ -140,7 +157,7 @@ Partial Class frmSalesHistory
         dgvSales.RowTemplate.Height = 32
         dgvSales.SelectionMode = DataGridViewSelectionMode.FullRowSelect
         dgvSales.Size = New Size(980, 249)
-        dgvSales.TabIndex = 6
+        dgvSales.TabIndex = 7
         ' 
         ' lblDetailHeader
         ' 
@@ -149,7 +166,7 @@ Partial Class frmSalesHistory
         lblDetailHeader.Location = New Point(12, 8)
         lblDetailHeader.Name = "lblDetailHeader"
         lblDetailHeader.Size = New Size(200, 20)
-        lblDetailHeader.TabIndex = 7
+        lblDetailHeader.TabIndex = 0
         lblDetailHeader.Text = "Sale Items"
         ' 
         ' dgvSaleItems
@@ -173,7 +190,7 @@ Partial Class frmSalesHistory
         dgvSaleItems.RowTemplate.Height = 30
         dgvSaleItems.SelectionMode = DataGridViewSelectionMode.FullRowSelect
         dgvSaleItems.Size = New Size(956, 286)
-        dgvSaleItems.TabIndex = 8
+        dgvSaleItems.TabIndex = 1
         ' 
         ' Panel1
         ' 
@@ -214,6 +231,7 @@ Partial Class frmSalesHistory
         pnlFilter.Controls.Add(lblTo)
         pnlFilter.Controls.Add(dtpTo)
         pnlFilter.Controls.Add(btnFilter)
+        pnlFilter.Controls.Add(btnPrintReceipt)
         pnlFilter.Controls.Add(btnVoidSale)
         pnlFilter.Dock = DockStyle.Top
         pnlFilter.Location = New Point(0, 0)
@@ -247,6 +265,7 @@ Partial Class frmSalesHistory
     Friend WithEvents lblTo           As Label
     Friend WithEvents dtpTo           As DateTimePicker
     Friend WithEvents btnFilter       As Button
+    Friend WithEvents btnPrintReceipt As Button
     Friend WithEvents btnVoidSale     As Button
     Friend WithEvents dgvSales        As DataGridView
     Friend WithEvents lblDetailHeader As Label
