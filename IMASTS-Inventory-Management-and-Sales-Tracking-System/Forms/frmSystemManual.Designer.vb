@@ -23,21 +23,21 @@ Partial Class frmSystemManual
         Panel2 = New Panel()
         tabControl = New TabControl()
         tabOverview = New TabPage()
-        txtOverview = New TextBox()
+        rtbOverview = New RichTextBox()
         tabProducts = New TabPage()
-        txtProducts = New TextBox()
+        rtbProducts = New RichTextBox()
         tabInventory = New TabPage()
-        txtInventory = New TextBox()
+        rtbInventory = New RichTextBox()
         tabNewSale = New TabPage()
-        txtNewSale = New TextBox()
+        rtbNewSale = New RichTextBox()
         tabSalesHistory = New TabPage()
-        txtSalesHistory = New TextBox()
+        rtbSalesHistory = New RichTextBox()
         tabSuppliersCategories = New TabPage()
-        txtSuppliersCategories = New TextBox()
+        rtbSuppliersCategories = New RichTextBox()
         tabReports = New TabPage()
-        txtReports = New TextBox()
+        rtbReports = New RichTextBox()
         tabSettings = New TabPage()
-        txtSettings = New TextBox()
+        rtbSettings = New RichTextBox()
         Panel1.SuspendLayout()
         Panel2.SuspendLayout()
         tabControl.SuspendLayout()
@@ -111,210 +111,210 @@ Partial Class frmSystemManual
         ' tabOverview
         ' 
         tabOverview.BackColor = Color.White
-        tabOverview.Controls.Add(txtOverview)
+        tabOverview.Controls.Add(rtbOverview)
         tabOverview.Location = New Point(4, 26)
         tabOverview.Name = "tabOverview"
-        tabOverview.Padding = New Padding(12)
+        tabOverview.Padding = New Padding(16)
         tabOverview.Size = New Size(972, 621)
         tabOverview.TabIndex = 0
         tabOverview.Text = "  Overview & Dashboard  "
         ' 
-        ' txtOverview
+        ' rtbOverview
         ' 
-        txtOverview.BackColor = Color.White
-        txtOverview.BorderStyle = BorderStyle.None
-        txtOverview.Dock = DockStyle.Fill
-        txtOverview.Font = New Font("Segoe UI", 10F)
-        txtOverview.ForeColor = Color.FromArgb(CByte(40), CByte(44), CByte(52))
-        txtOverview.Location = New Point(12, 12)
-        txtOverview.Multiline = True
-        txtOverview.Name = "txtOverview"
-        txtOverview.ReadOnly = True
-        txtOverview.ScrollBars = ScrollBars.Vertical
-        txtOverview.Size = New Size(948, 597)
-        txtOverview.TabIndex = 0
+        rtbOverview.BackColor = Color.White
+        rtbOverview.BorderStyle = BorderStyle.None
+        rtbOverview.Dock = DockStyle.Fill
+        rtbOverview.Font = New Font("Segoe UI", 10F)
+        rtbOverview.ForeColor = Color.FromArgb(CByte(40), CByte(44), CByte(52))
+        rtbOverview.Location = New Point(16, 16)
+        rtbOverview.Name = "rtbOverview"
+        rtbOverview.ReadOnly = True
+        rtbOverview.ScrollBars = RichTextBoxScrollBars.Vertical
+        rtbOverview.Size = New Size(940, 589)
+        rtbOverview.TabIndex = 0
+        rtbOverview.Text = ""
         ' 
         ' tabProducts
         ' 
         tabProducts.BackColor = Color.White
-        tabProducts.Controls.Add(txtProducts)
+        tabProducts.Controls.Add(rtbProducts)
         tabProducts.Location = New Point(4, 26)
         tabProducts.Name = "tabProducts"
-        tabProducts.Padding = New Padding(12)
+        tabProducts.Padding = New Padding(16)
         tabProducts.Size = New Size(972, 621)
         tabProducts.TabIndex = 1
         tabProducts.Text = "  Products  "
         ' 
-        ' txtProducts
+        ' rtbProducts
         ' 
-        txtProducts.BackColor = Color.White
-        txtProducts.BorderStyle = BorderStyle.None
-        txtProducts.Dock = DockStyle.Fill
-        txtProducts.Font = New Font("Segoe UI", 10F)
-        txtProducts.ForeColor = Color.FromArgb(CByte(40), CByte(44), CByte(52))
-        txtProducts.Location = New Point(12, 12)
-        txtProducts.Multiline = True
-        txtProducts.Name = "txtProducts"
-        txtProducts.ReadOnly = True
-        txtProducts.ScrollBars = ScrollBars.Vertical
-        txtProducts.Size = New Size(948, 597)
-        txtProducts.TabIndex = 0
+        rtbProducts.BackColor = Color.White
+        rtbProducts.BorderStyle = BorderStyle.None
+        rtbProducts.Dock = DockStyle.Fill
+        rtbProducts.Font = New Font("Segoe UI", 10F)
+        rtbProducts.ForeColor = Color.FromArgb(CByte(40), CByte(44), CByte(52))
+        rtbProducts.Location = New Point(16, 16)
+        rtbProducts.Name = "rtbProducts"
+        rtbProducts.ReadOnly = True
+        rtbProducts.ScrollBars = RichTextBoxScrollBars.Vertical
+        rtbProducts.Size = New Size(940, 589)
+        rtbProducts.TabIndex = 0
+        rtbProducts.Text = ""
         ' 
         ' tabInventory
         ' 
         tabInventory.BackColor = Color.White
-        tabInventory.Controls.Add(txtInventory)
+        tabInventory.Controls.Add(rtbInventory)
         tabInventory.Location = New Point(4, 26)
         tabInventory.Name = "tabInventory"
-        tabInventory.Padding = New Padding(12)
+        tabInventory.Padding = New Padding(16)
         tabInventory.Size = New Size(972, 621)
         tabInventory.TabIndex = 2
         tabInventory.Text = "  Inventory Management  "
         ' 
-        ' txtInventory
+        ' rtbInventory
         ' 
-        txtInventory.BackColor = Color.White
-        txtInventory.BorderStyle = BorderStyle.None
-        txtInventory.Dock = DockStyle.Fill
-        txtInventory.Font = New Font("Segoe UI", 10F)
-        txtInventory.ForeColor = Color.FromArgb(CByte(40), CByte(44), CByte(52))
-        txtInventory.Location = New Point(12, 12)
-        txtInventory.Multiline = True
-        txtInventory.Name = "txtInventory"
-        txtInventory.ReadOnly = True
-        txtInventory.ScrollBars = ScrollBars.Vertical
-        txtInventory.Size = New Size(948, 597)
-        txtInventory.TabIndex = 0
+        rtbInventory.BackColor = Color.White
+        rtbInventory.BorderStyle = BorderStyle.None
+        rtbInventory.Dock = DockStyle.Fill
+        rtbInventory.Font = New Font("Segoe UI", 10F)
+        rtbInventory.ForeColor = Color.FromArgb(CByte(40), CByte(44), CByte(52))
+        rtbInventory.Location = New Point(16, 16)
+        rtbInventory.Name = "rtbInventory"
+        rtbInventory.ReadOnly = True
+        rtbInventory.ScrollBars = RichTextBoxScrollBars.Vertical
+        rtbInventory.Size = New Size(940, 589)
+        rtbInventory.TabIndex = 0
+        rtbInventory.Text = ""
         ' 
         ' tabNewSale
         ' 
         tabNewSale.BackColor = Color.White
-        tabNewSale.Controls.Add(txtNewSale)
+        tabNewSale.Controls.Add(rtbNewSale)
         tabNewSale.Location = New Point(4, 26)
         tabNewSale.Name = "tabNewSale"
-        tabNewSale.Padding = New Padding(12)
+        tabNewSale.Padding = New Padding(16)
         tabNewSale.Size = New Size(972, 621)
         tabNewSale.TabIndex = 3
         tabNewSale.Text = "  New Sale (POS)  "
         ' 
-        ' txtNewSale
+        ' rtbNewSale
         ' 
-        txtNewSale.BackColor = Color.White
-        txtNewSale.BorderStyle = BorderStyle.None
-        txtNewSale.Dock = DockStyle.Fill
-        txtNewSale.Font = New Font("Segoe UI", 10F)
-        txtNewSale.ForeColor = Color.FromArgb(CByte(40), CByte(44), CByte(52))
-        txtNewSale.Location = New Point(12, 12)
-        txtNewSale.Multiline = True
-        txtNewSale.Name = "txtNewSale"
-        txtNewSale.ReadOnly = True
-        txtNewSale.ScrollBars = ScrollBars.Vertical
-        txtNewSale.Size = New Size(948, 597)
-        txtNewSale.TabIndex = 0
+        rtbNewSale.BackColor = Color.White
+        rtbNewSale.BorderStyle = BorderStyle.None
+        rtbNewSale.Dock = DockStyle.Fill
+        rtbNewSale.Font = New Font("Segoe UI", 10F)
+        rtbNewSale.ForeColor = Color.FromArgb(CByte(40), CByte(44), CByte(52))
+        rtbNewSale.Location = New Point(16, 16)
+        rtbNewSale.Name = "rtbNewSale"
+        rtbNewSale.ReadOnly = True
+        rtbNewSale.ScrollBars = RichTextBoxScrollBars.Vertical
+        rtbNewSale.Size = New Size(940, 589)
+        rtbNewSale.TabIndex = 0
+        rtbNewSale.Text = ""
         ' 
         ' tabSalesHistory
         ' 
         tabSalesHistory.BackColor = Color.White
-        tabSalesHistory.Controls.Add(txtSalesHistory)
+        tabSalesHistory.Controls.Add(rtbSalesHistory)
         tabSalesHistory.Location = New Point(4, 26)
         tabSalesHistory.Name = "tabSalesHistory"
-        tabSalesHistory.Padding = New Padding(12)
+        tabSalesHistory.Padding = New Padding(16)
         tabSalesHistory.Size = New Size(972, 621)
         tabSalesHistory.TabIndex = 4
         tabSalesHistory.Text = "  Sales History  "
         ' 
-        ' txtSalesHistory
+        ' rtbSalesHistory
         ' 
-        txtSalesHistory.BackColor = Color.White
-        txtSalesHistory.BorderStyle = BorderStyle.None
-        txtSalesHistory.Dock = DockStyle.Fill
-        txtSalesHistory.Font = New Font("Segoe UI", 10F)
-        txtSalesHistory.ForeColor = Color.FromArgb(CByte(40), CByte(44), CByte(52))
-        txtSalesHistory.Location = New Point(12, 12)
-        txtSalesHistory.Multiline = True
-        txtSalesHistory.Name = "txtSalesHistory"
-        txtSalesHistory.ReadOnly = True
-        txtSalesHistory.ScrollBars = ScrollBars.Vertical
-        txtSalesHistory.Size = New Size(948, 597)
-        txtSalesHistory.TabIndex = 0
+        rtbSalesHistory.BackColor = Color.White
+        rtbSalesHistory.BorderStyle = BorderStyle.None
+        rtbSalesHistory.Dock = DockStyle.Fill
+        rtbSalesHistory.Font = New Font("Segoe UI", 10F)
+        rtbSalesHistory.ForeColor = Color.FromArgb(CByte(40), CByte(44), CByte(52))
+        rtbSalesHistory.Location = New Point(16, 16)
+        rtbSalesHistory.Name = "rtbSalesHistory"
+        rtbSalesHistory.ReadOnly = True
+        rtbSalesHistory.ScrollBars = RichTextBoxScrollBars.Vertical
+        rtbSalesHistory.Size = New Size(940, 589)
+        rtbSalesHistory.TabIndex = 0
+        rtbSalesHistory.Text = ""
         ' 
         ' tabSuppliersCategories
         ' 
         tabSuppliersCategories.BackColor = Color.White
-        tabSuppliersCategories.Controls.Add(txtSuppliersCategories)
+        tabSuppliersCategories.Controls.Add(rtbSuppliersCategories)
         tabSuppliersCategories.Location = New Point(4, 26)
         tabSuppliersCategories.Name = "tabSuppliersCategories"
-        tabSuppliersCategories.Padding = New Padding(12)
+        tabSuppliersCategories.Padding = New Padding(16)
         tabSuppliersCategories.Size = New Size(972, 621)
         tabSuppliersCategories.TabIndex = 5
         tabSuppliersCategories.Text = "  Suppliers & Categories  "
         ' 
-        ' txtSuppliersCategories
+        ' rtbSuppliersCategories
         ' 
-        txtSuppliersCategories.BackColor = Color.White
-        txtSuppliersCategories.BorderStyle = BorderStyle.None
-        txtSuppliersCategories.Dock = DockStyle.Fill
-        txtSuppliersCategories.Font = New Font("Segoe UI", 10F)
-        txtSuppliersCategories.ForeColor = Color.FromArgb(CByte(40), CByte(44), CByte(52))
-        txtSuppliersCategories.Location = New Point(12, 12)
-        txtSuppliersCategories.Multiline = True
-        txtSuppliersCategories.Name = "txtSuppliersCategories"
-        txtSuppliersCategories.ReadOnly = True
-        txtSuppliersCategories.ScrollBars = ScrollBars.Vertical
-        txtSuppliersCategories.Size = New Size(948, 597)
-        txtSuppliersCategories.TabIndex = 0
+        rtbSuppliersCategories.BackColor = Color.White
+        rtbSuppliersCategories.BorderStyle = BorderStyle.None
+        rtbSuppliersCategories.Dock = DockStyle.Fill
+        rtbSuppliersCategories.Font = New Font("Segoe UI", 10F)
+        rtbSuppliersCategories.ForeColor = Color.FromArgb(CByte(40), CByte(44), CByte(52))
+        rtbSuppliersCategories.Location = New Point(16, 16)
+        rtbSuppliersCategories.Name = "rtbSuppliersCategories"
+        rtbSuppliersCategories.ReadOnly = True
+        rtbSuppliersCategories.ScrollBars = RichTextBoxScrollBars.Vertical
+        rtbSuppliersCategories.Size = New Size(940, 589)
+        rtbSuppliersCategories.TabIndex = 0
+        rtbSuppliersCategories.Text = ""
         ' 
         ' tabReports
         ' 
         tabReports.BackColor = Color.White
-        tabReports.Controls.Add(txtReports)
+        tabReports.Controls.Add(rtbReports)
         tabReports.Location = New Point(4, 26)
         tabReports.Name = "tabReports"
-        tabReports.Padding = New Padding(12)
+        tabReports.Padding = New Padding(16)
         tabReports.Size = New Size(972, 621)
         tabReports.TabIndex = 6
         tabReports.Text = "  Reports & Analytics  "
         ' 
-        ' txtReports
+        ' rtbReports
         ' 
-        txtReports.BackColor = Color.White
-        txtReports.BorderStyle = BorderStyle.None
-        txtReports.Dock = DockStyle.Fill
-        txtReports.Font = New Font("Segoe UI", 10F)
-        txtReports.ForeColor = Color.FromArgb(CByte(40), CByte(44), CByte(52))
-        txtReports.Location = New Point(12, 12)
-        txtReports.Multiline = True
-        txtReports.Name = "txtReports"
-        txtReports.ReadOnly = True
-        txtReports.ScrollBars = ScrollBars.Vertical
-        txtReports.Size = New Size(948, 597)
-        txtReports.TabIndex = 0
+        rtbReports.BackColor = Color.White
+        rtbReports.BorderStyle = BorderStyle.None
+        rtbReports.Dock = DockStyle.Fill
+        rtbReports.Font = New Font("Segoe UI", 10F)
+        rtbReports.ForeColor = Color.FromArgb(CByte(40), CByte(44), CByte(52))
+        rtbReports.Location = New Point(16, 16)
+        rtbReports.Name = "rtbReports"
+        rtbReports.ReadOnly = True
+        rtbReports.ScrollBars = RichTextBoxScrollBars.Vertical
+        rtbReports.Size = New Size(940, 589)
+        rtbReports.TabIndex = 0
+        rtbReports.Text = ""
         ' 
         ' tabSettings
         ' 
         tabSettings.BackColor = Color.White
-        tabSettings.Controls.Add(txtSettings)
+        tabSettings.Controls.Add(rtbSettings)
         tabSettings.Location = New Point(4, 26)
         tabSettings.Name = "tabSettings"
-        tabSettings.Padding = New Padding(12)
+        tabSettings.Padding = New Padding(16)
         tabSettings.Size = New Size(972, 621)
         tabSettings.TabIndex = 7
         tabSettings.Text = "  Settings & Security  "
         ' 
-        ' txtSettings
+        ' rtbSettings
         ' 
-        txtSettings.BackColor = Color.White
-        txtSettings.BorderStyle = BorderStyle.None
-        txtSettings.Dock = DockStyle.Fill
-        txtSettings.Font = New Font("Segoe UI", 10F)
-        txtSettings.ForeColor = Color.FromArgb(CByte(40), CByte(44), CByte(52))
-        txtSettings.Location = New Point(12, 12)
-        txtSettings.Multiline = True
-        txtSettings.Name = "txtSettings"
-        txtSettings.ReadOnly = True
-        txtSettings.ScrollBars = ScrollBars.Vertical
-        txtSettings.Size = New Size(948, 597)
-        txtSettings.TabIndex = 0
+        rtbSettings.BackColor = Color.White
+        rtbSettings.BorderStyle = BorderStyle.None
+        rtbSettings.Dock = DockStyle.Fill
+        rtbSettings.Font = New Font("Segoe UI", 10F)
+        rtbSettings.ForeColor = Color.FromArgb(CByte(40), CByte(44), CByte(52))
+        rtbSettings.Location = New Point(16, 16)
+        rtbSettings.Name = "rtbSettings"
+        rtbSettings.ReadOnly = True
+        rtbSettings.ScrollBars = RichTextBoxScrollBars.Vertical
+        rtbSettings.Size = New Size(940, 589)
+        rtbSettings.TabIndex = 0
+        rtbSettings.Text = ""
         ' 
         ' frmSystemManual
         ' 
@@ -331,21 +331,13 @@ Partial Class frmSystemManual
         Panel2.ResumeLayout(False)
         tabControl.ResumeLayout(False)
         tabOverview.ResumeLayout(False)
-        tabOverview.PerformLayout()
         tabProducts.ResumeLayout(False)
-        tabProducts.PerformLayout()
         tabInventory.ResumeLayout(False)
-        tabInventory.PerformLayout()
         tabNewSale.ResumeLayout(False)
-        tabNewSale.PerformLayout()
         tabSalesHistory.ResumeLayout(False)
-        tabSalesHistory.PerformLayout()
         tabSuppliersCategories.ResumeLayout(False)
-        tabSuppliersCategories.PerformLayout()
         tabReports.ResumeLayout(False)
-        tabReports.PerformLayout()
         tabSettings.ResumeLayout(False)
-        tabSettings.PerformLayout()
         ResumeLayout(False)
     End Sub
 
@@ -355,20 +347,20 @@ Partial Class frmSystemManual
     Friend WithEvents Panel2 As Panel
     Friend WithEvents tabControl As TabControl
     Friend WithEvents tabOverview As TabPage
-    Friend WithEvents txtOverview As TextBox
+    Friend WithEvents rtbOverview As RichTextBox
     Friend WithEvents tabProducts As TabPage
-    Friend WithEvents txtProducts As TextBox
+    Friend WithEvents rtbProducts As RichTextBox
     Friend WithEvents tabInventory As TabPage
-    Friend WithEvents txtInventory As TextBox
+    Friend WithEvents rtbInventory As RichTextBox
     Friend WithEvents tabNewSale As TabPage
-    Friend WithEvents txtNewSale As TextBox
+    Friend WithEvents rtbNewSale As RichTextBox
     Friend WithEvents tabSalesHistory As TabPage
-    Friend WithEvents txtSalesHistory As TextBox
+    Friend WithEvents rtbSalesHistory As RichTextBox
     Friend WithEvents tabSuppliersCategories As TabPage
-    Friend WithEvents txtSuppliersCategories As TextBox
+    Friend WithEvents rtbSuppliersCategories As RichTextBox
     Friend WithEvents tabReports As TabPage
-    Friend WithEvents txtReports As TextBox
+    Friend WithEvents rtbReports As RichTextBox
     Friend WithEvents tabSettings As TabPage
-    Friend WithEvents txtSettings As TextBox
+    Friend WithEvents rtbSettings As RichTextBox
 
 End Class

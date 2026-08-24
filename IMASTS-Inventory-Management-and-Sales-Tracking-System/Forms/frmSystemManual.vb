@@ -6,219 +6,257 @@ Public Class frmSystemManual
     End Sub
 
     Private Sub LoadManualContent()
-        ' Overview & Dashboard
-        txtOverview.Text =
-"================================================================================
-  IMASTS — INVENTORY MANAGEMENT AND SALES TRACKING SYSTEM
-  SYSTEM USER MANUAL & OPERATIONAL GUIDE
-================================================================================
+        LoadOverview()
+        LoadProducts()
+        LoadInventory()
+        LoadNewSale()
+        LoadSalesHistory()
+        LoadSuppliersCategories()
+        LoadReports()
+        LoadSettings()
+    End Sub
 
-1. SYSTEM OVERVIEW
---------------------------------------------------------------------------------
-IMASTS is an integrated desktop application designed to streamline daily retail
-operations, inventory tracking, point-of-sale transactions, and business analytics.
+    ' ── Overview ──────────────────────────────────────────────────────────
 
-2. DASHBOARD MODULE
---------------------------------------------------------------------------------
-The Dashboard serves as the central operational hub, providing real-time visibility:
+    Private Sub LoadOverview()
+        rtbOverview.Clear()
+        AppendTitle(rtbOverview, "IMASTS — System Overview & Dashboard Guide")
 
-  • Key Performance Indicators (KPIs):
-      - Total Products in Catalog
-      - Low Stock Alert Count
-      - Out of Stock Count
-      - Today's Total Sales Revenue
+        AppendSection(rtbOverview, "1. What is IMASTS?")
+        AppendBody(rtbOverview, "IMASTS (Inventory Management and Sales Tracking System) is a comprehensive, enterprise-ready desktop solution designed to automate retail transactions, maintain inventory control, monitor stock valuation, and track business revenue in real time.")
 
-  • Quick Actions:
-      - Instant navigation to New Sale, Products, Inventory, and Reports.
+        AppendSection(rtbOverview, "2. Key Modules & Workflow")
+        AppendBullet(rtbOverview, "Dashboard: Real-time KPIs, revenue stats, top-selling items, and quick action shortcuts.")
+        AppendBullet(rtbOverview, "Products: Catalog management, pricing, units of measure, and auto-generated barcodes.")
+        AppendBullet(rtbOverview, "Inventory: Stock receiving (+ Receive Stock), physical count adjustments (✎ Adjust Stock), and low-stock alerts.")
+        AppendBullet(rtbOverview, "New Sale (POS): Fast barcode scanner entry, automated cart calculation, and Google Chrome PDF receipt printing.")
+        AppendBullet(rtbOverview, "Sales History: Transaction audits, line item breakdowns, and one-click receipt re-printing.")
+        AppendBullet(rtbOverview, "Suppliers & Categories: Classification of goods and vendor contact directory.")
+        AppendBullet(rtbOverview, "Reports: Detailed sales summaries, inventory valuation, and CSV export capabilities.")
+        AppendBullet(rtbOverview, "Settings: User account management, role assignment, and self-service password recovery.")
+        rtbOverview.AppendText(Environment.NewLine)
 
-  • Top Selling Products & Low Stock Lists:
-      - Fast identification of inventory reorder needs and top-performing items.
+        AppendSection(rtbOverview, "3. User Roles & Security Access")
+        AppendStep(rtbOverview, "• Administrator:", "Full system privileges including User Management, Voiding Sales, and Detailed Reports.")
+        AppendStep(rtbOverview, "• Staff / Cashier:", "Daily point-of-sale transactions, product lookup, stock receiving, and personal security question setup.")
+        rtbOverview.Select(0, 0)
+    End Sub
 
-3. USER ROLES & ACCESS
---------------------------------------------------------------------------------
-  • Administrator: Full access to all modules, User Management, Reports, and Voiding.
-  • Staff / Cashier: Access to Point of Sale, Product lookup, Inventory, and Password recovery."
+    ' ── Products ──────────────────────────────────────────────────────────
 
-        ' Products
-        txtProducts.Text =
-"================================================================================
-  PRODUCT MANAGEMENT MODULE
-================================================================================
+    Private Sub LoadProducts()
+        rtbProducts.Clear()
+        AppendTitle(rtbProducts, "Product Management Module")
 
-1. ADDING A NEW PRODUCT
---------------------------------------------------------------------------------
-  Step 1: Enter or scan a Barcode (or click 'Gen' to auto-generate a unique barcode).
-  Step 2: Type the Product Name.
-  Step 3: Select Category and Supplier from the dropdown lists.
-  Step 4: Enter Unit Price (selling price), Initial Stock Quantity, and Reorder Level.
-  Step 5: Select or type the measurement Unit (pcs, box, kg, liter, etc.).
-  Step 6: Click 'Add' to save the product to the database.
+        AppendSection(rtbProducts, "1. Adding a New Product")
+        AppendStep(rtbProducts, "Step 1:", "Enter a barcode, or click the [Gen] button to generate a unique random barcode automatically.")
+        AppendStep(rtbProducts, "Step 2:", "Enter the complete Product Name.")
+        AppendStep(rtbProducts, "Step 3:", "Select the Category and Supplier from the dropdown menus.")
+        AppendStep(rtbProducts, "Step 4:", "Enter the Unit Price (selling price), Initial Stock Quantity, and Reorder Level.")
+        AppendStep(rtbProducts, "Step 5:", "Select or type the measurement Unit (e.g. pcs, box, kg, pack, liter).")
+        AppendStep(rtbProducts, "Step 6:", "Click the [Add] button to save the product to the database.")
+        rtbProducts.AppendText(Environment.NewLine)
 
-2. UPDATING A PRODUCT
---------------------------------------------------------------------------------
-  Step 1: Select the product row in the table (or scan its barcode in the search bar).
-  Step 2: Modify the desired fields (name, price, category, supplier, reorder level).
-  Step 3: Click 'Update' to save changes.
+        AppendSection(rtbProducts, "2. Editing / Updating a Product")
+        AppendStep(rtbProducts, "Step 1:", "Click on any product row in the table, or scan its barcode in the search bar.")
+        AppendStep(rtbProducts, "Step 2:", "Update any details (Price, Reorder Level, Category, Supplier, etc.) in the left editor panel.")
+        AppendStep(rtbProducts, "Step 3:", "Click [Update] to save the modifications.")
+        rtbProducts.AppendText(Environment.NewLine)
 
-3. DELETING A PRODUCT
---------------------------------------------------------------------------------
-  Step 1: Select the product from the grid.
-  Step 2: Click 'Delete' and confirm the prompt.
-  Note: If a product is already referenced by past sales or stock receipts, deletion
-        will be protected to maintain historical transaction integrity.
+        AppendSection(rtbProducts, "3. Deleting a Product")
+        AppendStep(rtbProducts, "Step 1:", "Select the product from the grid.")
+        AppendStep(rtbProducts, "Step 2:", "Click [Delete] and confirm the confirmation prompt.")
+        AppendBody(rtbProducts, "Note: Products with existing transaction history (past sales or stock receipts) are protected from deletion to ensure financial audit integrity.")
 
-4. SEARCH & BARCODE SCANNING
---------------------------------------------------------------------------------
-  • Type in the 'Search / Scan' box to filter in real-time by Name, Barcode, or Category.
-  • Press Enter to select the top matching product immediately."
+        AppendSection(rtbProducts, "4. Real-time Search & Barcode Scan")
+        AppendBullet(rtbProducts, "Type any product name, barcode, or category in the 'Search / Scan' box to filter instantly.")
+        AppendBullet(rtbProducts, "Press Enter while typing to auto-select and load the top matching product.")
+        rtbProducts.Select(0, 0)
+    End Sub
 
-        ' Inventory
-        txtInventory.Text =
-"================================================================================
-  INVENTORY & STOCK OPERATIONS MODULE
-================================================================================
+    ' ── Inventory ─────────────────────────────────────────────────────────
 
-1. RECEIVING NEW STOCK (+ Receive Stock)
---------------------------------------------------------------------------------
-Use this feature when a new delivery or replenishment shipment arrives:
+    Private Sub LoadInventory()
+        rtbInventory.Clear()
+        AppendTitle(rtbInventory, "Inventory & Stock Operations Module")
 
-  Step 1: Click the product in the table or scan its barcode in the Barcode field.
-  Step 2: Select the Supplier (optional/auto-filled).
-  Step 3: Enter the Quantity to Receive (positive whole number).
-  Step 4: Enter optional invoice or delivery notes.
-  Step 5: Click '+ Receive Stock' and confirm.
-  Result: Stock is incremented, and a receipt audit record is saved in tbl_StockReceipts.
+        AppendSection(rtbInventory, "1. Receiving Stock (+ Receive Stock)")
+        AppendBody(rtbInventory, "Use this function when new stock arrives from suppliers to increase inventory quantities:")
+        AppendStep(rtbInventory, "Step 1:", "Select the product from the table or scan its barcode into the Barcode field.")
+        AppendStep(rtbInventory, "Step 2:", "Verify or select the Supplier.")
+        AppendStep(rtbInventory, "Step 3:", "Enter the Quantity to Receive (positive whole number).")
+        AppendStep(rtbInventory, "Step 4:", "Optionally enter invoice or delivery notes.")
+        AppendStep(rtbInventory, "Step 5:", "Click [+ Receive Stock] and confirm.")
+        AppendBody(rtbInventory, "Result: Stock is added to inventory, and a permanent record is written to the stock receipt audit log.")
 
-2. ADJUSTING STOCK (✎ Adjust Stock)
---------------------------------------------------------------------------------
-Use this feature during physical stock audits, inventory recount, or damaged goods write-offs:
+        AppendSection(rtbInventory, "2. Adjusting Stock (✎ Adjust Stock)")
+        AppendBody(rtbInventory, "Use this function during physical inventory audits, cycle counts, or write-offs for damaged goods:")
+        AppendStep(rtbInventory, "Step 1:", "Select the product from the list.")
+        AppendStep(rtbInventory, "Step 2:", "Enter the exact New Stock Quantity in the Quantity field.")
+        AppendStep(rtbInventory, "Step 3:", "Provide an adjustment reason (e.g. 'Monthly audit recount', 'Damaged items').")
+        AppendStep(rtbInventory, "Step 4:", "Click [✎ Adjust Stock] and confirm.")
+        AppendBody(rtbInventory, "Result: The product stock is set to the exact quantity, and the change is logged in the activity audit trail.")
 
-  Step 1: Select the product from the list.
-  Step 2: Enter the exact New Stock Quantity in the Quantity field.
-  Step 3: Enter a Reason (e.g. 'Monthly count variance', 'Damaged items removed').
-  Step 4: Click '✎ Adjust Stock' and confirm.
-  Result: Stock level is set to the exact number and logged to the Activity Log.
+        AppendSection(rtbInventory, "3. Visual Stock Status Alerts")
+        AppendBullet(rtbInventory, "Red Highlight: OUT OF STOCK — Inventory has reached 0 units.")
+        AppendBullet(rtbInventory, "Amber Highlight: LOW STOCK — Quantity is at or below the Reorder Level.")
+        AppendBullet(rtbInventory, "Standard / White: IN STOCK — Healthy stock levels above reorder threshold.")
+        rtbInventory.Select(0, 0)
+    End Sub
 
-3. COLOR CODING & STOCK STATUS
---------------------------------------------------------------------------------
-  • Red Highlight: OUT OF STOCK (Stock Qty = 0)
-  • Amber Highlight: LOW STOCK (Stock Qty <= Reorder Level)
-  • White / Normal: IN STOCK (Stock Qty > Reorder Level)"
+    ' ── New Sale ──────────────────────────────────────────────────────────
 
-        ' New Sale (POS)
-        txtNewSale.Text =
-"================================================================================
-  POINT OF SALE (POS) & RECEIPT PRINTING MODULE
-================================================================================
+    Private Sub LoadNewSale()
+        rtbNewSale.Clear()
+        AppendTitle(rtbNewSale, "Point of Sale (POS) & Receipt Printing Guide")
 
-1. BARCODE SCANNING & CART ENTRY
---------------------------------------------------------------------------------
-  • Fast Scanning: Point your barcode scanner at the product barcode.
-    Each scan automatically adds 1 unit to the cart and plays a confirmation beep.
-  • Manual Selection: Select product from the dropdown, enter quantity, and click 'Add to Sale'.
-  • Stock Validation: The system prevents adding more items than available in stock.
+        AppendSection(rtbNewSale, "1. Barcode Scanning & Item Entry")
+        AppendBullet(rtbNewSale, "High-Speed Barcode Scanning: Point the barcode scanner at the item. It automatically adds 1 unit to the cart, plays a confirmation chime, and keeps focus on the scan box for the next item.")
+        AppendBullet(rtbNewSale, "Manual Selection: Pick an item from the dropdown, enter quantity, and click [Add to Sale].")
+        AppendBullet(rtbNewSale, "Stock Validation: The POS automatically checks available inventory to prevent overselling.")
+        rtbNewSale.AppendText(Environment.NewLine)
 
-2. MANAGING CART ITEMS
---------------------------------------------------------------------------------
-  • Removing an Item: Click the 'Remove' button next to any line item.
-  • Applying Discounts: Enter a discount amount in the Discount field.
-    The Net Total updates automatically in real-time.
+        AppendSection(rtbNewSale, "2. Cart Management & Discounts")
+        AppendStep(rtbNewSale, "• Removing Items:", "Click the [Remove] button on any line item to remove it from the cart.")
+        AppendStep(rtbNewSale, "• Applying Discounts:", "Enter the discount amount in the Discount field. The Net Total recalculates immediately.")
+        rtbNewSale.AppendText(Environment.NewLine)
 
-3. CONFIRMING SALE & PRINTING RECEIPT
---------------------------------------------------------------------------------
-  Step 1: Click 'Confirm Sale'.
-  Step 2: Stock is automatically deducted from inventory.
-  Step 3: The system prompts: 'Do you want to print the receipt now in Chrome / PDF?'
-  Step 4: Clicking 'Yes' (or clicking '🖶 Print Receipt') generates a thermal receipt
-          with the company logo, receipt number, items, and totals, opening Google Chrome's
-          Print & PDF dialog automatically."
+        AppendSection(rtbNewSale, "3. Confirming Sales & Instant Receipt Printing")
+        AppendStep(rtbNewSale, "Step 1:", "Click [Confirm Sale] to finalize the transaction.")
+        AppendStep(rtbNewSale, "Step 2:", "Quantities are automatically deducted from the inventory database.")
+        AppendStep(rtbNewSale, "Step 3:", "A prompt asks: 'Do you want to print the receipt now in Chrome / PDF?'")
+        AppendStep(rtbNewSale, "Step 4:", "Clicking [Yes] (or clicking [🖶 Print Receipt]) opens Google Chrome in print mode, with the system logo, receipt ID, cashier name, line items, and totals ready to print or save to PDF.")
+        rtbNewSale.Select(0, 0)
+    End Sub
 
-        ' Sales History
-        txtSalesHistory.Text =
-"================================================================================
-  SALES HISTORY & VOID MANAGEMENT MODULE
-================================================================================
+    ' ── Sales History ─────────────────────────────────────────────────────
 
-1. BROWSING TRANSACTION HISTORY
---------------------------------------------------------------------------------
-  • Select the 'From' and 'To' date range, then click 'Filter'.
-  • View all transactions with Sale ID, Date & Time, Cashier, Total, Discount, Net, and Status.
+    Private Sub LoadSalesHistory()
+        rtbSalesHistory.Clear()
+        AppendTitle(rtbSalesHistory, "Sales History & Transaction Audits")
 
-2. VIEWING LINE ITEMS
---------------------------------------------------------------------------------
-  • Click any sale row to display the detailed itemized list in the bottom panel.
+        AppendSection(rtbSalesHistory, "1. Filtering Past Transactions")
+        AppendStep(rtbSalesHistory, "Step 1:", "Select the 'From' and 'To' dates using the date pickers.")
+        AppendStep(rtbSalesHistory, "Step 2:", "Click [Filter] to load all matching transactions.")
+        AppendBody(rtbSalesHistory, "Each transaction displays Sale ID, Date & Time, Cashier Name, Gross Total, Discount, Net Amount, and Status.")
 
-3. RE-PRINTING PAST RECEIPTS
---------------------------------------------------------------------------------
-  • Select any past sale, then click '🖶 Print Receipt' in the top toolbar.
-  • The receipt opens in Chrome ready to print or save to PDF.
+        AppendSection(rtbSalesHistory, "2. Viewing Itemized Line Items")
+        AppendBody(rtbSalesHistory, "Click any sale record in the top grid to inspect the itemized list, quantities, and prices in the bottom 'Sale Items' pane.")
 
-4. VOIDING A SALE (Admin Only)
---------------------------------------------------------------------------------
-  • Select the transaction and click 'Void Sale'.
-  • Confirming the prompt marks the transaction as Voided and automatically restores
-    all item quantities back into the inventory stock."
+        AppendSection(rtbSalesHistory, "3. Re-Printing Receipts")
+        AppendStep(rtbSalesHistory, "Step 1:", "Select the desired sale from the table.")
+        AppendStep(rtbSalesHistory, "Step 2:", "Click [🖶 Print Receipt] in the toolbar.")
+        AppendBody(rtbSalesHistory, "The system regenerates the receipt with full branding and opens Chrome's print dialog instantly.")
 
-        ' Suppliers & Categories
-        txtSuppliersCategories.Text =
-"================================================================================
-  SUPPLIERS & CATEGORIES MANAGEMENT MODULE
-================================================================================
+        AppendSection(rtbSalesHistory, "4. Voiding Transactions (Admin Only)")
+        AppendStep(rtbSalesHistory, "Step 1:", "Select the transaction to void.")
+        AppendStep(rtbSalesHistory, "Step 2:", "Click [Void Sale] and confirm.")
+        AppendBody(rtbSalesHistory, "Result: The transaction status updates to 'Voided' (greyed out) and all purchased quantities are returned to inventory stock.")
+        rtbSalesHistory.Select(0, 0)
+    End Sub
 
-1. CATEGORIES MANAGEMENT
---------------------------------------------------------------------------------
-  • Add Category: Enter category name and default measurement unit (pcs, box, kg, etc.).
-  • Update / Delete: Select category from table to edit name or delete.
-  • Used for classifying items and auto-populating units during product creation.
+    ' ── Suppliers & Categories ────────────────────────────────────────────
 
-2. SUPPLIERS MANAGEMENT
---------------------------------------------------------------------------------
-  • Record supplier name, contact person, phone number, email, and address.
-  • Suppliers are linked with products for seamless purchase and stock receiving."
+    Private Sub LoadSuppliersCategories()
+        rtbSuppliersCategories.Clear()
+        AppendTitle(rtbSuppliersCategories, "Suppliers & Categories Guide")
 
-        ' Reports
-        txtReports.Text =
-"================================================================================
-  REPORTS & ANALYTICS MODULE
-================================================================================
+        AppendSection(rtbSuppliersCategories, "1. Categories Module")
+        AppendBullet(rtbSuppliersCategories, "Add Category: Enter Category Name and default Unit (pcs, box, kg, pack, etc.).")
+        AppendBullet(rtbSuppliersCategories, "Update / Delete: Select a category to modify its name or remove it.")
+        AppendBullet(rtbSuppliersCategories, "Benefits: Simplifies inventory filtering and auto-fills default units when adding new products.")
+        rtbSuppliersCategories.AppendText(Environment.NewLine)
 
-1. SALES REPORT
---------------------------------------------------------------------------------
-  • Filter by date range to calculate Total Gross Revenue, Total Discounts, Net Revenue,
-    and Completed Transactions.
-  • View breakdown by date and cashier.
+        AppendSection(rtbSuppliersCategories, "2. Suppliers Module")
+        AppendBullet(rtbSuppliersCategories, "Add Supplier: Record company name, contact person, phone number, email, and address.")
+        AppendBullet(rtbSuppliersCategories, "Update / Delete: Manage supplier contact information.")
+        AppendBullet(rtbSuppliersCategories, "Integration: Suppliers link directly with products and stock replenishment receipts.")
+        rtbSuppliersCategories.Select(0, 0)
+    End Sub
 
-2. INVENTORY STATUS REPORT
---------------------------------------------------------------------------------
-  • Complete valuation of on-hand inventory (Total Stock Value = StockQty * UnitPrice).
-  • Highlights low stock and out-of-stock items needing immediate purchase orders.
+    ' ── Reports ───────────────────────────────────────────────────────────
 
-3. TOP SELLING PRODUCTS REPORT
---------------------------------------------------------------------------------
-  • Identifies fastest-moving products by quantity sold and revenue generated.
+    Private Sub LoadReports()
+        rtbReports.Clear()
+        AppendTitle(rtbReports, "Reports & Analytics Module")
 
-4. EXPORT OPTIONS
---------------------------------------------------------------------------------
-  • Export to CSV: Opens in Microsoft Excel for further analysis.
-  • Print / PDF: Generates printable summary tables."
+        AppendSection(rtbReports, "1. Sales Reports")
+        AppendBullet(rtbReports, "Filter sales by date range to calculate Gross Sales, Total Discounts, and Net Revenue.")
+        AppendBullet(rtbReports, "View transaction volume and cashier performance breakdowns.")
+        rtbReports.AppendText(Environment.NewLine)
 
-        ' Settings & Security
-        txtSettings.Text =
-"================================================================================
-  SETTINGS & ACCOUNT SECURITY MODULE
-================================================================================
+        AppendSection(rtbReports, "2. Inventory Valuation & Stock Reports")
+        AppendBullet(rtbReports, "Total Inventory Value: Automatically computes (Quantity * Unit Price) across all catalog items.")
+        AppendBullet(rtbReports, "Low Stock / Out of Stock Reports: Export lists of products requiring urgent supplier orders.")
+        rtbReports.AppendText(Environment.NewLine)
 
-1. USER MANAGEMENT (Administrator Only)
---------------------------------------------------------------------------------
-  • Add New User: Enter username, secure password (min 6 chars), and assign Role (Admin/Staff).
-  • Change Password: Reset password for any user account.
-  • Delete User: Remove user accounts (protects deleting the currently active user).
+        AppendSection(rtbReports, "3. Top Selling Products")
+        AppendBullet(rtbReports, "Ranks products by sales frequency and total revenue generated.")
+        rtbReports.AppendText(Environment.NewLine)
 
-2. MY SECURITY QUESTION (All Users)
---------------------------------------------------------------------------------
-  • Self-service password recovery setup.
-  • Choose a secret question (e.g. 'What is your mother''s maiden name?') and provide an answer.
-  • Used on the Login screen via 'Forgot Password?' to securely reset passwords."
+        AppendSection(rtbReports, "4. Exporting Data")
+        AppendBullet(rtbReports, "Export to CSV: Generates clean spreadsheets compatible with Microsoft Excel and Google Sheets.")
+        AppendBullet(rtbReports, "Print Summary: Generates formatted printable audit tables.")
+        rtbReports.Select(0, 0)
+    End Sub
+
+    ' ── Settings & Security ───────────────────────────────────────────────
+
+    Private Sub LoadSettings()
+        rtbSettings.Clear()
+        AppendTitle(rtbSettings, "Settings & Account Security Guide")
+
+        AppendSection(rtbSettings, "1. User Account Management (Admin Role)")
+        AppendStep(rtbSettings, "• Adding Users:", "Enter a unique Username, Password (min 6 characters), and assign Role (Admin or Staff).")
+        AppendStep(rtbSettings, "• Changing Passwords:", "Select any user account from the grid, enter a new password, and click [Change Password].")
+        AppendStep(rtbSettings, "• Deleting Users:", "Select a user and click [Delete Selected User]. Active logged-in users cannot delete themselves.")
+        rtbSettings.AppendText(Environment.NewLine)
+
+        AppendSection(rtbSettings, "2. My Security Question (Self-Service)")
+        AppendBody(rtbSettings, "All users can configure a personal security question for self-service password recovery:")
+        AppendStep(rtbSettings, "Step 1:", "Select a secret question from the dropdown list.")
+        AppendStep(rtbSettings, "Step 2:", "Enter your Secret Answer and Confirm Answer.")
+        AppendStep(rtbSettings, "Step 3:", "Click [Save Security Question].")
+        AppendBody(rtbSettings, "Recovery: If you ever forget your password, click 'Forgot Password?' on the Login screen and answer your security question to instantly reset your password.")
+        rtbSettings.Select(0, 0)
+    End Sub
+
+    ' ── Formatting Helpers ────────────────────────────────────────────────
+
+    Private Sub AppendTitle(rtb As RichTextBox, text As String)
+        rtb.SelectionFont = New Font("Segoe UI", 13.0!, FontStyle.Bold)
+        rtb.SelectionColor = Color.FromArgb(28, 43, 74)
+        rtb.AppendText(text & Environment.NewLine & Environment.NewLine)
+    End Sub
+
+    Private Sub AppendSection(rtb As RichTextBox, text As String)
+        rtb.SelectionFont = New Font("Segoe UI", 11.0!, FontStyle.Bold)
+        rtb.SelectionColor = Color.FromArgb(41, 128, 185)
+        rtb.AppendText(text & Environment.NewLine)
+    End Sub
+
+    Private Sub AppendBody(rtb As RichTextBox, text As String)
+        rtb.SelectionFont = New Font("Segoe UI", 9.75!, FontStyle.Regular)
+        rtb.SelectionColor = Color.FromArgb(44, 62, 80)
+        rtb.AppendText(text & Environment.NewLine & Environment.NewLine)
+    End Sub
+
+    Private Sub AppendStep(rtb As RichTextBox, stepNum As String, stepText As String)
+        rtb.SelectionFont = New Font("Segoe UI", 9.75!, FontStyle.Bold)
+        rtb.SelectionColor = Color.FromArgb(39, 174, 96)
+        rtb.AppendText("  " & stepNum & " ")
+        rtb.SelectionFont = New Font("Segoe UI", 9.75!, FontStyle.Regular)
+        rtb.SelectionColor = Color.FromArgb(44, 62, 80)
+        rtb.AppendText(stepText & Environment.NewLine)
+    End Sub
+
+    Private Sub AppendBullet(rtb As RichTextBox, bulletText As String)
+        rtb.SelectionFont = New Font("Segoe UI", 9.75!, FontStyle.Bold)
+        rtb.SelectionColor = Color.FromArgb(52, 152, 219)
+        rtb.AppendText("  • ")
+        rtb.SelectionFont = New Font("Segoe UI", 9.75!, FontStyle.Regular)
+        rtb.SelectionColor = Color.FromArgb(44, 62, 80)
+        rtb.AppendText(bulletText & Environment.NewLine)
     End Sub
 
 End Class
