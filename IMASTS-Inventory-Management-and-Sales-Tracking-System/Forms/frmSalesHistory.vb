@@ -93,14 +93,41 @@ Public Class frmSalesHistory
     ' ── Load / filter ─────────────────────────────────────────────────────
 
     Private Sub LoadSales()
-        dgvSales.DataSource  = _repo.GetAll(dtpFrom.Value, dtpTo.Value)
+        Dim dt = _repo.GetAll(dtpFrom.Value, dtpTo.Value)
+        dgvSales.DataSource  = dt
         dgvSaleItems.DataSource = Nothing
         _selectedSaleId      = 0
         _selectedVoided      = False
         _selectedItemsTable  = Nothing
         btnVoidSale.Enabled  = False
         btnPrintReceipt.Enabled = False
+        lblDetailHeader.Text = "Sale Items"
         ColorizeStatusRows()
+        UpdateGrandTotal(dt)
+    End Sub
+
+    Private Sub UpdateGrandTotal(dt As DataTable)
+        Dim grandTotal As Decimal = 0
+        Dim activeCount As Integer = 0
+
+        If dt IsNot Nothing Then
+            For Each row As DataRow In dt.Rows
+                Dim isVoided As Boolean = False
+                If Not IsDBNull(row("IsVoided")) Then
+                    isVoided = CBool(row("IsVoided"))
+                End If
+
+                If Not isVoided Then
+                    If Not IsDBNull(row("NetAmount")) AndAlso IsNumeric(row("NetAmount")) Then
+                        grandTotal += CDec(row("NetAmount"))
+                    End If
+                    activeCount += 1
+                End If
+            Next
+        End If
+
+        lblGrandTotalVal.Text = "₱" & grandTotal.ToString("N2")
+        lblGrandTotalTit.Text = $"GRAND TOTAL ({activeCount} Active Sale{If(activeCount = 1, "", "s")})"
     End Sub
 
     Private Sub ColorizeStatusRows()
@@ -124,6 +151,7 @@ Public Class frmSalesHistory
 
     Private Sub dgvSales_SelectionChanged(sender As Object, e As EventArgs) Handles dgvSales.SelectionChanged
         If dgvSales.CurrentRow Is Nothing Then
+            lblDetailHeader.Text = "Sale Items"
             btnPrintReceipt.Enabled = False
             btnVoidSale.Enabled = False
             Return
@@ -137,6 +165,8 @@ Public Class frmSalesHistory
         _selectedTotal    = If(IsNumeric(row.Cells("TotalAmount").Value), CDec(row.Cells("TotalAmount").Value), 0)
         _selectedDiscount = If(IsNumeric(row.Cells("Discount").Value), CDec(row.Cells("Discount").Value), 0)
         _selectedNet      = If(IsNumeric(row.Cells("NetAmount").Value), CDec(row.Cells("NetAmount").Value), 0)
+
+        lblDetailHeader.Text = $"Sale Items — Sale #{_selectedSaleId}  (Total: ₱{_selectedNet:N2}{If(_selectedVoided, " - VOIDED", "")})"
 
         _selectedItemsTable = _repo.GetSaleItems(_selectedSaleId)
         dgvSaleItems.DataSource = _selectedItemsTable

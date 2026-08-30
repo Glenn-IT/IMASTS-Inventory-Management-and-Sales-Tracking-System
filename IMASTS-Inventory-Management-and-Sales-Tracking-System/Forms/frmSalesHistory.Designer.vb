@@ -25,6 +25,9 @@ Partial Class frmSalesHistory
         btnFilter = New Button()
         btnPrintReceipt = New Button()
         btnVoidSale = New Button()
+        pnlGrandTotal = New Panel()
+        lblGrandTotalTit = New Label()
+        lblGrandTotalVal = New Label()
         dgvSales = New DataGridView()
         lblDetailHeader = New Label()
         dgvSaleItems = New DataGridView()
@@ -34,6 +37,7 @@ Partial Class frmSalesHistory
         pnlFilter = New Panel()
         CType(dgvSales, ComponentModel.ISupportInitialize).BeginInit()
         CType(dgvSaleItems, ComponentModel.ISupportInitialize).BeginInit()
+        pnlGrandTotal.SuspendLayout()
         Panel1.SuspendLayout()
         Panel2.SuspendLayout()
         pnlSaleDetail.SuspendLayout()
@@ -136,6 +140,39 @@ Partial Class frmSalesHistory
         btnVoidSale.UseVisualStyleBackColor = False
         btnVoidSale.Visible = False
         ' 
+        ' pnlGrandTotal
+        ' 
+        pnlGrandTotal.Anchor = AnchorStyles.Top Or AnchorStyles.Right
+        pnlGrandTotal.BackColor = Color.White
+        pnlGrandTotal.Controls.Add(lblGrandTotalTit)
+        pnlGrandTotal.Controls.Add(lblGrandTotalVal)
+        pnlGrandTotal.Location = New Point(716, 10)
+        pnlGrandTotal.Name = "pnlGrandTotal"
+        pnlGrandTotal.Size = New Size(252, 50)
+        pnlGrandTotal.TabIndex = 7
+        ' 
+        ' lblGrandTotalTit
+        ' 
+        lblGrandTotalTit.Font = New Font("Segoe UI", 7.5F, FontStyle.Bold)
+        lblGrandTotalTit.ForeColor = Color.FromArgb(CByte(120), CByte(125), CByte(135))
+        lblGrandTotalTit.Location = New Point(8, 6)
+        lblGrandTotalTit.Name = "lblGrandTotalTit"
+        lblGrandTotalTit.Size = New Size(236, 15)
+        lblGrandTotalTit.TabIndex = 0
+        lblGrandTotalTit.Text = "GRAND TOTAL"
+        lblGrandTotalTit.TextAlign = ContentAlignment.TopRight
+        ' 
+        ' lblGrandTotalVal
+        ' 
+        lblGrandTotalVal.Font = New Font("Segoe UI", 13.5F, FontStyle.Bold)
+        lblGrandTotalVal.ForeColor = Color.FromArgb(CByte(27), CByte(94), CByte(32))
+        lblGrandTotalVal.Location = New Point(8, 22)
+        lblGrandTotalVal.Name = "lblGrandTotalVal"
+        lblGrandTotalVal.Size = New Size(236, 24)
+        lblGrandTotalVal.TabIndex = 1
+        lblGrandTotalVal.Text = "₱0.00"
+        lblGrandTotalVal.TextAlign = ContentAlignment.MiddleRight
+        ' 
         ' dgvSales
         ' 
         dgvSales.AllowUserToAddRows = False
@@ -165,7 +202,7 @@ Partial Class frmSalesHistory
         lblDetailHeader.ForeColor = Color.FromArgb(CByte(80), CByte(85), CByte(95))
         lblDetailHeader.Location = New Point(12, 8)
         lblDetailHeader.Name = "lblDetailHeader"
-        lblDetailHeader.Size = New Size(200, 20)
+        lblDetailHeader.Size = New Size(600, 20)
         lblDetailHeader.TabIndex = 0
         lblDetailHeader.Text = "Sale Items"
         ' 
@@ -233,6 +270,7 @@ Partial Class frmSalesHistory
         pnlFilter.Controls.Add(btnFilter)
         pnlFilter.Controls.Add(btnPrintReceipt)
         pnlFilter.Controls.Add(btnVoidSale)
+        pnlFilter.Controls.Add(pnlGrandTotal)
         pnlFilter.Dock = DockStyle.Top
         pnlFilter.Location = New Point(0, 0)
         pnlFilter.Name = "pnlFilter"
@@ -252,6 +290,7 @@ Partial Class frmSalesHistory
         Text = "Sales History"
         CType(dgvSales, ComponentModel.ISupportInitialize).EndInit()
         CType(dgvSaleItems, ComponentModel.ISupportInitialize).EndInit()
+        pnlGrandTotal.ResumeLayout(False)
         Panel1.ResumeLayout(False)
         Panel2.ResumeLayout(False)
         pnlSaleDetail.ResumeLayout(False)
@@ -267,6 +306,9 @@ Partial Class frmSalesHistory
     Friend WithEvents btnFilter       As Button
     Friend WithEvents btnPrintReceipt As Button
     Friend WithEvents btnVoidSale     As Button
+    Friend WithEvents pnlGrandTotal   As Panel
+    Friend WithEvents lblGrandTotalTit As Label
+    Friend WithEvents lblGrandTotalVal As Label
     Friend WithEvents dgvSales        As DataGridView
     Friend WithEvents lblDetailHeader As Label
     Friend WithEvents dgvSaleItems    As DataGridView
