@@ -44,7 +44,16 @@ Partial Class frmInventory
         btnAdjustStock = New Button()
         btnClear = New Button()
         btnRefresh = New Button()
+        btnPrint = New Button()
+        btnExportExcel = New Button()
         Panel3 = New Panel()
+        pnlCategorySidebar = New Panel()
+        pnlCategoryHeader = New Panel()
+        lblCategoryHeader = New Label()
+        lstCategories = New ListBox()
+        pnlGridContainer = New Panel()
+        pnlGridHeader = New Panel()
+        lblCurrentCategory = New Label()
         dgvInventory = New DataGridView()
         pnlFooter = New Panel()
         lblTotalRecords = New Label()
@@ -52,6 +61,10 @@ Partial Class frmInventory
         Panel2.SuspendLayout()
         pnlForm.SuspendLayout()
         Panel3.SuspendLayout()
+        pnlCategorySidebar.SuspendLayout()
+        pnlCategoryHeader.SuspendLayout()
+        pnlGridContainer.SuspendLayout()
+        pnlGridHeader.SuspendLayout()
         CType(dgvInventory, ComponentModel.ISupportInitialize).BeginInit()
         pnlFooter.SuspendLayout()
         SuspendLayout()
@@ -148,6 +161,8 @@ Partial Class frmInventory
         pnlForm.Controls.Add(btnAdjustStock)
         pnlForm.Controls.Add(btnClear)
         pnlForm.Controls.Add(btnRefresh)
+        pnlForm.Controls.Add(btnPrint)
+        pnlForm.Controls.Add(btnExportExcel)
         pnlForm.Location = New Point(12, 6)
         pnlForm.Name = "pnlForm"
         pnlForm.Size = New Size(956, 192)
@@ -374,15 +389,123 @@ Partial Class frmInventory
         btnRefresh.Text = "Refresh"
         btnRefresh.UseVisualStyleBackColor = False
         ' 
+        ' btnPrint
+        ' 
+        btnPrint.BackColor = Color.FromArgb(CByte(41), CByte(128), CByte(185))
+        btnPrint.Cursor = Cursors.Hand
+        btnPrint.FlatAppearance.BorderSize = 0
+        btnPrint.FlatStyle = FlatStyle.Flat
+        btnPrint.Font = New Font("Segoe UI", 9.5F, FontStyle.Bold)
+        btnPrint.ForeColor = Color.White
+        btnPrint.Location = New Point(576, 138)
+        btnPrint.Name = "btnPrint"
+        btnPrint.Size = New Size(110, 36)
+        btnPrint.TabIndex = 20
+        btnPrint.Text = "🖶 Print"
+        btnPrint.UseVisualStyleBackColor = False
+        ' 
+        ' btnExportExcel
+        ' 
+        btnExportExcel.BackColor = Color.FromArgb(CByte(39), CByte(174), CByte(96))
+        btnExportExcel.Cursor = Cursors.Hand
+        btnExportExcel.FlatAppearance.BorderSize = 0
+        btnExportExcel.FlatStyle = FlatStyle.Flat
+        btnExportExcel.Font = New Font("Segoe UI", 9.5F, FontStyle.Bold)
+        btnExportExcel.ForeColor = Color.White
+        btnExportExcel.Location = New Point(696, 138)
+        btnExportExcel.Name = "btnExportExcel"
+        btnExportExcel.Size = New Size(140, 36)
+        btnExportExcel.TabIndex = 21
+        btnExportExcel.Text = "📊 Export Excel"
+        btnExportExcel.UseVisualStyleBackColor = False
+        ' 
         ' Panel3
         ' 
-        Panel3.Controls.Add(dgvInventory)
+        Panel3.Controls.Add(pnlGridContainer)
+        Panel3.Controls.Add(pnlCategorySidebar)
         Panel3.Controls.Add(pnlFooter)
         Panel3.Dock = DockStyle.Fill
         Panel3.Location = New Point(0, 281)
         Panel3.Name = "Panel3"
         Panel3.Size = New Size(980, 444)
         Panel3.TabIndex = 3
+        ' 
+        ' pnlCategorySidebar
+        ' 
+        pnlCategorySidebar.BackColor = Color.White
+        pnlCategorySidebar.Controls.Add(lstCategories)
+        pnlCategorySidebar.Controls.Add(pnlCategoryHeader)
+        pnlCategorySidebar.Dock = DockStyle.Left
+        pnlCategorySidebar.Location = New Point(0, 0)
+        pnlCategorySidebar.Name = "pnlCategorySidebar"
+        pnlCategorySidebar.Size = New Size(220, 408)
+        pnlCategorySidebar.TabIndex = 0
+        ' 
+        ' pnlCategoryHeader
+        ' 
+        pnlCategoryHeader.BackColor = Color.FromArgb(CByte(238), CByte(242), CByte(246))
+        pnlCategoryHeader.Controls.Add(lblCategoryHeader)
+        pnlCategoryHeader.Dock = DockStyle.Top
+        pnlCategoryHeader.Location = New Point(0, 0)
+        pnlCategoryHeader.Name = "pnlCategoryHeader"
+        pnlCategoryHeader.Size = New Size(220, 36)
+        pnlCategoryHeader.TabIndex = 0
+        ' 
+        ' lblCategoryHeader
+        ' 
+        lblCategoryHeader.AutoSize = True
+        lblCategoryHeader.Font = New Font("Segoe UI", 9.5F, FontStyle.Bold)
+        lblCategoryHeader.ForeColor = Color.FromArgb(CByte(40), CByte(44), CByte(52))
+        lblCategoryHeader.Location = New Point(12, 8)
+        lblCategoryHeader.Name = "lblCategoryHeader"
+        lblCategoryHeader.Size = New Size(100, 19)
+        lblCategoryHeader.TabIndex = 0
+        lblCategoryHeader.Text = "📁 Categories"
+        ' 
+        ' lstCategories
+        ' 
+        lstCategories.BorderStyle = BorderStyle.None
+        lstCategories.Cursor = Cursors.Hand
+        lstCategories.Dock = DockStyle.Fill
+        lstCategories.Font = New Font("Segoe UI", 9.5F)
+        lstCategories.ForeColor = Color.FromArgb(CByte(40), CByte(44), CByte(52))
+        lstCategories.IntegralHeight = False
+        lstCategories.ItemHeight = 26
+        lstCategories.Location = New Point(0, 36)
+        lstCategories.Name = "lstCategories"
+        lstCategories.Size = New Size(220, 372)
+        lstCategories.TabIndex = 1
+        ' 
+        ' pnlGridContainer
+        ' 
+        pnlGridContainer.Controls.Add(dgvInventory)
+        pnlGridContainer.Controls.Add(pnlGridHeader)
+        pnlGridContainer.Dock = DockStyle.Fill
+        pnlGridContainer.Location = New Point(220, 0)
+        pnlGridContainer.Name = "pnlGridContainer"
+        pnlGridContainer.Size = New Size(760, 408)
+        pnlGridContainer.TabIndex = 2
+        ' 
+        ' pnlGridHeader
+        ' 
+        pnlGridHeader.BackColor = Color.FromArgb(CByte(245), CByte(246), CByte(248))
+        pnlGridHeader.Controls.Add(lblCurrentCategory)
+        pnlGridHeader.Dock = DockStyle.Top
+        pnlGridHeader.Location = New Point(0, 0)
+        pnlGridHeader.Name = "pnlGridHeader"
+        pnlGridHeader.Size = New Size(760, 36)
+        pnlGridHeader.TabIndex = 0
+        ' 
+        ' lblCurrentCategory
+        ' 
+        lblCurrentCategory.AutoSize = True
+        lblCurrentCategory.Font = New Font("Segoe UI", 9.5F, FontStyle.Bold)
+        lblCurrentCategory.ForeColor = Color.FromArgb(CByte(80), CByte(85), CByte(95))
+        lblCurrentCategory.Location = New Point(8, 8)
+        lblCurrentCategory.Name = "lblCurrentCategory"
+        lblCurrentCategory.Size = New Size(170, 19)
+        lblCurrentCategory.TabIndex = 0
+        lblCurrentCategory.Text = "Showing: All Categories"
         ' 
         ' dgvInventory
         ' 
@@ -396,7 +519,7 @@ Partial Class frmInventory
         dgvInventory.Dock = DockStyle.Fill
         dgvInventory.Font = New Font("Segoe UI", 9.5F)
         dgvInventory.GridColor = Color.FromArgb(CByte(220), CByte(223), CByte(228))
-        dgvInventory.Location = New Point(0, 0)
+        dgvInventory.Location = New Point(0, 36)
         dgvInventory.MultiSelect = False
         dgvInventory.Name = "dgvInventory"
         dgvInventory.ReadOnly = True
@@ -404,8 +527,8 @@ Partial Class frmInventory
         dgvInventory.RowHeadersWidth = 45
         dgvInventory.RowTemplate.Height = 32
         dgvInventory.SelectionMode = DataGridViewSelectionMode.FullRowSelect
-        dgvInventory.Size = New Size(980, 408)
-        dgvInventory.TabIndex = 0
+        dgvInventory.Size = New Size(760, 372)
+        dgvInventory.TabIndex = 1
         ' 
         ' pnlFooter
         ' 
@@ -446,6 +569,12 @@ Partial Class frmInventory
         pnlForm.ResumeLayout(False)
         pnlForm.PerformLayout()
         Panel3.ResumeLayout(False)
+        pnlCategorySidebar.ResumeLayout(False)
+        pnlCategoryHeader.ResumeLayout(False)
+        pnlCategoryHeader.PerformLayout()
+        pnlGridContainer.ResumeLayout(False)
+        pnlGridHeader.ResumeLayout(False)
+        pnlGridHeader.PerformLayout()
         CType(dgvInventory, ComponentModel.ISupportInitialize).EndInit()
         pnlFooter.ResumeLayout(False)
         pnlFooter.PerformLayout()
@@ -479,7 +608,16 @@ Partial Class frmInventory
     Friend WithEvents btnAdjustStock As Button
     Friend WithEvents btnClear As Button
     Friend WithEvents btnRefresh As Button
+    Friend WithEvents btnPrint As Button
+    Friend WithEvents btnExportExcel As Button
     Friend WithEvents Panel3 As Panel
+    Friend WithEvents pnlCategorySidebar As Panel
+    Friend WithEvents pnlCategoryHeader As Panel
+    Friend WithEvents lblCategoryHeader As Label
+    Friend WithEvents lstCategories As ListBox
+    Friend WithEvents pnlGridContainer As Panel
+    Friend WithEvents pnlGridHeader As Panel
+    Friend WithEvents lblCurrentCategory As Label
     Friend WithEvents dgvInventory As DataGridView
     Friend WithEvents pnlFooter As Panel
     Friend WithEvents lblTotalRecords As Label

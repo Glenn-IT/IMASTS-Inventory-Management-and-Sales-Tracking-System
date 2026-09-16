@@ -4,6 +4,22 @@ Public Class frmInventory
     Private _inventoryTable As DataTable
     Private _productsTable As DataTable
     Private _selectedProductId As Integer = 0
+    Private _selectedCategory As String = ""
+    Private _isLoadingCategories As Boolean = False
+
+    Private Class CategoryItem
+        Public Property CategoryName As String = ""
+        Public Property DisplayText As String = ""
+
+        Public Sub New(name As String, display As String)
+            CategoryName = name
+            DisplayText = display
+        End Sub
+
+        Public Overrides Function ToString() As String
+            Return DisplayText
+        End Function
+    End Class
 
     Private Sub frmInventory_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.Text = "Inventory Management"
@@ -79,20 +95,101 @@ Public Class frmInventory
 
     Private Sub LoadInventory()
         _inventoryTable = _repo.GetAllWithStockLevel()
+        LoadCategoryList()
+        ApplySearchFilter()
+    End Sub
+
+    Private Sub LoadCategoryList()
+        _isLoadingCategories = True
+        Dim prevSelected = _selectedCategory
+        lstCategories.Items.Clear()
+
+        Dim totalCount = If(_inventoryTable IsNot Nothing, _inventoryTable.Rows.Count, 0)
+        lstCategories.Items.Add(New CategoryItem("", $"📦 All Categories ({totalCount})"))
+
+        Dim catRepo As New CategoryRepository()
+        Dim catDt = catRepo.GetAll()
+        Dim knownCats As New HashSet(Of String)(StringComparer.OrdinalIgnoreCase)
+
+        For Each row As DataRow In catDt.Rows
+            Dim catName = row("CategoryName").ToString()
+            knownCats.Add(catName)
+            Dim count = 0
+            If _inventoryTable IsNot Nothing Then
+                count = _inventoryTable.Select($"CategoryName = '{catName.Replace("'", "''")}'").Length
+            End If
+            lstCategories.Items.Add(New CategoryItem(catName, $"{catName} ({count})"))
+        Next
+
+        If _inventoryTable IsNot Nothing Then
+            For Each row As DataRow In _inventoryTable.Rows
+                Dim catName = row("CategoryName")?.ToString()
+                If Not String.IsNullOrWhiteSpace(catName) AndAlso Not knownCats.Contains(catName) Then
+                    knownCats.Add(catName)
+                    Dim count = _inventoryTable.Select($"CategoryName = '{catName.Replace("'", "''")}'").Length
+                    lstCategories.Items.Add(New CategoryItem(catName, $"{catName} ({count})"))
+                End If
+            Next
+        End If
+
+        Dim selectedIdx = 0
+        If Not String.IsNullOrEmpty(prevSelected) Then
+            For i As Integer = 1 To lstCategories.Items.Count - 1
+                Dim item = DirectCast(lstCategories.Items(i), CategoryItem)
+                If String.Equals(item.CategoryName, prevSelected, StringComparison.OrdinalIgnoreCase) Then
+                    selectedIdx = i
+                    Exit For
+                End If
+            Next
+        End If
+
+        lstCategories.SelectedIndex = selectedIdx
+        _isLoadingCategories = False
+    End Sub
+
+    Private Sub lstCategories_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lstCategories.SelectedIndexChanged
+        If _isLoadingCategories Then Return
+        Dim item = TryCast(lstCategories.SelectedItem, CategoryItem)
+        _selectedCategory = If(item IsNot Nothing, item.CategoryName, "")
         ApplySearchFilter()
     End Sub
 
     Private Sub ApplySearchFilter()
         If _inventoryTable Is Nothing Then Return
+
         Dim search = txtSearch.Text.Trim().Replace("'", "''")
-        If String.IsNullOrWhiteSpace(search) Then
-            _inventoryTable.DefaultView.RowFilter = ""
-        Else
-            _inventoryTable.DefaultView.RowFilter = $"Name LIKE '%{search}%' OR Barcode LIKE '%{search}%' OR CategoryName LIKE '%{search}%' OR StockStatus LIKE '%{search}%'"
+        Dim filterParts As New List(Of String)()
+
+        If Not String.IsNullOrEmpty(_selectedCategory) Then
+            filterParts.Add($"CategoryName = '{_selectedCategory.Replace("'", "''")}'")
         End If
+
+        If Not String.IsNullOrWhiteSpace(search) Then
+            filterParts.Add($"(Name LIKE '%{search}%' OR Barcode LIKE '%{search}%' OR StockStatus LIKE '%{search}%')")
+        End If
+
+        If filterParts.Count > 0 Then
+            _inventoryTable.DefaultView.RowFilter = String.Join(" AND ", filterParts)
+        Else
+            _inventoryTable.DefaultView.RowFilter = ""
+        End If
+
         dgvInventory.DataSource = _inventoryTable.DefaultView
         ColorizeRows()
         UpdateFooterCounts()
+        UpdateCategoryHeader()
+    End Sub
+
+    Private Sub UpdateCategoryHeader()
+        Dim count = If(_inventoryTable IsNot Nothing, _inventoryTable.DefaultView.Count, 0)
+        Dim search = txtSearch.Text.Trim()
+        Dim catTitle = If(String.IsNullOrEmpty(_selectedCategory), "All Categories", _selectedCategory)
+
+        If String.IsNullOrWhiteSpace(search) Then
+            lblCurrentCategory.Text = $"Showing: {catTitle} ({count} items)"
+        Else
+            lblCurrentCategory.Text = $"Showing: {catTitle} (Search: ""{search}"" — {count} items)"
+        End If
     End Sub
 
     Private Sub UpdateFooterCounts()
@@ -204,6 +301,20 @@ Public Class frmInventory
     End Sub
 
     Private Sub dgvInventory_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvInventory.CellClick
+        If e.RowIndex >= 0 AndAlso e.ColumnIndex >= 0 Then
+            If dgvInventory.Columns(e.ColumnIndex).Name = "CategoryName" Then
+                Dim catValue = dgvInventory.Rows(e.RowIndex).Cells("CategoryName").Value?.ToString()
+                If Not String.IsNullOrWhiteSpace(catValue) Then
+                    For i As Integer = 0 To lstCategories.Items.Count - 1
+                        Dim item = TryCast(lstCategories.Items(i), CategoryItem)
+                        If item IsNot Nothing AndAlso String.Equals(item.CategoryName, catValue, StringComparison.OrdinalIgnoreCase) Then
+                            lstCategories.SelectedIndex = i
+                            Return
+                        End If
+                    Next
+                End If
+            End If
+        End If
         SyncFormFromGrid()
     End Sub
 
@@ -380,9 +491,30 @@ Public Class frmInventory
     End Sub
 
     Private Sub btnRefresh_Click(sender As Object, e As EventArgs) Handles btnRefresh.Click
+        _selectedCategory = ""
         LoadInventory()
         LoadComboBoxes()
         ClearForm()
+    End Sub
+
+    ' ── Print & Export ───────────────────────────────────────────────────
+
+    Private Sub btnPrint_Click(sender As Object, e As EventArgs) Handles btnPrint.Click
+        If _inventoryTable Is Nothing OrElse _inventoryTable.DefaultView.Count = 0 Then
+            MessageBox.Show("No inventory records available to print.", "Print Inventory", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Return
+        End If
+
+        InventoryReportHelper.OpenReportInChrome(_inventoryTable.DefaultView, _selectedCategory, txtSearch.Text.Trim())
+    End Sub
+
+    Private Sub btnExportExcel_Click(sender As Object, e As EventArgs) Handles btnExportExcel.Click
+        If _inventoryTable Is Nothing OrElse _inventoryTable.DefaultView.Count = 0 Then
+            MessageBox.Show("No inventory records available to export.", "Export Excel", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Return
+        End If
+
+        InventoryExportHelper.ExportInventory(_inventoryTable.DefaultView, _selectedCategory)
     End Sub
 
 End Class
