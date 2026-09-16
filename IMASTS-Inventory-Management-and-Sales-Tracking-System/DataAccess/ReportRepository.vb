@@ -5,7 +5,7 @@ Public Class ReportRepository
 
     Public Function GetInventoryStatus() As DataTable
         Dim sql As String =
-            "SELECT p.Name, c.CategoryName, p.StockQty, p.ReorderLevel, " &
+            "SELECT p.ProductID, ISNULL(p.Barcode, '') AS Barcode, p.Name, ISNULL(c.CategoryName, 'Unassigned') AS CategoryName, p.StockQty, p.ReorderLevel, ISNULL(p.Unit, 'pcs') AS Unit, " &
             "CASE WHEN p.StockQty = 0            THEN 'Out of Stock' " &
             "     WHEN p.StockQty <= p.ReorderLevel THEN 'Low Stock' " &
             "     ELSE 'OK' END AS Status " &

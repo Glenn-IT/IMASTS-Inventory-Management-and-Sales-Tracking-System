@@ -20,11 +20,21 @@ Partial Class frmReports
         lblPageHeader = New Label()
         tabControl = New TabControl()
         tabInventory = New TabPage()
+        pnlGridContainer = New Panel()
+        pnlGridHeader = New Panel()
+        lblCurrentCategory = New Label()
         dgvInventory = New DataGridView()
+        pnlCategorySidebar = New Panel()
+        pnlCategoryHeader = New Panel()
+        lblCategoryHeader = New Label()
+        lstCategories = New ListBox()
         pnlInvBar = New Panel()
         btnRefreshInventory = New Button()
         btnPrintInventory = New Button()
         btnExportInventory = New Button()
+        lblSearch = New Label()
+        txtSearch = New TextBox()
+        btnClearSearch = New Button()
         tabSales = New TabPage()
         dgvTopProducts = New DataGridView()
         pnlSalesHeader = New Panel()
@@ -47,6 +57,10 @@ Partial Class frmReports
         Panel2 = New Panel()
         tabControl.SuspendLayout()
         tabInventory.SuspendLayout()
+        pnlCategorySidebar.SuspendLayout()
+        pnlCategoryHeader.SuspendLayout()
+        pnlGridContainer.SuspendLayout()
+        pnlGridHeader.SuspendLayout()
         CType(dgvInventory, ComponentModel.ISupportInitialize).BeginInit()
         pnlInvBar.SuspendLayout()
         tabSales.SuspendLayout()
@@ -82,7 +96,8 @@ Partial Class frmReports
         ' tabInventory
         ' 
         tabInventory.BackColor = Color.FromArgb(CByte(245), CByte(246), CByte(248))
-        tabInventory.Controls.Add(dgvInventory)
+        tabInventory.Controls.Add(pnlGridContainer)
+        tabInventory.Controls.Add(pnlCategorySidebar)
         tabInventory.Controls.Add(pnlInvBar)
         tabInventory.Location = New Point(4, 28)
         tabInventory.Name = "tabInventory"
@@ -90,6 +105,83 @@ Partial Class frmReports
         tabInventory.Size = New Size(972, 617)
         tabInventory.TabIndex = 0
         tabInventory.Text = "  Inventory Status  "
+        ' 
+        ' pnlCategorySidebar
+        ' 
+        pnlCategorySidebar.BackColor = Color.White
+        pnlCategorySidebar.Controls.Add(lstCategories)
+        pnlCategorySidebar.Controls.Add(pnlCategoryHeader)
+        pnlCategorySidebar.Dock = DockStyle.Left
+        pnlCategorySidebar.Location = New Point(12, 62)
+        pnlCategorySidebar.Name = "pnlCategorySidebar"
+        pnlCategorySidebar.Size = New Size(220, 543)
+        pnlCategorySidebar.TabIndex = 1
+        ' 
+        ' pnlCategoryHeader
+        ' 
+        pnlCategoryHeader.BackColor = Color.FromArgb(CByte(238), CByte(242), CByte(246))
+        pnlCategoryHeader.Controls.Add(lblCategoryHeader)
+        pnlCategoryHeader.Dock = DockStyle.Top
+        pnlCategoryHeader.Location = New Point(0, 0)
+        pnlCategoryHeader.Name = "pnlCategoryHeader"
+        pnlCategoryHeader.Size = New Size(220, 36)
+        pnlCategoryHeader.TabIndex = 0
+        ' 
+        ' lblCategoryHeader
+        ' 
+        lblCategoryHeader.AutoSize = True
+        lblCategoryHeader.Font = New Font("Segoe UI", 9.5F, FontStyle.Bold)
+        lblCategoryHeader.ForeColor = Color.FromArgb(CByte(40), CByte(44), CByte(52))
+        lblCategoryHeader.Location = New Point(12, 8)
+        lblCategoryHeader.Name = "lblCategoryHeader"
+        lblCategoryHeader.Size = New Size(100, 19)
+        lblCategoryHeader.TabIndex = 0
+        lblCategoryHeader.Text = "📁 Categories"
+        ' 
+        ' lstCategories
+        ' 
+        lstCategories.BorderStyle = BorderStyle.None
+        lstCategories.Cursor = Cursors.Hand
+        lstCategories.Dock = DockStyle.Fill
+        lstCategories.Font = New Font("Segoe UI", 9.5F)
+        lstCategories.ForeColor = Color.FromArgb(CByte(40), CByte(44), CByte(52))
+        lstCategories.IntegralHeight = False
+        lstCategories.ItemHeight = 26
+        lstCategories.Location = New Point(0, 36)
+        lstCategories.Name = "lstCategories"
+        lstCategories.Size = New Size(220, 507)
+        lstCategories.TabIndex = 1
+        ' 
+        ' pnlGridContainer
+        ' 
+        pnlGridContainer.Controls.Add(dgvInventory)
+        pnlGridContainer.Controls.Add(pnlGridHeader)
+        pnlGridContainer.Dock = DockStyle.Fill
+        pnlGridContainer.Location = New Point(232, 62)
+        pnlGridContainer.Name = "pnlGridContainer"
+        pnlGridContainer.Size = New Size(728, 543)
+        pnlGridContainer.TabIndex = 3
+        ' 
+        ' pnlGridHeader
+        ' 
+        pnlGridHeader.BackColor = Color.FromArgb(CByte(245), CByte(246), CByte(248))
+        pnlGridHeader.Controls.Add(lblCurrentCategory)
+        pnlGridHeader.Dock = DockStyle.Top
+        pnlGridHeader.Location = New Point(0, 0)
+        pnlGridHeader.Name = "pnlGridHeader"
+        pnlGridHeader.Size = New Size(728, 36)
+        pnlGridHeader.TabIndex = 0
+        ' 
+        ' lblCurrentCategory
+        ' 
+        lblCurrentCategory.AutoSize = True
+        lblCurrentCategory.Font = New Font("Segoe UI", 9.5F, FontStyle.Bold)
+        lblCurrentCategory.ForeColor = Color.FromArgb(CByte(80), CByte(85), CByte(95))
+        lblCurrentCategory.Location = New Point(8, 8)
+        lblCurrentCategory.Name = "lblCurrentCategory"
+        lblCurrentCategory.Size = New Size(170, 19)
+        lblCurrentCategory.TabIndex = 0
+        lblCurrentCategory.Text = "Showing: All Categories"
         ' 
         ' dgvInventory
         ' 
@@ -103,7 +195,7 @@ Partial Class frmReports
         dgvInventory.Dock = DockStyle.Fill
         dgvInventory.Font = New Font("Segoe UI", 9.5F)
         dgvInventory.GridColor = Color.FromArgb(CByte(220), CByte(223), CByte(228))
-        dgvInventory.Location = New Point(12, 62)
+        dgvInventory.Location = New Point(0, 36)
         dgvInventory.MultiSelect = False
         dgvInventory.Name = "dgvInventory"
         dgvInventory.ReadOnly = True
@@ -111,7 +203,7 @@ Partial Class frmReports
         dgvInventory.RowHeadersWidth = 45
         dgvInventory.RowTemplate.Height = 32
         dgvInventory.SelectionMode = DataGridViewSelectionMode.FullRowSelect
-        dgvInventory.Size = New Size(948, 543)
+        dgvInventory.Size = New Size(728, 507)
         dgvInventory.TabIndex = 1
         ' 
         ' pnlInvBar
@@ -120,6 +212,9 @@ Partial Class frmReports
         pnlInvBar.Controls.Add(btnRefreshInventory)
         pnlInvBar.Controls.Add(btnPrintInventory)
         pnlInvBar.Controls.Add(btnExportInventory)
+        pnlInvBar.Controls.Add(lblSearch)
+        pnlInvBar.Controls.Add(txtSearch)
+        pnlInvBar.Controls.Add(btnClearSearch)
         pnlInvBar.Dock = DockStyle.Top
         pnlInvBar.Location = New Point(12, 12)
         pnlInvBar.Name = "pnlInvBar"
@@ -134,9 +229,9 @@ Partial Class frmReports
         btnRefreshInventory.FlatStyle = FlatStyle.Flat
         btnRefreshInventory.Font = New Font("Segoe UI", 9F, FontStyle.Bold)
         btnRefreshInventory.ForeColor = Color.White
-        btnRefreshInventory.Location = New Point(12, 12)
+        btnRefreshInventory.Location = New Point(12, 10)
         btnRefreshInventory.Name = "btnRefreshInventory"
-        btnRefreshInventory.Size = New Size(130, 30)
+        btnRefreshInventory.Size = New Size(110, 30)
         btnRefreshInventory.TabIndex = 0
         btnRefreshInventory.Text = "Refresh"
         btnRefreshInventory.UseVisualStyleBackColor = False
@@ -149,9 +244,9 @@ Partial Class frmReports
         btnPrintInventory.FlatStyle = FlatStyle.Flat
         btnPrintInventory.Font = New Font("Segoe UI", 9F, FontStyle.Bold)
         btnPrintInventory.ForeColor = Color.White
-        btnPrintInventory.Location = New Point(152, 12)
+        btnPrintInventory.Location = New Point(130, 10)
         btnPrintInventory.Name = "btnPrintInventory"
-        btnPrintInventory.Size = New Size(110, 30)
+        btnPrintInventory.Size = New Size(100, 30)
         btnPrintInventory.TabIndex = 1
         btnPrintInventory.Text = "🖶 Print"
         btnPrintInventory.UseVisualStyleBackColor = False
@@ -164,12 +259,49 @@ Partial Class frmReports
         btnExportInventory.FlatStyle = FlatStyle.Flat
         btnExportInventory.Font = New Font("Segoe UI", 9F, FontStyle.Bold)
         btnExportInventory.ForeColor = Color.White
-        btnExportInventory.Location = New Point(272, 12)
+        btnExportInventory.Location = New Point(238, 10)
         btnExportInventory.Name = "btnExportInventory"
-        btnExportInventory.Size = New Size(130, 30)
+        btnExportInventory.Size = New Size(120, 30)
         btnExportInventory.TabIndex = 2
         btnExportInventory.Text = "📊 Export Excel"
         btnExportInventory.UseVisualStyleBackColor = False
+        ' 
+        ' lblSearch
+        ' 
+        lblSearch.Anchor = AnchorStyles.Top Or AnchorStyles.Right
+        lblSearch.Font = New Font("Segoe UI", 9.5F, FontStyle.Bold)
+        lblSearch.ForeColor = Color.FromArgb(CByte(80), CByte(85), CByte(95))
+        lblSearch.Location = New Point(570, 14)
+        lblSearch.Name = "lblSearch"
+        lblSearch.Size = New Size(110, 22)
+        lblSearch.TabIndex = 3
+        lblSearch.Text = "Search / Scan:"
+        ' 
+        ' txtSearch
+        ' 
+        txtSearch.Anchor = AnchorStyles.Top Or AnchorStyles.Right
+        txtSearch.Font = New Font("Segoe UI", 10F)
+        txtSearch.Location = New Point(685, 11)
+        txtSearch.Name = "txtSearch"
+        txtSearch.PlaceholderText = "Scan barcode or search..."
+        txtSearch.Size = New Size(225, 27)
+        txtSearch.TabIndex = 4
+        ' 
+        ' btnClearSearch
+        ' 
+        btnClearSearch.Anchor = AnchorStyles.Top Or AnchorStyles.Right
+        btnClearSearch.BackColor = Color.FromArgb(CByte(220), CByte(223), CByte(228))
+        btnClearSearch.Cursor = Cursors.Hand
+        btnClearSearch.FlatAppearance.BorderSize = 0
+        btnClearSearch.FlatStyle = FlatStyle.Flat
+        btnClearSearch.Font = New Font("Segoe UI", 9F, FontStyle.Bold)
+        btnClearSearch.ForeColor = Color.FromArgb(CByte(80), CByte(85), CByte(95))
+        btnClearSearch.Location = New Point(916, 11)
+        btnClearSearch.Name = "btnClearSearch"
+        btnClearSearch.Size = New Size(27, 27)
+        btnClearSearch.TabIndex = 5
+        btnClearSearch.Text = "X"
+        btnClearSearch.UseVisualStyleBackColor = False
         ' 
         ' tabSales
         ' 
@@ -419,11 +551,18 @@ Partial Class frmReports
         FormBorderStyle = FormBorderStyle.None
         Name = "frmReports"
         Text = "Reports"
-        tabControl.ResumeLayout(False)
-        tabInventory.ResumeLayout(False)
+        pnlGridHeader.ResumeLayout(False)
+        pnlGridHeader.PerformLayout()
+        pnlGridContainer.ResumeLayout(False)
+        pnlCategoryHeader.ResumeLayout(False)
+        pnlCategoryHeader.PerformLayout()
+        pnlCategorySidebar.ResumeLayout(False)
         CType(dgvInventory, ComponentModel.ISupportInitialize).EndInit()
         pnlInvBar.ResumeLayout(False)
+        pnlInvBar.PerformLayout()
+        tabInventory.ResumeLayout(False)
         tabSales.ResumeLayout(False)
+        tabControl.ResumeLayout(False)
         CType(dgvTopProducts, ComponentModel.ISupportInitialize).EndInit()
         pnlSalesHeader.ResumeLayout(False)
         pnlSummary.ResumeLayout(False)
@@ -438,6 +577,16 @@ Partial Class frmReports
     Friend WithEvents btnRefreshInventory As Button
     Friend WithEvents btnPrintInventory   As Button
     Friend WithEvents btnExportInventory  As Button
+    Friend WithEvents lblSearch           As Label
+    Friend WithEvents txtSearch           As TextBox
+    Friend WithEvents btnClearSearch      As Button
+    Friend WithEvents pnlCategorySidebar  As Panel
+    Friend WithEvents pnlCategoryHeader   As Panel
+    Friend WithEvents lblCategoryHeader   As Label
+    Friend WithEvents lstCategories       As ListBox
+    Friend WithEvents pnlGridContainer    As Panel
+    Friend WithEvents pnlGridHeader       As Panel
+    Friend WithEvents lblCurrentCategory  As Label
     Friend WithEvents dgvInventory        As DataGridView
     Friend WithEvents tabSales            As TabPage
     Friend WithEvents lblFrom             As Label
