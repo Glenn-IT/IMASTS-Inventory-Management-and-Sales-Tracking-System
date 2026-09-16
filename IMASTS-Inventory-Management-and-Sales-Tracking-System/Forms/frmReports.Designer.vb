@@ -23,6 +23,8 @@ Partial Class frmReports
         dgvInventory = New DataGridView()
         pnlInvBar = New Panel()
         btnRefreshInventory = New Button()
+        btnPrintInventory = New Button()
+        btnExportInventory = New Button()
         tabSales = New TabPage()
         dgvTopProducts = New DataGridView()
         pnlSalesHeader = New Panel()
@@ -31,6 +33,8 @@ Partial Class frmReports
         lblTo = New Label()
         dtpTo = New DateTimePicker()
         btnGenerate = New Button()
+        btnPrintSales = New Button()
+        btnExportSales = New Button()
         pnlSummary = New Panel()
         lblTotalSalesTit = New Label()
         lblTotalSalesVal = New Label()
@@ -114,6 +118,8 @@ Partial Class frmReports
         ' 
         pnlInvBar.BackColor = Color.FromArgb(CByte(245), CByte(246), CByte(248))
         pnlInvBar.Controls.Add(btnRefreshInventory)
+        pnlInvBar.Controls.Add(btnPrintInventory)
+        pnlInvBar.Controls.Add(btnExportInventory)
         pnlInvBar.Dock = DockStyle.Top
         pnlInvBar.Location = New Point(12, 12)
         pnlInvBar.Name = "pnlInvBar"
@@ -134,6 +140,36 @@ Partial Class frmReports
         btnRefreshInventory.TabIndex = 0
         btnRefreshInventory.Text = "Refresh"
         btnRefreshInventory.UseVisualStyleBackColor = False
+        ' 
+        ' btnPrintInventory
+        ' 
+        btnPrintInventory.BackColor = Color.FromArgb(CByte(41), CByte(128), CByte(185))
+        btnPrintInventory.Cursor = Cursors.Hand
+        btnPrintInventory.FlatAppearance.BorderSize = 0
+        btnPrintInventory.FlatStyle = FlatStyle.Flat
+        btnPrintInventory.Font = New Font("Segoe UI", 9F, FontStyle.Bold)
+        btnPrintInventory.ForeColor = Color.White
+        btnPrintInventory.Location = New Point(152, 12)
+        btnPrintInventory.Name = "btnPrintInventory"
+        btnPrintInventory.Size = New Size(110, 30)
+        btnPrintInventory.TabIndex = 1
+        btnPrintInventory.Text = "🖶 Print"
+        btnPrintInventory.UseVisualStyleBackColor = False
+        ' 
+        ' btnExportInventory
+        ' 
+        btnExportInventory.BackColor = Color.FromArgb(CByte(39), CByte(174), CByte(96))
+        btnExportInventory.Cursor = Cursors.Hand
+        btnExportInventory.FlatAppearance.BorderSize = 0
+        btnExportInventory.FlatStyle = FlatStyle.Flat
+        btnExportInventory.Font = New Font("Segoe UI", 9F, FontStyle.Bold)
+        btnExportInventory.ForeColor = Color.White
+        btnExportInventory.Location = New Point(272, 12)
+        btnExportInventory.Name = "btnExportInventory"
+        btnExportInventory.Size = New Size(130, 30)
+        btnExportInventory.TabIndex = 2
+        btnExportInventory.Text = "📊 Export Excel"
+        btnExportInventory.UseVisualStyleBackColor = False
         ' 
         ' tabSales
         ' 
@@ -177,6 +213,8 @@ Partial Class frmReports
         pnlSalesHeader.Controls.Add(lblTo)
         pnlSalesHeader.Controls.Add(dtpTo)
         pnlSalesHeader.Controls.Add(btnGenerate)
+        pnlSalesHeader.Controls.Add(btnPrintSales)
+        pnlSalesHeader.Controls.Add(btnExportSales)
         pnlSalesHeader.Controls.Add(pnlSummary)
         pnlSalesHeader.Controls.Add(lblTopHeader)
         pnlSalesHeader.Dock = DockStyle.Top
@@ -237,6 +275,36 @@ Partial Class frmReports
         btnGenerate.TabIndex = 4
         btnGenerate.Text = "Generate Report"
         btnGenerate.UseVisualStyleBackColor = False
+        ' 
+        ' btnPrintSales
+        ' 
+        btnPrintSales.BackColor = Color.FromArgb(CByte(41), CByte(128), CByte(185))
+        btnPrintSales.Cursor = Cursors.Hand
+        btnPrintSales.FlatAppearance.BorderSize = 0
+        btnPrintSales.FlatStyle = FlatStyle.Flat
+        btnPrintSales.Font = New Font("Segoe UI", 9F, FontStyle.Bold)
+        btnPrintSales.ForeColor = Color.White
+        btnPrintSales.Location = New Point(496, 32)
+        btnPrintSales.Name = "btnPrintSales"
+        btnPrintSales.Size = New Size(110, 30)
+        btnPrintSales.TabIndex = 5
+        btnPrintSales.Text = "🖶 Print"
+        btnPrintSales.UseVisualStyleBackColor = False
+        ' 
+        ' btnExportSales
+        ' 
+        btnExportSales.BackColor = Color.FromArgb(CByte(39), CByte(174), CByte(96))
+        btnExportSales.Cursor = Cursors.Hand
+        btnExportSales.FlatAppearance.BorderSize = 0
+        btnExportSales.FlatStyle = FlatStyle.Flat
+        btnExportSales.Font = New Font("Segoe UI", 9F, FontStyle.Bold)
+        btnExportSales.ForeColor = Color.White
+        btnExportSales.Location = New Point(616, 32)
+        btnExportSales.Name = "btnExportSales"
+        btnExportSales.Size = New Size(130, 30)
+        btnExportSales.TabIndex = 6
+        btnExportSales.Text = "📊 Export Excel"
+        btnExportSales.UseVisualStyleBackColor = False
         ' 
         ' pnlSummary
         ' 
@@ -368,6 +436,8 @@ Partial Class frmReports
     Friend WithEvents tabControl          As TabControl
     Friend WithEvents tabInventory        As TabPage
     Friend WithEvents btnRefreshInventory As Button
+    Friend WithEvents btnPrintInventory   As Button
+    Friend WithEvents btnExportInventory  As Button
     Friend WithEvents dgvInventory        As DataGridView
     Friend WithEvents tabSales            As TabPage
     Friend WithEvents lblFrom             As Label
@@ -375,6 +445,8 @@ Partial Class frmReports
     Friend WithEvents lblTo               As Label
     Friend WithEvents dtpTo               As DateTimePicker
     Friend WithEvents btnGenerate         As Button
+    Friend WithEvents btnPrintSales       As Button
+    Friend WithEvents btnExportSales      As Button
     Friend WithEvents pnlSummary          As Panel
     Friend WithEvents lblTotalSalesTit    As Label
     Friend WithEvents lblTotalSalesVal    As Label

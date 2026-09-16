@@ -59,14 +59,15 @@ Public Module InventoryExportHelper
             sw.WriteLine("Product ID,Barcode,Product Name,Category,Stock Qty,Unit,Reorder Level,Status")
 
             For Each drv As DataRowView In dataView
-                Dim prodId = drv("ProductID")?.ToString()
-                Dim barcode = EscapeCsvField(drv("Barcode")?.ToString())
+                Dim prodId = If(drv.Row.Table.Columns.Contains("ProductID"), drv("ProductID")?.ToString(), "-")
+                Dim barcode = EscapeCsvField(If(drv.Row.Table.Columns.Contains("Barcode"), drv("Barcode")?.ToString(), "-"))
                 Dim name = EscapeCsvField(drv("Name")?.ToString())
                 Dim category = EscapeCsvField(drv("CategoryName")?.ToString())
                 Dim stock = drv("StockQty")?.ToString()
-                Dim unit = EscapeCsvField(drv("Unit")?.ToString())
+                Dim unit = EscapeCsvField(If(drv.Row.Table.Columns.Contains("Unit"), drv("Unit")?.ToString(), "pcs"))
                 Dim reorder = drv("ReorderLevel")?.ToString()
-                Dim status = EscapeCsvField(drv("StockStatus")?.ToString())
+                Dim statusRaw = If(drv.Row.Table.Columns.Contains("StockStatus"), drv("StockStatus")?.ToString(), If(drv.Row.Table.Columns.Contains("Status"), drv("Status")?.ToString(), "OK"))
+                Dim status = EscapeCsvField(statusRaw)
 
                 sw.WriteLine($"{prodId},{barcode},{name},{category},{stock},{unit},{reorder},{status}")
             Next
@@ -178,16 +179,16 @@ Public Module InventoryExportHelper
 
         ' Data Rows
         For Each drv As DataRowView In dataView
-            Dim prodId = drv("ProductID")?.ToString()
-            Dim barcode = EscapeXml(drv("Barcode")?.ToString())
+            Dim prodId = If(drv.Row.Table.Columns.Contains("ProductID"), drv("ProductID")?.ToString(), "0")
+            Dim barcode = EscapeXml(If(drv.Row.Table.Columns.Contains("Barcode"), drv("Barcode")?.ToString(), "-"))
             Dim name = EscapeXml(drv("Name")?.ToString())
             Dim category = EscapeXml(drv("CategoryName")?.ToString())
             Dim stockQty As Integer
             Integer.TryParse(drv("StockQty")?.ToString(), stockQty)
-            Dim unit = EscapeXml(drv("Unit")?.ToString())
+            Dim unit = EscapeXml(If(drv.Row.Table.Columns.Contains("Unit"), drv("Unit")?.ToString(), "pcs"))
             Dim reorder As Integer
             Integer.TryParse(drv("ReorderLevel")?.ToString(), reorder)
-            Dim status = drv("StockStatus")?.ToString()
+            Dim status = If(drv.Row.Table.Columns.Contains("StockStatus"), drv("StockStatus")?.ToString(), If(drv.Row.Table.Columns.Contains("Status"), drv("Status")?.ToString(), "OK"))
 
             Dim statusStyle = "StatusOk"
             If status = "Out of Stock" Then

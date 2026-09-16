@@ -54,6 +54,8 @@ Public Class frmSettings
         btnDeleteUser.Enabled  = False
         btnChangePass.Enabled  = False
         lblSelectedUser.Text   = "Select a user above."
+        txtChangePassword.Clear()
+        txtConfirmChangePassword.Clear()
     End Sub
 
     Private Sub dgvUsers_SelectionChanged(sender As Object, e As EventArgs) Handles dgvUsers.SelectionChanged
@@ -64,6 +66,8 @@ Public Class frmSettings
         lblSelectedUser.Text  = $"Selected: {_selectedUsername}"
         btnDeleteUser.Enabled = (_selectedUsername <> SessionManager.Username)
         btnChangePass.Enabled = True
+        txtChangePassword.Clear()
+        txtConfirmChangePassword.Clear()
     End Sub
 
     ' ── Add User ──────────────────────────────────────────────────────────
@@ -76,6 +80,13 @@ Public Class frmSettings
         End If
         If txtNewPassword.Text.Length < 6 Then
             MessageBox.Show("Password must be at least 6 characters.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            txtNewPassword.Focus()
+            Return
+        End If
+        If Not String.Equals(txtNewPassword.Text, txtNewConfirmPassword.Text, StringComparison.Ordinal) Then
+            MessageBox.Show("Passwords do not match. Please ensure passwords match exactly (passwords are case-sensitive).", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            txtNewConfirmPassword.SelectAll()
+            txtNewConfirmPassword.Focus()
             Return
         End If
         If cboNewUserType.SelectedItem Is Nothing Then
@@ -95,7 +106,9 @@ Public Class frmSettings
         LoadUsers()
         txtNewUsername.Clear()
         txtNewPassword.Clear()
+        txtNewConfirmPassword.Clear()
         cboNewUserType.SelectedIndex = 1
+        MessageBox.Show($"User ""{uname}"" added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
 
     ' ── Change Password ───────────────────────────────────────────────────
@@ -104,6 +117,13 @@ Public Class frmSettings
         If _selectedUserId = 0 Then Return
         If txtChangePassword.Text.Length < 6 Then
             MessageBox.Show("New password must be at least 6 characters.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            txtChangePassword.Focus()
+            Return
+        End If
+        If Not String.Equals(txtChangePassword.Text, txtConfirmChangePassword.Text, StringComparison.Ordinal) Then
+            MessageBox.Show("Passwords do not match. Please ensure passwords match exactly (passwords are case-sensitive).", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            txtConfirmChangePassword.SelectAll()
+            txtConfirmChangePassword.Focus()
             Return
         End If
 
@@ -119,6 +139,7 @@ Public Class frmSettings
         ActivityLogger.Log(SessionManager.Username, Constants.LogSuccess,
             $"Changed password for user: {_selectedUsername}")
         txtChangePassword.Clear()
+        txtConfirmChangePassword.Clear()
         MessageBox.Show("Password updated successfully.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
 

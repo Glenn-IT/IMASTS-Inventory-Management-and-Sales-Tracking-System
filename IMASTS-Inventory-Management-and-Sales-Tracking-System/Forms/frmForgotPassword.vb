@@ -100,8 +100,8 @@ Public Class frmForgotPassword
             Return
         End If
 
-        If txtNewPassword.Text <> txtConfirmPassword.Text Then
-            ShowError("Passwords do not match.")
+        If Not String.Equals(txtNewPassword.Text, txtConfirmPassword.Text, StringComparison.Ordinal) Then
+            ShowError("Passwords do not match (passwords are case-sensitive).")
             Return
         End If
 

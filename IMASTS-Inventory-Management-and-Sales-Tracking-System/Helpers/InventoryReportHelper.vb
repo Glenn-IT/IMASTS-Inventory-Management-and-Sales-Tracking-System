@@ -38,7 +38,7 @@ Public Module InventoryReportHelper
                     totalQty += qtyVal
                 End If
 
-                Dim status = drv("StockStatus")?.ToString()
+                Dim status = If(drv.Row.Table.Columns.Contains("StockStatus"), drv("StockStatus")?.ToString(), If(drv.Row.Table.Columns.Contains("Status"), drv("Status")?.ToString(), ""))
                 If status = "Out of Stock" Then
                     outOfStockCount += 1
                 ElseIf status = "Low Stock" Then
@@ -173,15 +173,15 @@ Public Module InventoryReportHelper
         If dataView IsNot Nothing AndAlso dataView.Count > 0 Then
             Dim rowIdx As Integer = 1
             For Each drv As DataRowView In dataView
-                Dim barcode = System.Net.WebUtility.HtmlEncode(drv("Barcode")?.ToString())
+                Dim barcode = If(drv.Row.Table.Columns.Contains("Barcode"), System.Net.WebUtility.HtmlEncode(drv("Barcode")?.ToString()), "-")
                 Dim name = System.Net.WebUtility.HtmlEncode(drv("Name")?.ToString())
                 Dim category = System.Net.WebUtility.HtmlEncode(drv("CategoryName")?.ToString())
                 Dim stockQty As Integer
                 Integer.TryParse(drv("StockQty")?.ToString(), stockQty)
-                Dim unit = System.Net.WebUtility.HtmlEncode(drv("Unit")?.ToString())
+                Dim unit = If(drv.Row.Table.Columns.Contains("Unit"), System.Net.WebUtility.HtmlEncode(drv("Unit")?.ToString()), "pcs")
                 Dim reorder As Integer
                 Integer.TryParse(drv("ReorderLevel")?.ToString(), reorder)
-                Dim status = drv("StockStatus")?.ToString()
+                Dim status = If(drv.Row.Table.Columns.Contains("StockStatus"), drv("StockStatus")?.ToString(), If(drv.Row.Table.Columns.Contains("Status"), drv("Status")?.ToString(), "OK"))
 
                 Dim badgeClass = "badge-ok"
                 If status = "Out of Stock" Then

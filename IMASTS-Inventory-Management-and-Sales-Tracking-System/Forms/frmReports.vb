@@ -1,14 +1,20 @@
 Public Class frmReports
 
     Private _repo As New ReportRepository()
+    Private _inventoryTable As DataTable
+    Private _topProductsTable As DataTable
+    Private _totalSales As Integer = 0
+    Private _totalRevenue As Decimal = 0
+    Private _avgSaleValue As Decimal = 0
 
     Private Sub frmReports_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-Me.Text       = "Reports"
+        Me.Text = "Reports"
         dtpFrom.Value = DateTime.Today.AddDays(-30)
         dtpTo.Value   = DateTime.Today
         ConfigureInventoryGrid()
         ConfigureTopProductsGrid()
         LoadInventoryReport()
+        GenerateSalesReport()
     End Sub
 
     ' ── Tab 1 — Inventory Status ───────────────────────────────────────────
@@ -42,7 +48,8 @@ Me.Text       = "Reports"
     End Sub
 
     Private Sub LoadInventoryReport()
-        dgvInventory.DataSource = _repo.GetInventoryStatus()
+        _inventoryTable = _repo.GetInventoryStatus()
+        dgvInventory.DataSource = _inventoryTable
         ColorizeInventoryRows()
     End Sub
 
@@ -64,6 +71,24 @@ Me.Text       = "Reports"
 
     Private Sub btnRefreshInventory_Click(sender As Object, e As EventArgs) Handles btnRefreshInventory.Click
         LoadInventoryReport()
+    End Sub
+
+    Private Sub btnPrintInventory_Click(sender As Object, e As EventArgs) Handles btnPrintInventory.Click
+        If _inventoryTable Is Nothing OrElse _inventoryTable.Rows.Count = 0 Then
+            MessageBox.Show("No inventory report records available to print.", "Print Inventory Report", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Return
+        End If
+
+        InventoryReportHelper.OpenReportInChrome(_inventoryTable.DefaultView, "All Categories", "")
+    End Sub
+
+    Private Sub btnExportInventory_Click(sender As Object, e As EventArgs) Handles btnExportInventory.Click
+        If _inventoryTable Is Nothing OrElse _inventoryTable.Rows.Count = 0 Then
+            MessageBox.Show("No inventory report records available to export.", "Export Excel", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Return
+        End If
+
+        InventoryExportHelper.ExportInventory(_inventoryTable.DefaultView, "All Categories")
     End Sub
 
     ' ── Tab 2 — Sales Summary ─────────────────────────────────────────────
@@ -88,15 +113,48 @@ Me.Text       = "Reports"
         })
     End Sub
 
-    Private Sub btnGenerate_Click(sender As Object, e As EventArgs) Handles btnGenerate.Click
+    Private Sub GenerateSalesReport()
         Dim summary = _repo.GetSalesSummary(dtpFrom.Value, dtpTo.Value)
         If summary.Rows.Count > 0 Then
             Dim row = summary.Rows(0)
-            lblTotalSalesVal.Text = row("TotalSales").ToString()
-            lblRevenueVal.Text    = CDec(row("TotalRevenue")).ToString("N2")
-            lblAvgVal.Text        = CDec(row("AvgSaleValue")).ToString("N2")
+            _totalSales   = If(IsNumeric(row("TotalSales")), CInt(row("TotalSales")), 0)
+            _totalRevenue = If(IsNumeric(row("TotalRevenue")), CDec(row("TotalRevenue")), 0)
+            _avgSaleValue = If(IsNumeric(row("AvgSaleValue")), CDec(row("AvgSaleValue")), 0)
+
+            lblTotalSalesVal.Text = _totalSales.ToString("N0")
+            lblRevenueVal.Text    = _totalRevenue.ToString("N2")
+            lblAvgVal.Text        = _avgSaleValue.ToString("N2")
+        Else
+            _totalSales = 0
+            _totalRevenue = 0
+            _avgSaleValue = 0
+            lblTotalSalesVal.Text = "0"
+            lblRevenueVal.Text    = "0.00"
+            lblAvgVal.Text        = "0.00"
         End If
-        dgvTopProducts.DataSource = _repo.GetTopProducts(dtpFrom.Value, dtpTo.Value)
+
+        _topProductsTable = _repo.GetTopProducts(dtpFrom.Value, dtpTo.Value)
+        dgvTopProducts.DataSource = _topProductsTable
+    End Sub
+
+    Private Sub btnGenerate_Click(sender As Object, e As EventArgs) Handles btnGenerate.Click
+        GenerateSalesReport()
+    End Sub
+
+    Private Sub btnPrintSales_Click(sender As Object, e As EventArgs) Handles btnPrintSales.Click
+        If _topProductsTable Is Nothing Then
+            GenerateSalesReport()
+        End If
+
+        SalesReportHelper.OpenSalesReportInChrome(dtpFrom.Value, dtpTo.Value, _totalSales, _totalRevenue, _avgSaleValue, _topProductsTable)
+    End Sub
+
+    Private Sub btnExportSales_Click(sender As Object, e As EventArgs) Handles btnExportSales.Click
+        If _topProductsTable Is Nothing Then
+            GenerateSalesReport()
+        End If
+
+        SalesReportHelper.ExportSalesReport(dtpFrom.Value, dtpTo.Value, _totalSales, _totalRevenue, _avgSaleValue, _topProductsTable)
     End Sub
 
 End Class
