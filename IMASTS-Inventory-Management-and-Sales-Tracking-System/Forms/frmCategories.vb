@@ -124,6 +124,18 @@ Me.Text = "Category Management"
         If _selectedId = 0 Then Return
         Dim name As String = txtCategoryName.Text
 
+        ' ── Guard: prevent delete if products are still linked to this category ──
+        If _repo.HasProducts(_selectedId) Then
+            MessageBox.Show(
+                $"Cannot delete the category ""{name}"" because it still has products linked to it." &
+                Environment.NewLine & Environment.NewLine &
+                "Please delete or reassign all products under this category first, then try again.",
+                "Cannot Delete Category",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Warning)
+            Return
+        End If
+
         Dim confirm = MessageBox.Show(
             $"Delete category ""{name}""? This cannot be undone.",
             "Confirm Delete",
@@ -137,7 +149,7 @@ Me.Text = "Category Management"
             LoadCategories()
             ClearForm()
         Else
-            MessageBox.Show("Failed to delete category. It may be in use by existing products.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Failed to delete category.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End If
     End Sub
 

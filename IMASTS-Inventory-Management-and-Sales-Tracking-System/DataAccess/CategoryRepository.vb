@@ -49,6 +49,20 @@ Public Class CategoryRepository
         End Using
     End Function
 
+    ''' <summary>
+    ''' Returns True if at least one product is still linked to the given category.
+    ''' </summary>
+    Public Function HasProducts(id As Integer) As Boolean
+        Dim sql As String = "SELECT COUNT(*) FROM tbl_Products WHERE CategoryID = @ID"
+        Using conn As New SqlConnection(dbconstring.Connection)
+            Using cmd As New SqlCommand(sql, conn)
+                cmd.Parameters.AddWithValue("@ID", id)
+                conn.Open()
+                Return CInt(cmd.ExecuteScalar()) > 0
+            End Using
+        End Using
+    End Function
+
     Public Function Delete(id As Integer) As Boolean
         EnsureSchema()
         Dim sql As String = "DELETE FROM tbl_Categories WHERE CategoryID = @ID"
