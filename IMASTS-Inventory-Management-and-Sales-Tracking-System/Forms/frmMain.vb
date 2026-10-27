@@ -3,10 +3,19 @@ Public Class frmMain
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ApplyTheme()
         Me.Text            = $"IMASTS  —  {SessionManager.Username}  ({SessionManager.UserType})"
-        btnSettings.Visible = True
+        ApplyRoleRestrictions()
         UpdateStatusBar()
         tmrClock.Start()
         OpenChildForm(New frmDashboard())
+    End Sub
+
+    Private Sub ApplyRoleRestrictions()
+        Dim isAdmin = SessionManager.IsAdmin
+        btnSettings.Visible   = isAdmin
+        btnReports.Visible    = isAdmin
+        lblMgmtSep.Visible    = isAdmin
+        btnSuppliers.Visible  = isAdmin
+        btnCategories.Visible = isAdmin
     End Sub
 
     ' ── Theme ────────────────────────────────────────────────────────────

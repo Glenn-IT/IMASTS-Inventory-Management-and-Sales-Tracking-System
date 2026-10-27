@@ -9,6 +9,9 @@ Public Class frmProducts
 
     Private Sub frmProducts_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.Text = "Product Management"
+        If Not SessionManager.IsAdmin Then
+            Panel2.Visible = False
+        End If
         ConfigureGrid()
         LoadComboBoxes()
         LoadProducts()
@@ -234,8 +237,8 @@ Public Class frmProducts
         cboUnit.Text           = If(row.Cells("Unit").Value?.ToString(), "pcs")
         cboCategory.SelectedValue = row.Cells("CategoryID").Value
         cboSupplier.SelectedValue = row.Cells("SupplierID").Value
-        btnUpdate.Enabled = True
-        btnDelete.Enabled = True
+        btnUpdate.Enabled = SessionManager.IsAdmin
+        btnDelete.Enabled = SessionManager.IsAdmin
     End Sub
 
     ' ── Validation ────────────────────────────────────────────────────────

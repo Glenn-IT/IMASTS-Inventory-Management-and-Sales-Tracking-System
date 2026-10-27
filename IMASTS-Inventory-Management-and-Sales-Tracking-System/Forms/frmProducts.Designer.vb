@@ -387,6 +387,7 @@ Partial Class frmProducts
         ' 
         ' lblSearch
         ' 
+        lblSearch.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         lblSearch.Font = New Font("Segoe UI", 9.5F, FontStyle.Bold)
         lblSearch.ForeColor = Color.FromArgb(CByte(80), CByte(85), CByte(95))
         lblSearch.Location = New Point(570, 26)
@@ -397,6 +398,7 @@ Partial Class frmProducts
         ' 
         ' txtSearch
         ' 
+        txtSearch.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         txtSearch.Font = New Font("Segoe UI", 10F)
         txtSearch.Location = New Point(685, 23)
         txtSearch.Name = "txtSearch"
@@ -406,6 +408,7 @@ Partial Class frmProducts
         ' 
         ' btnClearSearch
         ' 
+        btnClearSearch.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         btnClearSearch.BackColor = Color.FromArgb(CByte(220), CByte(223), CByte(228))
         btnClearSearch.Cursor = Cursors.Hand
         btnClearSearch.FlatAppearance.BorderSize = 0

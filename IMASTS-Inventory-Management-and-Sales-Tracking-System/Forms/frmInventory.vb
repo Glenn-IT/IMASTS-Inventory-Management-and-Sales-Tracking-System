@@ -23,6 +23,10 @@ Public Class frmInventory
 
     Private Sub frmInventory_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.Text = "Inventory Management"
+        If Not SessionManager.IsAdmin Then
+            btnAdjustStock.Visible = False
+            btnExportExcel.Visible = False
+        End If
         ConfigureGrid()
         LoadComboBoxes()
         LoadInventory()

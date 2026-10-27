@@ -209,6 +209,12 @@ Public Class frmNewSale
         txtScanBarcode.Focus()
     End Sub
 
+    Private Sub txtQty_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtQty.KeyPress
+        If Not Char.IsControl(e.KeyChar) AndAlso Not Char.IsDigit(e.KeyChar) Then
+            e.Handled = True
+        End If
+    End Sub
+
     ' ── Remove item ───────────────────────────────────────────────────────
 
     Private Sub dgvSaleItems_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvSaleItems.CellClick
